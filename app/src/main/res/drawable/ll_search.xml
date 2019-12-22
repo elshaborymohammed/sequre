@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:autoMirrored="true"
+    android:paddingEnd="8dp">
+
+    <item
+        android:id="@+id/w1"
+        android:drawable="@drawable/ic_search"
+        android:end="16dp"
+        android:gravity="start" />
+
+    <item
+        android:gravity="end"
+        android:start="16dp">
+        <rotate
+            android:fromDegrees="90"
+            android:toDegrees="0">
+            <shape android:shape="line">
+                <stroke
+                    android:width="2dp"
+                    android:color="#70707061" />
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

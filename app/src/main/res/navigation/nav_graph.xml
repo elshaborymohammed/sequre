@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/auth_navigation">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_auth_graph"
+            app:destination="@id/auth_navigation"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_splashFragment_to_navigationFragment"
+            app:destination="@id/navigationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigationFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment"
+        android:label="NavigationFragment"
+        tools:layout="@layout/fragment_navigation" />
+
+    <navigation
+        android:id="@+id/auth_navigation"
+        app:startDestination="@id/auth_graph">
+
+        <include app:graph="@navigation/auth_graph" />
+        <action
+            android:id="@+id/action_global_navigationFragment"
+            app:destination="@id/navigationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </navigation>
+
+</navigation>

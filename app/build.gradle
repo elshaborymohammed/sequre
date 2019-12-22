@@ -1,0 +1,126 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: androidX.navigation.kts.safeargs
+
+apply plugin: 'com.google.firebase.appdistribution'
+apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'io.fabric'
+
+android {
+    compileSdkVersion compilesSdkVersion
+    buildToolsVersion buildToolsVersion
+    defaultConfig {
+        applicationId "com.ocs.sequre"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+//            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'BASE_URL', '"https://sequre.com/"'
+            buildConfigField 'String', 'IMAGE_URL', '"https://sequre.com/"'
+        }
+        release {
+            minifyEnabled false
+//            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'BASE_URL', '"https://sequre.com/"'
+            buildConfigField 'String', 'IMAGE_URL', '"https://sequre.com/"'
+
+            firebaseAppDistribution {
+                FIREBASE_TOKEN = "1//03C8PrMV2w8hVCgYIARAAGAMSNwF-L9IrsG8RDkN79wdpP6sxWBpOVyFzNi-XzAkw82QfqEJwl1e9VYnQNqC2C-fWjVWAKe2gwrI"
+                releaseNotes = "Release notes for full version"
+                groups="admin"
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation compact.app
+    implementation compact.otp
+    implementation compact.extensions
+    implementation compact.compact
+    implementation compact.response
+    implementation compact.callAdapter
+    implementation compact.viewmodel
+    implementation compact.requesterAnnotation
+    kapt compact.requesterProcessor
+
+    implementation androidX.ktx
+    implementation androidX.appCompat
+    implementation androidX.material
+    implementation androidX.cardView
+    implementation androidX.constraintLayout
+    implementation androidX.viewModel
+    implementation androidX.extension
+    implementation androidX.supportV4
+    implementation androidX.navigation.kts.fragment
+    implementation androidX.navigation.kts.ui
+    kapt androidX.compiler
+
+    implementation di.dagger
+    implementation di.androidSupport
+    implementation di.android
+    kapt di.compiler
+    kapt di.processor
+
+    implementation reactive.rxJava
+    implementation reactive.rxAndroid
+    implementation reactive.rxRelay
+
+    implementation restful.retrofit
+    implementation restful.retrofitMock
+    implementation restful.converter
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+    implementation restful.gson
+
+    implementation http.okhttp
+    implementation http.logging
+
+    implementation image.glide
+    implementation image.okhttp
+    implementation image.transformations
+    kapt image.compiler
+
+    implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'
+//    implementation 'com.jakewharton.rxbinding3:rxbinding-material:3.1.0'
+//    implementation 'com.jakewharton.rxbinding3:rxbinding-core:3.1.0'
+//    implementation 'com.jakewharton.rxbinding3:rxbinding-appcompat:3.1.0'
+//    implementation 'com.jakewharton.rxbinding3:rxbinding-drawerlayout:3.1.0'
+//    implementation 'com.jakewharton.rxbinding3:rxbinding-leanback:3.1.0'
+//    implementation 'com.jakewharton.rxbinding3:rxbinding-recyclerview:3.1.0'
+//    implementation 'com.jakewharton.rxbinding3:rxbinding-slidingpanelayout:3.1.0'
+//    implementation 'com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:3.1.0'
+//    implementation 'com.jakewharton.rxbinding3:rxbinding-viewpager:3.1.0'
+//    implementation 'com.jakewharton.rxbinding3:rxbinding-viewpager2:3.1.0'
+
+    implementation 'com.google.firebase:firebase-analytics:17.2.1'
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-perf:19.0.3'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+}
+
+kapt {
+    correctErrorTypes = true
+    generateStubs = true
+}
+
+apply plugin: 'com.google.gms.google-services'

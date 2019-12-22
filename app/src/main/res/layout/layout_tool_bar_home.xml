@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
+    style="@style/Widget.MaterialComponents.Toolbar.Surface"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+    app:menu="@menu/home_menu"
+    app:navigationIcon="@drawable/ic_menu"
+    app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+    tools:showIn="@layout/fragment_navigation">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@null"
+        android:elevation="0dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:singleLine="true"
+        android:text="@string/home"
+        android:textAppearance="@style/App.TextAppearance.Toolbar" />
+</com.google.android.material.appbar.MaterialToolbar>

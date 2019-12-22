@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">Sequre</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="language_title">Language</string>
+    <string name="choose_your_preferred_language">Please Choose Your Preferred Language</string>
+    <string name="next">Next</string>
+    <string name="sign_in_welcome_message">To your SeQure account</string>
+    <string name="sign_up_welcome_message">Create your account to start your Sequre trip</string>
+    <string name="email_or_mobile">Email / Mobile</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="password">Password</string>
+    <string name="corporate">Corporate</string>
+    <string name="individual">Individual</string>
+    <string name="register_as">Register as</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="verify_your_account">Verify your account</string>
+    <string name="verification_welcome_message">
+        <![CDATA[
+        Please enter the verification code we have sent to
+        <b><font color=#007DC3>%1$s</font></b>
+        ]]>
+    </string>
+    <string name="try_resend_code">Haven\'t receive the code ?\n Try send it again in 00:05</string>
+    <string name="send_again">Send Again</string>
+    <string name="do_not_have_an_account">Don\'t have an account ?</string>
+    <string name="home">Home</string>
+    <string name="brands">Brands</string>
+    <string name="categories">Categories</string>
+    <string name="offers">Offers</string>
+    <string name="profile">Profile</string>
+    <string name="shopping_cart">Shopping Cart</string>
+    <string name="search_for_your_product">Search for your product</string>
+
+    <string name="field_required">This field is required</string>
+    <string name="accepts_letter_only">Accepts letter only</string>
+    <string name="invalid_email_or_mobile">Invalid email or mobile</string>
+    <string name="invalid_mobile_number">Invalid mobile number</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="password_too_short">Password too short, Can\'t be less than 8 characters</string>
+    <string name="password_does_not_match">Password Doesn\'t match</string>
+    <string name="change_password">Change Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="cancel">Cancel</string>
+    <string name="area">Area</string>
+    <string name="street">Street</string>
+    <string name="additional_notes">Additional Notes</string>
+    <string name="building">Building</string>
+    <string name="floor">Floor</string>
+    <string name="apartment">Apartment</string>
+    <string name="change_address">Edit Address</string>
+    <string name="save_address">Save Address</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="logout">Logout</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="personal_info">Personal Info</string>
+    <string name="saved_address">Saved Address</string>
+    <string name="address">Address</string>
+    <string name="feel_free_to_contact_us">Feel free to contact us</string>
+    <string name="write_here_your_message">Write here your message ..</string>
+    <string name="submit">Submit</string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
+
+    <string-array name="language_array">
+        <item>English</item>
+        <item>Arabic</item>
+    </string-array>
+
+    <string-array name="lang_array">
+        <item>en</item>
+        <item>ar</item>
+    </string-array>
+
+    <string-array name="country_code_array">
+        <item>+20</item>
+        <item>+966</item>
+    </string-array>
+
+    <string-array name="company_array">
+        <item>Company 01</item>
+        <item>Company 02</item>
+        <item>Company 03</item>
+        <item>Company 04</item>
+    </string-array>
+</resources>
