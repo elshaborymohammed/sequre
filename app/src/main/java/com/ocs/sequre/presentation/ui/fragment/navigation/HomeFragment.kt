@@ -45,7 +45,7 @@ class HomeFragment : BaseFragment() {
 
         view.search.phone(R.string.app_name)
         val navController = Navigation.findNavController(activity !!, R.id.nav_host_fragment)
-        bottom_navigation.setupWithNavController(navController)
+//        bottom_navigation.setupWithNavController(navController)
         navigation_view.setupWithNavController(navController)
     }
 }

@@ -1,8 +1,11 @@
 package com.ocs.sequre.presentation.ui.fragment
 
+import android.util.Log
 import androidx.navigation.fragment.findNavController
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class SplashFragment : BaseFragment() {
@@ -13,7 +16,6 @@ class SplashFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-
 //        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 //        val calendar = Calendar.getInstance(Locale.getDefault())
 //        val currentTime = calendar.time
