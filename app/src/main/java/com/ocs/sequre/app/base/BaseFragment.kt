@@ -1,10 +1,12 @@
 package com.ocs.sequre.app.base
 
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import com.compact.app.CompactFragment
 import javax.inject.Inject
+import kotlin.system.exitProcess
 
 abstract class BaseFragment : CompactFragment() {
     @Inject
@@ -15,6 +17,16 @@ abstract class BaseFragment : CompactFragment() {
 
     override fun onViewBound(view: View) {
 
+    }
+
+    fun exitProcess() {
+        requireActivity().onBackPressedDispatcher
+            .addCallback(this, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    exitProcess(0)
+                }
+
+            })
     }
 
     protected fun setToolBar(toolbar: Toolbar) {

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.ocs.sequre.presentation.ui.fragment.navigation.CategoryFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment"
         android:label="CategoryFragment"
         tools:layout="@layout/fragment_list_of_items" />
 

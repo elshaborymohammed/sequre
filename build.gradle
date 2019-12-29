@@ -2,8 +2,8 @@
 apply from: "dependencies.gradle"
 
 ext {
-    buildToolsVersion = '29.0.2'
-    compilesSdkVersion = 29
+    sdkVersion = 29
+    buildToolsVersion = '29.0.0'
 }
 
 buildscript {

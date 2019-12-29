@@ -26,7 +26,7 @@ class VerificationFragment : BaseFragment() {
 
         arguments?.let {
             //            VerificationFragmentArgs.fromBundle(it).user
-            User(_mobile = "01019992512", countryCode = "+20")
+            User(_mobile = "01019992577", countryCode = "+20")
         }?.let {
             view.body.text =
                 HtmlCompat.fromHtml(

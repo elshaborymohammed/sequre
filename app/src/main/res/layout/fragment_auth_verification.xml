@@ -55,28 +55,32 @@
             android:id="@+id/otp_code"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
             android:inputType="numberSigned"
             android:maxLength="6"
             app:backgroundDrawable="@drawable/ic_otp"
+            app:layout_constraintBottom_toTopOf="@id/try_resend"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
             app:layout_constraintTop_toBottomOf="@id/body"
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintVertical_chainStyle="packed"
             app:line="false" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/try_resend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="32dp"
             android:text="@string/try_resend_code"
             android:textAppearance="@style/App.TextAppearance.Body"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@id/resend"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/otp_code" />
+            app:layout_constraintTop_toBottomOf="@id/otp_code"
+            app:layout_constraintVertical_bias="0.3" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/resend"
@@ -89,6 +93,7 @@
             android:text="@string/send_again"
             android:textColor="#fff"
             app:cornerRadius="@dimen/corner_radius"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="@id/guideline_start"

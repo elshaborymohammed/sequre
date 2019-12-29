@@ -33,8 +33,8 @@ class BrandsAdapter :
             itemView.name.text = obj.name
             GlideApp.with(itemView)
                 //.load(obj.image)
-                .load(R.drawable.ic_lg)
-                .placeholder(R.drawable.ic_house)
+                .load(R.drawable.ic_logo)
+                .placeholder(R.drawable.ic_logo)
                 .into(itemView.image)
         }
     }

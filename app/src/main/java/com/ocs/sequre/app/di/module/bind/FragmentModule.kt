@@ -3,9 +3,8 @@ package com.ocs.sequre.app.di.module.bind
 import com.ocs.sequre.presentation.ui.fragment.LanguageFragment
 import com.ocs.sequre.presentation.ui.fragment.SplashFragment
 import com.ocs.sequre.presentation.ui.fragment.auth.*
-import com.ocs.sequre.presentation.ui.fragment.navigation.BrandFragment
-import com.ocs.sequre.presentation.ui.fragment.navigation.CategoryFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment
+import com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.ChangePasswordFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.EditAddressFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.EditProfileFragment
@@ -40,13 +39,10 @@ abstract class FragmentModule {
 
 
     @ContributesAndroidInjector
-    internal abstract fun providesNavigationFragment(): HomeFragment
+    internal abstract fun providesNavigationFragment(): NavigationFragment
 
     @ContributesAndroidInjector
-    internal abstract fun providesCategoryFragment(): CategoryFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun providesBrandFragment(): BrandFragment
+    internal abstract fun providesHomeFragment(): HomeFragment
 
     @ContributesAndroidInjector
     internal abstract fun providesProfileFragment(): ProfileFragment

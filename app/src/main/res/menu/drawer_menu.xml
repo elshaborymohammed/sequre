@@ -3,24 +3,20 @@
     <group>
         <item
             android:id="@+id/home"
-            android:icon="@drawable/ic_baseline_house"
-            android:title="@string/home" />
+            android:icon="@drawable/ic_logout" />
 
         <item
             android:id="@+id/profile"
-            android:icon="@drawable/ic_baseline_person"
-            android:title="@string/profile" />
+            android:icon="@drawable/ic_logout" />
     </group>
 
     <group>
         <item
             android:id="@+id/contact_us"
-            android:icon="@drawable/ic_baseline_contact_us"
-            android:title="@string/contact_us" />
+            android:icon="@drawable/ic_logout" />
 
         <item
             android:id="@+id/sign_out"
-            android:icon="@drawable/ic_logout"
-            android:title="@string/logout" />
+            android:icon="@drawable/ic_logout" />
     </group>
 </menu>

@@ -9,12 +9,12 @@ apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'io.fabric'
 
 android {
-    compileSdkVersion compilesSdkVersion
+    compileSdkVersion sdkVersion
     buildToolsVersion buildToolsVersion
     defaultConfig {
         applicationId "com.ocs.sequre"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion sdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -36,9 +36,8 @@ android {
             buildConfigField 'String', 'IMAGE_URL', '"https://sequre.com/"'
 
             firebaseAppDistribution {
-                FIREBASE_TOKEN = "1//03C8PrMV2w8hVCgYIARAAGAMSNwF-L9IrsG8RDkN79wdpP6sxWBpOVyFzNi-XzAkw82QfqEJwl1e9VYnQNqC2C-fWjVWAKe2gwrI"
                 releaseNotes = "Release notes for full version"
-                groups="admin"
+                groups = "admin"
             }
         }
     }
@@ -89,7 +88,6 @@ dependencies {
     implementation restful.retrofit
     implementation restful.retrofitMock
     implementation restful.converter
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
     implementation restful.gson
 
     implementation http.okhttp
@@ -101,16 +99,6 @@ dependencies {
     kapt image.compiler
 
     implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'
-//    implementation 'com.jakewharton.rxbinding3:rxbinding-material:3.1.0'
-//    implementation 'com.jakewharton.rxbinding3:rxbinding-core:3.1.0'
-//    implementation 'com.jakewharton.rxbinding3:rxbinding-appcompat:3.1.0'
-//    implementation 'com.jakewharton.rxbinding3:rxbinding-drawerlayout:3.1.0'
-//    implementation 'com.jakewharton.rxbinding3:rxbinding-leanback:3.1.0'
-//    implementation 'com.jakewharton.rxbinding3:rxbinding-recyclerview:3.1.0'
-//    implementation 'com.jakewharton.rxbinding3:rxbinding-slidingpanelayout:3.1.0'
-//    implementation 'com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:3.1.0'
-//    implementation 'com.jakewharton.rxbinding3:rxbinding-viewpager:3.1.0'
-//    implementation 'com.jakewharton.rxbinding3:rxbinding-viewpager2:3.1.0'
 
     implementation 'com.google.firebase:firebase-analytics:17.2.1'
     implementation 'com.google.firebase:firebase-auth:19.2.0'
