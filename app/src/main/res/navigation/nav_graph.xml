@@ -2,8 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/navigationFragment">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menu">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -26,7 +26,11 @@
         android:id="@+id/navigationFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment"
         android:label="NavigationFragment"
-        tools:layout="@layout/fragment_navigation" />
+        tools:layout="@layout/fragment_navigation">
+        <action
+            android:id="@+id/action_navigationFragment_to_home_graph"
+            app:destination="@id/home_graph" />
+    </fragment>
 
     <navigation
         android:id="@+id/auth_navigation"
@@ -41,5 +45,11 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </navigation>
+
+    <fragment
+        android:id="@+id/menu"
+        android:name="com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment"
+        android:label="MenuFragment"
+        tools:layout="@layout/fragment_menu" />
 
 </navigation>

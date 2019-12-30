@@ -68,6 +68,7 @@
     <string name="write_here_your_message">Write here your message ..</string>
     <string name="submit">Submit</string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
+    <string name="about_us">About Us</string>
 
     <string-array name="language_array">
         <item>English</item>

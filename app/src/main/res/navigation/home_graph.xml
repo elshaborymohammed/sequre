@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/home_graph"
     app:startDestination="@id/home">
 
     <fragment
@@ -10,19 +10,6 @@
         android:name="com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment"
         android:label="CategoryFragment"
         tools:layout="@layout/fragment_list_of_items" />
-
-    <fragment
-        android:id="@+id/brand"
-        android:name="com.ocs.sequre.presentation.ui.fragment.navigation.BrandFragment"
-        android:label="BrandFragment"
-        tools:layout="@layout/fragment_list_of_items" />
-
-    <fragment
-        android:id="@+id/profile"
-        android:name="com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment"
-        android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
-
     <dialog
         android:id="@+id/sign_out"
         android:name="com.ocs.sequre.presentation.ui.fragment.auth.SignOutFragment"

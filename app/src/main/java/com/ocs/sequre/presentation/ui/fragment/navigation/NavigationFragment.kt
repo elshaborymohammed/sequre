@@ -3,6 +3,7 @@ package com.ocs.sequre.presentation.ui.fragment.navigation
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.internal.NavigationMenuItemView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
@@ -16,13 +17,13 @@ class NavigationFragment : BaseFragment() {
 
     override fun onViewBound(view: View) {
         super.onViewBound(view)
-        pager.adapter = PagerAdapter(this)
 
+        pager.adapter = PagerAdapter(this)
         TabLayoutMediator(tabs, pager) { tab, position ->
             tab.setIcon(R.drawable.se_tab_home)
         }.attach()
-
         tabs.getTabAt(1)?.select()
+
     }
 
 

@@ -1,12 +1,8 @@
 package com.ocs.sequre.presentation.ui.fragment
 
-import android.util.Log
 import androidx.navigation.fragment.findNavController
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
-import java.text.SimpleDateFormat
-import java.util.*
-
 
 class SplashFragment : BaseFragment() {
 

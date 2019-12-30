@@ -4,6 +4,7 @@ import com.ocs.sequre.presentation.ui.fragment.LanguageFragment
 import com.ocs.sequre.presentation.ui.fragment.SplashFragment
 import com.ocs.sequre.presentation.ui.fragment.auth.*
 import com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment
+import com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.ChangePasswordFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.EditAddressFragment
@@ -43,6 +44,9 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun providesHomeFragment(): HomeFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesMenuFragment(): MenuFragment
 
     @ContributesAndroidInjector
     internal abstract fun providesProfileFragment(): ProfileFragment

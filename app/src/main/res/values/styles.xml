@@ -12,6 +12,9 @@
         <item name="spinnerStyle">@style/Widget.AppCompat.Spinner.Underlined</item>
         <item name="bottomNavigationStyle">@style/App.Widget.BottomNavigationView</item>
         <item name="materialCardViewStyle">@style/App.Widget.CardView</item>
+        <item name="listPreferredItemHeight">16dp</item>
+        <item name="listPreferredItemHeightSmall">48dp</item>
+        <item name="listPreferredItemHeightLarge">32dp</item>
     </style>
 
     <style name="ButtonAppearanceBoarded" parent="">
