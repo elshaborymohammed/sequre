@@ -2,14 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/nav_view"
+        android:id="@+id/menu_nav"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/colorAccent"
+        android:paddingBottom="16dp"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,18 +18,28 @@
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.15" />
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/menu_close"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:background="@null"
+        android:src="@drawable/ic_close"
+        app:layout_constraintBottom_toBottomOf="@id/menu_nav"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/menu_nav"
+        app:layout_constraintStart_toStartOf="@id/menu_nav" />
+
     <fragment
         android:id="@+id/nav_host_fragment_menu"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:defaultNavHost="true"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/nav_view"
+        app:layout_constraintStart_toEndOf="@id/menu_nav"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="spread"
-        app:navGraph="@navigation/home_graph" />
+        app:layout_constraintWidth_default="spread" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

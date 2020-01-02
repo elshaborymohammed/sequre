@@ -1,5 +1,6 @@
 package com.ocs.sequre.presentation.ui.fragment.navigation
 
+import android.view.View
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 

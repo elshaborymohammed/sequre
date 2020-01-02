@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/menu">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -19,17 +19,11 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_splashFragment_to_navigationFragment"
-            app:destination="@id/navigationFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigationFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment"
-        android:label="NavigationFragment"
-        tools:layout="@layout/fragment_navigation">
-        <action
-            android:id="@+id/action_navigationFragment_to_home_graph"
-            app:destination="@id/home_graph" />
+            app:destination="@id/navigationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <navigation
@@ -47,7 +41,21 @@
     </navigation>
 
     <fragment
-        android:id="@+id/menu"
+        android:id="@+id/navigationFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment"
+        android:label="NavigationFragment"
+        tools:layout="@layout/fragment_navigation">
+        <action
+            android:id="@+id/action_navigationFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menuFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment"
         android:label="MenuFragment"
         tools:layout="@layout/fragment_menu" />

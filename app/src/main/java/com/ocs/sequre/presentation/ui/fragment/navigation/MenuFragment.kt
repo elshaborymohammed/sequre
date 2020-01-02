@@ -1,6 +1,8 @@
 package com.ocs.sequre.presentation.ui.fragment.navigation
 
 import android.view.View
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.presentation.ui.adapter.MenuAdapter
@@ -14,7 +16,9 @@ class MenuFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         val adapter = MenuAdapter()
-        nav_view.adapter = adapter
+        menu_nav.adapter = adapter
         adapter.swap(MenuAdapter.Menu.getMenus())
+
+        menu_close.setOnClickListener { findNavController().navigateUp() }
     }
 }

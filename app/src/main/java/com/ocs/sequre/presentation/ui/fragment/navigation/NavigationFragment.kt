@@ -2,13 +2,18 @@ package com.ocs.sequre.presentation.ui.fragment.navigation
 
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.internal.NavigationMenuItemView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.presentation.ui.fragment.SplashFragment
+import com.ocs.sequre.presentation.viewmodel.DataViewModel
 import kotlinx.android.synthetic.main.fragment_navigation.*
+import kotlinx.android.synthetic.main.layout_tool_bar.*
 
 class NavigationFragment : BaseFragment() {
     override fun layoutRes(): Int {
@@ -24,6 +29,10 @@ class NavigationFragment : BaseFragment() {
         }.attach()
         tabs.getTabAt(1)?.select()
 
+        var dataViewModel = ViewModelProviders.of(this, factory).get(DataViewModel::class.java)
+        dataViewModel.data().subscribe({ println(it) }, Throwable::printStackTrace)
+
+        bottom_bar.setNavigationOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_navigationFragment_to_menuFragment))
     }
 
 

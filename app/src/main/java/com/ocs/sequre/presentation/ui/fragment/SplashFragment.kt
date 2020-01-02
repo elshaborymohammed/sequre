@@ -27,10 +27,10 @@ class SplashFragment : BaseFragment() {
                 super.run()
                 sleep(2000)
                 activity?.runOnUiThread {
-                    findNavController().navigate(R.id.action_splashFragment_to_auth_graph)
+                    findNavController().navigate(R.id.action_splashFragment_to_navigationFragment)
                 }
             }
-        }
+        }.start()
     }
 
 }

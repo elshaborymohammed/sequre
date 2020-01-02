@@ -16,7 +16,8 @@ class MenuAdapter :
 
     override fun itemDecorations(): Array<RecyclerView.ItemDecoration> {
         return arrayOf(
-            CompactRecyclerView.SpacesItemDecoration.Linear.builder(context).space(8).build()
+            CompactRecyclerView.SpacesItemDecoration.Linear.builder(context)
+                .top(32).left(12).right(12).build()
         )
     }
 

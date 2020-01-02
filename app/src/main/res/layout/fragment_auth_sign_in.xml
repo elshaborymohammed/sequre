@@ -89,7 +89,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sign_in"
-            style="@style/App.Widget.Button.Main"
+            style="@style/App.Widget.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -127,7 +127,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/create_account"
-            style="@style/App.Widget.Button.Main.Outline"
+            style="@style/App.Widget.Button.Outlined"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

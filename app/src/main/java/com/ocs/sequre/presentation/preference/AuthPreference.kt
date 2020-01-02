@@ -24,10 +24,4 @@ constructor(private val sharedPreferences: SharedPreferences) : BasePreference<S
     override fun clear(): Boolean {
         return sharedPreferences().edit().clear().commit()
     }
-
-//    override fun getType(): Type {
-//        return object : TypeToken<String>() {
-//
-//        }.type
-//    }
 }

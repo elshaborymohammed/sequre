@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="8dp"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:text="@string/please_choose_speciality"
+        android:textAppearance="@style/App.TextAppearance.Headline2" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/search_speciality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/sh_border_rounded"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="12dp"
+        android:hint="@string/choose_speciality"
+        android:textAppearance="@style/App.TextAppearance.Body" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/where_do_you_feel_the_pain"
+        android:textAppearance="@style/App.TextAppearance.Headline2" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/pain_place"
+        style="@style/Widget.AppCompat.Spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/sh_border_rounded"
+        android:entries="@array/language_array"
+        android:spinnerMode="dropdown"
+        android:textAppearance="@style/App.TextAppearance.Body" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/commits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/sh_border_rounded"
+        android:gravity="start"
+        android:hint="@string/write_here_what_you_feel"
+        android:lines="6"
+        android:textAppearance="@style/App.TextAppearance.Body" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save"
+        style="@style/App.Widget.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="8dp"
+        android:paddingVertical="16dp"
+        android:text="@string/save" />
+</androidx.appcompat.widget.LinearLayoutCompat>

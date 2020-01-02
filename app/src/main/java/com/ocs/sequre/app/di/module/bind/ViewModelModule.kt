@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.compact.app.viewmodel.di.key.ViewModelKey
 import com.compact.app.viewmodel.di.module.ViewModelInjectionModule
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel
+import com.ocs.sequre.presentation.viewmodel.DataViewModel
 import com.ocs.sequre.presentation.viewmodel.UserViewModel
 import dagger.Binds
 import dagger.Module
@@ -21,4 +22,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(AuthViewModel::class)
     internal abstract fun providesLoginViewModel(viewModel: AuthViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DataViewModel::class)
+    internal abstract fun providesDataViewModel(viewModel: DataViewModel): ViewModel
 }

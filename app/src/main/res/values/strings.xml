@@ -65,10 +65,18 @@
     <string name="saved_address">Saved Address</string>
     <string name="address">Address</string>
     <string name="feel_free_to_contact_us">Feel free to contact us</string>
-    <string name="write_here_your_message">Write here your message ..</string>
+    <string name="write_here_your_message">Write here your message....</string>
     <string name="submit">Submit</string>
     <string name="are_you_sure_you_want_to_logout">Are you sure you want to logout?</string>
     <string name="about_us">About Us</string>
+    <string name="for_you">For You</string>
+    <string name="for_others">For Others</string>
+    <string name="are_you_requesting_the_second_opinion">Are you requesting the second opinion for yourself or for others?</string>
+    <string name="choose_speciality">Choose speciality</string>
+    <string name="please_choose_speciality">Please choose speciality</string>
+    <string name="where_do_you_feel_the_pain">Where do you feel the pain?</string>
+    <string name="save">Save</string>
+    <string name="write_here_what_you_feel">Write here what you feel....</string>
 
     <string-array name="language_array">
         <item>English</item>
