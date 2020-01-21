@@ -15,6 +15,7 @@
         <item name="listPreferredItemHeight">16dp</item>
         <item name="listPreferredItemHeightSmall">48dp</item>
         <item name="listPreferredItemHeightLarge">32dp</item>
+        <item name="android:textCursorDrawable">@drawable/ic_cursor</item>
     </style>
 
     <style name="ButtonAppearanceBoarded" parent="">
@@ -118,6 +119,7 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

@@ -17,6 +17,7 @@ import com.ocs.sequre.presentation.ui.viewholder.ToolBarViewHolder
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel
 import com.smart.compact.response.ApiException
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.BiFunction
@@ -37,7 +38,7 @@ class SignInFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)
-//        view.sign_in.isEnabled = false
+        view.sign_in.isEnabled = false
 
         view.sign_in.setOnClickListener {
             viewModel.login(
@@ -45,17 +46,7 @@ class SignInFragment : BaseFragment() {
                 view.input_auth_password.text().toString()
             ).subscribe({
                 findNavController().navigate(R.id.action_signInFragment_to_navigationFragment)
-            }, {
-                //                if (it is ApiException) {
-////                    it.error(ResponseError::class.java)?.let { e ->
-////                        Toast.makeText(requireContext(), e.error.message, Toast.LENGTH_LONG).show()
-////                    }
-//                } else {
-//                    super.onError().accept(it)
-//                }
-
-                super.onError().accept(it)
-            })
+            }, onError())
         }
 
         view.create_account.setOnClickListener(
@@ -68,6 +59,7 @@ class SignInFragment : BaseFragment() {
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
+            viewModel.loading().subscribe { if (it) loadingOn() else loadingOff() },
             Observable.combineLatest(
                 loginName,
                 password,

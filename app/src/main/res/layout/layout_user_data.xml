@@ -17,20 +17,22 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_email"
-        android:tag="email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="@string/email">
+        android:hint="@string/email"
+        android:tag="email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -52,15 +54,17 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_mobile"
             android:layout_width="0dp"
-            android:tag="mobile"
             android:layout_height="wrap_content"
+
             android:layout_marginTop="8dp"
             android:layout_weight="0.65"
-            android:hint="@string/mobile">
+            android:hint="@string/mobile"
+            android:tag="mobile">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -75,7 +79,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -89,6 +94,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

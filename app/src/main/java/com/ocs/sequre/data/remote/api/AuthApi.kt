@@ -17,16 +17,16 @@ import retrofit2.http.Url
 @Requester
 interface AuthApi {
 
-    @POST("login")
+    @POST("auth/login")
     fun login(@Body body: Login): Single<AccessToken>
 
-    @POST("register")
+    @POST("auth/register")
     fun register(@Body body: User): Single<AccessToken>
 
-    @POST("check/register")
+    @POST("auth/check/register")
     fun check(@Body body: AuthValidation): Single<Void>
 
-    @POST("resend")
+    @POST("auth/resend")
     fun resend(@Body body: Resend): Single<Void>
 
     @GET("countries")

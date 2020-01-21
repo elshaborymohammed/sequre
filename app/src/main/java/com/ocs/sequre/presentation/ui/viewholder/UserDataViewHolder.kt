@@ -57,7 +57,7 @@ class UserDataViewHolder constructor(private val view: View) {
             name = view.input_name.editText?.text.toString(),
             email = view.input_email.editText?.text.toString(),
             password = view.input_password.editText?.text.toString(),
-            _mobile = view.input_mobile.editText?.text.toString(),
+            mobile = view.input_mobile.editText?.text.toString(),
             countryCode = view.resources.getStringArray(R.array.country_code_array)[view.input_country.selectedItemPosition]
         )
     }

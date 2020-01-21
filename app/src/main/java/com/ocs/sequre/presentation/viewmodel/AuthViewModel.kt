@@ -6,11 +6,9 @@ import com.ocs.sequre.data.remote.api.RequesterAuthApi
 import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
 import com.ocs.sequre.data.remote.model.request.auth.Login
 import com.ocs.sequre.data.remote.model.request.auth.Resend
-import com.ocs.sequre.data.remote.model.request.auth.Verification
 import com.ocs.sequre.data.remote.model.response.success.AccessToken
 import com.ocs.sequre.domain.entity.User
 import io.reactivex.Single
-import retrofit2.http.Body
 import javax.inject.Inject
 
 class AuthViewModel @Inject constructor(
@@ -19,7 +17,7 @@ class AuthViewModel @Inject constructor(
 ) : CompactViewModel() {
 
     fun login(mobile: String, password: String): Single<AccessToken> {
-        return api.login(Login(mobile, password))
+        return api.login(Login(mobile = mobile, password = password))
             .compose(compose.applyOnSingle())
             .compose(composeLoadingSingle())
     }

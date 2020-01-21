@@ -4,19 +4,17 @@ import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.compact.app.extensions.error
 import com.google.android.material.textfield.TextInputLayout
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
+import com.ocs.sequre.data.remote.model.response.error.Error
 import com.ocs.sequre.data.remote.model.response.error.ErrorStatus
-import com.ocs.sequre.data.remote.model.response.error.ResponseErrors
 import com.ocs.sequre.presentation.ui.viewholder.UserDataViewHolder
 import com.ocs.sequre.presentation.ui.viewholder.ToolBarViewHolder
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel
-import com.smart.compact.response.ApiException
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_auth_sign_up.view.*
-import kotlinx.android.synthetic.main.layout_user_data.view.*
 
 class SignUpFragment : BaseFragment() {
     private lateinit var viewModel: AuthViewModel
@@ -45,22 +43,7 @@ class SignUpFragment : BaseFragment() {
                     R.id.action_signUpFragment_to_verificationFragment,
                     VerificationFragmentArgs(signUpViewHolder.get()).toBundle()
                 )
-            }, {
-                if (it is ApiException) {
-                    it.error(ResponseErrors::class.java)?.run {
-                        if (code == ErrorStatus.VALIDATION) {
-                            var input: TextInputLayout
-                            for (e in errors) {
-                                input = view.findViewWithTag(e.path)
-                                input.error = e.message
-                                input.isErrorEnabled = true
-                            }
-                        }
-                    }
-                } else {
-                    super.onError().accept(it)
-                }
-            })
+            }, onError())
         }
 
         view.sign_in.setOnClickListener(
@@ -68,5 +51,23 @@ class SignUpFragment : BaseFragment() {
                 R.id.action_signUpFragment_to_signInFragment
             )
         )
+    }
+
+    override fun subscriptions(): Array<Disposable> {
+        return arrayOf(
+            viewModel.loading().subscribe { if (it) loadingOn() else loadingOff() }
+        )
+    }
+
+    override fun onApiException(code: ErrorStatus, errors: List<Error>) {
+        if (code != ErrorStatus.VALIDATION) {
+            var input: TextInputLayout
+            for (e in errors) {
+                input = view!!.findViewWithTag(e.path)
+                input.error = e.message
+                input.isErrorEnabled = true
+            }
+
+        }
     }
 }

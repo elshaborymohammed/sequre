@@ -10,6 +10,7 @@ import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.app.helper.PhoneAuthHelper
 import com.ocs.sequre.presentation.ui.viewholder.ToolBarViewHolder
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_auth_verification.*
 import kotlinx.android.synthetic.main.fragment_auth_verification.view.*
 import java.lang.Exception
@@ -66,5 +67,11 @@ class VerificationFragment : BaseFragment() {
                 }
             }
         }
+    }
+
+    override fun subscriptions(): Array<Disposable> {
+        return arrayOf(
+            viewModel.loading().subscribe { if (it) loadingOn() else loadingOff() }
+        )
     }
 }

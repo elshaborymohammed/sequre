@@ -9,12 +9,12 @@ data class ResponseError(
     @JsonAdapter(ErrorStatusTypeAdapter::class)
     @SerializedName("code")
     @Expose
-    val code: Int,
+    val code: ErrorStatus,
     @SerializedName("errors")
     @Expose
-    val error: Error
+    val errors: List<Error>
 ) {
     override fun toString(): String {
-        return "ErrorResponse(code=$code, error=$error)"
+        return "ErrorResponse(code=$code, errors=$errors)"
     }
 }
