@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.SplashFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.landing.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
@@ -45,6 +45,15 @@
         android:name="com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment"
         android:label="NavigationFragment"
         tools:layout="@layout/fragment_navigation">
+
+        <action
+            android:id="@+id/action_navigationFragment_to_secondOpinionFragment"
+            app:destination="@id/secondOpinionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
         <action
             android:id="@+id/action_navigationFragment_to_menuFragment"
             app:destination="@id/menuFragment"
@@ -55,9 +64,14 @@
     </fragment>
 
     <fragment
+        android:id="@+id/secondOpinionFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.navigation.SecondOpinionFragment"
+        android:label="SecondOpinionFragment"
+        tools:layout="@layout/fragment_second_opinion" />
+
+    <fragment
         android:id="@+id/menuFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment"
         android:label="MenuFragment"
         tools:layout="@layout/fragment_menu" />
-
 </navigation>

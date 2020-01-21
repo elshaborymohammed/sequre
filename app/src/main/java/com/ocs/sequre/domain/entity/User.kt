@@ -2,6 +2,7 @@ package com.ocs.sequre.domain.entity
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
 import java.io.Serializable
 
 
@@ -9,7 +10,7 @@ class User(
     @SerializedName("name")
     @Expose
     val name: String = "",
-    @SerializedName("countryCode")
+    @SerializedName("c_code")
     @Expose
     val countryCode: String,
     @SerializedName("mobile")

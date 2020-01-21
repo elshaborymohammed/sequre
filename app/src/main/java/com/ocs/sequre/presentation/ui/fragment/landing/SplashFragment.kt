@@ -1,4 +1,4 @@
-package com.ocs.sequre.presentation.ui.fragment
+package com.ocs.sequre.presentation.ui.fragment.landing
 
 import androidx.navigation.fragment.findNavController
 import com.ocs.sequre.R
@@ -12,6 +12,7 @@ class SplashFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
+
 //        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 //        val calendar = Calendar.getInstance(Locale.getDefault())
 //        val currentTime = calendar.time
@@ -21,16 +22,14 @@ class SplashFragment : BaseFragment() {
 //            "Date",
 //            "calendar ${calendar.timeInMillis} - current date: $currentTime - epoch time: ${calendar.timeInMillis / 1000} - date: ${Date(1576599516050)} "
 //        )
-
-        object : Thread() {
-            override fun run() {
-                super.run()
-                sleep(2000)
+        Thread(
+            Runnable {
+                Thread.sleep(2000)
                 activity?.runOnUiThread {
-                    findNavController().navigate(R.id.action_splashFragment_to_navigationFragment)
+                    findNavController().navigate(R.id.action_splashFragment_to_auth_graph)
                 }
             }
-        }.start()
+        ).start()
     }
 
 }

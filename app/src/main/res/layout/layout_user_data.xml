@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Name"
+        android:hint="@string/name"
         app:boxStrokeErrorColor="@color/colorAccent">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -22,10 +22,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_email"
+        android:tag="email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Email">
+        android:hint="@string/email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -51,10 +52,11 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_mobile"
             android:layout_width="0dp"
+            android:tag="mobile"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_weight="0.65"
-            android:hint="Mobile">
+            android:hint="@string/mobile">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -67,7 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Password"
+        android:hint="@string/password"
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -81,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Confirm Password"
+        android:hint="@string/confirm_password"
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText

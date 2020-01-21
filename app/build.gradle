@@ -25,15 +25,15 @@ android {
             minifyEnabled false
 //            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'BASE_URL', '"https://sequre.com/"'
-            buildConfigField 'String', 'IMAGE_URL', '"https://sequre.com/"'
+            buildConfigField 'String', 'BASE_URL', '"http://sequrep.overcoffees.com/api/"'
+            buildConfigField 'String', 'BASE_URL', '"http://sequrep.overcoffees.com/api/"'
         }
         release {
             minifyEnabled false
 //            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'BASE_URL', '"https://sequre.com/"'
-            buildConfigField 'String', 'IMAGE_URL', '"https://sequre.com/"'
+            buildConfigField 'String', 'BASE_URL', '"http://sequrep.overcoffees.com/api/"'
+            buildConfigField 'String', 'BASE_URL', '"http://sequrep.overcoffees.com/api/"'
             firebaseAppDistribution {
                 releaseNotes = "Release notes for full version"
                 groups = "admin"

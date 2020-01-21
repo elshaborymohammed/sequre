@@ -22,12 +22,12 @@
             android:paddingBottom="32dp">
 
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/second_opinion_image"
+                android:id="@+id/second_opinion"
                 style="@style/Widget.AppCompat.ImageButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/sh_border_rounded"
-                android:src="@drawable/ic_doctor"
+                android:src="@drawable/ic_doctor_colored"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toTopOf="@id/second_opinion_text"
                 app:layout_constraintDimensionRatio="1:1"
@@ -47,11 +47,11 @@
                 android:layout_height="0dp"
                 android:background="@drawable/sh_border_rounded"
                 android:src="@drawable/ic_credit_card"
-                app:layout_constraintBottom_toBottomOf="@id/second_opinion_image"
+                app:layout_constraintBottom_toBottomOf="@id/second_opinion"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toStartOf="@id/upcoming_service_image"
-                app:layout_constraintStart_toEndOf="@id/second_opinion_image"
-                app:layout_constraintTop_toTopOf="@id/second_opinion_image" />
+                app:layout_constraintStart_toEndOf="@id/second_opinion"
+                app:layout_constraintTop_toTopOf="@id/second_opinion" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/upcoming_service_image"
@@ -60,11 +60,11 @@
                 android:layout_height="0dp"
                 android:background="@drawable/sh_border_rounded"
                 android:src="@drawable/ic_customer_support"
-                app:layout_constraintBottom_toBottomOf="@id/second_opinion_image"
+                app:layout_constraintBottom_toBottomOf="@id/second_opinion"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/discount_card_image"
-                app:layout_constraintTop_toTopOf="@id/second_opinion_image" />
+                app:layout_constraintTop_toTopOf="@id/second_opinion" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/second_opinion_text"
@@ -75,9 +75,9 @@
                 android:gravity="center"
                 android:text="Second\nOpinion"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/second_opinion_image"
-                app:layout_constraintStart_toStartOf="@id/second_opinion_image"
-                app:layout_constraintTop_toBottomOf="@id/second_opinion_image" />
+                app:layout_constraintEnd_toEndOf="@id/second_opinion"
+                app:layout_constraintStart_toStartOf="@id/second_opinion"
+                app:layout_constraintTop_toBottomOf="@id/second_opinion" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/discount_card_text"

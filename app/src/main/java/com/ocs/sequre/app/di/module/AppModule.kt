@@ -27,6 +27,7 @@ import javax.inject.Singleton
         ContextModule::class,
         PreferenceModule::class,
         NetworkModule::class,
+        NetworkInterceptorModule::class,
         GsonModule::class,
         RequestModule::class,
         SchedulerModule::class
@@ -58,20 +59,5 @@ class AppModule {
     @IntoSet
     fun providesCompactCallAdapterFactory(): CallAdapter.Factory {
         return RxCompactCallAdapterFactory.create()
-    }
-
-    @Provides
-    @Singleton
-    fun providesAuthenticator(@ApplicationContext context: Context): Authenticator {
-        return object : Authenticator {
-            override fun authenticate(route: Route?, response: Response): Request {
-                val intent = Intent(context, MainActivity::class.java)
-                intent.flags =
-                    Intent.FLAG_ACTIVITY_CLEAR_TOP and Intent.FLAG_ACTIVITY_NEW_TASK and Intent.FLAG_ACTIVITY_CLEAR_TASK
-                context.startActivity(intent)
-                return response.request
-            }
-
-        }
     }
 }

@@ -27,7 +27,7 @@
         <b><font color=#007DC3>%1$s</font></b>
         ]]>
     </string>
-    <string name="try_resend_code">Haven\'t receive the code ?\n Try send it again in 00:05</string>
+    <string name="try_resend_code">Haven\'t receive the code?\nTry send it again in 00:05</string>
     <string name="send_again">Send Again</string>
     <string name="do_not_have_an_account">Don\'t have an account ?</string>
     <string name="home">Home</string>
@@ -49,6 +49,9 @@
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="mobile">Mobile</string>
     <string name="cancel">Cancel</string>
     <string name="area">Area</string>
     <string name="street">Street</string>
@@ -77,6 +80,15 @@
     <string name="where_do_you_feel_the_pain">Where do you feel the pain?</string>
     <string name="save">Save</string>
     <string name="write_here_what_you_feel">Write here what you feel....</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="choose_doctor">Choose a Doctor</string>
+    <string name="medical_reports">Medical Reports</string>
+    <string name="lab_tests">Lab Tests</string>
+    <string name="radiology_scans">Radiology Scans</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
+    <string name="choose">Choose</string>
 
     <string-array name="language_array">
         <item>English</item>
@@ -93,10 +105,8 @@
         <item>+966</item>
     </string-array>
 
-    <string-array name="company_array">
-        <item>Company 01</item>
-        <item>Company 02</item>
-        <item>Company 03</item>
-        <item>Company 04</item>
+    <string-array name="pain_array">
+        <item>Leg</item>
+        <item>Arm</item>
     </string-array>
 </resources>

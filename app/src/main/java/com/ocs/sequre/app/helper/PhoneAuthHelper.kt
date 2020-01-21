@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import java.lang.Exception
 import java.util.concurrent.TimeUnit
 
 object PhoneAuthHelper {
@@ -17,14 +18,14 @@ object PhoneAuthHelper {
     private val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     init {
-        mAuth.setLanguageCode("ar")
+        mAuth.setLanguageCode("en")
     }
 
     fun setupVerifyPhoneNumber(countryCode: String, phoneNumber: String, activity: Activity) {
         setupVerifyPhoneNumber(countryCode + phoneNumber, activity)
     }
 
-    fun setupVerifyPhoneNumber(phoneNumber: String, activity: Activity) {
+    private fun setupVerifyPhoneNumber(phoneNumber: String, activity: Activity) {
         PhoneAuthProvider.getInstance(mAuth)
             .verifyPhoneNumber(
                 phoneNumber,
@@ -40,7 +41,10 @@ object PhoneAuthHelper {
                         Log.e(Tag, "Failed e = [${e}]")
                         if (e is FirebaseAuthInvalidCredentialsException) {
                             when (e.errorCode) {
-                                "ERROR_INVALID_PHONE_NUMBER" -> Log.e(Tag, "message: ${e.message}]")
+                                "ERROR_INVALID_PHONE_NUMBER" -> Log.e(
+                                    Tag,
+                                    "ERROR_INVALID_PHONE_NUMBER: ${e.message}]"
+                                )
                             }
 
                         }
@@ -76,31 +80,37 @@ object PhoneAuthHelper {
         setAutoRetrievedSmsCodeForPhoneNumber(phoneNumber, code.toString())
     }
 
-    private fun verifyPhoneNumberWithCode(
-        verificationId: String,
-        activity: Activity,
-        code: String
-    ) {
-        val credential = PhoneAuthProvider.getCredential(verificationId, code)
-        signInWithPhoneAuthCredential(credential, activity)
-    }
-
     fun verifyPhoneNumberWithCode(
         verificationId: String,
         activity: Activity,
-        vararg code: CharSequence
+        code: CharSequence,
+        onSuccess: () -> Unit,
+        onFailed: (exception: Exception) -> Unit
     ) {
-        verifyPhoneNumberWithCode(verificationId, activity, code.joinToString(separator = ""))
+        val credential = PhoneAuthProvider.getCredential(verificationId, code.toString())
+        signInWithPhoneAuthCredential(credential, activity, onSuccess, onFailed)
     }
 
-    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential, activity: Activity) {
+//    fun verifyPhoneNumberWithCode(
+//        verificationId: String,
+//        activity: Activity,
+//        vararg code: CharSequence
+//    ) {
+//        verifyPhoneNumberWithCode(verificationId, activity, code.joinToString(separator = ""))
+//    }
+
+    private fun signInWithPhoneAuthCredential(
+        credential: PhoneAuthCredential,
+        activity: Activity,
+        onSuccess: () -> Unit,
+        onFailed: (exception: Exception) -> Unit
+    ) {
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(activity) { task ->
                 if (task.isSuccessful) { // Sign in success, update UI with the signed-in user's information
-                    Log.d(Tag, "signInWithCredential:success")
+                    onSuccess()
                 } else { // Sign in failed, display a message and update the UI
-                    Log.w(Tag, "signInWithCredential:failure", task.exception)
-
+                    onFailed(task.exception!!)
                 }
             }
     }

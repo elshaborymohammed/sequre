@@ -2,20 +2,25 @@ package com.ocs.sequre.presentation.ui.viewholder
 
 import android.view.View
 import com.compact.app.extensions.*
+import com.jakewharton.rxbinding3.view.focusChanges
+import com.jakewharton.rxbinding3.widget.textChanges
 import com.ocs.sequre.R
 import com.ocs.sequre.domain.entity.User
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Function5
+import io.reactivex.functions.Function6
 import kotlinx.android.synthetic.main.fragment_auth_sign_up.view.*
 import kotlinx.android.synthetic.main.layout_user_data.view.*
 
-class SignUpViewHolder constructor(private val view: View) {
+class UserDataViewHolder constructor(private val view: View) {
     var disposable: Disposable
 
     init {
         view.next.isEnabled = false
+        //view.input_name.focusChanges().subscribe(::println)
 
         val name = view.input_name.notNullOrEmpty()
         val phone = view.input_mobile.phone()

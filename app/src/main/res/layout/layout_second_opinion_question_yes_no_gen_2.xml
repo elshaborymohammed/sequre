@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="8dp"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:text="Do you suffer from Diabetic ?"
+        android:textAppearance="@style/App.TextAppearance.Headline2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/yes"
+        style="@style/App.Widget.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="8dp"
+        android:paddingVertical="16dp"
+        android:text="@string/yes" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/no"
+        style="@style/App.Widget.Button.Outlined"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="8dp"
+        android:paddingVertical="16dp"
+        android:text="@string/no" />
+</androidx.appcompat.widget.LinearLayoutCompat>
