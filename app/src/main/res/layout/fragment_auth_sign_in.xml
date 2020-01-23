@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ll_background"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,6 +63,7 @@
             app:layout_constraintTop_toBottomOf="@id/body">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/App.Widget.TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="phone" />
@@ -69,26 +72,27 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_auth_password"
+            style="@style/App.Widget.TextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="@string/password"
+            android:textAppearance="@style/App.Widget.TextInputEditText"
             app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
             app:layout_constraintTop_toBottomOf="@id/input_auth_name">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/App.Widget.TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@null"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sign_in"
-            style="@style/App.Widget.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -121,7 +125,7 @@
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
             app:layout_constraintTop_toBottomOf="@id/forget_password"
-            app:layout_constraintVertical_bias="0.4"
+            app:layout_constraintVertical_bias="0.20"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.button.MaterialButton

@@ -22,7 +22,7 @@ class NavigationFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         pager.adapter = PagerAdapter(this)
-        tabLayoutMediator = TabLayoutMediator(tabs, pager) { tab, position ->
+        tabLayoutMediator = TabLayoutMediator(tabs, pager) { tab, _ ->
             tab.setIcon(R.drawable.se_tab_home)
         }
         tabLayoutMediator.attach()

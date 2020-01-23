@@ -45,12 +45,6 @@ class SignUpFragment : BaseFragment() {
                 )
             }, onError())
         }
-
-        view.sign_in.setOnClickListener(
-            Navigation.createNavigateOnClickListener(
-                R.id.action_signUpFragment_to_signInFragment
-            )
-        )
     }
 
     override fun subscriptions(): Array<Disposable> {

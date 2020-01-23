@@ -1,21 +1,18 @@
 package com.ocs.sequre.app.base
 
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.ViewModelProvider
 import com.compact.app.CompactFragment
+import com.compact.response.ApiException
+import com.google.android.material.snackbar.Snackbar
 import com.ocs.sequre.R
 import com.ocs.sequre.data.remote.model.response.error.Error
 import com.ocs.sequre.data.remote.model.response.error.ErrorStatus
 import com.ocs.sequre.data.remote.model.response.error.ResponseError
-import com.smart.compact.response.ApiException
-import kotlinx.android.synthetic.main.activity_main.*
 import java.io.IOException
 import javax.inject.Inject
 import kotlin.system.exitProcess
@@ -32,7 +29,7 @@ abstract class BaseFragment : CompactFragment() {
             .setCancelable(false)
             .create()
         progressBar.window?.run {
-            setBackgroundDrawableResource(android.R.color.transparent);
+            setBackgroundDrawableResource(android.R.color.transparent)
             allowEnterTransitionOverlap = true
         }
     }
@@ -62,18 +59,22 @@ abstract class BaseFragment : CompactFragment() {
 
     protected open fun onError(): (it: Throwable) -> Unit {
         return {
-            if (it is ApiException) {
-                if (it.code() >= 500) {
-                    onServerError()
-                } else {
-                    it.error(ResponseError::class.java)?.run {
-                        onApiException(code, errors)
+            try {
+                if (it is ApiException) {
+                    if (it.code() >= 500) {
+//                        onServerError()
+                    } else {
+                        it.error(ResponseError::class.java)?.run {
+                            onApiException(code, errors)
+                        }
                     }
+                } else if (it is IOException) {
+                    onIOException()
+                } else {
+                    onError(it.message)
                 }
-            } else if (it is IOException) {
+            } catch (e: Exception) {
                 onIOException()
-            } else {
-                onError(it.message)
             }
         }
     }
@@ -81,17 +82,23 @@ abstract class BaseFragment : CompactFragment() {
     open fun onApiException(code: ErrorStatus, errors: List<Error>) {
         if (errors.isNotEmpty()) {
             Toast.makeText(context, errors[0].message, Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(context, "Bad Request", Toast.LENGTH_LONG).show()
         }
     }
 
     open fun onServerError() {
-        Toast.makeText(context, "Internal Server Error", Toast.LENGTH_LONG).show()
+        Snackbar.make(
+            requireView(),
+            "Internal Server Error",
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 
     open fun onIOException() {
-        Toast.makeText(context, "Connection Lost", Toast.LENGTH_LONG).show()
+        Snackbar.make(
+            requireView(),
+            "Internet connection lost",
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 
     open fun onError(message: String?) {

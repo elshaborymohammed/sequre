@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import androidx.recyclerview.widget.RecyclerView
-import com.compact.widget.CompactRecyclerView
+import com.compact.widget.recyclerview.CompactRecyclerView
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import kotlinx.android.synthetic.main.card_menu_item.view.*

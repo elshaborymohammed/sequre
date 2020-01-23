@@ -12,10 +12,15 @@
         <item name="spinnerStyle">@style/Widget.AppCompat.Spinner.Underlined</item>
         <item name="bottomNavigationStyle">@style/App.Widget.BottomNavigationView</item>
         <item name="materialCardViewStyle">@style/App.Widget.CardView</item>
+        <item name="materialButtonStyle">@style/App.Widget.Button</item>
         <item name="listPreferredItemHeight">16dp</item>
         <item name="listPreferredItemHeightSmall">48dp</item>
         <item name="listPreferredItemHeightLarge">32dp</item>
         <item name="android:textCursorDrawable">@drawable/ic_cursor</item>
+    </style>
+
+    <style name="AppTheme.Launcher">
+        <item name="android:windowBackground">@drawable/ll_splash_screen</item>
     </style>
 
     <style name="ButtonAppearanceBoarded" parent="">
@@ -43,12 +48,16 @@
 
     <style name="App.Widget.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textAllCaps">false</item>
-        <item name="backgroundTint">@color/se_enable_disable</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="backgroundTint">@color/se_enable_disable_button</item>
         <item name="cornerRadius">@dimen/corner_radius</item>
     </style>
 
     <style name="App.Widget.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textAllCaps">false</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
         <item name="backgroundTint">@android:color/white</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="cornerRadius">@dimen/corner_radius</item>
@@ -59,13 +68,26 @@
     <style name="App.Widget.TextView.Title" parent="Widget.MaterialComponents.TextView" />
 
     <style name="App.Widget.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-        <item name="boxBackgroundColor">@null</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="background">@null</item>
         <item name="hintAnimationEnabled">true</item>
         <item name="hintEnabled">true</item>
+        <item name="hintTextAppearance">@style/App.TextAppearance.Hint</item>
         <item name="errorTextAppearance">@style/App.TextAppearance.Error</item>
         <item name="boxStrokeColor">@color/colorAccent</item>
         <item name="hintTextColor">@color/colorAccent</item>
         <item name="endIconMode">clear_text</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="App.Widget.TextInputEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:maxLines">1</item>
     </style>
 
 
@@ -111,6 +133,10 @@
         <item name="android:textColor">@android:color/holo_red_dark</item>
         <item name="android:textSize">12dp</item>
         <item name="android:textColorHint">@android:color/holo_red_dark</item>
+    </style>
+
+    <style name="App.TextAppearance.Hint" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:paddingBottom">0dp</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

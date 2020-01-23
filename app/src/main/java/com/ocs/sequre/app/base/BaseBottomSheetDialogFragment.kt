@@ -33,7 +33,7 @@ abstract class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return inflater.inflate(layoutRes(), container, false)
     }
 
@@ -49,9 +49,7 @@ abstract class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return super.onCreateDialog(savedInstanceState)
-
-        bottomSheetBehavior = BottomSheetBehavior.from(view !!.parent as View)
+        bottomSheetBehavior = BottomSheetBehavior.from(view!!.parent as View)
 
         bottomSheetBehavior.peekHeight = BottomSheetBehavior.PEEK_HEIGHT_AUTO
         bottomSheetBehavior.addBottomSheetCallback(object :
@@ -75,6 +73,7 @@ abstract class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
                 }
             }
         })
+        return super.onCreateDialog(savedInstanceState)
     }
 
     @LayoutRes

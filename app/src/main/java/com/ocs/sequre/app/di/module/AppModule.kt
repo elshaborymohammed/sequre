@@ -29,6 +29,7 @@ import javax.inject.Singleton
         NetworkModule::class,
         NetworkInterceptorModule::class,
         GsonModule::class,
+        RequestBuilderModule::class,
         RequestModule::class,
         SchedulerModule::class
     ]

@@ -1,8 +1,6 @@
 package com.ocs.sequre.presentation.ui.fragment.auth
 
 import android.view.View
-import android.widget.Toast
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -12,18 +10,14 @@ import com.compact.app.extensions.text
 import com.google.android.material.snackbar.Snackbar
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
-import com.ocs.sequre.data.remote.model.response.error.ResponseError
-import com.ocs.sequre.presentation.ui.viewholder.ToolBarViewHolder
+import com.ocs.sequre.data.remote.model.response.error.Error
+import com.ocs.sequre.data.remote.model.response.error.ErrorStatus
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel
-import com.smart.compact.response.ApiException
 import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.BiFunction
-import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.fragment_auth_sign_in.view.*
-import javax.inject.Inject
 
 class SignInFragment : BaseFragment() {
 
@@ -69,5 +63,20 @@ class SignInFragment : BaseFragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { view?.sign_in!!.isEnabled = it }
         )
+    }
+
+    override fun onApiException(code: ErrorStatus, errors: List<Error>) {
+//        AlertDialog.Builder(requireContext())
+//            .setMessage(R.string.invalid_email_or_mobile)
+//            .setCancelable(true)
+//            .setNegativeButton("Close") { dialog, _ -> dialog.dismiss() }
+//            .create()
+//            .show()
+
+        Snackbar.make(
+            requireView(),
+            R.string.invalid_email_or_mobile,
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 }

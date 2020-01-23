@@ -8,6 +8,7 @@
     </item>
 
     <item
+        android:bottom="-64dp"
         android:drawable="@drawable/ic_splash"
         android:gravity="bottom|start"
         android:start="-32dp" />

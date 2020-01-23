@@ -1,10 +1,10 @@
 package com.ocs.sequre.presentation.ui.fragment.auth
 
 import android.view.View
-import android.widget.Toast
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.app.helper.PhoneAuthHelper
@@ -13,7 +13,6 @@ import com.ocs.sequre.presentation.viewmodel.AuthViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_auth_verification.*
 import kotlinx.android.synthetic.main.fragment_auth_verification.view.*
-import java.lang.Exception
 
 class VerificationFragment : BaseFragment() {
     private lateinit var viewModel: AuthViewModel
@@ -30,17 +29,23 @@ class VerificationFragment : BaseFragment() {
 
         arguments?.let {
             VerificationFragmentArgs.fromBundle(it).user
-        }?.let {
+        }?.let { usr ->
             view.body.text =
                 HtmlCompat.fromHtml(
                     getString(
                         R.string.verification_welcome_message,
-                        "${it.countryCode + it.mobile}"
+                        "${usr.countryCode + usr.mobile}"
                     ),
                     HtmlCompat.FROM_HTML_MODE_COMPACT
                 )
 
-            PhoneAuthHelper.setupVerifyPhoneNumber(it.countryCode, it.mobile, requireActivity())
+            try_resend.setOnClickListener {
+                PhoneAuthHelper.setupVerifyPhoneNumber(
+                    usr.countryCode,
+                    usr.mobile,
+                    requireActivity()
+                )
+            }
             otp_code.addOnOTPCompleteListener { view, otp ->
                 view.isError = false
                 try {
@@ -48,24 +53,24 @@ class VerificationFragment : BaseFragment() {
                         PhoneAuthHelper.verificationId,
                         requireActivity(),
                         otp, {
-                            viewModel.register(it)
+                            viewModel.register(usr)
                                 .subscribe({
                                     findNavController().navigate(R.id.action_verificationFragment_to_navigationFragment)
                                 }, Throwable::printStackTrace)
                         }, Throwable::printStackTrace
                     )
                 } catch (e: IllegalArgumentException) {
-                    Toast.makeText(
-                        context,
+                    Snackbar.make(
+                        requireView(),
                         "The format of the phone number provided is incorrect",
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
+                        Snackbar.LENGTH_LONG
+                    ).show()
                 } catch (e: Exception) {
-                    Toast.makeText(context, "Connection Lost", Toast.LENGTH_LONG)
-                        .show()
+                    onIOException()
                 }
             }
+
+            try_resend.performClick()
         }
     }
 

@@ -16,9 +16,9 @@
         app:boxStrokeErrorColor="@color/colorAccent">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/App.Widget.TextInputEditText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:maxLines="1" />
+            android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -30,41 +30,49 @@
         android:tag="email">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/App.Widget.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:maxLines="1" />
+            android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="fill_vertical"
+        android:gravity="fill_horizontal"
         android:orientation="horizontal"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
         android:weightSum="1">
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/input_country"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_gravity="bottom|start"
             android:layout_margin="0dp"
-            android:layout_weight="0.35"
+            android:layout_weight="0.25"
+            android:background="@drawable/ll_drop_down_list"
             android:entries="@array/country_code_array"
-            android:padding="0dp" />
+            android:padding="0dp"
+            android:spinnerMode="dropdown" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_mobile"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|end"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_weight="0.65"
+            android:layout_weight="0.75"
             android:hint="@string/mobile"
             android:tag="mobile">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/App.Widget.TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:maxLines="1" />
+                android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -77,10 +85,10 @@
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/App.Widget.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textPassword"
-            android:maxLines="1" />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -92,9 +100,9 @@
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/App.Widget.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textPassword"
-            android:maxLines="1" />
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

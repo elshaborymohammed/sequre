@@ -10,23 +10,43 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.functions.BiFunction
 import io.reactivex.functions.Function5
 import io.reactivex.functions.Function6
 import kotlinx.android.synthetic.main.fragment_auth_sign_up.view.*
 import kotlinx.android.synthetic.main.layout_user_data.view.*
 
 class UserDataViewHolder constructor(private val view: View) {
-    var disposable: Disposable
+    private var disposable: Disposable
 
     init {
         view.next.isEnabled = false
-        //view.input_name.focusChanges().subscribe(::println)
+        val emailFocusChanges = view.input_email.editText!!.focusChanges()
+        val phoneFocusChanges = view.input_mobile.editText!!.focusChanges()
 
         val name = view.input_name.notNullOrEmpty()
         val phone = view.input_mobile.phone()
         val email = view.input_email.email()
         val password = view.input_password.password()
         val passwordConfirm = view.input_password_confirm.confirmPassword(view.input_password)
+
+        Observable.combineLatest(
+            email,
+            emailFocusChanges,
+            BiFunction { t1: Boolean, t2: Boolean -> t1 && t2 }
+        ).distinctUntilChanged()
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ view.next.isEnabled = it }, Throwable::printStackTrace)
+
+        Observable.combineLatest(
+            phone,
+            phoneFocusChanges,
+            BiFunction { t1: Boolean, t2: Boolean -> t1 && t2 }
+        ).distinctUntilChanged()
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ view.next.isEnabled = it }, Throwable::printStackTrace)
 
         disposable = Observable.combineLatest(
             name,

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sequre</string>
+    <string name="app_name">SeQure</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="openDrawer">open_drawer</string>
@@ -11,7 +11,7 @@
     <string name="choose_your_preferred_language">Please Choose Your Preferred Language</string>
     <string name="next">Next</string>
     <string name="sign_in_welcome_message">To your SeQure account</string>
-    <string name="sign_up_welcome_message">Create your account to start your Sequre trip</string>
+    <string name="sign_up_welcome_message">Create your account to start your SeQure trip</string>
     <string name="email_or_mobile">Email / Mobile</string>
     <string name="create_new_account">Create New Account</string>
     <string name="forget_password">Forget Password?</string>

@@ -25,10 +25,23 @@ platform :android do
   lane :beta do
     gradle(task: "clean assembleRelease")
     crashlytics
-  
+
     # sh "your_script.sh"
     # You can also use other beta testing services here
   end
+
+  desc "My awesome app"
+    lane :distribute do
+        build_android_app(
+            task: "clean build assembleDebug",
+            properties: {"versionCode" => 1, "versionName" => "0.0.1"}
+        )
+        firebase_app_distribution(
+            app: "1:300872815354:android:8f814cb3b805d30d60af43",
+            testers: "melshabory@overcoffesolution.com,",
+            release_notes: "First Demo"
+        )
+      end
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
