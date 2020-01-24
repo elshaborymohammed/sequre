@@ -13,10 +13,10 @@
 #          - echo "Everything is awesome!"
 
 
-image: jangrewe/gitlab-ci-android
+image: softartdev/android-fastlane
 
 pipelines:
   default:
     - step:
         script:
-          - echo "Everything is awesome!" & ./gradlew clean build assembleDebug
+          - echo "Everything is awesome!" & fastlane distribute
