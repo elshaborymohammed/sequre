@@ -13,7 +13,8 @@
 #          - echo "Everything is awesome!"
 
 
-image: softartdev/android-fastlane
+#image: softartdev/android-fastlane
+image: tatocaster/fastlanedocker:1.0
 
 pipelines:
   default:
