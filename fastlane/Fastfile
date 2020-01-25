@@ -36,8 +36,10 @@ platform :android do
             task: "clean build assembleDebug",
             properties: {"versionCode" => 1, "versionName" => "0.0.1"}
         )
+            #app: "1:300872815354:android:8f814cb3b805d30d60af43",
         firebase_app_distribution(
-            app: "1:300872815354:android:8f814cb3b805d30d60af43",
+
+            serviceCredentialsFile="sequre-c2db1-4bced33605f1.json",
             testers: "melshabory@overcoffesolution.com,",
             release_notes: "First Demo",
             firebase_cli_path:  File.exist?("../firebase-tools-linux") ? "../firebase-tools-linux" : "/firebase-tools-linux" # for pipeline
