@@ -20,4 +20,5 @@ pipelines:
   default:
     - step:
         script:
+          - echo "firebase auth" & export FIREBASE_TOKEN=1//03CqwPWqWA1MYCgYIARAAGAMSNwF-L9IrSCipyTmW_66LAXsLqXfvwcdb3d5sFTP4zGtSF8sg4qdwCTVJ9xgvtqRNaFKFS2FBp8I
           - echo "Everything is awesome!" & fastlane distribute
