@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-abstract class BaseBottomSheetDialogFragment : BottomSheetDialogFragment() {
+abstract class BaseBottomSheet : BottomSheetDialogFragment() {
 
     @Inject
     protected lateinit var factory: ViewModelProvider.Factory

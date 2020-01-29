@@ -2,25 +2,44 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorSurface">@color/colorPrimary</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+
+        <item name="listPreferredItemHeight">16dp</item>
+        <item name="listPreferredItemHeightSmall">48dp</item>
+        <item name="listPreferredItemHeightLarge">32dp</item>
+        <item name="android:textCursorDrawable">@drawable/ic_cursor</item>
+
+        <item name="android:datePickerDialogTheme">@style/App.Widget.DatePicker</item>
+        <item name="android:textViewStyle">@style/App.TextAppearance.Body</item>
+
         <item name="textInputStyle">@style/App.Widget.TextInputLayout</item>
         <item name="spinnerStyle">@style/Widget.AppCompat.Spinner.Underlined</item>
         <item name="bottomNavigationStyle">@style/App.Widget.BottomNavigationView</item>
         <item name="materialCardViewStyle">@style/App.Widget.CardView</item>
         <item name="materialButtonStyle">@style/App.Widget.Button</item>
-        <item name="listPreferredItemHeight">16dp</item>
-        <item name="listPreferredItemHeightSmall">48dp</item>
-        <item name="listPreferredItemHeightLarge">32dp</item>
-        <item name="android:textCursorDrawable">@drawable/ic_cursor</item>
+        <item name="preferenceStyle">@style/App.Widget.Preference.EditTextPreference</item>
     </style>
 
     <style name="AppTheme.Launcher">
         <item name="android:windowBackground">@drawable/ll_splash_screen</item>
+    </style>
+
+    <style name="App.Widget.DatePicker" parent="ThemeOverlay.AppCompat.Dialog">
+        <!--calendar background-->
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <!--days of the month-->
+        <item name="android:textColorPrimary">#000000</item>
+        <!--days of the week-->
+        <item name="android:textColorSecondary">@color/colorAccent</item>
+        <!--header background-->
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--selected day-->
+        <item name="colorControlActivated">@color/colorAccent</item>
     </style>
 
     <style name="ButtonAppearanceBoarded" parent="">
@@ -67,27 +86,30 @@
 
     <style name="App.Widget.TextView.Title" parent="Widget.MaterialComponents.TextView" />
 
+    <style name="App.Widget.Preference.EditTextPreference" parent="Preference.DialogPreference.EditTextPreference" />
+
     <style name="App.Widget.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-        <item name="boxBackgroundColor">@android:color/transparent</item>
-        <item name="background">@null</item>
+        <item name="boxBackgroundColor">@null</item>
+        <item name="boxBackgroundMode">filled</item>
+        <item name="boxStrokeColor">@color/colorAccent</item>
+        <item name="boxStrokeErrorColor">@color/colorAccent</item>
         <item name="hintAnimationEnabled">true</item>
         <item name="hintEnabled">true</item>
         <item name="hintTextAppearance">@style/App.TextAppearance.Hint</item>
         <item name="errorTextAppearance">@style/App.TextAppearance.Error</item>
-        <item name="boxStrokeColor">@color/colorAccent</item>
         <item name="hintTextColor">@color/colorAccent</item>
         <item name="endIconMode">clear_text</item>
+        <item name="errorEnabled">true</item>
         <item name="android:paddingStart">0dp</item>
-        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingTop">0dp</item>
         <item name="android:paddingBottom">0dp</item>
         <item name="android:maxLines">1</item>
     </style>
 
     <style name="App.Widget.TextInputEditText" parent="Widget.AppCompat.EditText">
         <item name="android:paddingStart">0dp</item>
-        <item name="android:paddingEnd">0dp</item>
-        <item name="android:paddingBottom">4dp</item>
         <item name="android:maxLines">1</item>
+        <item name="backgroundTint">@android:color/transparent</item>
     </style>
 
 
@@ -137,6 +159,12 @@
 
     <style name="App.TextAppearance.Hint" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:paddingBottom">0dp</item>
+    </style>
+
+    <style name="App.TextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">#5E5E5E</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

@@ -78,6 +78,7 @@ dependencies {
     implementation compact.callAdapter
     implementation compact.viewmodel
     implementation compact.requesterAnnotation
+    implementation 'androidx.preference:preference:1.1.0'
     kapt compact.requesterProcessor
 
     implementation androidX.ktx

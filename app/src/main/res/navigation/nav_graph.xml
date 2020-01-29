@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/auth_navigation">
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.landing.SplashFragment"
+        android:name="com.ocs.sequre.presentation.ui.activity.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
@@ -16,14 +16,16 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_splashFragment_to_navigationFragment"
             app:destination="@id/navigationFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <navigation

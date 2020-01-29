@@ -1,13 +1,13 @@
 package com.ocs.sequre.presentation.ui.fragment.auth
 
 import android.view.View
-import com.compact.app.CompactDialogFragment
 import com.ocs.sequre.R
+import com.ocs.sequre.app.base.BaseBottomSheet
 import com.ocs.sequre.presentation.preference.AuthPreference
 import kotlinx.android.synthetic.main.fragment_auth_sign_out.*
 import javax.inject.Inject
 
-class SignOutFragment : CompactDialogFragment() {
+class SignOutFragment : BaseBottomSheet() {
 
     @Inject
     lateinit var auth: AuthPreference
@@ -18,6 +18,6 @@ class SignOutFragment : CompactDialogFragment() {
 
     override fun onViewBound(view: View) {
         cancel.setOnClickListener { dismissAllowingStateLoss() }
-        logout.setOnClickListener { auth.clear() }
+        ok.setOnClickListener { auth.clear() }
     }
 }

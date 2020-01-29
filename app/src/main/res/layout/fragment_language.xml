@@ -7,8 +7,6 @@
     android:gravity="bottom|center_horizontal"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_app_bar" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -62,11 +60,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             android:text="@string/next"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/language" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

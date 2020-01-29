@@ -1,14 +1,13 @@
 package com.ocs.sequre.app.di.module.bind
 
-import com.ocs.sequre.presentation.ui.fragment.landing.LanguageFragment
-import com.ocs.sequre.presentation.ui.fragment.landing.SplashFragment
+import com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment
+import com.ocs.sequre.presentation.ui.activity.SplashFragment
 import com.ocs.sequre.presentation.ui.fragment.auth.*
 import com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.SecondOpinionFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.ChangePasswordFragment
-import com.ocs.sequre.presentation.ui.fragment.profile.EditAddressFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.EditProfileFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment
 import dagger.Module
@@ -56,9 +55,6 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun providesChangePasswordFragment(): ChangePasswordFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun providesEditAddressFragment(): EditAddressFragment
 
     @ContributesAndroidInjector
     internal abstract fun providesEditProfileFragment(): EditProfileFragment

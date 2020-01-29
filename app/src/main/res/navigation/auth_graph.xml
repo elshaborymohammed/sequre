@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/languageFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.landing.LanguageFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment"
         android:label="LandingFragment"
         tools:layout="@layout/fragment_language">
         <action
@@ -91,7 +91,7 @@
         tools:layout="@layout/fragment_auth_verification">
         <argument
             android:name="user"
-            app:argType="com.ocs.sequre.domain.entity.User"
+            app:argType="com.ocs.sequre.domain.entity.Registration"
             app:nullable="false" />
 
         <action

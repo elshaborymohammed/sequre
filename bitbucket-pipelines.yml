@@ -4,21 +4,27 @@
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
 
-#image: atlassian/default-image:2
-#
-#pipelines:
-#  default:
-#    - step:
-#        script:
-#          - echo "Everything is awesome!"
-
-
-#image: softartdev/android-fastlane
 image: tatocaster/fastlanedocker:1.0
 
 pipelines:
   default:
     - step:
         script:
-          - echo "firebase auth" & export FIREBASE_TOKEN=1//03CqwPWqWA1MYCgYIARAAGAMSNwF-L9IrSCipyTmW_66LAXsLqXfvwcdb3d5sFTP4zGtSF8sg4qdwCTVJ9xgvtqRNaFKFS2FBp8I
-          - echo "Everything is awesome!" & fastlane distribute
+          - echo "Default triggers for Sonar are awesome!"
+  custom: # Pipelines that can only be triggered manually
+    sonar:
+      - step:
+          script:
+            - echo "Manual triggers for Sonar are awesome!"
+            - echo "firebase auth" & export FIREBASE_TOKEN=1//03CqwPWqWA1MYCgYIARAAGAMSNwF-L9IrSCipyTmW_66LAXsLqXfvwcdb3d5sFTP4zGtSF8sg4qdwCTVJ9xgvtqRNaFKFS2FBp8I
+            - echo "Everything is awesome!" & fastlane distribute
+
+    deploy:
+      - step:
+          script:
+            - echo "Manual triggers for deployments are awesome!"
+    branches:  # Pipelines that run automatically on a commit to a branch can also be triggered manually
+      staging:
+        - step:
+            script:
+              - echo "Automated pipelines are cool too."

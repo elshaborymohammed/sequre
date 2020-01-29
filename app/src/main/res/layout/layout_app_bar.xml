@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:background="@null"
     app:elevation="0dp"
-
     tools:showIn="@layout/fragment_auth_sign_up">
 
     <include

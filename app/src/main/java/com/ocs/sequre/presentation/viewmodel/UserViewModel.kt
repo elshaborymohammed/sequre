@@ -1,7 +1,7 @@
 package com.ocs.sequre.presentation.viewmodel
 
 import com.compact.app.viewmodel.CompactViewModel
-import com.ocs.sequre.domain.entity.User
+import com.ocs.sequre.domain.entity.Registration
 import com.ocs.sequre.presentation.preference.AuthPreference
 import com.ocs.sequre.presentation.preference.LanguagePreference
 import com.ocs.sequre.presentation.preference.UserPreference
@@ -33,11 +33,11 @@ class UserViewModel @Inject constructor(
         return language.get()
     }
 
-    fun setUser(data: User): Boolean {
+    fun setUser(data: Registration): Boolean {
         return user.set(data)
     }
 
-    fun getUser(): User {
+    fun getUser(): Registration {
         return user.get()
     }
 }

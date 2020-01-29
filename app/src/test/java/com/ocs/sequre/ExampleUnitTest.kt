@@ -8,7 +8,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Function
 import io.reactivex.subjects.*
 import kotlinx.android.synthetic.main.fragment_auth_sign_up.view.*
-import kotlinx.android.synthetic.main.layout_user_data.view.*
+import kotlinx.android.synthetic.main.layout_user_creare_account.view.*
 import org.junit.Test
 
 import org.junit.Assert.*

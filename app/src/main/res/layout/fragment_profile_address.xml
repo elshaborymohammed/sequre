@@ -6,28 +6,67 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/title"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/change_address"
-        android:textAppearance="@style/App.TextAppearance.Headline2"
+        android:orientation="horizontal" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/country"
+        app:endIconMode="clear_text"
+        app:hintEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/start">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/App.Widget.TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_city"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/city"
+        app:endIconMode="clear_text"
+        app:hintEnabled="true"
+        app:layout_constraintEnd_toStartOf="@id/input_area"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_country"
+        app:layout_constraintVertical_chainStyle="spread">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/App.Widget.TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_area"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:hint="@string/area"
         app:endIconMode="clear_text"
         app:hintEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title">
+        app:layout_constraintStart_toEndOf="@id/input_city"
+        app:layout_constraintTop_toBottomOf="@id/input_country">
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/App.Widget.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text" />
@@ -43,84 +82,10 @@
         app:hintEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_area">
+        app:layout_constraintTop_toBottomOf="@id/input_city">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_building"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="@string/building"
-        app:endIconMode="clear_text"
-        app:hintEnabled="true"
-        app:layout_constraintEnd_toStartOf="@id/input_floor"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_street"
-        app:layout_constraintVertical_chainStyle="spread">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_floor"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="9dp"
-        android:hint="@string/floor"
-        app:endIconMode="clear_text"
-        app:hintEnabled="true"
-        app:layout_constraintEnd_toStartOf="@id/input_apartment"
-        app:layout_constraintStart_toEndOf="@id/input_building"
-        app:layout_constraintTop_toBottomOf="@id/input_street">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberSigned" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_apartment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="@string/apartment"
-        app:endIconMode="clear_text"
-        app:hintEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/input_floor"
-        app:layout_constraintTop_toBottomOf="@id/input_street">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberSigned" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_additional_notes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="@string/additional_notes"
-        app:endIconMode="clear_text"
-        app:hintEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_building">
-
-        <com.google.android.material.textfield.TextInputEditText
+            style="@style/App.Widget.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text" />
@@ -128,13 +93,13 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/next"
-        style="@style/App.Widget.Button"
+        style="@style/App.Widget.Button.Outlined"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:text="@string/save_address"
+        android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_additional_notes" />
+        app:layout_constraintTop_toBottomOf="@id/input_street" />
 </androidx.constraintlayout.widget.ConstraintLayout>

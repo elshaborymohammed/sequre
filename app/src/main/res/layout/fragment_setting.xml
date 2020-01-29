@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/settings"
+        android:textAppearance="@style/App.TextAppearance.Headline3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/change_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/change_language"
+        android:textAppearance="@style/App.TextAppearance.Body" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/change_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/change_password"
+        android:textAppearance="@style/App.TextAppearance.Body" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

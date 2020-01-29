@@ -7,7 +7,7 @@ import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
 import com.ocs.sequre.data.remote.model.request.auth.Login
 import com.ocs.sequre.data.remote.model.request.auth.Resend
 import com.ocs.sequre.data.remote.model.response.success.AccessToken
-import com.ocs.sequre.domain.entity.User
+import com.ocs.sequre.domain.entity.Registration
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -22,7 +22,7 @@ class AuthViewModel @Inject constructor(
             .compose(composeLoadingSingle())
     }
 
-    fun register(body: User): Single<AccessToken> {
+    fun register(body: Registration): Single<AccessToken> {
         return api.register(body)
             .compose(compose.applyOnSingle())
             .compose(composeLoadingSingle())

@@ -1,4 +1,4 @@
-package com.ocs.sequre.presentation.ui.fragment.landing
+package com.ocs.sequre.presentation.ui.fragment.setting
 
 import android.view.View
 import androidx.lifecycle.ViewModelProviders

@@ -57,10 +57,7 @@ public class Validate {
     @Test
     public void test() {
         Observable observable = Observable.combineLatest(
-                objects -> {
-
-                    return (Boolean) objects[0] && (Boolean) objects[1] && (Boolean) objects[2];
-                }
+                objects -> (Boolean) objects[0] && (Boolean) objects[1] && (Boolean) objects[2]
                 , Flowable.bufferSize()
                 , email, phone, api
         ).subscribeOn(Schedulers.trampoline())
