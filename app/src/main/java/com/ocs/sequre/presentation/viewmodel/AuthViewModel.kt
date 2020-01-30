@@ -8,6 +8,7 @@ import com.ocs.sequre.data.remote.model.request.auth.Login
 import com.ocs.sequre.data.remote.model.request.auth.Resend
 import com.ocs.sequre.data.remote.model.response.success.AccessToken
 import com.ocs.sequre.domain.entity.Registration
+import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -28,10 +29,20 @@ class AuthViewModel @Inject constructor(
             .compose(composeLoadingSingle())
     }
 
-    fun check(body: AuthValidation): Single<Void> {
+    fun check(body: AuthValidation): Completable {
         return api.check(body)
-            .compose(compose.applyOnSingle())
-            .compose(composeLoadingSingle())
+            .compose(compose.applyOnCompletable())
+            .compose(composeLoadingCompletable())
+    }
+
+    fun checkEmail(email: String): Completable {
+        return api.check(AuthValidation(email = email))
+            .compose(compose.applyOnCompletable())
+    }
+
+    fun checkMobile(mobile: String): Completable {
+        return api.check(AuthValidation(mobile = mobile))
+            .compose(compose.applyOnCompletable())
     }
 
     fun resend(body: Resend?): Single<Void> {

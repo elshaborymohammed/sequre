@@ -19,22 +19,22 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Function
 import io.reactivex.functions.Function5
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.layout_user_data.view.*
+import kotlinx.android.synthetic.main.layout_user_create_account.view.*
 import kotlinx.android.synthetic.main.layout_user_profile_data.view.*
 import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.N)
 class ProfileViewHolder constructor(private val view: View) : LifecycleObserver {
     private val name: Observable<Boolean>
-        get() = view.input_mobile.phone()!!
+        get() = view.input_mobile.phone()
     private val email: Observable<Boolean>
-        get() = view.input_email.email()!!
+        get() = view.input_email.email()
     private val phone: Observable<Boolean>
-        get() = view.input_mobile.phone()!!
+        get() = view.input_mobile.phone()
     private val relation: Observable<Boolean>
-        get() = view.input_relationship.notNullOrEmpty()!!
+        get() = view.input_relationship.notNullOrEmpty()
     private val birthDate: Observable<Boolean>
-        get() = view.input_birth_date.notNullOrEmpty()!!
+        get() = view.input_birth_date.notNullOrEmpty()
 
     init {
         view.input_country.run {

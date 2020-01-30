@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.compact.widget.recyclerview.CompactRecyclerView
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
-import kotlinx.android.synthetic.main.card_menu_item.view.*
+import kotlinx.android.synthetic.main.card_menu.view.*
 
 class MenuAdapter :
     CompactRecyclerView.Adapter<MenuAdapter.Menu, MenuAdapter.ViewHolder>() {
@@ -24,7 +24,7 @@ class MenuAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.card_menu_item,
+                R.layout.card_menu,
                 parent,
                 false
             )

@@ -6,6 +6,7 @@ import com.ocs.sequre.data.remote.model.request.auth.Login
 import com.ocs.sequre.data.remote.model.request.auth.Resend
 import com.ocs.sequre.data.remote.model.response.success.AccessToken
 import com.ocs.sequre.domain.entity.Registration
+import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -22,7 +23,7 @@ interface AuthApi {
     fun register(@Body body: Registration): Single<AccessToken>
 
     @POST("auth/check/register")
-    fun check(@Body body: AuthValidation): Single<Void>
+    fun check(@Body body: AuthValidation): Completable
 
     @POST("auth/resend")
     fun resend(@Body body: Resend): Single<Void>

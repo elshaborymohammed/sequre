@@ -11,11 +11,12 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add"
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
+        android:backgroundTint="@color/colorAccent"
         android:src="@drawable/ic_add"
         app:layout_anchor="@id/list_item"
-        app:layout_anchorGravity="bottom|end"
-        app:layout_behavior="com.google.android.material.floatingactionbutton.FloatingActionButton$Behavior" />
+        app:layout_anchorGravity="bottom|end" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

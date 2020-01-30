@@ -18,25 +18,36 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="@dimen/guideline_end" />
 
+<!--    style="@style/App.TextAppearance.Headline3"-->
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/title"
+        android:textAppearance="?attr/textAppearanceHeadline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/edit_profile"
-        android:textAppearance="@style/App.TextAppearance.Headline3"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:srcCompat="@drawable/ic_profile_avatar" />
+
     <include
         android:id="@+id/user_data"
-        layout="@layout/layout_user_create_account"
+        layout="@layout/layout_user_profile_data"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="@id/guideline_end"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        app:layout_constraintTop_toBottomOf="@id/avatar" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/next"

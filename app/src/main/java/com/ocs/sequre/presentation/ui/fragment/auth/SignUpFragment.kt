@@ -1,6 +1,7 @@
 package com.ocs.sequre.presentation.ui.fragment.auth
 
 import android.os.Build
+import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProviders
@@ -55,11 +56,19 @@ class SignUpFragment : BaseFragment() {
             signUpViewHolder.validations().subscribe(
                 { requireView().next.isEnabled = it },
                 Throwable::printStackTrace
-            ),
-            signUpViewHolder.validations().subscribe(
-                { requireView().next.isEnabled = it },
-                Throwable::printStackTrace
-            )
+            ), signUpViewHolder.validationData({
+                subscribe(
+                    viewModel.checkEmail(it).subscribe(
+                        { Log.d("OkHttp", "validationData email") }, onError()
+                    )
+                )
+            }, {
+                subscribe(
+                    viewModel.checkMobile(it).subscribe(
+                        { Log.d("OkHttp", "phone:") }, onError()
+                    )
+                )
+            }).subscribe({ Log.d("OkHttp", "validationData $it") }, Throwable::printStackTrace)
         )
     }
 

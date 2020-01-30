@@ -14,8 +14,10 @@
         <item name="listPreferredItemHeightLarge">32dp</item>
         <item name="android:textCursorDrawable">@drawable/ic_cursor</item>
 
+        <item name="textAppearanceHeadline6">@style/App.TextAppearance.Headline1</item>
+
         <item name="android:datePickerDialogTheme">@style/App.Widget.DatePicker</item>
-        <item name="android:textViewStyle">@style/App.TextAppearance.Body</item>
+
 
         <item name="textInputStyle">@style/App.Widget.TextInputLayout</item>
         <item name="spinnerStyle">@style/Widget.AppCompat.Spinner.Underlined</item>
@@ -124,6 +126,7 @@
         <item name="android:textColor">#000</item>
         <item name="android:color">#000</item>
         <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/font</item>
     </style>
 
     <style name="App.TextAppearance.Headline2" parent="TextAppearance.MaterialComponents.Headline5">
@@ -137,6 +140,7 @@
         <item name="android:textColor">#000</item>
         <item name="android:color">#000</item>
         <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/font</item>
     </style>
 
     <style name="App.TextAppearance.Body" parent="TextAppearance.MaterialComponents.Body1">

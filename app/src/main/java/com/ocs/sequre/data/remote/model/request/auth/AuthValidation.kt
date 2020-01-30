@@ -6,10 +6,10 @@ import com.google.gson.annotations.SerializedName
 data class AuthValidation(
     @SerializedName("mobile")
     @Expose
-    val mobile: String,
+    val mobile: String? = null,
     @SerializedName("email")
     @Expose
-    val email: String
+    val email: String? = null
 ) {
     override fun toString(): String {
         return "AuthValidation(mobile='$mobile', email='$email')"
