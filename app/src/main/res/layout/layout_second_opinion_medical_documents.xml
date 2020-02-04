@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
         android:text="@string/medical_reports"
-        android:textAppearance="@style/App.TextAppearance.Headline2" />
+        android:textAppearance="?attr/textAppearanceBody2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/medical_reports"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
         android:text="@string/lab_tests"
-        android:textAppearance="@style/App.TextAppearance.Headline2" />
+        android:textAppearance="?attr/textAppearanceBody2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lab_tests"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
         android:text="@string/radiology_scans"
-        android:textAppearance="@style/App.TextAppearance.Headline2" />
+        android:textAppearance="?attr/textAppearanceBody2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/radiology_scans"

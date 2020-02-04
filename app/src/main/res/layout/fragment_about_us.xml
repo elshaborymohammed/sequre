@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/about_us"
+        android:textAppearance="?attr/textAppearanceBody1" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        android:text="SeQure is simply dummy text of the nting and typesetting industry. rem Ipsum has been the industry'standard dummy text ever since the 1500 when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has ived not only five centuries, but al the leap intoonic typesett, redfg essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets conorem Ipsum passages, and more recently desktop publishing software like Aldus PageMaker including versions of Lm Ipsum is simply dummy text of the nting and typesetting industry. rem Ipsum has been the industry'standard dummy text ever since the 1500 when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has ived not only five centuries, but al the leap intoonic typesett, redfg essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets conorem Ipsum passages, and more recently desktop publishing software like Aldus PageMaker including versions of Lm Ipsum.OVVO is simply dummy text of the nting and typesetting industry. rem Ipsum has been the industry'standard dummy text ever since the 1500 when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has ived not only five centuries, but al the leap intoonic typesett, redfg essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets conorem Ipsum passages, and more recently desktop publishing software like Aldus PageMaker including versions of Lm Ipsum."
+        android:textAppearance="?attr/textAppearanceCaption" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/contact_us"
-            android:textAppearance="@style/App.TextAppearance.Headline3"
+            android:textAppearance="?attr/textAppearanceBody1"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/feel_free_to_contact_us"
-            android:textAppearance="@style/App.TextAppearance.Body"
+            android:textAppearance="?attr/textAppearanceCaption"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintHorizontal_bias="0"

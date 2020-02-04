@@ -33,14 +33,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Good News"
-                    android:textAppearance="@style/App.TextAppearance.Headline3"
+                    android:textAppearance="?attr/textAppearanceBody1"
                     android:textColor="#fff" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum has been the industry's standard dummy text ever since the 1500s, when an unknow printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                    android:textAppearance="@style/App.TextAppearance.Body"
+                    android:textAppearance="?attr/textAppearanceCaption"
                     android:textColor="#fff" />
 
             </LinearLayout>
@@ -115,7 +115,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/second_opinion_text"
-                    style="@style/App.TextAppearance.Body"
+                    android:textAppearance="?attr/textAppearanceCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -128,7 +128,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/discount_card_text"
-                    style="@style/App.TextAppearance.Body"
+                    android:textAppearance="?attr/textAppearanceCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -141,7 +141,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/upcoming_service_text"
-                    style="@style/App.TextAppearance.Body"
+                    android:textAppearance="?attr/textAppearanceCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"

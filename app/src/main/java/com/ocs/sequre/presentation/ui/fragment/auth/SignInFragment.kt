@@ -47,8 +47,8 @@ class SignInFragment : BaseFragment() {
             Navigation.createNavigateOnClickListener(R.id.action_signInFragment_to_signUpFragment)
         )
 
-        loginName = view.input_auth_name.loginName()!!
-        password = view.input_auth_password.password()!!
+        loginName = view.input_auth_name.loginName()
+        password = view.input_auth_password.password()
     }
 
     override fun subscriptions(): Array<Disposable> {

@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:text="Mona Ibrahim"
-            android:textAppearance="@style/App.TextAppearance.Headline1"
+            android:textAppearance="?attr/textAppearanceBody1"
             app:layout_constraintStart_toEndOf="@id/image"
             app:layout_constraintTop_toTopOf="@id/image" />
 
@@ -58,7 +58,7 @@
             android:layout_marginVertical="8dp"
             android:layout_marginStart="12dp"
             android:text="I'm a therapist doctor works at hospital name"
-            android:textAppearance="@style/App.TextAppearance.Body"
+            android:textAppearance="?attr/textAppearanceCaption"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="@id/guide_line"
             app:layout_constraintHorizontal_bias="0"

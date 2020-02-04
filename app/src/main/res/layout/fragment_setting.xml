@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/settings"
-        android:textAppearance="@style/App.TextAppearance.Headline3" />
+        android:textAppearance="?attr/textAppearanceBody1" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/change_language"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/change_language"
-        android:textAppearance="@style/App.TextAppearance.Body" />
+        android:textAppearance="?attr/textAppearanceCaption" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/change_password"
@@ -27,6 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/change_password"
-        android:textAppearance="@style/App.TextAppearance.Body" />
+        android:textAppearance="?attr/textAppearanceCaption" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

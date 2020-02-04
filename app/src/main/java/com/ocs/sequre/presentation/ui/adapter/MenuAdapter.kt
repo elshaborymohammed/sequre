@@ -48,6 +48,7 @@ class MenuAdapter :
                 data.add(Menu(res = R.drawable.ic_home_white, nav = R.id.home))
                 data.add(Menu(res = R.drawable.ic_about_us, nav = R.id.home))
                 data.add(Menu(res = R.drawable.ic_user, nav = R.id.home))
+                data.add(Menu(res = R.drawable.ic_report, nav = R.id.home))
                 data.add(Menu(res = R.drawable.ic_gears, nav = R.id.home))
                 data.add(Menu(res = R.drawable.ic_logout, nav = R.id.home))
                 return data

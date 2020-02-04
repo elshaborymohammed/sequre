@@ -30,12 +30,12 @@
             app:layout_constraintGuide_end="@dimen/guideline_end" />
 
         <com.google.android.material.textview.MaterialTextView
-            style="@style/App.TextAppearance.Headline3"
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/sign_in"
+            android:textAppearance="?attr/textAppearanceBody1"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/sign_in_welcome_message"
+            android:textAppearance="?attr/textAppearanceCaption"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintHorizontal_bias="0"
@@ -106,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/forget_password"
-            android:textAppearance="@style/App.TextAppearance.Body"
+            android:textAppearance="?attr/textAppearanceCaption"
             android:textColor="#007DC3"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
@@ -119,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@string/do_not_have_an_account"
-            android:textAppearance="@style/App.TextAppearance.Body"
+            android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintBottom_toTopOf="@id/create_account"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@id/guideline_start"

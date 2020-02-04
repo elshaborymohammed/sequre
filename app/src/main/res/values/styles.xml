@@ -8,16 +8,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
 
         <item name="listPreferredItemHeight">16dp</item>
         <item name="listPreferredItemHeightSmall">48dp</item>
         <item name="listPreferredItemHeightLarge">32dp</item>
         <item name="android:textCursorDrawable">@drawable/ic_cursor</item>
 
-        <item name="textAppearanceHeadline6">@style/App.TextAppearance.Headline1</item>
-
         <item name="android:datePickerDialogTheme">@style/App.Widget.DatePicker</item>
-
 
         <item name="textInputStyle">@style/App.Widget.TextInputLayout</item>
         <item name="spinnerStyle">@style/Widget.AppCompat.Spinner.Underlined</item>
@@ -25,11 +24,26 @@
         <item name="materialCardViewStyle">@style/App.Widget.CardView</item>
         <item name="materialButtonStyle">@style/App.Widget.Button</item>
         <item name="preferenceStyle">@style/App.Widget.Preference.EditTextPreference</item>
+
+
+        <item name="titleTextAppearance">@style/App.TextAppearance.Title</item>
+        <item name="subtitleTextAppearance">@style/App.TextAppearance.Subtitle</item>
+        <item name="textAppearanceBody1">@style/App.TextAppearance.Body1</item>
+        <item name="textAppearanceBody2">@style/App.TextAppearance.Body2</item>
+        <item name="textAppearanceCaption">@style/App.TextAppearance.Caption</item>
+        <item name="android:textAppearance">@style/App.TextAppearance.Caption</item>
+        <item name="hintTextAppearance">@style/App.TextAppearance.Hint</item>
+        <item name="errorTextAppearance">@style/App.TextAppearance.Error</item>
+        <item name="helperTextTextAppearance">@style/App.TextAppearance.Helper</item>
     </style>
 
     <style name="AppTheme.Launcher">
         <item name="android:windowBackground">@drawable/ll_splash_screen</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="App.Widget.DatePicker" parent="ThemeOverlay.AppCompat.Dialog">
         <!--calendar background-->
@@ -122,62 +136,53 @@
         <!--        <item name="strokeWidth">@dimen/stroke_width</item>-->
     </style>
 
-    <style name="App.TextAppearance.Headline3" parent="TextAppearance.MaterialComponents.Headline4">
-        <item name="android:textColor">#000</item>
-        <item name="android:color">#000</item>
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">@font/font</item>
-    </style>
-
-    <style name="App.TextAppearance.Headline2" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="android:textColor">#000</item>
-        <item name="android:color">#000</item>
-        <item name="fontWeight">100</item>
-        <item name="fontFamily">@font/font</item>
-    </style>
-
-    <style name="App.TextAppearance.Headline1" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:textColor">#000</item>
-        <item name="android:color">#000</item>
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">@font/font</item>
-    </style>
-
-    <style name="App.TextAppearance.Body" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:textColor">#000</item>
-        <item name="android:color">#000</item>
-        <item name="android:textStyle">normal</item>
-    </style>
-
-    <style name="App.TextAppearance.Toolbar" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+    <style name="App.TextAppearance.Title" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
         <item name="android:textColor">#000</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="App.TextAppearance.Error" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:textColor">@android:color/holo_red_dark</item>
-        <item name="android:textSize">12dp</item>
-        <item name="android:textColorHint">@android:color/holo_red_dark</item>
-    </style>
-
-    <style name="App.TextAppearance.Hint" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="android:paddingBottom">0dp</item>
-    </style>
-
-    <style name="App.TextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="android:textColor">#5E5E5E</item>
+    <style name="App.TextAppearance.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">#000</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="App.TextAppearance.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">#000</item>
+        <item name="android:color">#000</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/font</item>
+        <item name="fontWeight">400</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="App.TextAppearance.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">#000</item>
+        <item name="android:color">#000</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/font</item>
+    </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="App.TextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">#000</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 
+    <style name="App.TextAppearance.Hint" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="App.TextAppearance.Error" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">?attr/colorError</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="App.TextAppearance.Helper" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">?attr/colorControlNormal</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

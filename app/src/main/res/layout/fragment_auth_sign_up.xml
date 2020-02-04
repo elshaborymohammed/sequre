@@ -35,11 +35,11 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/title"
-                style="@style/App.TextAppearance.Headline3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/sign_up"
+                android:textAppearance="?attr/textAppearanceBody1"
                 app:layout_constraintStart_toStartOf="@id/guideline_start"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/sign_up_welcome_message"
+                android:textAppearance="?attr/textAppearanceCaption"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="@id/guideline_end"
                 app:layout_constraintHorizontal_bias="0"

@@ -3,8 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_graph"
-    app:startDestination="@id/signOutFragment">
+    app:startDestination="@id/aboutUsFragment">
 
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.menu.AboutUsFragment"
+        android:label="AboutUsFragment"
+        tools:layout="@layout/fragment_about_us" />
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.setting.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_languageFragment2"
+            app:destination="@id/languageFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.profile.ChangePasswordFragment"
+        android:label="ChangePasswordFragment"
+        tools:layout="@layout/fragment_profile_change_password" />
+
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment"
+        android:label="LanguageFragment"
+        tools:layout="@layout/fragment_language" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
+    
     <dialog
         android:id="@+id/signOutFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.auth.SignOutFragment"

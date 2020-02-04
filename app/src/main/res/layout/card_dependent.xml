@@ -52,7 +52,7 @@
             android:layout_marginStart="12dp"
             android:elevation="8dp"
             android:text="Mona Ibrahim"
-            android:textAppearance="@style/App.TextAppearance.Headline1"
+            android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintBottom_toTopOf="@id/relation"
             app:layout_constraintStart_toEndOf="@id/image"
             app:layout_constraintTop_toTopOf="@id/image"

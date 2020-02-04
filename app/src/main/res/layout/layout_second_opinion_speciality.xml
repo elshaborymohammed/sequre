@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
         android:text="@string/please_choose_speciality"
-        android:textAppearance="@style/App.TextAppearance.Headline2" />
+        android:textAppearance="?attr/textAppearanceBody2" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/search_speciality"
@@ -23,7 +23,7 @@
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="12dp"
         android:hint="@string/choose_speciality"
-        android:textAppearance="@style/App.TextAppearance.Body" />
+        android:textAppearance="?attr/textAppearanceCaption" />
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="8dp"
         android:text="@string/where_do_you_feel_the_pain"
-        android:textAppearance="@style/App.TextAppearance.Headline2" />
+        android:textAppearance="?attr/textAppearanceBody2" />
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/pain_place"
@@ -42,7 +42,7 @@
         android:background="@drawable/sh_border_rounded"
         android:entries="@array/pain_array"
         android:spinnerMode="dropdown"
-        android:textAppearance="@style/App.TextAppearance.Body" />
+        android:textAppearance="?attr/textAppearanceCaption" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/commits"
@@ -54,7 +54,7 @@
         android:gravity="start"
         android:hint="@string/write_here_what_you_feel"
         android:lines="6"
-        android:textAppearance="@style/App.TextAppearance.Body" />
+        android:textAppearance="?attr/textAppearanceCaption" />
 
 
     <com.google.android.material.button.MaterialButton

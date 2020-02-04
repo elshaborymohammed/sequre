@@ -9,22 +9,25 @@ image: tatocaster/fastlanedocker:1.0
 pipelines:
   default:
     - step:
+        name: run
+        trigger: manual
         script:
           - echo "Default triggers for Sonar are awesome!"
+  
   custom: # Pipelines that can only be triggered manually
-    sonar:
+    develop:
       - step:
           script:
-            - echo "Manual triggers for Sonar are awesome!"
-            - echo "firebase auth" & export FIREBASE_TOKEN=1//03CqwPWqWA1MYCgYIARAAGAMSNwF-L9IrSCipyTmW_66LAXsLqXfvwcdb3d5sFTP4zGtSF8sg4qdwCTVJ9xgvtqRNaFKFS2FBp8I
-            - echo "Everything is awesome!" & fastlane distribute
+            - echo "Manual triggers for develop are awesome!"
+            - echo "firebase auth!" & export FIREBASE_TOKEN=1//03CqwPWqWA1MYCgYIARAAGAMSNwF-L9IrSCipyTmW_66LAXsLqXfvwcdb3d5sFTP4zGtSF8sg4qdwCTVJ9xgvtqRNaFKFS2FBp8I
+            - echo "fastlane distribute!" & fastlane distribute
 
     deploy:
       - step:
           script:
             - echo "Manual triggers for deployments are awesome!"
-    branches:  # Pipelines that run automatically on a commit to a branch can also be triggered manually
-      staging:
-        - step:
-            script:
-              - echo "Automated pipelines are cool too."
+  branches:  # Pipelines that run automatically on a commit to a branch can also be triggered manually
+    staging:
+      - step:
+          script:
+            - echo "Automated pipelines are cool too."
