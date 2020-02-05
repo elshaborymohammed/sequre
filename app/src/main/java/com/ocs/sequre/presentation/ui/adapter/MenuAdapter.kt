@@ -12,8 +12,13 @@ import com.ocs.sequre.app.GlideApp
 import kotlinx.android.synthetic.main.card_menu.view.*
 
 class MenuAdapter :
-    CompactRecyclerView.Adapter<MenuAdapter.Menu, MenuAdapter.ViewHolder>() {
+    CompactRecyclerView.Adapter<MenuAdapter.Menu, MenuAdapter.ViewHolder> {
 
+    private lateinit var listener: OnItemClickListener
+
+    constructor(){
+        swap(Menu.getMenus())
+    }
     override fun itemDecorations(): Array<RecyclerView.ItemDecoration> {
         return arrayOf(
             CompactRecyclerView.SpacesItemDecoration.Linear.builder(context)
@@ -31,12 +36,31 @@ class MenuAdapter :
         )
     }
 
-    class ViewHolder(itemView: View) : CompactRecyclerView.ViewHolder<Menu>(itemView) {
+    fun setOnItemClickListener(listener: (nav: Int) -> Unit) {
+        setOnItemClickListener(
+            object : OnItemClickListener{
+                override fun setOnItemClickListener(nav: Int) {
+                    listener(nav)
+                }
+            }
+        )
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
+
+    inner class ViewHolder(itemView: View) : CompactRecyclerView.ViewHolder<Menu>(itemView) {
         override fun bind(position: Int, obj: Menu) {
+            itemView.setOnClickListener {
+                listener.setOnItemClickListener(obj.nav)
+            }
+
             GlideApp.with(itemView)
                 .load(obj.res)
                 .fitCenter()
                 .into(itemView.image)
+
         }
     }
 
@@ -45,14 +69,18 @@ class MenuAdapter :
         companion object {
             fun getMenus(): List<Menu> {
                 val data = ArrayList<Menu>()
-                data.add(Menu(res = R.drawable.ic_home_white, nav = R.id.home))
-                data.add(Menu(res = R.drawable.ic_about_us, nav = R.id.home))
-                data.add(Menu(res = R.drawable.ic_user, nav = R.id.home))
-                data.add(Menu(res = R.drawable.ic_report, nav = R.id.home))
-                data.add(Menu(res = R.drawable.ic_gears, nav = R.id.home))
-                data.add(Menu(res = R.drawable.ic_logout, nav = R.id.home))
+//                data.add(Menu(res = R.drawable.ic_home_white, nav = R.id.home))
+                data.add(Menu(res = R.drawable.ic_about_us, nav = R.id.aboutUsFragment))
+                data.add(Menu(res = R.drawable.ic_user, nav = R.id.profileFragment))
+//                data.add(Menu(res = R.drawable.ic_report, nav = R.id.home))
+                data.add(Menu(res = R.drawable.ic_gears, nav = R.id.settingFragment))
+                data.add(Menu(res = R.drawable.ic_logout, nav = R.id.signOutFragment))
                 return data
             }
         }
+    }
+
+    interface OnItemClickListener {
+        fun setOnItemClickListener(@IdRes nav: Int)
     }
 }

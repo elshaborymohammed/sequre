@@ -25,7 +25,7 @@ class LanguageFragment : BaseFragment() {
         viewModel = ViewModelProviders.of(this, factory).get(UserViewModel::class.java)
         view.next.setOnClickListener {
             if (viewModel.setLang(resources.getStringArray(R.array.lang_array)[view.language.selectedItemPosition])) {
-                findNavController().navigate(R.id.action_languageFragment_to_landingFragment)
+//                findNavController().navigate(R.id.action_languageFragment_to_landingFragment)
             }
         }
     }

@@ -20,7 +20,7 @@
             android:id="@+id/action_settingFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
         <action
-            android:id="@+id/action_settingFragment_to_languageFragment2"
+            android:id="@+id/action_settingFragment_to_languageFragment"
             app:destination="@id/languageFragment" />
     </fragment>
 
@@ -36,12 +36,20 @@
         android:label="LanguageFragment"
         tools:layout="@layout/fragment_language" />
 
+    <action
+        android:id="@+id/action_to_ProfileFragment"
+        app:destination="@id/profileFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
-    
+
     <dialog
         android:id="@+id/signOutFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.auth.SignOutFragment"

@@ -2,6 +2,7 @@ package com.ocs.sequre.presentation.ui.fragment.navigation
 
 import android.view.View
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
@@ -16,9 +17,20 @@ class MenuFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         val adapter = MenuAdapter()
-        menu_nav.adapter = adapter
-        adapter.swap(MenuAdapter.Menu.getMenus())
+        Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_menu)
+            .addOnDestinationChangedListener { controller, destination, arguments ->
+                if (destination.id == R.id.profileFragment) {
+                    menu_nav.visibility = View.GONE
+                } else {
+                    menu_nav.visibility = View.VISIBLE
+                }
+            }
 
+        menu_nav.adapter = adapter
+        adapter.setOnItemClickListener {
+            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_menu)
+                .navigate(it)
+        }
         menu_close.setOnClickListener { findNavController().navigateUp() }
     }
 }

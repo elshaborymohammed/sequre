@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/auth_navigation">
+    app:startDestination="@id/navigationFragment">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -76,4 +76,6 @@
         android:name="com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment"
         android:label="MenuFragment"
         tools:layout="@layout/fragment_menu" />
+
+    <include app:graph="@navigation/menu_graph" />
 </navigation>

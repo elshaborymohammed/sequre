@@ -22,10 +22,10 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/title"
-        android:textAppearance="?attr/textAppearanceBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/my_profile"
+        android:textAppearance="?attr/textAppearanceBody1"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,6 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:textAppearance="?attr/textAppearanceCaption"
         app:layout_constraintDimensionRatio="W,1:1"
         app:layout_constraintHeight_percent="0.6"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
@@ -42,55 +43,57 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="Mohammed Ali"
+        android:textAppearance="?attr/textAppearanceCaption"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/email"
         app:layout_constraintEnd_toEndOf="@id/guideline_end"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toEndOf="@id/avatar"
-        app:layout_constraintTop_toTopOf="@id/avatar"
-        app:layout_constraintWidth_default="wrap" />
+        app:layout_constraintTop_toTopOf="@id/avatar" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/email"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MohammedAli87@gmail.com"
+        android:maxLines="1"
+        android:text="MohammedAli87@gmail.comfhhhhhhhh"
+        android:textAppearance="?attr/textAppearanceCaption"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/phone"
         app:layout_constraintEnd_toEndOf="@id/guideline_end"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/name"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        app:layout_constraintWidth_default="wrap" />
+        app:layout_constraintTop_toBottomOf="@id/name" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/phone"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="01234567890"
+        android:textAppearance="?attr/textAppearanceCaption"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/birth_date"
         app:layout_constraintEnd_toEndOf="@id/guideline_end"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/name"
-        app:layout_constraintTop_toBottomOf="@id/email"
-        app:layout_constraintWidth_default="wrap" />
+        app:layout_constraintTop_toBottomOf="@id/email" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/birth_date"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="15-06-1988"
+        android:textAppearance="?attr/textAppearanceCaption"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@id/avatar"
         app:layout_constraintEnd_toEndOf="@id/guideline_end"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/name"
-        app:layout_constraintTop_toBottomOf="@id/phone"
-        app:layout_constraintWidth_default="wrap" />
+        app:layout_constraintTop_toBottomOf="@id/phone" />
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="0dp"

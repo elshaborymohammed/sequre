@@ -10,6 +10,7 @@ import com.ocs.sequre.presentation.ui.fragment.navigation.SecondOpinionFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.ChangePasswordFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.EditProfileFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment
+import com.ocs.sequre.presentation.ui.fragment.setting.SettingFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
@@ -17,11 +18,9 @@ import dagger.android.support.AndroidSupportInjectionModule
 @Module(includes = [AndroidSupportInjectionModule::class])
 abstract class FragmentModule {
 
+    //region Auth Fragments
     @ContributesAndroidInjector
     internal abstract fun providesSplashFragment(): SplashFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun providesLanguageFragment(): LanguageFragment
 
     @ContributesAndroidInjector
     internal abstract fun providesLandingFragment(): LandingFragment
@@ -37,7 +36,9 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun providesVerificationFragment(): VerificationFragment
+    //endregion
 
+    //region Navigation Fragments
     @ContributesAndroidInjector
     internal abstract fun providesNavigationFragment(): NavigationFragment
 
@@ -46,7 +47,9 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun providesSecondOpinionFragment(): SecondOpinionFragment
+    //endregion
 
+    //region Menu Fragments
     @ContributesAndroidInjector
     internal abstract fun providesMenuFragment(): MenuFragment
 
@@ -54,8 +57,15 @@ abstract class FragmentModule {
     internal abstract fun providesProfileFragment(): ProfileFragment
 
     @ContributesAndroidInjector
+    internal abstract fun providesEditProfileFragment(): EditProfileFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesSettingFragment(): SettingFragment
+
+    @ContributesAndroidInjector
     internal abstract fun providesChangePasswordFragment(): ChangePasswordFragment
 
     @ContributesAndroidInjector
-    internal abstract fun providesEditProfileFragment(): EditProfileFragment
+    internal abstract fun providesLanguageFragment(): LanguageFragment
+    //endregion
 }
