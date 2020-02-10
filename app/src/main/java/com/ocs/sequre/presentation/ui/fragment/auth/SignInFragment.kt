@@ -32,7 +32,7 @@ class SignInFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)
-        view.sign_in.isEnabled = false
+//        view.sign_in.isEnabled = false
 
         view.sign_in.setOnClickListener {
             viewModel.login(
@@ -53,7 +53,7 @@ class SignInFragment : BaseFragment() {
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            viewModel.loading().subscribe { if (it) loadingOn() else loadingOff() },
+            viewModel.loading().subscribe(::loading),
             Observable.combineLatest(
                 loginName,
                 password,

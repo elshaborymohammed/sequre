@@ -38,21 +38,45 @@
 
     <action
         android:id="@+id/action_to_ProfileFragment"
-        app:destination="@id/profileFragment"
+        app:destination="@id/profile_graph"
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
         app:popExitAnim="@anim/slide_out_right" />
 
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment"
-        android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
 
     <dialog
         android:id="@+id/signOutFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.auth.SignOutFragment"
         android:label="Sign_out"
         tools:layout="@layout/fragment_auth_sign_out" />
+
+    <navigation
+        android:id="@+id/profile_graph"
+        android:label="ProfileGraph"
+        app:startDestination="@id/profileFragment">
+
+        <fragment
+            android:id="@+id/profileFragment"
+            android:name="com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment"
+            android:label="ProfileFragment"
+            tools:layout="@layout/fragment_profile" />
+
+        <fragment
+            android:id="@+id/dependentFragment"
+            android:name="com.ocs.sequre.presentation.ui.fragment.profile.DependentFragment"
+            android:label="DependentFragment"
+            tools:layout="@layout/fragment_profile_dependents" />
+        <fragment
+            android:id="@+id/addressFragment"
+            android:name="com.ocs.sequre.presentation.ui.fragment.profile.AddressFragment"
+            android:label="AddressFragment"
+            tools:layout="@layout/fragment_profile_address" />
+
+        <fragment
+            android:id="@+id/editProfileFragment"
+            android:name="com.ocs.sequre.presentation.ui.fragment.profile.EditProfileFragment"
+            android:label="EditProfileFragment"
+            tools:layout="@layout/fragment_profile_edit" />
+    </navigation>
 </navigation>

@@ -7,9 +7,7 @@ import com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.SecondOpinionFragment
-import com.ocs.sequre.presentation.ui.fragment.profile.ChangePasswordFragment
-import com.ocs.sequre.presentation.ui.fragment.profile.EditProfileFragment
-import com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment
+import com.ocs.sequre.presentation.ui.fragment.profile.*
 import com.ocs.sequre.presentation.ui.fragment.setting.SettingFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -49,15 +47,9 @@ abstract class FragmentModule {
     internal abstract fun providesSecondOpinionFragment(): SecondOpinionFragment
     //endregion
 
-    //region Menu Fragments
+    //region Side Menu Fragments
     @ContributesAndroidInjector
     internal abstract fun providesMenuFragment(): MenuFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun providesProfileFragment(): ProfileFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun providesEditProfileFragment(): EditProfileFragment
 
     @ContributesAndroidInjector
     internal abstract fun providesSettingFragment(): SettingFragment
@@ -67,5 +59,19 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun providesLanguageFragment(): LanguageFragment
+    //endregion
+
+    //region Profile Fragments
+    @ContributesAndroidInjector
+    internal abstract fun providesProfileFragment(): ProfileFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesDependentFragment(): DependentFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesEditProfileFragment(): EditProfileFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesAddressFragment(): AddressFragment
     //endregion
 }

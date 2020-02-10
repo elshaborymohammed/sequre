@@ -6,27 +6,35 @@ import com.ocs.sequre.data.remote.api.RequesterAuthApi
 import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
 import com.ocs.sequre.data.remote.model.request.auth.Login
 import com.ocs.sequre.data.remote.model.request.auth.Resend
+import com.ocs.sequre.data.remote.model.response.auth.AuthModel
 import com.ocs.sequre.data.remote.model.response.success.AccessToken
+import com.ocs.sequre.data.remote.model.response.success.ResponseSuccess
 import com.ocs.sequre.domain.entity.Registration
+import com.ocs.sequre.presentation.preference.AuthPreference
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
 class AuthViewModel @Inject constructor(
     private val api: RequesterAuthApi,
+    private val preference: AuthPreference,
     private val compose: RxCompactSchedulers
 ) : CompactViewModel() {
 
-    fun login(mobile: String, password: String): Single<AccessToken> {
-        return api.login(Login(mobile = mobile, password = password))
+    fun login(phone: String, password: String): Single<AuthModel> {
+        return api.login(Login(phone = phone, password = password))
             .compose(compose.applyOnSingle())
             .compose(composeLoadingSingle())
+            .map { it.data }
+            .doOnSuccess { preference.set(it.token) }
     }
 
-    fun register(body: Registration): Single<AccessToken> {
+    fun register(body: Registration): Single<AuthModel> {
         return api.register(body)
             .compose(compose.applyOnSingle())
             .compose(composeLoadingSingle())
+            .map { it.data }
+            .doOnSuccess { preference.set(it.token) }
     }
 
     fun check(body: AuthValidation): Completable {
@@ -40,8 +48,8 @@ class AuthViewModel @Inject constructor(
             .compose(compose.applyOnCompletable())
     }
 
-    fun checkMobile(mobile: String): Completable {
-        return api.check(AuthValidation(mobile = mobile))
+    fun checkPhone(phone: String): Completable {
+        return api.check(AuthValidation(phone = phone))
             .compose(compose.applyOnCompletable())
     }
 

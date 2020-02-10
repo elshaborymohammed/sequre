@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class ResponseSuccess<T>(
-    @SerializedName("result")
+    @SerializedName("data")
     @Expose
-    val result: T
+    val data: T
 )

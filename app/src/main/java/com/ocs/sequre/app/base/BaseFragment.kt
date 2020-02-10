@@ -13,6 +13,7 @@ import com.ocs.sequre.R
 import com.ocs.sequre.data.remote.model.response.error.Error
 import com.ocs.sequre.data.remote.model.response.error.ErrorStatus
 import com.ocs.sequre.data.remote.model.response.error.ResponseError
+import io.reactivex.functions.Consumer
 import java.io.IOException
 import javax.inject.Inject
 import kotlin.system.exitProcess
@@ -43,12 +44,8 @@ abstract class BaseFragment : CompactFragment() {
             })
     }
 
-    protected fun loadingOn() {
-        progressBar.show()
-    }
-
-    protected fun loadingOff() {
-        progressBar.dismiss()
+    protected fun loading(it: Boolean) {
+        if (it) progressBar.show() else progressBar.dismiss()
     }
 
     protected fun setToolBar(toolbar: Toolbar) {
@@ -71,7 +68,7 @@ abstract class BaseFragment : CompactFragment() {
                 } else if (it is IOException) {
                     onIOException()
                 } else {
-                    onError(it.message)
+                    onError(it.message!!)
                 }
             } catch (e: Exception) {
                 onIOException()
@@ -101,7 +98,7 @@ abstract class BaseFragment : CompactFragment() {
         ).show()
     }
 
-    open fun onError(message: String?) {
+    open fun onError(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 }

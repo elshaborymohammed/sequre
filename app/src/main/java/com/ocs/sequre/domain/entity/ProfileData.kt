@@ -5,26 +5,26 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.util.*
 
-open class Profile(
+class ProfileData(
     @SerializedName("name")
     @Expose
-    val name: String = "",
+    val name: String? = null,
     @SerializedName("email")
     @Expose
-    val email: String = "",
+    val email: String? = null,
     @SerializedName("c_code")
     @Expose
-    val countryCode: String,
-    phone: String = "",
+    val countryCode: String? = null,
+    phone: String? = null,
     @SerializedName("relation")
     @Expose
-    val relation: String = "",
+    val relation: String? = null,
     @SerializedName("birth")
     @Expose
-    val birthDate: Date? = null,
+    val birthDate: String? = null,
     @SerializedName("gender")
     @Expose
-    val gender: Int = 0,
+    val gender: Int? = null,
     @SerializedName("country")
     @Expose
     val country: String? = null,
@@ -39,11 +39,14 @@ open class Profile(
     val street: String? = null,
     @SerializedName("photo")
     @Expose
-    val photo: String? = null
-) : Serializable {
-
+    val photo: String? = null,
+    @SerializedName("dependents")
+    @Expose
+    val dependents: List<Dependent>? = null
+) {
 
     @SerializedName("mobile")
     @Expose
-    val phone: String = if (phone.startsWith("0", true)) phone.substring(1) else phone
+    val phone: String? =
+        phone?.apply { if (startsWith("0", true)) substring(1) else this }
 }

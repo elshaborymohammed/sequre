@@ -12,7 +12,7 @@ import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
 import com.ocs.sequre.data.remote.model.response.error.Error
 import com.ocs.sequre.data.remote.model.response.error.ErrorStatus
-import com.ocs.sequre.presentation.ui.viewholder.RegistrationDataViewHolder
+import com.ocs.sequre.presentation.ui.viewholder.UserRegistrationDataViewHolder
 import com.ocs.sequre.presentation.ui.viewholder.ToolBarViewHolder
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel
 import io.reactivex.disposables.Disposable
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_auth_sign_up.view.*
 
 class SignUpFragment : BaseFragment() {
     private lateinit var viewModel: AuthViewModel
-    private lateinit var signUpViewHolder: RegistrationDataViewHolder
+    private lateinit var signUpViewHolder: UserRegistrationDataViewHolder
 
     override fun layoutRes(): Int {
         return R.layout.fragment_auth_sign_up
@@ -30,7 +30,7 @@ class SignUpFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)
-        signUpViewHolder = RegistrationDataViewHolder(view)
+        signUpViewHolder = UserRegistrationDataViewHolder(view)
 
         val toolBarViewHolder = ToolBarViewHolder(view)
         setToolBar(toolBarViewHolder.toolbar)
@@ -38,7 +38,7 @@ class SignUpFragment : BaseFragment() {
         view.next.setOnClickListener {
             viewModel.check(
                 AuthValidation(
-                    mobile = signUpViewHolder.get().mobile,
+                    phone = signUpViewHolder.get().phone,
                     email = signUpViewHolder.get().email
                 )
             ).subscribe({
@@ -52,7 +52,7 @@ class SignUpFragment : BaseFragment() {
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            viewModel.loading().subscribe { if (it) loadingOn() else loadingOff() },
+            viewModel.loading().subscribe(::loading),
             signUpViewHolder.validations().subscribe(
                 { requireView().next.isEnabled = it },
                 Throwable::printStackTrace
@@ -64,7 +64,7 @@ class SignUpFragment : BaseFragment() {
                 )
             }, {
                 subscribe(
-                    viewModel.checkMobile(it).subscribe(
+                    viewModel.checkPhone(it).subscribe(
                         { Log.d("OkHttp", "phone:") }, onError()
                     )
                 )

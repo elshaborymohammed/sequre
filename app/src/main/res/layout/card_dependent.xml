@@ -82,7 +82,7 @@
             app:layout_constraintStart_toEndOf="@id/relation" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/date_birth"
+            android:id="@+id/birth_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -101,12 +101,12 @@
             android:elevation="8dp"
             android:text="Halamagdy@gmail.com"
             android:textAppearance="@style/App.TextAppearance.Caption"
-            app:layout_constraintBottom_toTopOf="@id/mobile"
+            app:layout_constraintBottom_toTopOf="@id/phone"
             app:layout_constraintStart_toStartOf="@id/name"
-            app:layout_constraintTop_toBottomOf="@id/date_birth" />
+            app:layout_constraintTop_toBottomOf="@id/birth_date" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mobile"
+            android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

@@ -34,7 +34,7 @@ class VerificationFragment : BaseFragment() {
                 HtmlCompat.fromHtml(
                     getString(
                         R.string.verification_welcome_message,
-                        "${usr.countryCode + usr.mobile}"
+                        "${usr.countryCode + usr.phone}"
                     ),
                     HtmlCompat.FROM_HTML_MODE_COMPACT
                 )
@@ -42,7 +42,7 @@ class VerificationFragment : BaseFragment() {
             try_resend.setOnClickListener {
                 PhoneAuthHelper.setupVerifyPhoneNumber(
                     usr.countryCode,
-                    usr.mobile,
+                    usr.phone,
                     requireActivity()
                 )
             }
@@ -76,7 +76,7 @@ class VerificationFragment : BaseFragment() {
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            viewModel.loading().subscribe { if (it) loadingOn() else loadingOff() }
+            viewModel.loading().subscribe(::loading)
         )
     }
 }

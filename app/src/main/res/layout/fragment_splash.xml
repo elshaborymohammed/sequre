@@ -3,11 +3,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ll_splash_screen"
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="top|center"
-        android:text="Splash Screen" />
-</FrameLayout>
+    android:orientation="vertical" />

@@ -8,33 +8,15 @@ import com.compact.app.extensions.*
 import com.jakewharton.rxbinding3.view.focusChanges
 import com.ocs.sequre.domain.entity.Registration
 import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
+import io.reactivex.functions.Function3
 import io.reactivex.functions.Function5
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.layout_user_create_account.view.*
+import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 
-class RegistrationDataViewHolder constructor(private val view: View) {
-    val mail: String
-        get() = view.input_name.text().toString()
-
-    private val name: Observable<Boolean>
-        get() = view.input_name.notNullOrEmpty()
-    private val email: Observable<Boolean>
-        get() = view.input_email.email()
-    private val mobile: Observable<Boolean>
-        get() = view.input_mobile.phone()
-    private val password: Observable<Boolean>
-        get() = view.input_password.password()
-    private val passwordConfirm: Observable<Boolean>
-        get() = view.input_password_confirm.confirmPassword(view.input_password)
-
-    private val emailFocusChanges: Observable<Boolean>
-        get() = view.input_email.editText!!.focusChanges()
-    private val mobileFocusChanges: Observable<Boolean>
-        get() = view.input_mobile.editText!!.focusChanges()
-
+class UserDataViewHolder constructor(private val view: View) {
     init {
         val dataAdapter: ArrayAdapter<String> =
             ArrayAdapter(
@@ -63,7 +45,7 @@ class RegistrationDataViewHolder constructor(private val view: View) {
 
     fun set(obj: Registration) {
         view.input_country.setSelection(0, true)
-        view.input_mobile.editText?.setText(obj.mobile)
+        view.input_phone.editText?.setText(obj.phone)
         view.input_name.editText?.setText(obj.name)
         view.input_email.editText?.setText(obj.email)
         view.input_password.editText?.setText(obj.password)
@@ -75,27 +57,37 @@ class RegistrationDataViewHolder constructor(private val view: View) {
             name = view.input_name.text().toString(),
             email = view.input_email.text().toString(),
             countryCode = view.resources.getStringArray(com.ocs.sequre.R.array.country_code_array)[view.input_country.selectedItemPosition],
-            mobile = view.input_mobile.text().toString(),
+            phone = view.input_phone.text().toString(),
             password = view.input_password.text().toString()
         )
     }
+
+    protected val name: Observable<Boolean>
+        get() = view.input_name.notNullOrEmpty()
+    protected val email: Observable<Boolean>
+        get() = view.input_email.email()
+    protected val phone: Observable<Boolean>
+        get() = view.input_phone.phone()
+
+    protected val emailFocusChanges: Observable<Boolean>
+        get() = view.input_email.editText!!.focusChanges()
+    protected val phoneFocusChanges: Observable<Boolean>
+        get() = view.input_phone.editText!!.focusChanges()
 
     fun validations(): Observable<Boolean> {
         return Observable.combineLatest(
             name,
             email,
-            mobile,
-            password,
-            passwordConfirm,
-            Function5 { name: Boolean, email: Boolean, mobile: Boolean, password: Boolean, passwordConfirm: Boolean ->
-                name && email && mobile && password && passwordConfirm
+            phone,
+            Function3 { name: Boolean, email: Boolean, phone: Boolean ->
+                name && email && phone
             }
         ).distinctUntilChanged()
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    private fun emailValidation(block: ((email: String) -> Unit)): Observable<Boolean> =
+    protected fun emailValidation(block: ((email: String) -> Unit)): Observable<Boolean> =
         Observable.combineLatest(
             email,
             emailFocusChanges,
@@ -105,44 +97,13 @@ class RegistrationDataViewHolder constructor(private val view: View) {
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { if (it) block(view.input_email.text().toString()) }
 
-    fun emailValidation(single: Single<Void>): Observable<Boolean> =
+    protected fun phoneValidation(block: ((phone: String) -> Unit)): Observable<Boolean> =
         Observable.combineLatest(
-            email,
-            emailFocusChanges,
-            BiFunction { t1: Boolean, t2: Boolean -> t1 && !t2 })
-            .distinct {
-                println("distinct $it")
-                it
-            }
-            .skipWhile {
-                println("skipWhile $it")
-                !it
-            }
-            .mergeWith(single.map { true })
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnComplete { print("onComplete") }
-
-    private fun mobileValidation(block: ((mobile: String) -> Unit)): Observable<Boolean> =
-        Observable.combineLatest(
-            mobile,
-            mobileFocusChanges,
+            phone,
+            phoneFocusChanges,
             BiFunction { t1: Boolean, t2: Boolean -> t1 && !t2 }
         ).distinctUntilChanged()
             .subscribeOn(AndroidSchedulers.mainThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext { if (it) block(view.input_mobile.text().toString()) }
-
-    fun validationData(
-        email: ((email: String) -> Unit),
-        mobile: ((mobile: String) -> Unit)
-    ): Observable<Boolean> {
-        return Observable.combineLatest(
-            emailValidation(email),
-            mobileValidation(mobile),
-            BiFunction { email: Boolean, mobile: Boolean -> email && mobile }
-        ).distinctUntilChanged()
-            .subscribeOn(Schedulers.single())
-            .observeOn(AndroidSchedulers.mainThread())
-    }
+            .doOnNext { if (it) block(view.input_phone.text().toString()) }
 }

@@ -71,7 +71,7 @@ class MenuAdapter :
                 val data = ArrayList<Menu>()
 //                data.add(Menu(res = R.drawable.ic_home_white, nav = R.id.home))
                 data.add(Menu(res = R.drawable.ic_about_us, nav = R.id.aboutUsFragment))
-                data.add(Menu(res = R.drawable.ic_user, nav = R.id.profileFragment))
+                data.add(Menu(res = R.drawable.ic_user, nav = R.id.profile_graph))
 //                data.add(Menu(res = R.drawable.ic_report, nav = R.id.home))
                 data.add(Menu(res = R.drawable.ic_gears, nav = R.id.settingFragment))
                 data.add(Menu(res = R.drawable.ic_logout, nav = R.id.signOutFragment))

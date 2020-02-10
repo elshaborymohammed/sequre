@@ -3,40 +3,42 @@ package com.ocs.sequre.presentation.ui.viewholder
 import android.app.DatePickerDialog
 import android.os.Build
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.LifecycleObserver
 import com.compact.app.extensions.email
 import com.compact.app.extensions.notNullOrEmpty
 import com.compact.app.extensions.phone
-import com.ocs.sequre.domain.entity.Profile
-import io.reactivex.Flowable
+import com.compact.app.extensions.text
+import com.compact.helper.ImageHelper
+import com.ocs.sequre.domain.entity.ProfileData
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Function
-import io.reactivex.functions.Function5
-import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_profile_edit.view.*
 import kotlinx.android.synthetic.main.layout_user_create_account.view.*
+import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 import kotlinx.android.synthetic.main.layout_user_profile_data.view.*
-import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.N)
-class ProfileViewHolder constructor(private val view: View) : LifecycleObserver {
+class UserProfileViewHolder constructor(private val view: View) : LifecycleObserver {
     private val name: Observable<Boolean>
-        get() = view.input_mobile.phone()
+        get() = view.input_name.notNullOrEmpty()
     private val email: Observable<Boolean>
         get() = view.input_email.email()
     private val phone: Observable<Boolean>
-        get() = view.input_mobile.phone()
+        get() = view.input_phone.phone()
     private val relation: Observable<Boolean>
         get() = view.input_relationship.notNullOrEmpty()
     private val birthDate: Observable<Boolean>
         get() = view.input_birth_date.notNullOrEmpty()
 
+    private val photo: String
+        get() = ImageHelper.encodeBitmapToBase64(view.input_avatar.drawable.toBitmap())
+
+
     init {
+        view.input_relationship.visibility = View.GONE
+
         view.input_country.run {
             val dataAdapter: ArrayAdapter<String> =
                 ArrayAdapter(
@@ -79,58 +81,35 @@ class ProfileViewHolder constructor(private val view: View) : LifecycleObserver 
         view.input_birth_date.setEndIconOnClickListener {
             val picker = DatePickerDialog(it.context)
             picker.datePicker.maxDate = System.currentTimeMillis()
+            picker.setOnDateSetListener { _: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
+                view.input_birth_date.editText!!.setText(String.format("$year/$month/$dayOfMonth"))
+            }
             picker.show()
         }
     }
 
-    fun set(obj: Profile) {
-        view.input_country.setSelection(0, true)
-        view.input_mobile.editText?.setText(obj.mobile)
-        view.input_name.editText?.setText(obj.name)
-        view.input_email.editText?.setText(obj.email)
-        view.input_relationship.editText?.setText(obj.relation)
-        view.input_birth_date.editText?.setText(obj.birthDate.toString())
-    }
-
-    fun get(): Profile {
-        return Profile(
-            name = view.input_name.editText?.text.toString(),
-            email = view.input_email.editText?.text.toString(),
-            countryCode = view.resources.getStringArray(com.ocs.sequre.R.array.country_code_array)[view.input_country.selectedItemPosition],
-            mobile = view.input_mobile.editText?.text.toString(),
-            relation = view.input_relationship.editText?.text.toString(),
-            birthDate = Date()
-        )
-    }
-
-    fun validations(): Observable<Boolean> {
-        return Observable.combineLatest(
-            name,
-            email,
-            phone,
-            relation,
-            birthDate,
-            Function5 { name: Boolean, email: Boolean, mobile: Boolean, relation: Boolean, birthDate: Boolean ->
-                name && email && mobile && relation && birthDate
+    fun set(obj: ProfileData) {
+        view.apply {
+            input_country.setSelection(0, true)
+            input_phone.editText?.setText(obj.phone)
+            input_name.editText?.setText(obj.name)
+            input_email.editText?.setText(obj.email)
+            input_birth_date.editText?.setText((obj.birthDate ?: "").toString())
+            obj.gender?.also {
+                (input_gender.editText as AutoCompleteTextView).apply {
+                    setText(adapter.getItem(it).toString(), false)
+                }
             }
-        ).distinctUntilChanged()
-            .subscribeOn(Schedulers.single())
-            .observeOn(AndroidSchedulers.mainThread())
+        }
     }
 
-    fun validations2(): Observable<Boolean> {
-        return Observable.combineLatest(
-            Function<Array<Any>, Boolean> {
-                it[0] as Boolean && it[1] as Boolean && it[2] as Boolean
-            },
-            Flowable.bufferSize(),
-            name,
-            email,
-            phone,
-            relation,
-            birthDate
-        ).distinctUntilChanged()
-            .subscribeOn(Schedulers.single())
-            .observeOn(AndroidSchedulers.mainThread())
+    fun get(): ProfileData {
+        return ProfileData(
+            name = view.input_name.text().toString(),
+            email = view.input_email.text().toString(),
+            countryCode = view.resources.getStringArray(com.ocs.sequre.R.array.country_code_array)[view.input_country.selectedItemPosition],
+            phone = view.input_phone.text().toString(),
+            birthDate = view.input_birth_date.text().toString()
+        )
     }
 }

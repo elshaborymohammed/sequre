@@ -4,17 +4,17 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 class Login(
-    mobile: String,
+    phone: String,
     @SerializedName("password")
     @Expose
     val password: String
 ) {
     @SerializedName("mobile")
     @Expose
-    val mobile: String = if (mobile.startsWith("0", true)) mobile.substring(1) else mobile
+    val phone: String = if (phone.startsWith("0", true)) phone.substring(1) else phone
 
 
     override fun toString(): String {
-        return "Login(mobile='$mobile', password='$password')"
+        return "Login(phone='$phone', password='$password')"
     }
 }

@@ -7,5 +7,4 @@ class SettingFragment : BaseFragment() {
     override fun layoutRes(): Int {
         return R.layout.fragment_setting
     }
-
 }

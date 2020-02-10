@@ -11,7 +11,7 @@ class Registration(
     @SerializedName("c_code")
     @Expose
     val countryCode: String,
-    mobile: String = "",
+    phone: String = "",
     @SerializedName("email")
     @Expose
     val email: String = "",
@@ -22,9 +22,9 @@ class Registration(
 
     @SerializedName("mobile")
     @Expose
-    val mobile: String = if (mobile.startsWith("0", true)) mobile.substring(1) else mobile
+    val phone: String = if (phone.startsWith("0", true)) phone.substring(1) else phone
 
     override fun toString(): String {
-        return "User(name='$name', countryCode='$countryCode', mobile='$mobile', email='$email', password='$password')"
+        return "User(name='$name', countryCode='$countryCode', phone='$phone', email='$email', password='$password')"
     }
 }

@@ -19,7 +19,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <include
-        layout="@layout/layout_user_create_account"
+        layout="@layout/layout_user_main_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -61,6 +61,7 @@
             style="@style/App.Widget.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:enabled="false"
             android:inputType="date" />
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

@@ -2,14 +2,18 @@ package com.ocs.sequre.app.di.module
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import com.compact.di.qualifier.ApplicationContext
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.ocs.sequre.data.remote.model.response.auth.AuthModel
+import com.ocs.sequre.data.remote.model.response.success.ResponseSuccess
 import com.ocs.sequre.presentation.preference.AuthPreference
 import com.ocs.sequre.presentation.ui.activity.SplashFragment
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
 import okhttp3.*
-import okhttp3.logging.HttpLoggingInterceptor
 import javax.inject.Singleton
 
 @Module
@@ -32,28 +36,45 @@ class NetworkInterceptorModule {
         }
     }
 
-    @Provides
-    @IntoSet
-    fun providesBodyInterceptors(): Interceptor {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.HEADERS
-        return interceptor
-    }
+//    @Provides
+//    @IntoSet
+//    fun providesBodyInterceptors(): Interceptor {
+//        val interceptor = HttpLoggingInterceptor()
+//        interceptor.level = HttpLoggingInterceptor.Level.HEADERS
+//        return interceptor
+//    }
 
     @Provides
     @IntoSet
     fun providesAuthenticationInterceptor(auth: AuthPreference): Interceptor {
         return Interceptor.invoke {
             when {
-                it.request().url.toString().toLowerCase().endsWith("/login") ->
-                    it.proceed(it.request())
+                it.request().url.toString().toLowerCase().endsWith("/auth/login") or
+                        it.request().url.toString().toLowerCase().endsWith("/auth/register") -> {
+                    val response = it.proceed(it.request())
+//                    response.run {
+//                        if (code == 200) {
+//                            body?.run {
+//                                Log.d("OkHttp", "Response ${string()}")
+//                                val token =
+//                                    Gson().fromJson<ResponseSuccess<AuthModel>>(
+//                                        string(),
+//                                        object : TypeToken<ResponseSuccess<AuthModel>>() {}.type
+//                                    ).data.token
+//                                Log.d("OkHttp", "Authorization $token")
+//                                auth.set(token)
+//                            }
+//                        }
+//                    }
+//                    val token = response.header("Authorization", "")
+                    response
+                }
                 else -> {
                     val newRequest: Request = it.request().newBuilder()
                         .addHeader(
                             "Authorization",
                             "Bearer ${auth.get()}"
-                        )
-                        .build()
+                        ).build()
                     it.proceed(newRequest)
                 }
             }
