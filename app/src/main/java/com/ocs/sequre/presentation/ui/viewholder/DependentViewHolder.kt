@@ -12,32 +12,31 @@ import com.compact.app.extensions.notNullOrEmpty
 import com.compact.app.extensions.phone
 import com.compact.app.extensions.text
 import com.compact.helper.ImageHelper
-import com.ocs.sequre.domain.entity.Profile
+import com.ocs.sequre.domain.entity.Dependent
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 import kotlinx.android.synthetic.main.layout_user_profile_data.view.*
 
 @RequiresApi(Build.VERSION_CODES.N)
-class UserProfileViewHolder constructor(private val view: View) : LifecycleObserver {
+class DependentViewHolder constructor(private val view: View) : LifecycleObserver {
+    private val relation: Observable<Boolean>
+        get() = view.input_relationship.notNullOrEmpty()
     private val name: Observable<Boolean>
         get() = view.input_name.notNullOrEmpty()
     private val email: Observable<Boolean>
         get() = view.input_email.email()
     private val phone: Observable<Boolean>
         get() = view.input_phone.phone()
-    private val relation: Observable<Boolean>
-        get() = view.input_relationship.notNullOrEmpty()
     private val birthDate: Observable<Boolean>
         get() = view.input_birth_date.notNullOrEmpty()
 
     private val photo: String
         get() = ImageHelper.encodeBitmapToBase64(view.input_avatar.drawable.toBitmap())
 
+    private val id: Int = -1
 
     init {
-        view.input_relationship.visibility = View.GONE
-
         view.input_country.run {
             val dataAdapter: ArrayAdapter<String> =
                 ArrayAdapter(
@@ -87,32 +86,29 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
         }
     }
 
-    fun set(obj: Profile) {
+    fun set(obj: Dependent) {
         view.apply {
+            id = obj.id
             input_country.setSelection(0, true)
             input_phone.editText?.setText(obj.phone)
             input_name.editText?.setText(obj.name)
             input_email.editText?.setText(obj.email)
             input_birth_date.editText?.setText((obj.birthDate ?: "").toString())
             (input_gender.editText as AutoCompleteTextView).apply {
-                //setText(if (obj.gender == 0) "Male" else "Female", false)
                 setText(obj.gender, false)
             }
-//            obj.gender?.also {
-//                (input_gender.editText as AutoCompleteTextView).apply {
-//                    setText(adapter.getItem(it).toString(), false)
-//                }
-//            }
-
         }
     }
 
-    fun get(): Profile {
-        return Profile(
+    fun get(): Dependent {
+        return Dependent(
+            id = id,
+            relationship = view.input_relationship.text().toString(),
             name = view.input_name.text().toString(),
             email = view.input_email.text().toString(),
             countryCode = view.resources.getStringArray(com.ocs.sequre.R.array.country_code_array)[view.input_country.selectedItemPosition],
             phone = view.input_phone.text().toString(),
+            gender = view.input_gender.text().toString(),
             birthDate = view.input_birth_date.text().toString()
         )
     }

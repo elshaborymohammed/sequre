@@ -63,11 +63,6 @@
             tools:layout="@layout/fragment_profile" />
 
         <fragment
-            android:id="@+id/dependentFragment"
-            android:name="com.ocs.sequre.presentation.ui.fragment.profile.DependentFragment"
-            android:label="DependentFragment"
-            tools:layout="@layout/fragment_profile_dependents" />
-        <fragment
             android:id="@+id/addressFragment"
             android:name="com.ocs.sequre.presentation.ui.fragment.profile.AddressFragment"
             android:label="AddressFragment"
@@ -77,6 +72,19 @@
             android:id="@+id/editProfileFragment"
             android:name="com.ocs.sequre.presentation.ui.fragment.profile.EditProfileFragment"
             android:label="EditProfileFragment"
-            tools:layout="@layout/fragment_profile_edit" />
+            tools:layout="@layout/fragment_profile_data" />
+
+
+        <fragment
+            android:id="@+id/dependentCreateFragment"
+            android:name="com.ocs.sequre.presentation.ui.fragment.profile.DependentCreateFragment"
+            android:label="DependentCreateFragment"
+            tools:layout="@layout/fragment_profile_data" />
+
+        <fragment
+            android:id="@+id/dependentUpdateFragment"
+            android:name="com.ocs.sequre.presentation.ui.fragment.profile.DependentUpdateFragment"
+            android:label="DependentUpdateFragment"
+            tools:layout="@layout/fragment_profile_data" />
     </navigation>
 </navigation>

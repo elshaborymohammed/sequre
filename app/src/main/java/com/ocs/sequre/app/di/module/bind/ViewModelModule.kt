@@ -3,10 +3,7 @@ package com.ocs.sequre.app.di.module.bind
 import androidx.lifecycle.ViewModel
 import com.compact.app.viewmodel.di.key.ViewModelKey
 import com.compact.app.viewmodel.di.module.ViewModelInjectionModule
-import com.ocs.sequre.presentation.viewmodel.AuthViewModel
-import com.ocs.sequre.presentation.viewmodel.DataViewModel
-import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
-import com.ocs.sequre.presentation.viewmodel.UserViewModel
+import com.ocs.sequre.presentation.viewmodel.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -33,4 +30,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     internal abstract fun providesProfileViewModel(viewModel: ProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DependentViewModel::class)
+    internal abstract fun providesDependentViewModel(viewModel: DependentViewModel): ViewModel
 }

@@ -1,6 +1,5 @@
 package com.ocs.sequre.app.di.module.bind
 
-import com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment
 import com.ocs.sequre.presentation.ui.activity.SplashFragment
 import com.ocs.sequre.presentation.ui.fragment.auth.*
 import com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment
@@ -8,6 +7,7 @@ import com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.SecondOpinionFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.*
+import com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment
 import com.ocs.sequre.presentation.ui.fragment.setting.SettingFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -66,12 +66,18 @@ abstract class FragmentModule {
     internal abstract fun providesProfileFragment(): ProfileFragment
 
     @ContributesAndroidInjector
-    internal abstract fun providesDependentFragment(): DependentFragment
-
-    @ContributesAndroidInjector
     internal abstract fun providesEditProfileFragment(): EditProfileFragment
 
     @ContributesAndroidInjector
     internal abstract fun providesAddressFragment(): AddressFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesDependentsFragment(): DependentsFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesDependentCreateFragment(): DependentCreateFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesDependentUpdateFragment(): DependentUpdateFragment
     //endregion
 }

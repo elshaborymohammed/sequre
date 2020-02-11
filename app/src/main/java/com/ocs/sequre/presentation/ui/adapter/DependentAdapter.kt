@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.compact.widget.recyclerview.CompactRecyclerView
 import com.ocs.sequre.R
-import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.domain.entity.Dependent
 import kotlinx.android.synthetic.main.card_dependent.view.*
 
@@ -30,17 +29,18 @@ class DependentAdapter :
     class ViewHolder(itemView: View) : CompactRecyclerView.ViewHolder<Dependent>(itemView) {
         override fun bind(position: Int, it: Dependent) {
             itemView.apply {
-                relation.text = it.relation
+                relation.text = it.relationship
                 name.text = it.name
                 email.text = it.email
                 phone.text = it.phone
                 birth_date.text = it.birthDate
-                gender.text = it.gender.toString()
+                gender.text = it.gender
 
-                GlideApp.with(this)
-                    .load(it.photo)
-                    .optionalFitCenter()
-                    .into(image)
+//                gender.text = if (it.gender == 0) "Male" else "Female"
+//                GlideApp.with(this)
+//                    .load(it.photo)
+//                    .optionalFitCenter()
+//                    .into(image)
             }
         }
     }

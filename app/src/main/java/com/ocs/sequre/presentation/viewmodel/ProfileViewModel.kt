@@ -2,20 +2,19 @@ package com.ocs.sequre.presentation.viewmodel
 
 import com.compact.app.viewmodel.CompactDataViewModel
 import com.compact.executor.RxCompactSchedulers
+import com.jakewharton.rxrelay2.BehaviorRelay
 import com.ocs.sequre.data.remote.api.RequesterProfileAPI
-import com.ocs.sequre.data.remote.model.response.success.ResponseSuccess
 import com.ocs.sequre.domain.entity.Dependent
 import com.ocs.sequre.domain.entity.Profile
-import com.ocs.sequre.domain.entity.ProfileData
 import io.reactivex.Completable
-import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
     private val api: RequesterProfileAPI,
     private val schedulers: RxCompactSchedulers
-) : CompactDataViewModel<ProfileData>() {
+) : CompactDataViewModel<Profile>() {
+    private var dependents: BehaviorRelay<List<Dependent>> = BehaviorRelay.create()
 
     override fun call() {
         addDisposable(
@@ -23,20 +22,21 @@ class ProfileViewModel @Inject constructor(
         )
     }
 
-    private fun get(): Single<ProfileData> {
+    private fun get(): Single<Profile> {
         return api.get()
             .compose(schedulers.applyOnSingle())
             .compose(composeLoadingSingle())
-            .map { it.data }
+            .doOnSuccess { it.data.dependents?.let { t -> dependents.accept(t) } }
+            .map { it.data as Profile }
     }
 
-    fun dependents(): Observable<List<Dependent>> {
-        return data().map { it.dependents }
-    }
-
-    fun update(body: ProfileData): Completable {
+    fun update(body: Profile): Completable {
         return api.update(body)
             .compose(schedulers.applyOnCompletable())
             .compose(composeLoadingCompletable())
+    }
+
+    fun dependents(): BehaviorRelay<List<Dependent>> {
+        return dependents
     }
 }

@@ -6,20 +6,22 @@ import android.os.Build
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.compact.picker.ImagePicker
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.presentation.ui.viewholder.UserProfileViewHolder
 import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.fragment_profile_edit.view.*
+import kotlinx.android.synthetic.main.fragment_profile_data.view.*
+import kotlinx.android.synthetic.main.layout_tool_bar.view.*
 
 class EditProfileFragment : BaseFragment() {
     private lateinit var viewHolder: UserProfileViewHolder
     private lateinit var viewModel: ProfileViewModel
 
     override fun layoutRes(): Int {
-        return R.layout.fragment_profile_edit
+        return R.layout.fragment_profile_data
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -33,10 +35,14 @@ class EditProfileFragment : BaseFragment() {
             ImagePicker.pick(requireActivity())
         }
 
-        view.next.setOnClickListener {
+        view.save.setOnClickListener {
             subscribe(
                 viewModel.update(viewHolder.get()).subscribe({}, onError())
             )
+        }
+
+        view.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
         }
     }
 

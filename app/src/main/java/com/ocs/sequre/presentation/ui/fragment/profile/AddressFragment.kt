@@ -4,15 +4,11 @@ import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import com.compact.app.extensions.text
 import com.ocs.sequre.R
-import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.BaseFragment
-import com.ocs.sequre.domain.entity.ProfileData
+import com.ocs.sequre.domain.entity.Profile
 import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.card_profile.view.*
 import kotlinx.android.synthetic.main.fragment_profile_address.view.*
-import kotlinx.android.synthetic.main.fragment_profile_address.view.next
-import kotlinx.android.synthetic.main.fragment_profile_edit.view.*
 
 class AddressFragment : BaseFragment() {
     private lateinit var viewModel: ProfileViewModel
@@ -26,10 +22,10 @@ class AddressFragment : BaseFragment() {
         viewModel =
             ViewModelProviders.of(requireActivity(), factory).get(ProfileViewModel::class.java)
 
-        view.next.setOnClickListener {
+        view.save.setOnClickListener {
             subscribe(
                 viewModel.update(
-                    ProfileData(
+                    Profile(
                         country = view.input_country.text().toString(),
 //                        city = view.input_city.text().toString(),
                         area = view.input_area.text().toString(),

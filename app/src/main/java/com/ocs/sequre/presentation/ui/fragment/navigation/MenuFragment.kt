@@ -2,7 +2,6 @@ package com.ocs.sequre.presentation.ui.fragment.navigation
 
 import android.view.View
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
@@ -18,8 +17,12 @@ class MenuFragment : BaseFragment() {
         super.onViewBound(view)
         val adapter = MenuAdapter()
         Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_menu)
-            .addOnDestinationChangedListener { controller, destination, arguments ->
-                if (destination.id == R.id.profileFragment) {
+            .addOnDestinationChangedListener { _, destination, _ ->
+                if (destination.id == R.id.profileFragment
+                    || destination.id == R.id.editProfileFragment
+                    || destination.id == R.id.dependentCreateFragment
+                    || destination.id == R.id.dependentUpdateFragment
+                ) {
                     menu_nav.visibility = View.GONE
                 } else {
                     menu_nav.visibility = View.VISIBLE

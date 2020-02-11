@@ -1,11 +1,18 @@
 package com.ocs.sequre.domain.entity
 
 import com.google.gson.annotations.Expose
+import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
+import com.ocs.sequre.data.adapter.GenderTypeAdapter
 import java.io.Serializable
-import java.util.*
 
 class Dependent(
+    @SerializedName("relationship")
+    @Expose
+    val relationship: String,
+    @SerializedName("id")
+    @Expose
+    val id: Int,
     @SerializedName("name")
     @Expose
     val name: String,
@@ -16,18 +23,16 @@ class Dependent(
     @Expose
     val countryCode: String,
     phone: String = "",
-    @SerializedName("relation")
-    @Expose
-    val relation: String,
     @SerializedName("birth")
     @Expose
     val birthDate: String,
+    @JsonAdapter(GenderTypeAdapter::class)
     @SerializedName("gender")
     @Expose
-    val gender: Int,
+    val gender: String,
     @SerializedName("photo")
     @Expose
-    val photo: String
+    val photo: String? = null
 ) : Serializable {
 
     @SerializedName("mobile")
