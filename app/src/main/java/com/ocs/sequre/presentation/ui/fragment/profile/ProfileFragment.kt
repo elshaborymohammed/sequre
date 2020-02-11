@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.card_profile.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -45,10 +46,16 @@ class ProfileFragment : BaseFragment() {
         view.add_dependent.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.dependentCreateFragment))
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.call()
+    }
+
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            viewModel.loading().subscribe(::loading),
-            viewModel.data().subscribe {
+            viewModel.loading().observeOn(AndroidSchedulers.mainThread()).subscribe(::loading),
+            viewModel.error().subscribe(onError()),
+            viewModel.profile().subscribe {
                 view?.apply {
                     name.text = it.name
                     email.text = it.email
@@ -61,11 +68,10 @@ class ProfileFragment : BaseFragment() {
     }
 
     private inner class PagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-        private val fragments: List<Fragment>
+        private val fragments: List<Fragment> = arrayListOf(DependentsFragment(), AddressFragment())
         private val title: List<String>
 
         init {
-            fragments = arrayListOf(DependentsFragment(), AddressFragment())
             title = arrayListOf("Dependents", "Address")
         }
 

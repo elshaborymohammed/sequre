@@ -95,15 +95,8 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
             input_email.editText?.setText(obj.email)
             input_birth_date.editText?.setText((obj.birthDate ?: "").toString())
             (input_gender.editText as AutoCompleteTextView).apply {
-                //setText(if (obj.gender == 0) "Male" else "Female", false)
                 setText(obj.gender, false)
             }
-//            obj.gender?.also {
-//                (input_gender.editText as AutoCompleteTextView).apply {
-//                    setText(adapter.getItem(it).toString(), false)
-//                }
-//            }
-
         }
     }
 

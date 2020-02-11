@@ -7,12 +7,12 @@ import com.ocs.sequre.data.adapter.GenderTypeAdapter
 import java.io.Serializable
 
 class Dependent(
-    @SerializedName("relationship")
-    @Expose
-    val relationship: String,
     @SerializedName("id")
     @Expose
     val id: Int,
+    @SerializedName("relationship")
+    @Expose
+    val relationship: String,
     @SerializedName("name")
     @Expose
     val name: String,
@@ -38,4 +38,8 @@ class Dependent(
     @SerializedName("mobile")
     @Expose
     val phone: String = if (phone.startsWith("0", true)) phone.substring(1) else phone
+
+    override fun toString(): String {
+        return "Dependent(id=$id, relationship='$relationship', name='$name', email='$email', countryCode='$countryCode', birthDate='$birthDate', gender='$gender', photo=$photo, phone='$phone')"
+    }
 }

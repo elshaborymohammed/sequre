@@ -12,11 +12,15 @@ class DependentUpdateFragment : DependentFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         view.title.text = "Edit Dependent"
+
+        DependentUpdateFragmentArgs.fromBundle(requireArguments()).data?.apply {
+            viewHolder.set(this)
+        }
     }
 
     override fun onSaveClicked(it: Dependent) {
         subscribe(
-            dependentViewModel.update(it.id, it).subscribe({ onSuccess(it) }, onError())
+            dependentViewModel.update(it.id, it).subscribe(::onSuccess, onError())
         )
     }
 }

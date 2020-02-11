@@ -31,15 +31,14 @@ class AddressFragment : BaseFragment() {
                         area = view.input_area.text().toString(),
                         street = view.input_street.text().toString()
                     )
-                ).subscribe({}, onError())
+                ).subscribe(::onSuccess, onError())
             )
         }
     }
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            viewModel.loading().subscribe(::loading),
-            viewModel.data().subscribe {
+            viewModel.profile().subscribe {
                 view?.apply {
                     input_country.editText!!.setText(it.country)
                     input_city.editText!!.setText(it.city)

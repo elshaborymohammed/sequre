@@ -34,7 +34,7 @@ class DependentViewHolder constructor(private val view: View) : LifecycleObserve
     private val photo: String
         get() = ImageHelper.encodeBitmapToBase64(view.input_avatar.drawable.toBitmap())
 
-    private val id: Int = -1
+    private var id: Int = -1
 
     init {
         view.input_country.run {
@@ -88,8 +88,9 @@ class DependentViewHolder constructor(private val view: View) : LifecycleObserve
 
     fun set(obj: Dependent) {
         view.apply {
-            id = obj.id
+            this@DependentViewHolder.id = obj.id
             input_country.setSelection(0, true)
+            input_relationship.editText?.setText(obj.relationship)
             input_phone.editText?.setText(obj.phone)
             input_name.editText?.setText(obj.name)
             input_email.editText?.setText(obj.email)

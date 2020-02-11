@@ -2,9 +2,9 @@ package com.ocs.sequre.presentation.ui.fragment.profile
 
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
-import com.ocs.sequre.app.base.loading
 import com.ocs.sequre.presentation.ui.adapter.DependentAdapter
 import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
 import io.reactivex.disposables.Disposable
@@ -23,12 +23,17 @@ class DependentsFragment : BaseFragment() {
         viewModel =
             ViewModelProviders.of(requireActivity(), factory).get(ProfileViewModel::class.java)
         adapter = DependentAdapter()
+        adapter.setOnItemClickListener {
+            findNavController().navigate(
+                R.id.dependentUpdateFragment,
+                DependentUpdateFragmentArgs(it).toBundle()
+            )
+        }
         view.list_item.adapter = adapter
     }
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            viewModel.loading().subscribe(requireView().progress::loading),
             viewModel.dependents().subscribe(adapter::swap, ::print)
         )
     }

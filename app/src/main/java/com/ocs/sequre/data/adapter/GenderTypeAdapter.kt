@@ -8,10 +8,10 @@ class GenderTypeAdapter : TypeAdapter<String>() {
     override fun write(out: JsonWriter?, value: String?) {
         out?.apply {
             value?.apply {
-                if (this == "Male") {
-                    0
+                if (value == "Male") {
+                    value(0)
                 } else {
-                    1
+                    value(1)
                 }
             }
         }

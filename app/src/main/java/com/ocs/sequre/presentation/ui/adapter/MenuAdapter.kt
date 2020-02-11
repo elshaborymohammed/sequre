@@ -46,7 +46,7 @@ class MenuAdapter :
         )
     }
 
-    fun setOnItemClickListener(listener: OnItemClickListener) {
+    private fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
 

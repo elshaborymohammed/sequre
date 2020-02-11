@@ -13,7 +13,6 @@ import com.ocs.sequre.R
 import com.ocs.sequre.data.remote.model.response.error.Error
 import com.ocs.sequre.data.remote.model.response.error.ErrorStatus
 import com.ocs.sequre.data.remote.model.response.error.ResponseError
-import io.reactivex.functions.Consumer
 import java.io.IOException
 import javax.inject.Inject
 import kotlin.system.exitProcess
@@ -45,6 +44,7 @@ abstract class BaseFragment : CompactFragment() {
     }
 
     protected fun loading(it: Boolean) {
+        println("loading = [${it}]")
         if (it) progressBar.show() else progressBar.dismiss()
     }
 
@@ -53,6 +53,13 @@ abstract class BaseFragment : CompactFragment() {
 //            setSupportActionBar(toolbar)
 //        }
     }
+
+    protected fun onSuccess() =
+        Snackbar.make(
+            requireView(),
+            getString(R.string.saved_successfully),
+            Snackbar.LENGTH_LONG
+        ).show()
 
     protected open fun onError(): (it: Throwable) -> Unit {
         return {

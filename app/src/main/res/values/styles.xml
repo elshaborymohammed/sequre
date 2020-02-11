@@ -86,13 +86,12 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
-        <item name="textAllCaps">true</item>
+        <item name="textAllCaps">false</item>
         <item name="backgroundTint">@color/se_enable_disable_button</item>
         <item name="cornerRadius">@dimen/corner_radius</item>
     </style>
 
     <style name="App.Widget.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="android:textAllCaps">false</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="backgroundTint">@android:color/white</item>
@@ -100,7 +99,7 @@
         <item name="cornerRadius">@dimen/corner_radius</item>
         <item name="strokeColor">@color/colorAccent</item>
         <item name="strokeWidth">@dimen/stroke_width</item>
-        <item name="textAllCaps">true</item>
+        <item name="textAllCaps">false</item>
     </style>
 
     <style name="App.Widget.TextView.Title" parent="Widget.MaterialComponents.TextView" />

@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.card_dependent.view.*
 class DependentAdapter :
     CompactRecyclerView.Adapter<Dependent, DependentAdapter.ViewHolder>() {
 
+    private lateinit var listener: OnItemClickListener
+
     override fun itemDecorations(): Array<RecyclerView.ItemDecoration> {
         return arrayOf(
             CompactRecyclerView.SpacesItemDecoration.Linear.builder(context)
@@ -26,8 +28,27 @@ class DependentAdapter :
         )
     }
 
-    class ViewHolder(itemView: View) : CompactRecyclerView.ViewHolder<Dependent>(itemView) {
+
+    fun setOnItemClickListener(listener: (it: Dependent) -> Unit) {
+        setOnItemClickListener(
+            object : OnItemClickListener {
+                override fun setOnItemClickListener(it: Dependent) {
+                    listener(it)
+                }
+            }
+        )
+    }
+
+    private fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
+
+    inner class ViewHolder(itemView: View) : CompactRecyclerView.ViewHolder<Dependent>(itemView) {
         override fun bind(position: Int, it: Dependent) {
+            itemView.setOnClickListener { _ ->
+                listener.setOnItemClickListener(it)
+            }
+
             itemView.apply {
                 relation.text = it.relationship
                 name.text = it.name
@@ -36,12 +57,15 @@ class DependentAdapter :
                 birth_date.text = it.birthDate
                 gender.text = it.gender
 
-//                gender.text = if (it.gender == 0) "Male" else "Female"
 //                GlideApp.with(this)
 //                    .load(it.photo)
 //                    .optionalFitCenter()
 //                    .into(image)
             }
         }
+    }
+
+    interface OnItemClickListener {
+        fun setOnItemClickListener(it: Dependent)
     }
 }

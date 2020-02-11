@@ -85,6 +85,12 @@
             android:id="@+id/dependentUpdateFragment"
             android:name="com.ocs.sequre.presentation.ui.fragment.profile.DependentUpdateFragment"
             android:label="DependentUpdateFragment"
-            tools:layout="@layout/fragment_profile_data" />
+            tools:layout="@layout/fragment_profile_data">
+            <argument
+                android:name="data"
+                app:nullable="true"
+                android:defaultValue="@null"
+                app:argType="com.ocs.sequre.domain.entity.Dependent" />
+        </fragment>
     </navigation>
 </navigation>

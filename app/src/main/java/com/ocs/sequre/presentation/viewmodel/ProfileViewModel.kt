@@ -1,24 +1,27 @@
 package com.ocs.sequre.presentation.viewmodel
 
-import com.compact.app.viewmodel.CompactDataViewModel
+import com.compact.app.viewmodel.CompactViewModel
 import com.compact.executor.RxCompactSchedulers
 import com.jakewharton.rxrelay2.BehaviorRelay
 import com.ocs.sequre.data.remote.api.RequesterProfileAPI
 import com.ocs.sequre.domain.entity.Dependent
 import com.ocs.sequre.domain.entity.Profile
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
     private val api: RequesterProfileAPI,
     private val schedulers: RxCompactSchedulers
-) : CompactDataViewModel<Profile>() {
+) : CompactViewModel() {
+    private var error: BehaviorRelay<Throwable> = BehaviorRelay.create()
+    private var profile: BehaviorRelay<Profile> = BehaviorRelay.create()
     private var dependents: BehaviorRelay<List<Dependent>> = BehaviorRelay.create()
 
-    override fun call() {
+    fun call() {
         addDisposable(
-            get().subscribe(data::accept, Throwable::printStackTrace)
+            get().subscribe(profile::accept, error::accept)
         )
     }
 
@@ -36,7 +39,15 @@ class ProfileViewModel @Inject constructor(
             .compose(composeLoadingCompletable())
     }
 
-    fun dependents(): BehaviorRelay<List<Dependent>> {
-        return dependents
+    fun profile(): Observable<Profile> {
+        return profile.compose(schedulers.applyOnObservable())
+    }
+
+    fun dependents(): Observable<List<Dependent>> {
+        return dependents.compose(schedulers.applyOnObservable())
+    }
+
+    fun error(): Observable<Throwable> {
+        return error.compose(schedulers.applyOnObservable())
     }
 }
