@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="@string/relationship">
+        android:hint="@string/relationship"
+        android:tag="relationship">
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/App.Widget.TextInputEditText"
@@ -30,6 +31,7 @@
         android:layout_marginTop="8dp"
         android:hint="@string/gender"
         android:paddingTop="8dp"
+        android:tag="gender"
         app:boxCollapsedPaddingTop="0dp"
         app:endIconDrawable="@drawable/ic_chevron_down"
         app:endIconMode="dropdown_menu"
@@ -50,8 +52,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:enabled="true"
         android:hint="@string/date_of_birth"
         android:paddingTop="8dp"
+        android:tag="birth1"
         app:boxCollapsedPaddingTop="0dp"
         app:endIconDrawable="@drawable/ic_date"
         app:endIconMode="custom"

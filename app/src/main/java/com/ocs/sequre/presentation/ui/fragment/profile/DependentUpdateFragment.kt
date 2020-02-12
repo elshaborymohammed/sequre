@@ -8,7 +8,6 @@ import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 
 class DependentUpdateFragment : DependentFragment() {
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         view.title.text = "Edit Dependent"

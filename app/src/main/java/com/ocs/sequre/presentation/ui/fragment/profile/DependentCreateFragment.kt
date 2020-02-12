@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.layout_user_profile_data.*
 
 class DependentCreateFragment : DependentFragment() {
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         view.title.text = "New Dependent"
@@ -27,7 +26,7 @@ class DependentCreateFragment : DependentFragment() {
 
     override fun onSaveClicked(it: Dependent) {
         subscribe(
-            dependentViewModel.create(it).subscribe(::onSuccess, Throwable::printStackTrace)
+            dependentViewModel.create(it).subscribe(::onSuccess, onError())
         )
     }
 }

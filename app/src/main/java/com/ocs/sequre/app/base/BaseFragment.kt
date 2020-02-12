@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.compact.app.CompactFragment
 import com.compact.response.ApiException
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
 import com.ocs.sequre.R
 import com.ocs.sequre.data.remote.model.response.error.Error
 import com.ocs.sequre.data.remote.model.response.error.ErrorStatus
@@ -44,7 +45,6 @@ abstract class BaseFragment : CompactFragment() {
     }
 
     protected fun loading(it: Boolean) {
-        println("loading = [${it}]")
         if (it) progressBar.show() else progressBar.dismiss()
     }
 
@@ -84,7 +84,15 @@ abstract class BaseFragment : CompactFragment() {
     }
 
     open fun onApiException(code: ErrorStatus, errors: List<Error>) {
-        if (errors.isNotEmpty()) {
+        if (code == ErrorStatus.VALIDATION) {
+            for (e in errors) {
+                requireView().findViewWithTag<TextInputLayout>(e.path)
+                    ?.apply {
+                        error = e.message
+                        setEndIconOnClickListener { performClick() }
+                    }
+            }
+        } else if (errors.isNotEmpty() && code != ErrorStatus.VALIDATION) {
             Toast.makeText(context, errors[0].message, Toast.LENGTH_LONG).show()
         }
     }

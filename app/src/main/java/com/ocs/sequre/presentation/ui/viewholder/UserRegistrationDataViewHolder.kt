@@ -16,9 +16,6 @@ import kotlinx.android.synthetic.main.layout_user_create_account.view.*
 import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 
 class UserRegistrationDataViewHolder constructor(private val view: View) {
-    val mail: String
-        get() = view.input_name.text().toString()
-
     private val name: Observable<Boolean>
         get() = view.input_name.notNullOrEmpty()
     private val email: Observable<Boolean>

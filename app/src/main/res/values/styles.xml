@@ -25,7 +25,6 @@
         <item name="materialButtonStyle">@style/App.Widget.Button</item>
         <item name="preferenceStyle">@style/App.Widget.Preference.EditTextPreference</item>
         <item name="progressBarStyle">@style/Widget.AppCompat.ProgressBar</item>
-        <item name="android:progressBarStyle">@style/Widget.AppCompat.ProgressBar</item>
 
         <item name="titleTextAppearance">@style/App.TextAppearance.Title</item>
         <item name="subtitleTextAppearance">@style/App.TextAppearance.Subtitle</item>
@@ -50,7 +49,7 @@
         <!--calendar background-->
         <item name="android:windowBackground">@color/colorPrimary</item>
         <!--days of the month-->
-        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorPrimary">#000</item>
         <!--days of the week-->
         <item name="android:textColorSecondary">@color/colorAccent</item>
         <!--header background-->

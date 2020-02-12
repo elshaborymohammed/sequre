@@ -1,10 +1,7 @@
 package com.ocs.sequre.presentation.ui.viewholder
 
-import android.app.DatePickerDialog
-import android.os.Build
 import android.view.View
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.LifecycleObserver
 import com.compact.app.extensions.email
@@ -12,13 +9,16 @@ import com.compact.app.extensions.notNullOrEmpty
 import com.compact.app.extensions.phone
 import com.compact.app.extensions.text
 import com.compact.helper.ImageHelper
+import com.ocs.sequre.app.CompactDatePicker
 import com.ocs.sequre.domain.entity.Profile
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Function5
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 import kotlinx.android.synthetic.main.layout_user_profile_data.view.*
 
-@RequiresApi(Build.VERSION_CODES.N)
 class UserProfileViewHolder constructor(private val view: View) : LifecycleObserver {
     private val name: Observable<Boolean>
         get() = view.input_name.notNullOrEmpty()
@@ -26,14 +26,13 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
         get() = view.input_email.email()
     private val phone: Observable<Boolean>
         get() = view.input_phone.phone()
-    private val relation: Observable<Boolean>
-        get() = view.input_relationship.notNullOrEmpty()
+    private val gender: Observable<Boolean>
+        get() = view.input_gender.notNullOrEmpty()
     private val birthDate: Observable<Boolean>
         get() = view.input_birth_date.notNullOrEmpty()
 
     private val photo: String
         get() = ImageHelper.encodeBitmapToBase64(view.input_avatar.drawable.toBitmap())
-
 
     init {
         view.input_relationship.visibility = View.GONE
@@ -77,13 +76,15 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
                 )
             }
 
-        view.input_birth_date.setEndIconOnClickListener {
-            val picker = DatePickerDialog(it.context)
-            picker.datePicker.maxDate = System.currentTimeMillis()
-            picker.setOnDateSetListener { _: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
-                view.input_birth_date.editText!!.setText(String.format("$year/$month/$dayOfMonth"))
+        view.input_birth_date.apply {
+            setOnClickListener {
+                CompactDatePicker.builder(it.context)
+                    .maxDate(System.currentTimeMillis())
+                    .onDateSetListener { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+                        view.input_birth_date.editText!!.setText(String.format("$year/$month/$dayOfMonth"))
+                    }.build()
             }
-            picker.show()
+            setEndIconOnClickListener { performClick() }
         }
     }
 
@@ -106,7 +107,23 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
             email = view.input_email.text().toString(),
             countryCode = view.resources.getStringArray(com.ocs.sequre.R.array.country_code_array)[view.input_country.selectedItemPosition],
             phone = view.input_phone.text().toString(),
+            gender = view.input_gender.text().toString(),
             birthDate = view.input_birth_date.text().toString()
         )
+    }
+
+    fun validations(): Observable<Boolean> {
+        return Observable.combineLatest(
+            name,
+            email,
+            phone,
+            gender,
+            birthDate,
+            Function5 { name: Boolean, email: Boolean, phone: Boolean, gender: Boolean, birthDate: Boolean ->
+                name && email && phone && gender && birthDate
+            }
+        ).distinctUntilChanged()
+            .subscribeOn(Schedulers.single())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 }

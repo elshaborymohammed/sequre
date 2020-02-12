@@ -27,7 +27,7 @@ class AddressFragment : BaseFragment() {
                 viewModel.update(
                     Profile(
                         country = view.input_country.text().toString(),
-//                        city = view.input_city.text().toString(),
+                        city = view.input_city.text().toString(),
                         area = view.input_area.text().toString(),
                         street = view.input_street.text().toString()
                     )

@@ -2,9 +2,7 @@ package com.ocs.sequre.presentation.ui.fragment.profile
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.compact.picker.ImagePicker
@@ -24,16 +22,15 @@ class EditProfileFragment : BaseFragment() {
         return R.layout.fragment_profile_data
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewHolder = UserProfileViewHolder(view)
         viewModel =
             ViewModelProviders.of(requireActivity(), factory).get(ProfileViewModel::class.java)
 
-//        view.input_avatar.setOnClickListener {
-//            ImagePicker.pick(requireActivity())
-//        }
+        view.input_avatar.setOnClickListener {
+            ImagePicker.pick(requireActivity())
+        }
 
         view.save.setOnClickListener {
             subscribe(
@@ -59,7 +56,6 @@ class EditProfileFragment : BaseFragment() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
             viewModel.loading().subscribe(::loading),

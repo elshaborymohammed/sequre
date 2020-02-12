@@ -26,7 +26,6 @@ class SignUpFragment : BaseFragment() {
         return R.layout.fragment_auth_sign_up
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)

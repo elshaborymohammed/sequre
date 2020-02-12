@@ -5,8 +5,11 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.textfield.TextInputLayout
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
+import com.ocs.sequre.data.remote.model.response.error.Error
+import com.ocs.sequre.data.remote.model.response.error.ErrorStatus
 import com.ocs.sequre.domain.entity.Dependent
 import com.ocs.sequre.presentation.ui.viewholder.DependentViewHolder
 import com.ocs.sequre.presentation.viewmodel.DependentViewModel
@@ -23,7 +26,6 @@ abstract class DependentFragment : BaseFragment() {
         return R.layout.fragment_profile_data
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewHolder = DependentViewHolder(view)
@@ -42,7 +44,8 @@ abstract class DependentFragment : BaseFragment() {
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            dependentViewModel.loading().subscribe(::loading)
+            dependentViewModel.loading().subscribe(::loading),
+            viewHolder.validations().subscribe(requireView().save::setEnabled)
         )
     }
 
