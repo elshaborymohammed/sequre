@@ -44,7 +44,6 @@ class EditProfileFragment : BaseFragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ImagePicker.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             try {
                 if (data != null) {
@@ -53,6 +52,8 @@ class EditProfileFragment : BaseFragment() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
         }
     }
 

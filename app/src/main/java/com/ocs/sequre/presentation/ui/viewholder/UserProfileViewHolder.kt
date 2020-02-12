@@ -1,8 +1,8 @@
 package com.ocs.sequre.presentation.ui.viewholder
 
+import android.graphics.drawable.BitmapDrawable
 import android.view.View
 import android.widget.*
-import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.LifecycleObserver
 import com.compact.app.extensions.email
 import com.compact.app.extensions.notNullOrEmpty
@@ -32,7 +32,14 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
         get() = view.input_birth_date.notNullOrEmpty()
 
     private val photo: String
-        get() = ImageHelper.encodeBitmapToBase64(view.input_avatar.drawable.toBitmap())
+        get() {
+//            val s = ImageHelper.encodeBitmapToBase64(view.input_avatar.drawable.toBitmap())
+            val s = ImageHelper.encodeBitmapToBase64(
+                (view.input_avatar.drawable as BitmapDrawable).bitmap
+            )
+            println(s)
+            return s
+        }
 
     init {
         view.input_relationship.visibility = View.GONE
@@ -108,7 +115,8 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
             countryCode = view.resources.getStringArray(com.ocs.sequre.R.array.country_code_array)[view.input_country.selectedItemPosition],
             phone = view.input_phone.text().toString(),
             gender = view.input_gender.text().toString(),
-            birthDate = view.input_birth_date.text().toString()
+            birthDate = view.input_birth_date.text().toString(),
+            photo = photo
         )
     }
 

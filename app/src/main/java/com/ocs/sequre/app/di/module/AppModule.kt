@@ -1,22 +1,14 @@
 package com.ocs.sequre.app.di.module
 
-import android.content.Context
-import android.content.Intent
 import com.compact.di.module.*
-import com.compact.di.qualifier.ApplicationContext
 import com.compact.di.qualifier.DatePattern
 import com.compact.di.qualifier.Endpoint
 import com.compact.requester.adapter.RxCompactCallAdapterFactory
 import com.google.gson.Gson
 import com.ocs.sequre.BuildConfig
-import com.ocs.sequre.presentation.ui.activity.MainActivity
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
-import okhttp3.Authenticator
-import okhttp3.Request
-import okhttp3.Response
-import okhttp3.Route
 import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.converter.gson.GsonConverterFactory
@@ -47,7 +39,7 @@ class AppModule {
     @Singleton
     @Endpoint
     fun providesEndpoint(): String {
-        return BuildConfig.BASE_URL
+        return BuildConfig.API_BASE_URL
     }
 
     @Provides
