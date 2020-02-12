@@ -51,7 +51,7 @@ class AuthViewModel @Inject constructor(
             .compose(compose.applyOnCompletable())
     }
 
-    fun resend(body: Resend?): Single<Void> {
+    fun resend(body: Resend): Single<Void> {
         return api.resend(body)
             .compose(compose.applyOnSingle())
             .compose(composeLoadingSingle())

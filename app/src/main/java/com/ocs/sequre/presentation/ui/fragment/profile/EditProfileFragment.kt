@@ -3,7 +3,7 @@ package com.ocs.sequre.presentation.ui.fragment.profile
 import android.app.Activity
 import android.content.Intent
 import android.view.View
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.compact.picker.ImagePicker
 import com.ocs.sequre.R
@@ -25,11 +25,10 @@ class EditProfileFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewHolder = UserProfileViewHolder(view)
-        viewModel =
-            ViewModelProviders.of(requireActivity(), factory).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProvider(viewModelStore, factory).get(ProfileViewModel::class.java)
 
         view.input_avatar.setOnClickListener {
-            ImagePicker.pick(requireActivity())
+            ImagePicker.pick(this)
         }
 
         view.save.setOnClickListener {

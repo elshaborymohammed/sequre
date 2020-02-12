@@ -20,7 +20,7 @@ class ProfileViewModel @Inject constructor(
     private var dependents: BehaviorRelay<List<Dependent>> = BehaviorRelay.create()
 
     fun call() {
-        addDisposable(
+        subscribe(
             get().subscribe(profile::accept, error::accept)
         )
     }

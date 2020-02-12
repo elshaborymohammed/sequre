@@ -10,32 +10,29 @@ ext {
             inject    : "javax.inject:javax.inject:$javaxInjectVersion",
     ]
 
-    androidXCoreVersion = '1.1.0'
-    androidXLifecycleVersion = '2.0.0-rc01'
-    constraintLayoutVersion = '2.0.0-alpha3'
-    navigationVersion = "2.1.0"
+    navigationVersion = "2.2.0"
     androidX = [
-            annotation      : "androidx.annotation:annotation:$androidXCoreVersion",
-            appCompat       : "androidx.appcompat:appcompat:$androidXCoreVersion",
-            ktx             : "androidx.core:core-ktx:$androidXCoreVersion",
-            supportV4       : "androidx.legacy:legacy-support-v4:1.0.0",
-            mediaCompat     : "androidx.media:media:$androidXCoreVersion",
-            vector          : "androidx.vectordrawable:vectordrawable:$androidXCoreVersion",
-            animatedVector  : "androidx.vectordrawable:vectordrawable-animated:$androidXCoreVersion",
-            recyclerView    : "androidx.recyclerview:recyclerview:$androidXCoreVersion",
+            annotation      : "androidx.annotation:annotation:1.1.0",
+            appCompat       : "androidx.appcompat:appcompat:1.1.0",
+            ktx             : "androidx.core:core-ktx:1.2.0",
+            recyclerView    : "androidx.recyclerview:recyclerview:1.1.0",
             cardView        : "androidx.cardview:cardview:1.0.0",
-            material        : "com.google.android.material:material:1.2.0-alpha02",
+            supportV4       : "androidx.legacy:legacy-support-v4:1.0.0",
+            mediaCompat     : "androidx.media:media:1.0.0",
+            vector          : "androidx.vectordrawable:vectordrawable:1.0.0",
+            animatedVector  : "androidx.vectordrawable:vectordrawable-animated:1.0.0",
 
-            extension       : "androidx.lifecycle:lifecycle-extensions:$androidXLifecycleVersion",
-            compiler        : "androidx.lifecycle:lifecycle-compiler:$androidXLifecycleVersion",
-            viewModel       : "androidx.lifecycle:lifecycle-viewmodel:$androidXLifecycleVersion",
-            viewModelKtx    : "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidXLifecycleVersion",
-            liveData        : "androidx.lifecycle:lifecycle-livedata:$androidXLifecycleVersion",
-            room            : "androidx.room:room-runtime:$androidXLifecycleVersion",
-            roomRx          : "androidx.room:room-rxjava2:$androidXLifecycleVersion",
-            roomCompiler    : "androidx.room:room-compiler:$androidXLifecycleVersion",
+            extension       : "androidx.lifecycle:lifecycle-extensions:2.2.0",
+            compiler        : "androidx.lifecycle:lifecycle-compiler:2.2.0",
+            viewModel       : "androidx.lifecycle:lifecycle-viewmodel:2.2.0",
+            viewModelKtx    : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0",
+            liveData        : "androidx.lifecycle:lifecycle-livedata:2.2.0",
+            room            : "androidx.room:room-runtime:2.2.0",
+            roomRx          : "androidx.room:room-rxjava2:2.2.0",
+            roomCompiler    : "androidx.room:room-compiler:2.2.0",
 
-            constraintLayout: "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
+            material        : "com.google.android.material:material:1.2.0-alpha04",
+            constraintLayout: "androidx.constraintlayout:constraintlayout:2.0.0-alpha3",
 
             navigation      : [
                     classpath: "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion",
@@ -108,7 +105,7 @@ ext {
     ]
 
     /** CompactKit */
-    compactVersion = '0.0.10'
+    compactVersion = '0.0.12'
     compact = [
             app                : "com.github.androidcompact.compact:app:$compactVersion",
             otp                : "com.github.androidcompact.compact:otpview:$compactVersion",
