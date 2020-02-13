@@ -95,9 +95,7 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
             (input_gender.editText as AutoCompleteTextView).apply {
                 setText(obj.gender, false)
             }
-            GlideApp.with(input_avatar)
-                .load(obj.photo)
-                .into(input_avatar)
+            GlideApp.with(input_avatar).load(obj.photo).into(input_avatar)
         }
     }
 

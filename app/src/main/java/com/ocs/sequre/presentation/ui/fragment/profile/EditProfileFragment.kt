@@ -48,17 +48,15 @@ class EditProfileFragment : BaseFragment() {
         }
     }
 
-    override fun subscriptions(): Array<Disposable> {
-        return arrayOf(
-            viewModel.loading().subscribe(::loading),
-            viewModel.profile().subscribe {
-                viewHolder.set(it)
-            }
-        )
-    }
-
     override fun onDestroyView() {
         loading(false)
         super.onDestroyView()
+    }
+
+    override fun subscriptions(): Array<Disposable> {
+        return arrayOf(
+            viewModel.loading().subscribe(::loading),
+            viewModel.profile().subscribe(viewHolder::set)
+        )
     }
 }

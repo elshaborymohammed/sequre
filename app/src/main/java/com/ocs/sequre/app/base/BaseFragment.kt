@@ -6,6 +6,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.compact.app.CompactFragment
 import com.compact.response.ApiException
 import com.google.android.material.snackbar.Snackbar
@@ -37,11 +38,12 @@ abstract class BaseFragment : CompactFragment() {
 
     fun exitProcess() {
         requireActivity().onBackPressedDispatcher
-            .addCallback(this, object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    exitProcess(0)
-                }
-            })
+            .addCallback(this,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        exitProcess(0)
+                    }
+                })
     }
 
     protected fun loading(it: Boolean) {
@@ -58,8 +60,13 @@ abstract class BaseFragment : CompactFragment() {
         Snackbar.make(
             requireView(),
             getString(R.string.saved_successfully),
-            Snackbar.LENGTH_LONG
-        ).show()
+            Snackbar.LENGTH_SHORT
+        ).addCallback(object : Snackbar.Callback() {
+            override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                findNavController().navigateUp()
+            }
+        }).show()
+
 
     protected open fun onError(): (it: Throwable) -> Unit {
         return {
