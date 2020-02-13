@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.compact.widget.recyclerview.CompactRecyclerView
 import com.ocs.sequre.R
+import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.domain.entity.Dependent
 import kotlinx.android.synthetic.main.card_dependent.view.*
 
@@ -16,8 +17,7 @@ class DependentAdapter :
 
     override fun itemDecorations(): Array<RecyclerView.ItemDecoration> {
         return arrayOf(
-            CompactRecyclerView.SpacesItemDecoration.Linear.builder(context)
-                .space(8).build()
+            CompactRecyclerView.SpacesItemDecoration.Linear.builder(context).space(8).build()
         )
     }
 
@@ -27,7 +27,6 @@ class DependentAdapter :
                 .inflate(R.layout.card_dependent, parent, false)
         )
     }
-
 
     fun setOnItemClickListener(listener: (it: Dependent) -> Unit) {
         setOnItemClickListener(
@@ -56,11 +55,7 @@ class DependentAdapter :
                 phone.text = it.phone
                 birth_date.text = it.birthDate
                 gender.text = it.gender
-
-//                GlideApp.with(this)
-//                    .load(it.photo)
-//                    .optionalFitCenter()
-//                    .into(image)
+//                GlideApp.with(this).load(it.photo).optionalFitCenter().into(image)
             }
         }
     }

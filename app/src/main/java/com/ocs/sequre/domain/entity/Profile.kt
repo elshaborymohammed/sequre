@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 import com.ocs.sequre.data.adapter.GenderTypeAdapter
+import com.ocs.sequre.data.adapter.ImageTypeAdapter
 
 open class Profile(
     @SerializedName("name")
@@ -38,6 +39,7 @@ open class Profile(
     @SerializedName("street")
     @Expose
     open val street: String? = null,
+    @JsonAdapter(ImageTypeAdapter::class)
     @SerializedName("photo")
     @Expose
     open val photo: String? = null

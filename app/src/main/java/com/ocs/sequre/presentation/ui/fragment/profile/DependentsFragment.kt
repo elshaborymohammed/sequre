@@ -1,7 +1,7 @@
 package com.ocs.sequre.presentation.ui.fragment.profile
 
 import android.view.View
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
@@ -21,7 +21,7 @@ class DependentsFragment : BaseFragment() {
 
     override fun onViewBound(view: View) {
         viewModel =
-            ViewModelProviders.of(requireActivity(), factory).get(ProfileViewModel::class.java)
+            ViewModelProvider(requireActivity(), factory).get(ProfileViewModel::class.java)
         adapter = DependentAdapter()
         adapter.setOnItemClickListener {
             findNavController().navigate(

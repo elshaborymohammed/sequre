@@ -1,8 +1,6 @@
 package com.ocs.sequre.presentation.ui.fragment.profile
 
-import android.os.Build
 import android.view.View
-import androidx.annotation.RequiresApi
 import com.ocs.sequre.domain.entity.Dependent
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 
@@ -14,6 +12,7 @@ class DependentUpdateFragment : DependentFragment() {
 
         DependentUpdateFragmentArgs.fromBundle(requireArguments()).data?.apply {
             viewHolder.set(this)
+            view.delete.visibility = View.VISIBLE
         }
     }
 

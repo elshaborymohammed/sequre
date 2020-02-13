@@ -25,29 +25,21 @@ class EditProfileFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewHolder = UserProfileViewHolder(view)
-        viewModel = ViewModelProvider(viewModelStore, factory).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(), factory).get(ProfileViewModel::class.java)
 
-        view.input_avatar.setOnClickListener {
-            ImagePicker.pick(this)
-        }
-
-        view.save.setOnClickListener {
+        view.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+        view.input_avatar.setOnClickListener { ImagePicker.pick(this) }
+        view.update.setOnClickListener {
             subscribe(
                 viewModel.update(viewHolder.get()).subscribe(::onSuccess, onError())
             )
-        }
-
-        view.toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == ImagePicker.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             try {
-                if (data != null) {
-                    requireView().input_avatar.setImageURI(data.data)
-                }
+                data?.apply { requireView().input_avatar.setImageURI(this.data) }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
