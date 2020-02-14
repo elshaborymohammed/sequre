@@ -3,7 +3,7 @@ package com.ocs.sequre.presentation.ui.fragment.profile
 import android.os.Build
 import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.ocs.sequre.R
@@ -31,7 +31,7 @@ abstract class DependentFragment : BaseFragment() {
         viewHolder = DependentViewHolder(view)
 
         dependentViewModel =
-            ViewModelProviders.of(this, factory).get(DependentViewModel::class.java)
+            ViewModelProvider(this, factory).get(DependentViewModel::class.java)
 
         view.save.setOnClickListener {
             onSaveClicked(viewHolder.get())

@@ -2,7 +2,7 @@ package com.ocs.sequre.presentation.ui.fragment.auth
 
 import android.view.View
 import androidx.core.text.HtmlCompat
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.ocs.sequre.R
@@ -23,7 +23,7 @@ class VerificationFragment : BaseFragment() {
 
     override fun onViewBound(view: View) {
         super.onViewBound(view)
-        viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
         val toolBarViewHolder = ToolBarViewHolder(view)
         setToolBar(toolBarViewHolder.toolbar)
 

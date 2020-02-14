@@ -1,8 +1,7 @@
 package com.ocs.sequre.presentation.ui.fragment.setting
 
 import android.view.View
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModelProvider
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.presentation.ui.viewholder.ToolBarViewHolder
@@ -22,7 +21,7 @@ class LanguageFragment : BaseFragment() {
         val toolBarViewHolder = ToolBarViewHolder(view)
         setToolBar(toolBarViewHolder.toolbar)
 
-        viewModel = ViewModelProviders.of(this, factory).get(UserViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(UserViewModel::class.java)
         view.next.setOnClickListener {
             if (viewModel.setLang(resources.getStringArray(R.array.lang_array)[view.language.selectedItemPosition])) {
 //                findNavController().navigate(R.id.action_languageFragment_to_landingFragment)

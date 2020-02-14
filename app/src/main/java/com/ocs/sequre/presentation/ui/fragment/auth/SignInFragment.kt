@@ -1,7 +1,7 @@
 package com.ocs.sequre.presentation.ui.fragment.auth
 
 import android.view.View
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.compact.app.extensions.loginName
@@ -31,7 +31,7 @@ class SignInFragment : BaseFragment() {
 
     override fun onViewBound(view: View) {
         super.onViewBound(view)
-        viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
 //        view.sign_in.isEnabled = false
 
         view.sign_in.setOnClickListener {

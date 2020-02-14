@@ -1,7 +1,7 @@
 package com.ocs.sequre.presentation.ui.fragment.profile
 
 import android.view.View
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.compact.app.extensions.text
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
@@ -20,7 +20,7 @@ class AddressFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewModel =
-            ViewModelProviders.of(requireActivity(), factory).get(ProfileViewModel::class.java)
+            ViewModelProvider(requireActivity(), factory).get(ProfileViewModel::class.java)
 
         view.save.setOnClickListener {
             subscribe(

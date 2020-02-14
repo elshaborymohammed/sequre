@@ -4,7 +4,7 @@ import android.os.Build
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.ocs.sequre.R
@@ -28,7 +28,7 @@ class SignUpFragment : BaseFragment() {
 
     override fun onViewBound(view: View) {
         super.onViewBound(view)
-        viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
         signUpViewHolder = UserRegistrationDataViewHolder(view)
 
         val toolBarViewHolder = ToolBarViewHolder(view)

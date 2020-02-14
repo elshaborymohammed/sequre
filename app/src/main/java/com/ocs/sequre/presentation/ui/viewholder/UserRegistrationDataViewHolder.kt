@@ -119,8 +119,7 @@ class UserRegistrationDataViewHolder constructor(private val view: View) {
         return Observable.combineLatest(
             emailValidation(email),
             phoneValidation(phone),
-            BiFunction { email: Boolean, phone: Boolean -> email && phone }
-        ).distinctUntilChanged()
+            BiFunction { email: Boolean, phone: Boolean -> email && phone }).distinctUntilChanged()
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
     }

@@ -2,7 +2,7 @@ package com.ocs.sequre.presentation.ui.fragment.profile
 
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -30,7 +30,7 @@ class ProfileFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewModel =
-            ViewModelProviders.of(requireActivity(), factory).get(ProfileViewModel::class.java)
+            ViewModelProvider(requireActivity(), factory).get(ProfileViewModel::class.java)
 
         val pagerAdapter = PagerAdapter(this)
         pager.adapter = pagerAdapter
