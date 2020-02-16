@@ -36,7 +36,7 @@ abstract class DependentFragment : BaseFragment() {
             ViewModelProvider(this, factory).get(DependentViewModel::class.java)
 
         view.input_avatar.setOnClickListener {
-            ImagePicker.pick(this)
+            ImagePicker.build(this)
         }
         view.update.setOnClickListener {
             onSaveClicked(viewHolder.get())
@@ -54,9 +54,7 @@ abstract class DependentFragment : BaseFragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == ImagePicker.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             try {
-                data?.apply {
-                    requireView().input_avatar.setImageURI(this.data)
-                }
+                data?.apply { ImagePicker.setImage(requireView().input_avatar, this) }
             } catch (e: Exception) {
                 e.printStackTrace()
             }

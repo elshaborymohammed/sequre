@@ -7,6 +7,7 @@ import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.presentation.ui.viewholder.ToolBarViewHolder
 import com.ocs.sequre.presentation.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.fragment_language.view.*
+import java.util.*
 
 class LanguageFragment : BaseFragment() {
 
@@ -23,8 +24,11 @@ class LanguageFragment : BaseFragment() {
 
         viewModel = ViewModelProvider(this, factory).get(UserViewModel::class.java)
         view.next.setOnClickListener {
-            if (viewModel.setLang(resources.getStringArray(R.array.lang_array)[view.language.selectedItemPosition])) {
-//                findNavController().navigate(R.id.action_languageFragment_to_landingFragment)
+            val lang =
+                resources.getStringArray(R.array.lang_array)[view.language.selectedItemPosition]
+            if (viewModel.setLang(lang)) {
+                Locale.setDefault(Locale(lang))
+                findNavController().navigate(R.id.action_languageFragment_to_signInFragment)
             }
         }
     }

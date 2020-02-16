@@ -107,7 +107,7 @@ ext {
     ]
 
     /** CompactKit */
-    compactVersion = '0.0.12'
+    compactVersion = '0.0.13'
     compact = [
             app                : "com.github.androidcompact.compact:app:$compactVersion",
             otp                : "com.github.androidcompact.compact:otpview:$compactVersion",
