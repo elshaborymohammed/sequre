@@ -86,12 +86,12 @@ dependencies {
     implementation androidX.material
     implementation androidX.cardView
     implementation androidX.constraintLayout
-    implementation androidX.viewModel
-    implementation androidX.extension
     implementation androidX.supportV4
     implementation androidX.navigation.kts.fragment
     implementation androidX.navigation.kts.ui
-    kapt androidX.compiler
+    implementation androidX.lifecycle.viewModel
+    implementation androidX.lifecycle.extension
+    kapt androidX.lifecycle.compiler
 
     implementation di.dagger
     implementation di.androidSupport

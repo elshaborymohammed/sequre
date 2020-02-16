@@ -2,14 +2,13 @@ package com.ocs.sequre.presentation.ui.viewholder
 
 import android.view.View
 import android.widget.*
-import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.LifecycleObserver
 import com.compact.app.extensions.email
 import com.compact.app.extensions.notNullOrEmpty
 import com.compact.app.extensions.phone
 import com.compact.app.extensions.text
-import com.compact.helper.ImageHelper
 import com.ocs.sequre.app.CompactDatePicker
+import com.ocs.sequre.app.base.base64
 import com.ocs.sequre.domain.entity.Dependent
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -32,9 +31,6 @@ class DependentViewHolder constructor(private val view: View) : LifecycleObserve
         get() = view.input_gender.notNullOrEmpty()
     private val birthDate: Observable<Boolean>
         get() = view.input_birth_date.notNullOrEmpty()
-
-    private val photo: String
-        get() = ImageHelper.encodeBitmapToBase64(view.input_avatar.drawable.toBitmap())
 
     private var id: Int = -1
 
@@ -108,13 +104,14 @@ class DependentViewHolder constructor(private val view: View) : LifecycleObserve
     fun get(): Dependent {
         return Dependent(
             id = id,
-            relationship = view.input_relationship.text().toString(),
-            name = view.input_name.text().toString(),
-            email = view.input_email.text().toString(),
+            relationship = view.input_relationship.text(),
+            name = view.input_name.text(),
+            email = view.input_email.text(),
             countryCode = view.resources.getStringArray(com.ocs.sequre.R.array.country_code_array)[view.input_country.selectedItemPosition],
-            phone = view.input_phone.text().toString(),
-            gender = view.input_gender.text().toString(),
-            birthDate = view.input_birth_date.text().toString()
+            phone = view.input_phone.text(),
+            gender = view.input_gender.text(),
+            birthDate = view.input_birth_date.text()
+//            photo = view.input_avatar.base64()
         )
     }
 

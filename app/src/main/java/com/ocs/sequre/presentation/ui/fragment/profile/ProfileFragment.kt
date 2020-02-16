@@ -8,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
-import com.ocs.sequre.BuildConfig
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.BaseFragment
@@ -63,7 +62,7 @@ class ProfileFragment : BaseFragment() {
                     email.text = it.email
                     phone.text = it.phone
                     birth_date.text = it.birthDate ?: ""
-                    GlideApp.with(avatar).load(BuildConfig.Image_BASE_URL + it.photo).into(avatar)
+                    GlideApp.with(avatar).load(it.photo).optionalFitCenter().into(avatar)
                 }
             }
         )

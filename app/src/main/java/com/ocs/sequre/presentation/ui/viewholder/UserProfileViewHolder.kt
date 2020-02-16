@@ -1,6 +1,5 @@
 package com.ocs.sequre.presentation.ui.viewholder
 
-import android.graphics.drawable.BitmapDrawable
 import android.view.View
 import android.widget.*
 import androidx.lifecycle.LifecycleObserver
@@ -8,8 +7,9 @@ import com.compact.app.extensions.email
 import com.compact.app.extensions.notNullOrEmpty
 import com.compact.app.extensions.phone
 import com.compact.app.extensions.text
-import com.compact.helper.ImageHelper
 import com.ocs.sequre.app.CompactDatePicker
+import com.ocs.sequre.app.GlideApp
+import com.ocs.sequre.app.base.base64
 import com.ocs.sequre.domain.entity.Profile
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -30,16 +30,6 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
         get() = view.input_gender.notNullOrEmpty()
     private val birthDate: Observable<Boolean>
         get() = view.input_birth_date.notNullOrEmpty()
-
-    private val photo: String
-        get() {
-//            val s = ImageHelper.encodeBitmapToBase64(view.input_avatar.drawable.toBitmap())
-            val s = ImageHelper.encodeBitmapToBase64(
-                (view.input_avatar.drawable as BitmapDrawable).bitmap
-            )
-            println(s)
-            return s
-        }
 
     init {
         view.input_relationship.visibility = View.GONE
@@ -105,6 +95,7 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
             (input_gender.editText as AutoCompleteTextView).apply {
                 setText(obj.gender, false)
             }
+            GlideApp.with(input_avatar).load(obj.photo).into(input_avatar)
         }
     }
 
@@ -116,7 +107,7 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
             phone = view.input_phone.text().toString(),
             gender = view.input_gender.text().toString(),
             birthDate = view.input_birth_date.text().toString(),
-            photo = photo
+            photo = view.input_avatar.base64()
         )
     }
 
