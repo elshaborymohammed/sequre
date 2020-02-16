@@ -2,10 +2,10 @@ package com.ocs.sequre.presentation.ui.fragment.profile
 
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.view.View
 import androidx.core.app.ActivityCompat
+import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.compact.picker.ImagePicker
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_profile_data.*
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 import kotlinx.android.synthetic.main.layout_tool_bar.view.*
 
-class EditProfileFragment : BaseFragment() {
+class BaseProfileFragment : BaseFragment() {
     private lateinit var viewHolder: UserProfileViewHolder
     private lateinit var viewModel: ProfileViewModel
 
@@ -36,7 +36,7 @@ class EditProfileFragment : BaseFragment() {
             if (ActivityCompat.checkSelfPermission(
                     requireContext(),
                     ImagePicker.PERMISSIONS[0]
-                ) != PackageManager.PERMISSION_GRANTED
+                ) != PERMISSION_GRANTED
             ) {
                 ActivityCompat.requestPermissions(
                     requireActivity(),
@@ -60,10 +60,9 @@ class EditProfileFragment : BaseFragment() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        println("requestCode = [${requestCode}], permissions = [${permissions}], grantResults = [${grantResults}]")
         when (requestCode) {
             ImagePicker.REQUEST_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty() && grantResults[0] == PERMISSION_GRANTED) {
                     ImagePicker.build(this)
                 }
                 return
@@ -100,8 +99,7 @@ class EditProfileFragment : BaseFragment() {
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
             viewModel.loading().subscribe(::loading),
-            viewModel.profile().subscribe(viewHolder::set),
-            viewHolder.validations().subscribe(requireView().update::setEnabled)
+            viewModel.profile().subscribe(viewHolder::set)
         )
     }
 }

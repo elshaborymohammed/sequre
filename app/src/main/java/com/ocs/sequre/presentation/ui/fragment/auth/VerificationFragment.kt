@@ -8,7 +8,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.app.helper.PhoneAuthHelper
-import com.ocs.sequre.presentation.ui.viewholder.ToolBarViewHolder
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_auth_verification.*
@@ -24,8 +23,6 @@ class VerificationFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
-        val toolBarViewHolder = ToolBarViewHolder(view)
-        setToolBar(toolBarViewHolder.toolbar)
 
         arguments?.let {
             VerificationFragmentArgs.fromBundle(it).user

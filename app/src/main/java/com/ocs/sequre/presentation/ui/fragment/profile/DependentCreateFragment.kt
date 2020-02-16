@@ -13,7 +13,7 @@ class DependentCreateFragment : DependentFragment() {
 
     override fun onSaveClicked(it: Dependent) {
         subscribe(
-            dependentViewModel.create(it).subscribe(::onSuccess, onError())
+            viewModel.create(it).subscribe(::onSuccess, onError())
         )
     }
 }

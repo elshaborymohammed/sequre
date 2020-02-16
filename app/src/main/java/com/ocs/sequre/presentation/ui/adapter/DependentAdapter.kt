@@ -55,7 +55,7 @@ class DependentAdapter :
                 phone.text = it.phone
                 birth_date.text = it.birthDate
                 gender.text = it.gender
-//                GlideApp.with(this).load(it.photo).optionalFitCenter().into(image)
+                GlideApp.with(this).load(it.photo).into(image)
             }
         }
     }

@@ -4,11 +4,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.compact.app.CompactFragment
 import com.compact.response.ApiException
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.ocs.sequre.R
@@ -26,6 +29,12 @@ abstract class BaseFragment : CompactFragment() {
     private lateinit var progressBar: AlertDialog
 
     override fun onViewBound(view: View) {
+        view.findViewById<MaterialToolbar>(R.id.toolbar)?.apply {
+            setNavigationOnClickListener {
+                Navigation.findNavController(view).navigateUp()
+            }
+//            setToolBar(this)
+        }
         progressBar = AlertDialog.Builder(requireContext())
             .setView(R.layout.layout_progress_bar)
             .setCancelable(false)
@@ -51,9 +60,9 @@ abstract class BaseFragment : CompactFragment() {
     }
 
     protected fun setToolBar(toolbar: Toolbar) {
-//        (activity as AppCompatActivity)?.apply {
-//            setSupportActionBar(toolbar)
-//        }
+        (activity as AppCompatActivity).apply {
+            setSupportActionBar(toolbar)
+        }
     }
 
     protected fun onSuccess() =

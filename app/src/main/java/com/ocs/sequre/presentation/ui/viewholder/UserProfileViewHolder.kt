@@ -7,6 +7,7 @@ import com.compact.app.extensions.email
 import com.compact.app.extensions.notNullOrEmpty
 import com.compact.app.extensions.phone
 import com.compact.app.extensions.text
+import com.ocs.sequre.R
 import com.ocs.sequre.app.CompactDatePicker
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.base64
@@ -56,7 +57,7 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
                         id: Long
                     ) {
                         view?.findViewById<TextView>(android.R.id.text1)?.text =
-                            view?.resources!!.getStringArray(com.ocs.sequre.R.array.country_code_array)[position]
+                            view?.resources!!.getStringArray(R.array.country_code_array)[position]
                     }
                 }
         }
@@ -95,18 +96,19 @@ class UserProfileViewHolder constructor(private val view: View) : LifecycleObser
             (input_gender.editText as AutoCompleteTextView).apply {
                 setText(obj.gender, false)
             }
-            GlideApp.with(input_avatar).load(obj.photo).into(input_avatar)
+            GlideApp.with(input_avatar).load(obj.photo).error(R.drawable.ic_profile_avatar)
+                .into(input_avatar)
         }
     }
 
     fun get(): Profile {
         return Profile(
-            name = view.input_name.text().toString(),
-            email = view.input_email.text().toString(),
-            countryCode = view.resources.getStringArray(com.ocs.sequre.R.array.country_code_array)[view.input_country.selectedItemPosition],
-            phone = view.input_phone.text().toString(),
-            gender = view.input_gender.text().toString(),
-            birthDate = view.input_birth_date.text().toString(),
+            name = view.input_name.text(),
+            email = view.input_email.text(),
+            countryCode = view.resources.getStringArray(R.array.country_code_array)[view.input_country.selectedItemPosition],
+            phone = view.input_phone.text(),
+            gender = view.input_gender.text(),
+            birthDate = view.input_birth_date.text(),
             photo = view.input_avatar.base64()
         )
     }

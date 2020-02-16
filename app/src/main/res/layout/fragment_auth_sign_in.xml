@@ -7,10 +7,14 @@
     android:background="@drawable/ll_background"
     android:orientation="vertical">
 
+    <include
+        layout="@layout/layout_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
@@ -66,8 +70,8 @@
                 style="@style/App.Widget.TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="01002003000"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:text="01002003000" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,8 +92,8 @@
                 style="@style/App.Widget.TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="12345678"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="12345678" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -4,7 +4,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
@@ -17,7 +16,6 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.card_profile.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
-import kotlinx.android.synthetic.main.layout_tool_bar.view.*
 
 class ProfileFragment : BaseFragment() {
     private lateinit var viewModel: ProfileViewModel
@@ -42,7 +40,6 @@ class ProfileFragment : BaseFragment() {
             }
         })
 
-        view.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
         view.edit_profile.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.editProfileFragment))
         view.add_dependent.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.dependentCreateFragment))
     }

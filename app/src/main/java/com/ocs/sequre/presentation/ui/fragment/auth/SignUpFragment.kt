@@ -1,9 +1,7 @@
 package com.ocs.sequre.presentation.ui.fragment.auth
 
-import android.os.Build
 import android.util.Log
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
@@ -13,7 +11,6 @@ import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
 import com.ocs.sequre.data.remote.model.response.error.Error
 import com.ocs.sequre.data.remote.model.response.error.ErrorStatus
 import com.ocs.sequre.presentation.ui.viewholder.UserRegistrationDataViewHolder
-import com.ocs.sequre.presentation.ui.viewholder.ToolBarViewHolder
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_auth_sign_up.view.*
@@ -30,9 +27,6 @@ class SignUpFragment : BaseFragment() {
         super.onViewBound(view)
         viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
         signUpViewHolder = UserRegistrationDataViewHolder(view)
-
-        val toolBarViewHolder = ToolBarViewHolder(view)
-        setToolBar(toolBarViewHolder.toolbar)
 
         view.next.setOnClickListener {
             viewModel.check(

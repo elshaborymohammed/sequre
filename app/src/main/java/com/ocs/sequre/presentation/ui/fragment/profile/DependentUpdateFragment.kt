@@ -1,7 +1,6 @@
 package com.ocs.sequre.presentation.ui.fragment.profile
 
 import android.view.View
-import androidx.navigation.fragment.findNavController
 import com.ocs.sequre.domain.entity.Dependent
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 
@@ -19,7 +18,7 @@ class DependentUpdateFragment : DependentFragment() {
 
     override fun onSaveClicked(it: Dependent) {
         subscribe(
-            dependentViewModel.update(it.id, it).subscribe(::onSuccess, onError())
+            viewModel.update(it.id, it).subscribe(::onSuccess, onError())
         )
     }
 }

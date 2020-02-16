@@ -2,26 +2,28 @@ package com.ocs.sequre.presentation.ui.fragment.profile
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.view.View
-<<<<<<< HEAD
-import androidx.annotation.RequiresApi
-=======
->>>>>>> f765368eadf7eed4caffbe2d45e0d8079f990b49
+import androidx.core.app.ActivityCompat
+import android.content.pm.PackageManager.PERMISSION_GRANTED
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.compact.picker.ImagePicker
 import com.ocs.sequre.R
+import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.domain.entity.Dependent
 import com.ocs.sequre.presentation.ui.viewholder.DependentViewHolder
 import com.ocs.sequre.presentation.viewmodel.DependentViewModel
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.fragment_profile_data.*
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 import kotlinx.android.synthetic.main.layout_tool_bar.view.*
 
 abstract class DependentFragment : BaseFragment() {
 
-    protected lateinit var dependentViewModel: DependentViewModel
+    protected lateinit var viewModel: DependentViewModel
     protected lateinit var viewHolder: DependentViewHolder
 
     override fun layoutRes(): Int {
@@ -32,7 +34,7 @@ abstract class DependentFragment : BaseFragment() {
         super.onViewBound(view)
         viewHolder = DependentViewHolder(view)
 
-        dependentViewModel =
+        viewModel =
             ViewModelProvider(this, factory).get(DependentViewModel::class.java)
 
         view.input_avatar.setOnClickListener {
@@ -43,29 +45,65 @@ abstract class DependentFragment : BaseFragment() {
         }
         view.delete.setOnClickListener {
             subscribe(
-                dependentViewModel.delete(viewHolder.get().id).subscribe(::onSuccess, onError())
+                viewModel.delete(viewHolder.get().id).subscribe(::onSuccess, onError())
             )
         }
-        view.toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+        view.input_avatar.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    ImagePicker.PERMISSIONS[0]
+                ) != PERMISSION_GRANTED
+            ) {
+                requestPermissions(
+                    ImagePicker.PERMISSIONS,
+                    ImagePicker.REQUEST_CODE
+                )
+            } else {
+                ImagePicker.build(this)
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            ImagePicker.REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PERMISSION_GRANTED) {
+                    ImagePicker.build(this)
+                }
+                return
+            }
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ImagePicker.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             try {
-                data?.apply { ImagePicker.setImage(requireView().input_avatar, this) }
+                when {
+                    data!!.hasExtra("data") -> {
+                        GlideApp.with(this).load(data.extras!!["data"] as Bitmap).into(input_avatar)
+                    }
+                    null != data.data -> {
+                        GlideApp.with(this).load(data.data).into(input_avatar)
+                    }
+                    else -> {
+                        Throwable("No Photo")
+                    }
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            dependentViewModel.loading().subscribe(::loading),
+            viewModel.loading().subscribe(::loading),
             viewHolder.validations().subscribe(requireView().update::setEnabled)
         )
     }

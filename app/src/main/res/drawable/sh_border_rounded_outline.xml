@@ -6,7 +6,7 @@
         android:width="2dp"
         android:color="#00000029" />
 
-    <solid android:color="#FFaaFF" />
+    <solid android:color="#FFFFFF" />
 
     <padding
         android:bottom="12dp"

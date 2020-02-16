@@ -103,8 +103,8 @@
     </string-array>
 
     <string-array name="country_code_name_array">
-        <item>+20 - EGP EGP EGP EGP</item>
-        <item>+966 - KSA KSA KSA KSA</item>
+        <item>+20 - EGP</item>
+        <item>+966 - KSA</item>
     </string-array>
 
     <string-array name="country_code_array">
