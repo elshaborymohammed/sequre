@@ -36,8 +36,8 @@ class SignInFragment : BaseFragment() {
 
         view.sign_in.setOnClickListener {
             viewModel.login(
-                view.input_auth_name.text().toString(),
-                view.input_auth_password.text().toString()
+                view.input_auth_name.text(),
+                view.input_auth_password.text()
             ).subscribe({
                 findNavController().navigate(R.id.action_signInFragment_to_navigationFragment)
             }, onError())

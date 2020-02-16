@@ -2,7 +2,10 @@ package com.ocs.sequre.presentation.ui.fragment.profile
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.view.View
+import androidx.core.app.ActivityCompat
+import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.compact.picker.ImagePicker
@@ -28,7 +31,21 @@ class EditProfileFragment : BaseFragment() {
         viewModel = ViewModelProvider(requireActivity(), factory).get(ProfileViewModel::class.java)
 
         view.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
-        view.input_avatar.setOnClickListener { ImagePicker.pick(this) }
+        view.input_avatar.setOnClickListener {
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    ImagePicker.PERMISSIONS[0]
+                ) != PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    ImagePicker.PERMISSIONS,
+                    ImagePicker.REQUEST_CODE
+                )
+            } else {
+                ImagePicker.build(this)
+            }
+        }
         view.update.setOnClickListener {
             subscribe(
                 viewModel.update(viewHolder.get()).subscribe(::onSuccess, onError())
@@ -36,15 +53,39 @@ class EditProfileFragment : BaseFragment() {
         }
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            ImagePicker.REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PERMISSION_GRANTED) {
+                    ImagePicker.build(this)
+                }
+                return
+            }
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ImagePicker.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             try {
-                data?.apply { requireView().input_avatar.setImageURI(this.data) }
+                try {
+                    if (data!!.hasExtra("data")) {
+                        requireView().input_avatar.setImageBitmap(data.extras!!["data"] as Bitmap?)
+                    } else if (null != data.data) {
+                        requireView().input_avatar.setImageURI(data.data)
+                    }
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                }
+//                data?.apply { ImagePicker.setImage(requireView().input_avatar, this) }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
         }
     }
 

@@ -66,6 +66,7 @@
                 style="@style/App.Widget.TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:text="01002003000"
                 android:inputType="phone" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -87,6 +88,7 @@
                 style="@style/App.Widget.TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:text="12345678"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>

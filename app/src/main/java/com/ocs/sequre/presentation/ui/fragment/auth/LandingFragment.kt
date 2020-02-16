@@ -12,15 +12,15 @@ class LandingFragment : BaseFragment() {
         return R.layout.fragment_splash
     }
 
-//    override fun onViewBound(view: View) {
-//        super.onViewBound(view)
-//
-//        view.sign_in.setOnClickListener(
-//            Navigation.createNavigateOnClickListener(R.id.action_landingFragment_to_signInFragment)
-//        )
-//
-//        view.sign_up.setOnClickListener(
-//            Navigation.createNavigateOnClickListener(R.id.action_landingFragment_to_signUpFragment)
-//        )
-//    }
+    override fun onViewBound(view: View) {
+        super.onViewBound(view)
+
+        view.sign_in.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_landingFragment_to_signInFragment)
+        )
+
+        view.sign_up.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_landingFragment_to_signUpFragment)
+        )
+    }
 }

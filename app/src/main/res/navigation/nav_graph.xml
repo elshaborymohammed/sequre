@@ -33,6 +33,7 @@
         app:startDestination="@id/auth_graph">
 
         <include app:graph="@navigation/auth_graph" />
+
         <action
             android:id="@+id/action_global_navigationFragment"
             app:destination="@id/navigationFragment"
