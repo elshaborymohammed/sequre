@@ -36,9 +36,9 @@
         android:textAppearance="?attr/textAppearanceCaption"
         app:layout_constraintDimensionRatio="W,1:1"
         app:layout_constraintHeight_percent="0.6"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:srcCompat="@drawable/ic_profile_avatar" />
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/name"

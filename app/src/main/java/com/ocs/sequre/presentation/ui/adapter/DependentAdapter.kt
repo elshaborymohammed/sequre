@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.signature.ObjectKey
 import com.compact.widget.recyclerview.CompactRecyclerView
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
@@ -44,18 +46,23 @@ class DependentAdapter :
 
     inner class ViewHolder(itemView: View) : CompactRecyclerView.ViewHolder<Dependent>(itemView) {
         override fun bind(position: Int, it: Dependent) {
-            itemView.setOnClickListener { _ ->
-                listener.setOnItemClickListener(it)
-            }
-
             itemView.apply {
+                setOnClickListener { _ ->
+                    listener.setOnItemClickListener(it)
+                }
+
                 relation.text = it.relationship
                 name.text = it.name
                 email.text = it.email
                 phone.text = it.phone
                 birth_date.text = it.birthDate
                 gender.text = it.gender
-                GlideApp.with(this).load(it.photo).into(image)
+                GlideApp.with(this)
+                    .load(it.photo)
+                    .signature(ObjectKey(it.photo ?: ""))
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .into(image)
             }
         }
     }

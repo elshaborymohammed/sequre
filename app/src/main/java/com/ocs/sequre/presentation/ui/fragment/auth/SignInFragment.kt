@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.compact.app.extensions.loginName
+import com.compact.app.extensions.notNullOrEmpty
 import com.compact.app.extensions.password
 import com.compact.app.extensions.text
 import com.google.android.material.snackbar.Snackbar
@@ -48,7 +49,7 @@ class SignInFragment : BaseFragment() {
         )
 
         loginName = view.input_auth_name.loginName()
-        password = view.input_auth_password.password()
+        password = view.input_auth_password.notNullOrEmpty()
     }
 
     override fun subscriptions(): Array<Disposable> {

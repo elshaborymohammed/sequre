@@ -1,6 +1,5 @@
 package com.ocs.sequre.presentation.ui.fragment.auth
 
-import android.app.LauncherActivity
 import android.content.Intent
 import android.view.View
 import com.ocs.sequre.R
@@ -9,8 +8,6 @@ import com.ocs.sequre.presentation.preference.AuthPreference
 import com.ocs.sequre.presentation.ui.activity.LaunchActivity
 import kotlinx.android.synthetic.main.fragment_auth_sign_out.*
 import javax.inject.Inject
-import kotlin.system.exitProcess
-
 
 class SignOutFragment : BaseBottomSheet() {
 
@@ -29,7 +26,6 @@ class SignOutFragment : BaseBottomSheet() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
-//                exitProcess(2)
             }
         }
     }

@@ -3,6 +3,8 @@ package com.ocs.sequre.presentation.ui.viewholder
 import android.view.View
 import android.widget.*
 import androidx.lifecycle.LifecycleObserver
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.signature.ObjectKey
 import com.compact.app.extensions.email
 import com.compact.app.extensions.notNullOrEmpty
 import com.compact.app.extensions.phone
@@ -100,7 +102,12 @@ class DependentViewHolder constructor(private val view: View) : LifecycleObserve
             (input_gender.editText as AutoCompleteTextView).apply {
                 setText(obj.gender, false)
             }
-            GlideApp.with(input_avatar).load(obj.photo).error(R.drawable.ic_profile_avatar)
+            GlideApp.with(input_avatar)
+                .load(obj.photo)
+                .error(R.drawable.ic_profile_avatar)
+                .signature(ObjectKey(obj.photo!!))
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
                 .into(input_avatar)
         }
     }

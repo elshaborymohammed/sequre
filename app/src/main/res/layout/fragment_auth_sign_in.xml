@@ -64,14 +64,14 @@
             android:hint="@string/mobile"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/body">
+            app:layout_constraintTop_toBottomOf="@id/body"
+            app:placeholderText="example@email.com">
 
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/App.Widget.TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="phone"
-                android:text="01002003000" />
+                android:inputType="phone" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

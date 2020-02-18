@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -24,7 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/email"
-        android:tag="email">
+        android:tag="email"
+        app:placeholderText="eg@company.com">
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/App.Widget.TextInputEditText"
@@ -58,7 +60,8 @@
             android:layout_marginStart="8dp"
             android:layout_weight="0.75"
             android:hint="@string/mobile"
-            android:tag="mobile">
+            android:tag="mobile"
+            app:placeholderText="ex. 1091021133">
 
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/App.Widget.TextInputEditText"

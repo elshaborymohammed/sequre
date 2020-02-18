@@ -2,13 +2,11 @@ package com.ocs.sequre.presentation.ui.fragment.profile
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.graphics.Bitmap
 import android.view.View
-import androidx.core.app.ActivityCompat
-import android.content.pm.PackageManager.PERMISSION_GRANTED
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.compact.picker.ImagePicker
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
@@ -19,7 +17,6 @@ import com.ocs.sequre.presentation.viewmodel.DependentViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_profile_data.*
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
-import kotlinx.android.synthetic.main.layout_tool_bar.view.*
 
 abstract class DependentFragment : BaseFragment() {
 
@@ -90,9 +87,6 @@ abstract class DependentFragment : BaseFragment() {
                     }
                     null != data.data -> {
                         GlideApp.with(this).load(data.data).into(input_avatar)
-                    }
-                    else -> {
-                        Throwable("No Photo")
                     }
                 }
             } catch (e: Exception) {
