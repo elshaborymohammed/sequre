@@ -59,6 +59,8 @@ abstract class DependentFragment : BaseFragment() {
                 ImagePicker.build(this)
             }
         }
+
+        view.update.isEnabled = false
     }
 
     override fun onRequestPermissionsResult(
@@ -98,7 +100,7 @@ abstract class DependentFragment : BaseFragment() {
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
             viewModel.loading().subscribe(::loading),
-            viewHolder.validations().subscribe(requireView().update::setEnabled)
+            viewHolder.validations().subscribe(::println)
         )
     }
 

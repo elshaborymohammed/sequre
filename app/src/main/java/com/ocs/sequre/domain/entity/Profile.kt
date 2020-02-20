@@ -5,6 +5,8 @@ import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 import com.ocs.sequre.data.adapter.GenderTypeAdapter
 import com.ocs.sequre.data.adapter.ImageTypeAdapter
+import java.text.SimpleDateFormat
+import java.util.*
 
 open class Profile(
     @SerializedName("name")
@@ -20,9 +22,7 @@ open class Profile(
     @SerializedName("relation")
     @Expose
     open val relation: String? = null,
-    @SerializedName("birth")
-    @Expose
-    open val birthDate: String? = null,
+    birthDate: String? = null,
     @JsonAdapter(GenderTypeAdapter::class)
     @SerializedName("gender")
     @Expose
@@ -49,4 +49,16 @@ open class Profile(
     @Expose
     open val phone: String? =
         phone?.apply { if (startsWith("0", true)) substring(1) else this }
+
+    @SerializedName("birth")
+    @Expose
+    open val birthDate: String? =
+        birthDate.apply {
+            val instance = Calendar.getInstance()
+            instance.set(2002, 2, 22)
+
+            val dateFormat = SimpleDateFormat("dd-MMM-yyyy")
+            dateFormat.format(Date())
+        }
+
 }

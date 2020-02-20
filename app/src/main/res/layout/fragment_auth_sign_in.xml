@@ -64,8 +64,7 @@
             android:hint="@string/mobile"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/body"
-            app:placeholderText="example@email.com">
+            app:layout_constraintTop_toBottomOf="@id/body">
 
             <com.google.android.material.textfield.TextInputEditText
                 style="@style/App.Widget.TextInputEditText"

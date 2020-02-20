@@ -4,9 +4,8 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.compact.app.extensions.loginName
+import com.compact.app.extensions.login
 import com.compact.app.extensions.notNullOrEmpty
-import com.compact.app.extensions.password
 import com.compact.app.extensions.text
 import com.google.android.material.snackbar.Snackbar
 import com.ocs.sequre.R
@@ -33,7 +32,7 @@ class SignInFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
-//        view.sign_in.isEnabled = false
+        view.sign_in.isEnabled = false
 
         view.sign_in.setOnClickListener {
             viewModel.login(
@@ -48,7 +47,7 @@ class SignInFragment : BaseFragment() {
             Navigation.createNavigateOnClickListener(R.id.action_signInFragment_to_signUpFragment)
         )
 
-        loginName = view.input_auth_name.loginName()
+        loginName = view.input_auth_name.login()
         password = view.input_auth_password.notNullOrEmpty()
     }
 
@@ -67,16 +66,9 @@ class SignInFragment : BaseFragment() {
     }
 
     override fun onApiException(code: ErrorStatus, errors: List<Error>) {
-//        AlertDialog.Builder(requireContext())
-//            .setMessage(R.string.invalid_email_or_mobile)
-//            .setCancelable(true)
-//            .setNegativeButton("Close") { dialog, _ -> dialog.dismiss() }
-//            .create()
-//            .show()
-
         Snackbar.make(
             requireView(),
-            R.string.invalid_email_or_mobile,
+            R.string.invalid_phone_or_password,
             Snackbar.LENGTH_LONG
         ).show()
     }

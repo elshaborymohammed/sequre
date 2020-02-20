@@ -25,6 +25,7 @@ class SignUpFragment : BaseFragment() {
 
     override fun onViewBound(view: View) {
         super.onViewBound(view)
+        view.next.isEnabled = false
         viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
         signUpViewHolder = UserRegistrationDataViewHolder(view)
 

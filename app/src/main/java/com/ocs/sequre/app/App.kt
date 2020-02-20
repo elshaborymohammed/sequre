@@ -12,4 +12,8 @@ class App : CompactApplication() {
             .build()
             .inject(this)
     }
+
+    companion object{
+
+    }
 }

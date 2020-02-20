@@ -18,7 +18,6 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.card_profile.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
-import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 
 class ProfileFragment : BaseFragment() {
     private lateinit var viewModel: ProfileViewModel
@@ -60,7 +59,7 @@ class ProfileFragment : BaseFragment() {
                 view?.apply {
                     name.text = it.name
                     email.text = it.email
-                    phone.text = it.phone
+                    phone.text = "0${it.phone}"
                     birth_date.text = it.birthDate ?: ""
                     GlideApp.with(avatar)
                         .load(it.photo)
