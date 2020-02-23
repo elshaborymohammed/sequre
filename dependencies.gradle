@@ -106,6 +106,20 @@ ext {
             transformations: "jp.wasabeef:glide-transformations:4.1.0",
     ]
 
+//    /** CompactKit */
+//    compactVersion = '0.0.14'
+//    compact = [
+//            app                : "com.github.androidcompact.compact:app:$compactVersion",
+//            otp                : "com.github.androidcompact.compact:otpview:$compactVersion",
+//            extensions         : "com.github.androidcompact.compact:app-extensions:$compactVersion",
+//            compact            : "com.github.androidcompact.compact:compact:$compactVersion",
+//            response           : "com.github.androidcompact.compact:response:$compactVersion",
+//            callAdapter        : "com.github.androidcompact.compact:call-adapter:$compactVersion",
+//            requesterAnnotation: "com.github.androidcompact.compact:requester-annotation:$compactVersion",
+//            requesterProcessor : "com.github.androidcompact.compact:requester-processor:$compactVersion",
+//            viewmodel          : "com.github.androidcompact.compact:viewmodel:$compactVersion",
+//    ]
+
     /** CompactKit */
     compactVersion = '0.0.14'
     compact = [

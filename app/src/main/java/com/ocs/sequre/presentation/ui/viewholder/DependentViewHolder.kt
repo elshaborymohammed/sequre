@@ -28,7 +28,6 @@ class DependentViewHolder constructor(private val view: View) : UserDataViewHold
             gender,
             birthDate,
             Function6 { relation: Boolean, name: Boolean, email: Boolean, phone: Boolean, gender: Boolean, birthDate: Boolean ->
-                println("relation = [${relation}], name = [${name}], email = [${email}], phone = [${phone}], gender = [${gender}], birthDate = [${birthDate}]")
                 relation && name && email && phone && gender && birthDate
             }
         ).distinctUntilChanged()

@@ -76,7 +76,7 @@ abstract class UserDataViewHolder constructor(private val view: View) {
                 CompactDatePicker.builder(it.context)
                     .maxDate(System.currentTimeMillis())
                     .onDateSetListener { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-                        view.input_birth_date.editText!!.setText(String.format("$year/$month/$dayOfMonth"))
+                        view.input_birth_date.editText!!.setText(String.format("$year/${month + 1}/$dayOfMonth"))
                     }.build()
             }
             setEndIconOnClickListener { performClick() }

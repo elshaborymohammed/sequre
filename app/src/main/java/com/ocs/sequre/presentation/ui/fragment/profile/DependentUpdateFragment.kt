@@ -14,6 +14,8 @@ class DependentUpdateFragment : DependentFragment() {
             viewHolder.set(this)
             view.delete.visibility = View.VISIBLE
         }
+
+        view.update.isEnabled = true
     }
 
     override fun onSaveClicked(it: Dependent) {

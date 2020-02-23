@@ -6,11 +6,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.signature.ObjectKey
+import com.compact.app.extensions.isNotNullOrEmpty
 import com.compact.widget.recyclerview.CompactRecyclerView
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.domain.entity.Dependent
 import kotlinx.android.synthetic.main.card_dependent.view.*
+import kotlinx.android.synthetic.main.card_dependent.view.birth_date
+import kotlinx.android.synthetic.main.card_dependent.view.email
+import kotlinx.android.synthetic.main.card_dependent.view.name
+import kotlinx.android.synthetic.main.card_dependent.view.phone
+import kotlinx.android.synthetic.main.card_profile.view.*
+import java.text.SimpleDateFormat
 
 class DependentAdapter :
     CompactRecyclerView.Adapter<Dependent, DependentAdapter.ViewHolder>() {
@@ -55,8 +62,15 @@ class DependentAdapter :
                 name.text = it.name
                 email.text = it.email
                 phone.text = it.phone
-                birth_date.text = it.birthDate
                 gender.text = it.gender
+                birth_date?.apply {
+                    text = if (it.birthDate.isNotNullOrEmpty()) {
+                        val date = SimpleDateFormat("yyyy-MM-dd").parse(it.birthDate.toString())
+                        SimpleDateFormat("dd-MM-yyyy").format(date)
+                    } else {
+                        "dd-MM-yyyy"
+                    }
+                }
                 GlideApp.with(this)
                     .load(it.photo)
                     .signature(ObjectKey(it.photo ?: ""))
