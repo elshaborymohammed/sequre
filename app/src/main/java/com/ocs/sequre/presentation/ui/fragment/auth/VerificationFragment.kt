@@ -1,5 +1,6 @@
 package com.ocs.sequre.presentation.ui.fragment.auth
 
+import android.util.Patterns
 import android.view.View
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.ViewModelProvider
@@ -9,9 +10,13 @@ import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.app.helper.PhoneAuthHelper
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel
+import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_auth_verification.*
 import kotlinx.android.synthetic.main.fragment_auth_verification.view.*
+import java.util.concurrent.TimeUnit
 
 class VerificationFragment : BaseFragment() {
     private lateinit var viewModel: AuthViewModel
@@ -36,7 +41,10 @@ class VerificationFragment : BaseFragment() {
                     HtmlCompat.FROM_HTML_MODE_COMPACT
                 )
 
-            try_resend.setOnClickListener {
+            Patterns.PHONE
+
+            resend.setOnClickListener {
+                timer()
                 PhoneAuthHelper.setupVerifyPhoneNumber(
                     usr.countryCode,
                     usr.phone,
@@ -67,13 +75,30 @@ class VerificationFragment : BaseFragment() {
                 }
             }
 
-            try_resend.performClick()
+            resend.performClick()
         }
     }
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
             viewModel.loading().subscribe(::loading)
+        )
+    }
+
+    private fun timer() {
+        subscribe(
+            Flowable.intervalRange(1, 30, 0, 1, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    resend.visibility = View.GONE
+                    view?.try_resend?.text = getString(R.string.try_resend_code, 30)
+                }
+                .subscribe({
+                    view?.try_resend?.text = getString(R.string.try_resend_code, 30 - it)
+                }, Throwable::printStackTrace, {
+                    resend.visibility = View.VISIBLE
+                })
         )
     }
 }

@@ -2,10 +2,15 @@ package com.ocs.sequre.app.base;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -14,8 +19,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -58,6 +61,11 @@ public abstract class BaseBottomSheet extends BottomSheetDialogFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        View bottomSheet = ((View) getView().getParent());
+        bottomSheet.setBackgroundTintMode(PorterDuff.Mode.CLEAR);
+        bottomSheet.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
+        bottomSheet.setBackgroundColor(Color.TRANSPARENT);
+
         setHasOptionsMenu(true);
         setBottomSheetBehavior();
     }
@@ -65,10 +73,17 @@ public abstract class BaseBottomSheet extends BottomSheetDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        return super.onCreateDialog(savedInstanceState);
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setGravity(Gravity.BOTTOM);
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            dialog.setCancelable(false);
+        }
+        return dialog;
     }
 
-    private void setBottomSheetBehavior(){
+    private void setBottomSheetBehavior() {
         bottomSheetBehavior = BottomSheetBehavior.from((View) requireView().getParent());
         bottomSheetBehavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO, true);
         bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {

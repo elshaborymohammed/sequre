@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.signature.ObjectKey
+import com.compact.app.extensions.isNotNullOrEmpty
 import com.google.android.material.tabs.TabLayoutMediator
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
@@ -16,6 +19,7 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.card_profile.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
+import java.text.SimpleDateFormat
 
 class ProfileFragment : BaseFragment() {
     private lateinit var viewModel: ProfileViewModel
@@ -51,25 +55,43 @@ class ProfileFragment : BaseFragment() {
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            viewModel.loading().observeOn(AndroidSchedulers.mainThread()).subscribe(::loading),
-            viewModel.error().subscribe(onError()),
-            viewModel.profile().subscribe {
+            viewModel.loading().observeOn(AndroidSchedulers.mainThread()).subscribe(
+                ::loading,
+                Throwable::printStackTrace
+            ),
+            viewModel.error().subscribe(onError(), Throwable::printStackTrace),
+            viewModel.profile().subscribe({
                 view?.apply {
                     name.text = it.name
                     email.text = it.email
-                    phone.text = it.phone
-                    birth_date.text = it.birthDate ?: ""
-                    GlideApp.with(avatar).load(it.photo).optionalFitCenter().into(avatar)
+                    phone.text = "0${it.phone}"
+                    birth_date?.apply {
+                        text = if (it.birthDate!!.isNotNullOrEmpty()) {
+                            val date = SimpleDateFormat("yyyy-MM-dd").parse(it.birthDate.toString())
+                            SimpleDateFormat("dd-MM-yyyy").format(date)
+                        } else {
+                            "dd-MM-yyyy"
+                        }
+                    }
+
+                    GlideApp.with(avatar)
+                        .load(it.photo)
+                        .error(R.drawable.ic_profile_avatar)
+                        .signature(ObjectKey(it.photo ?: ""))
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true)
+                        .into(avatar)
                 }
-            }
+            }, onError())
         )
     }
 
     private inner class PagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-        private val fragments: List<Fragment> = arrayListOf(DependentsFragment(), AddressFragment())
+        private val fragments: List<Fragment>
         private val title: List<String>
 
         init {
+            fragments = arrayListOf(DependentsFragment(), AddressFragment())
             title = arrayListOf("Dependents", "Address")
         }
 

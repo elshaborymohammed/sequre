@@ -1,17 +1,11 @@
 package com.ocs.sequre
 
-import com.compact.app.extensions.*
 import com.google.common.truth.Truth
-import io.reactivex.Observable
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Function
-import io.reactivex.subjects.*
-import kotlinx.android.synthetic.main.fragment_auth_sign_up.view.*
-import kotlinx.android.synthetic.main.layout_user_creare_account.view.*
+import io.reactivex.subjects.AsyncSubject
+import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.ReplaySubject
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).

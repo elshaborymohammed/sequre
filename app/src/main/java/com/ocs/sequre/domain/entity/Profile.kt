@@ -5,48 +5,51 @@ import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 import com.ocs.sequre.data.adapter.GenderTypeAdapter
 import com.ocs.sequre.data.adapter.ImageTypeAdapter
+import java.text.SimpleDateFormat
+import java.util.*
 
-open class Profile(
+open class Profile constructor(
     @SerializedName("name")
     @Expose
-    open val name: String? = null,
+    val name: String? = null,
     @SerializedName("email")
     @Expose
-    open val email: String? = null,
+    val email: String? = null,
     @SerializedName("c_code")
     @Expose
-    open val countryCode: String? = null,
+    val countryCode: String? = null,
     phone: String? = null,
     @SerializedName("relation")
     @Expose
-    open val relation: String? = null,
+    val relation: String? = null,
     @SerializedName("birth")
     @Expose
-    open val birthDate: String? = null,
+    val birthDate: String? = null,
     @JsonAdapter(GenderTypeAdapter::class)
     @SerializedName("gender")
     @Expose
-    open val gender: String? = null,
+    val gender: String? = null,
     @SerializedName("country")
     @Expose
-    open val country: String? = null,
+    val country: String? = null,
     @SerializedName("city")
     @Expose
-    open val city: String? = null,
+    val city: String? = null,
     @SerializedName("area")
     @Expose
-    open val area: String? = null,
+    val area: String? = null,
     @SerializedName("street")
     @Expose
-    open val street: String? = null,
+    val street: String? = null,
     @JsonAdapter(ImageTypeAdapter::class)
     @SerializedName("photo")
     @Expose
-    open val photo: String? = null
+    val photo: String? = null
 ) {
 
     @SerializedName("mobile")
     @Expose
-    open val phone: String? =
+    val phone: String? =
         phone?.apply { if (startsWith("0", true)) substring(1) else this }
 }
+

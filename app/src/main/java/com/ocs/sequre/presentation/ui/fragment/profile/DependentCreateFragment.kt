@@ -4,7 +4,7 @@ import android.view.View
 import com.ocs.sequre.domain.entity.Dependent
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 
-class DependentCreateFragment : DependentFragment() {
+class DependentCreateFragment : DependentFragment(1) {
 
     override fun onViewBound(view: View) {
         super.onViewBound(view)

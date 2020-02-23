@@ -75,7 +75,6 @@
             android:textAppearance="?attr/textAppearanceCaption"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:visibility="invisible"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toTopOf="@id/resend"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"

@@ -7,7 +7,6 @@ import android.graphics.Bitmap
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.compact.picker.ImagePicker
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
@@ -17,7 +16,6 @@ import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_profile_data.*
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
-import kotlinx.android.synthetic.main.layout_tool_bar.view.*
 
 class EditProfileFragment : BaseFragment() {
     private lateinit var viewHolder: UserProfileViewHolder
@@ -60,7 +58,6 @@ class EditProfileFragment : BaseFragment() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        println("requestCode = [${requestCode}], permissions = [${permissions}], grantResults = [${grantResults}]")
         when (requestCode) {
             ImagePicker.REQUEST_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -82,9 +79,6 @@ class EditProfileFragment : BaseFragment() {
                     null != data.data -> {
                         GlideApp.with(this).load(data.data).into(input_avatar)
                     }
-                    else -> {
-                        Throwable("No Photo")
-                    }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -101,7 +95,10 @@ class EditProfileFragment : BaseFragment() {
         return arrayOf(
             viewModel.loading().subscribe(::loading),
             viewModel.profile().subscribe(viewHolder::set),
-            viewHolder.validations().subscribe(requireView().update::setEnabled)
+            viewHolder.validations().subscribe(
+                requireView().update::setEnabled,
+                Throwable::printStackTrace
+            )
         )
     }
 }

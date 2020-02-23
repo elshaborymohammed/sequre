@@ -4,7 +4,7 @@ import android.view.View
 import com.ocs.sequre.domain.entity.Dependent
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 
-class DependentUpdateFragment : DependentFragment() {
+class DependentUpdateFragment : DependentFragment(0) {
 
     override fun onViewBound(view: View) {
         super.onViewBound(view)
@@ -14,6 +14,7 @@ class DependentUpdateFragment : DependentFragment() {
             viewHolder.set(this)
             view.delete.visibility = View.VISIBLE
         }
+//        view.update.isEnabled = true
     }
 
     override fun onSaveClicked(it: Dependent) {

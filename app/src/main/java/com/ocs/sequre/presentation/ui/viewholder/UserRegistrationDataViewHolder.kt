@@ -1,9 +1,6 @@
 package com.ocs.sequre.presentation.ui.viewholder
 
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.TextView
 import com.compact.app.extensions.*
 import com.jakewharton.rxbinding3.view.focusChanges
 import com.ocs.sequre.domain.entity.Registration
@@ -17,11 +14,11 @@ import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 
 class UserRegistrationDataViewHolder constructor(private val view: View) {
     private val name: Observable<Boolean>
-        get() = view.input_name.notNullOrEmpty()
-    private val email: Observable<Boolean>
-        get() = view.input_email.email()
+        get() = view.input_name.username()
     private val phone: Observable<Boolean>
         get() = view.input_phone.phone()
+    private val email: Observable<Boolean>
+        get() = view.input_email.email()
     private val password: Observable<Boolean>
         get() = view.input_password.password()
     private val passwordConfirm: Observable<Boolean>
@@ -31,32 +28,6 @@ class UserRegistrationDataViewHolder constructor(private val view: View) {
         get() = view.input_email.editText!!.focusChanges()
     private val phoneFocusChanges: Observable<Boolean>
         get() = view.input_phone.editText!!.focusChanges()
-
-    init {
-        val dataAdapter: ArrayAdapter<String> =
-            ArrayAdapter(
-                view.context,
-                android.R.layout.simple_spinner_item,
-                view.resources.getStringArray(com.ocs.sequre.R.array.country_code_name_array)
-            )
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        view.input_country.adapter = dataAdapter
-        view.input_country.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                view?.findViewById<TextView>(android.R.id.text1)?.text =
-                    view?.resources!!.getStringArray(com.ocs.sequre.R.array.country_code_array)[position]
-            }
-        }
-    }
 
     fun set(obj: Registration) {
         view.input_country.setSelection(0, true)
@@ -69,11 +40,11 @@ class UserRegistrationDataViewHolder constructor(private val view: View) {
 
     fun get(): Registration {
         return Registration(
-            name = view.input_name.text().toString(),
-            email = view.input_email.text().toString(),
+            name = view.input_name.text(),
+            email = view.input_email.text(),
             countryCode = view.resources.getStringArray(com.ocs.sequre.R.array.country_code_array)[view.input_country.selectedItemPosition],
-            phone = view.input_phone.text().toString(),
-            password = view.input_password.text().toString()
+            phone = view.input_phone.text(),
+            password = view.input_password.text()
         )
     }
 
@@ -100,7 +71,7 @@ class UserRegistrationDataViewHolder constructor(private val view: View) {
             .distinctUntilChanged()
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext { if (it) block(view.input_email.text().toString()) }
+            .doOnNext { if (it) block(view.input_email.text()) }
 
     private fun phoneValidation(block: ((phone: String) -> Unit)): Observable<Boolean> =
         Observable.combineLatest(
@@ -110,7 +81,7 @@ class UserRegistrationDataViewHolder constructor(private val view: View) {
         ).distinctUntilChanged()
             .subscribeOn(AndroidSchedulers.mainThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext { if (it) block(view.input_phone.text().toString()) }
+            .doOnNext { if (it) block(view.input_phone.text()) }
 
     fun validationData(
         email: ((email: String) -> Unit),
