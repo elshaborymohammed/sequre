@@ -95,7 +95,8 @@ class EditProfileFragment : BaseFragment() {
         return arrayOf(
             viewModel.loading().subscribe(::loading),
             viewModel.profile().subscribe(viewHolder::set),
-            viewHolder.validations().subscribe(requireView().update::setEnabled)
+            viewHolder.validations().subscribe(requireView().update::setEnabled),
+            viewHolder.relationship.subscribe(::println)
         )
     }
 }

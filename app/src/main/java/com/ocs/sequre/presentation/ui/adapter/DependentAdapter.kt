@@ -12,11 +12,6 @@ import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.domain.entity.Dependent
 import kotlinx.android.synthetic.main.card_dependent.view.*
-import kotlinx.android.synthetic.main.card_dependent.view.birth_date
-import kotlinx.android.synthetic.main.card_dependent.view.email
-import kotlinx.android.synthetic.main.card_dependent.view.name
-import kotlinx.android.synthetic.main.card_dependent.view.phone
-import kotlinx.android.synthetic.main.card_profile.view.*
 import java.text.SimpleDateFormat
 
 class DependentAdapter :
@@ -61,7 +56,7 @@ class DependentAdapter :
                 relation.text = it.relationship
                 name.text = it.name
                 email.text = it.email
-                phone.text = it.phone
+                phone.text = it.phone.run { if (this.startsWith("0")) this else "0${this}" }
                 gender.text = it.gender
                 birth_date?.apply {
                     text = if (it.birthDate.isNotNullOrEmpty()) {

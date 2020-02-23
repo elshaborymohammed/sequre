@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 import kotlinx.android.synthetic.main.layout_user_profile_data.view.*
 
 abstract class UserDataViewHolder constructor(private val view: View) {
-    protected val relationship: Observable<Boolean>
+    public val relationship: Observable<Boolean>
         get() = view.input_relationship.notNullOrEmpty()
     protected val name: Observable<Boolean>
         get() = view.input_name.username()

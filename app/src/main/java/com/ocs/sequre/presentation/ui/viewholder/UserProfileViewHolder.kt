@@ -12,7 +12,6 @@ import com.ocs.sequre.domain.entity.Profile
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Function5
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 import kotlinx.android.synthetic.main.layout_user_profile_data.view.*
@@ -31,10 +30,11 @@ class UserProfileViewHolder constructor(private val view: View) : UserDataViewHo
             gender,
             birthDate,
             Function5 { name: Boolean, email: Boolean, phone: Boolean, gender: Boolean, birthDate: Boolean ->
+                println("name = [${name}], email = [${email}], phone = [${phone}], gender = [${gender}], birthDate = [${birthDate}]")
                 name && email && phone && gender && birthDate
             }
         ).distinctUntilChanged()
-            .subscribeOn(Schedulers.single())
+            .subscribeOn(AndroidSchedulers.mainThread())
             .observeOn(AndroidSchedulers.mainThread())
     }
 

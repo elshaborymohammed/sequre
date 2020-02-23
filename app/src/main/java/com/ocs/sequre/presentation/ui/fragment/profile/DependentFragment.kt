@@ -100,7 +100,10 @@ abstract class DependentFragment : BaseFragment() {
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
             viewModel.loading().subscribe(::loading),
-            viewHolder.validations().subscribe(::println)
+            viewHolder.validations().subscribe(
+                ::println,
+                Throwable::printStackTrace
+            )
         )
     }
 
