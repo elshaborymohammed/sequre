@@ -3,10 +3,7 @@ package com.ocs.sequre.presentation.ui.viewholder
 import android.view.View
 import android.widget.*
 import androidx.lifecycle.LifecycleObserver
-import com.compact.app.extensions.email
-import com.compact.app.extensions.notNullOrEmpty
-import com.compact.app.extensions.phone
-import com.compact.app.extensions.text
+import com.compact.app.extensions.*
 import com.ocs.sequre.R
 import com.ocs.sequre.app.CompactDatePicker
 import com.ocs.sequre.app.GlideApp
@@ -58,6 +55,7 @@ class DependentViewHolder constructor(private val view: View) : LifecycleObserve
                         position: Int,
                         id: Long
                     ) {
+                        "".isPhone()
                         view?.findViewById<TextView>(android.R.id.text1)?.text =
                             view?.resources!!.getStringArray(com.ocs.sequre.R.array.country_code_array)[position]
                     }
