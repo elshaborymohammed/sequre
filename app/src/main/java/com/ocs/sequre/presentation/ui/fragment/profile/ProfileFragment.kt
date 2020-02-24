@@ -14,7 +14,6 @@ import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.card_profile.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -55,10 +54,7 @@ class ProfileFragment : BaseFragment() {
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            viewModel.loading().observeOn(AndroidSchedulers.mainThread()).subscribe(
-                ::loading,
-                Throwable::printStackTrace
-            ),
+            viewModel.loading().subscribe(::loading, Throwable::printStackTrace),
             viewModel.error().subscribe(onError(), Throwable::printStackTrace),
             viewModel.profile().subscribe({
                 view?.apply {
@@ -82,7 +78,7 @@ class ProfileFragment : BaseFragment() {
                         .skipMemoryCache(true)
                         .into(avatar)
                 }
-            }, onError())
+            }, Throwable::printStackTrace)
         )
     }
 

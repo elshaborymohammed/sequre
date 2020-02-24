@@ -45,10 +45,6 @@ class ProfileViewModel @Inject constructor(
 
     fun dependents(): Observable<List<Dependent>> {
         return dependents.compose(schedulers.applyOnObservable())
-//            .flatMap { Observable.fromIterable(it) }
-//            .filter { it.name.isNotBlank() }
-//            .toList()
-//            .toObservable()
     }
 
     fun error(): Observable<Throwable> {

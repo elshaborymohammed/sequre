@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "300872815354-0dm9ivqki8oumtgq7vpk04m492s3mv47.apps.googleusercontent.com",
+          "client_id": "300872815354-es0jk8f4pgnfjhta6du2sa8etblfelmq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.ocs.sequre",
-            "certificate_hash": "6b083bfefb0fc95eff3097783e671f195a6e3e01"
+            "certificate_hash": "31c39991fd2d36bfa9f596e230f84b805a7c58d1"
           }
         },
         {
@@ -38,6 +38,13 @@
             {
               "client_id": "300872815354-jlubrnbbg3fqqqeujrrdovjisckf43i6.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "300872815354-hfh6uvj6ft605uj0rlj1cmfs2704q84a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ocs.apps.SeQure"
+              }
             }
           ]
         }

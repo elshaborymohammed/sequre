@@ -29,17 +29,21 @@ class SignUpFragment : BaseFragment() {
         signUpViewHolder = UserRegistrationDataViewHolder(view)
 
         view.next.setOnClickListener {
-            viewModel.check(
-                AuthValidation(
-                    phone = signUpViewHolder.get().phone,
-                    email = signUpViewHolder.get().email
-                )
-            ).subscribe({
-                findNavController().navigate(
-                    R.id.action_signUpFragment_to_verificationFragment,
-                    VerificationFragmentArgs(signUpViewHolder.get()).toBundle()
-                )
-            }, onError())
+            findNavController().navigate(
+                R.id.action_signUpFragment_to_verificationFragment,
+                VerificationFragmentArgs(signUpViewHolder.get()).toBundle()
+            )
+//            viewModel.check(
+//                AuthValidation(
+//                    phone = signUpViewHolder.get().phone,
+//                    email = signUpViewHolder.get().email
+//                )
+//            ).subscribe({
+//                findNavController().navigate(
+//                    R.id.action_signUpFragment_to_verificationFragment,
+//                    VerificationFragmentArgs(signUpViewHolder.get()).toBundle()
+//                )
+//            }, onError())
         }
     }
 
