@@ -49,7 +49,7 @@ android {
             buildConfigField 'String', 'Image_BASE_URL', '"http://sequrep.overcoffees.com"'
             firebaseAppDistribution {
                 releaseNotes = "Release notes for full version"
-                groups = "admin"
+                groups = ["admin", "QA"]
             }
         }
     }

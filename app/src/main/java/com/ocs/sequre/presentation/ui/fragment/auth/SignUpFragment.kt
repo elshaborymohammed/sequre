@@ -29,21 +29,17 @@ class SignUpFragment : BaseFragment() {
         signUpViewHolder = UserRegistrationDataViewHolder(view)
 
         view.next.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_signUpFragment_to_verificationFragment,
-                VerificationFragmentArgs(signUpViewHolder.get()).toBundle()
-            )
-//            viewModel.check(
-//                AuthValidation(
-//                    phone = signUpViewHolder.get().phone,
-//                    email = signUpViewHolder.get().email
-//                )
-//            ).subscribe({
-//                findNavController().navigate(
-//                    R.id.action_signUpFragment_to_verificationFragment,
-//                    VerificationFragmentArgs(signUpViewHolder.get()).toBundle()
-//                )
-//            }, onError())
+            viewModel.check(
+                AuthValidation(
+                    phone = signUpViewHolder.get().phone,
+                    email = signUpViewHolder.get().email
+                )
+            ).subscribe({
+                findNavController().navigate(
+                    R.id.action_signUpFragment_to_verificationFragment,
+                    VerificationFragmentArgs(signUpViewHolder.get()).toBundle()
+                )
+            }, onError())
         }
     }
 
@@ -80,10 +76,5 @@ class SignUpFragment : BaseFragment() {
             }
 
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-//        lifecycle.removeObserver(signUpViewHolder)
     }
 }

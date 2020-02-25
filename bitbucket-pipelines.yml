@@ -10,10 +10,9 @@ pipelines:
   default:
     - step:
         name: run
-        trigger: manual
         script:
-          - echo "Default triggers for Sonar are awesome!"
-  
+          - echo "Default triggers for Sonar are awesoe!"
+
   custom: # Pipelines that can only be triggered manually
     develop:
       - step:
