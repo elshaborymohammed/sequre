@@ -2,14 +2,22 @@
   "success": true,
   "data": {
     "user": {
-      "name": "Mohammed",
-      "email": "mohammed@gmail.com",
-      "mobile": "0109992512",
+      "id": 3,
+      "name": "Hussein",
+      "email": "hussein@gmail.com",
+      "email_verified_at": null,
+      "created_at": "2020-02-06 12:00:07",
+      "updated_at": "2020-02-06 12:00:07",
       "c_code": "002",
-      "updated_at": "2020-02-26 11:19:48",
-      "created_at": "2020-02-26 11:19:48",
-      "id": 9
+      "mobile": "01150006658",
+      "country": null,
+      "area": null,
+      "street": null,
+      "gender": 0,
+      "birth": null,
+      "photo": null,
+      "city": null
     },
-    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNjgyOTllNzdmM2RjMTVlMzNiMjRjN2IxM2Y4NWZiNWY5M2M2YTI3MWNkNjljZTk1ZWNhYWRiM2I1MWJhZDhjNDdhM2QxY2Y2NTQ0MGY2MjIiLCJpYXQiOjE1ODI3MTU5ODgsIm5iZiI6MTU4MjcxNTk4OCwiZXhwIjoxNjE0MzM4Mzg4LCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.cVklox6SoPKyaMgL3_RoluS38eETHj0N4mF6wFWcLN1s0YoVr2u-P1PGjWQHnBGnSfuzY4QppbWf7-0LK52N53HEzOWddD-BVjnAmMjs6K4pWMp4N121LDSaFzuw_1VaKSWB49vmIBWsAQsM_iVp9ijdAkYdZJPJ32M9H9nGecc5mBArQCV9hNS19HdsvMeeqhbC_ct_o5YJx4EifPc0Gc_NjXThoZ3xpPu2YXkoPA7zaXZXftPEalVUmxboOPDN2sjTF9axOO0KZO9VGH5brLILp8Mup05qS9tYNM132MXNMGpOB2tfwGrCyKr2Pado-gjZy-_HSCF33vkNcUoN2IY0MvSzKpcopQyz2wexoLqbjFnpPlhs0VSEpC2OULykfppLUtlqR8jhSMrxhF_3BL3foWZwLJFAgyvHqzF7BSlEvoFGFB6aBNzwnF5ZP_UGFzm6ny5p54YKq7at_5qtSa0L41-BhicSn2417tSJMEhVKQpGj1R4kfz0SLzbVMctFNA1ZHixpsMbaQCiSNf0TQ-twWBLWrUmByCL7RT5Kr4JfjeICgG_nab2jaV6Vc-6reGj95XSDqmKkJnd-vUwa65zh5kGxhCQZlPKXZn6jertj_Kkl-gaxWHEAXFB4v7wRj2LTUYeHFJEKWuor9NbijTVDq0yF8ZTpk4ILjX33zE"
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiY2Q0NzZhZDhkNDEyZmJiMDBjMTJjOTI4ZjRkNGIwZTVkOTM3MTkxYTE5YTc1ZDRhMDA2NjFlMzI5YWVmYThmYTg0MTliYTNkMDU5MTNjY2MiLCJpYXQiOjE1ODI3MjIzMTgsIm5iZiI6MTU4MjcyMjMxOCwiZXhwIjoxNjE0MzQ0NzE4LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.CUQTRqHEScmlLxlFwSw0TW8yOREA4HZevtXpmiC9Hb3y89NgsnU1wqBoXPf_3XnVlV_IODFoz4Y615sLRvrumEE0a_qNhdHiStUumCHCWt4uQRudZx5mAsekD13zZ3nj2fR8EpQXwX13TY0DtQw_KARIxs_-QkiqeLZmB4GjcKM0AdG5EIUg_Cj7qj1Z4yvZjPWyb-13rkJCLY5Voy50oT9gwFI6s9sR5u_EzUoN7pPm2EPsxZ1vpGJQh73zaT1WdaA3P3R5PrQS6Nn4sewyxGk3-ghASrtkJkqFlEKAhWQWzFEVvE-AU3chsGqtNbjaHCCPOz3I8w_opG7Cer5Wbxcx6ABkLyfXr-EZnKL1dsTotR3AZgQ4HOmKPnmYqDLYwJ5No2mS43r3WzY552m3hac8_a2xQ6kX66uSCttHnl98otSsdTUFDWcZJN2LpZcjb7MxCxefmuiibPWipg8Z6CZ_FTLKstYBfTxv54v2DBuVwiX6nkuWjycgpJtw9MH2jjLoxUMIzuRcPSM58ZyFrkb7Sn4hI2N7U8ij2_XmIkw6Plo_mamFDP7eqZYex8KDXLP7hoXdW9PgVehFatwzspe10gF858QFIUMYMIU7cWUljYVJhpDuM6gqKwU7yzKCX9D4YOzTmRAJRUi5SAANEpluCfdD4PhbvF_9q6CpReM"
   }
 }

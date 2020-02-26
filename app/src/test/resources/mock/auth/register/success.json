@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "data": {
+    "user": {
+      "name": "Mohammed",
+      "email": "mohammed@gmail.com",
+      "mobile": "0109992512",
+      "c_code": "002",
+      "updated_at": "2020-02-26 11:19:48",
+      "created_at": "2020-02-26 11:19:48",
+      "id": 9
+    },
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNjgyOTllNzdmM2RjMTVlMzNiMjRjN2IxM2Y4NWZiNWY5M2M2YTI3MWNkNjljZTk1ZWNhYWRiM2I1MWJhZDhjNDdhM2QxY2Y2NTQ0MGY2MjIiLCJpYXQiOjE1ODI3MTU5ODgsIm5iZiI6MTU4MjcxNTk4OCwiZXhwIjoxNjE0MzM4Mzg4LCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.cVklox6SoPKyaMgL3_RoluS38eETHj0N4mF6wFWcLN1s0YoVr2u-P1PGjWQHnBGnSfuzY4QppbWf7-0LK52N53HEzOWddD-BVjnAmMjs6K4pWMp4N121LDSaFzuw_1VaKSWB49vmIBWsAQsM_iVp9ijdAkYdZJPJ32M9H9nGecc5mBArQCV9hNS19HdsvMeeqhbC_ct_o5YJx4EifPc0Gc_NjXThoZ3xpPu2YXkoPA7zaXZXftPEalVUmxboOPDN2sjTF9axOO0KZO9VGH5brLILp8Mup05qS9tYNM132MXNMGpOB2tfwGrCyKr2Pado-gjZy-_HSCF33vkNcUoN2IY0MvSzKpcopQyz2wexoLqbjFnpPlhs0VSEpC2OULykfppLUtlqR8jhSMrxhF_3BL3foWZwLJFAgyvHqzF7BSlEvoFGFB6aBNzwnF5ZP_UGFzm6ny5p54YKq7at_5qtSa0L41-BhicSn2417tSJMEhVKQpGj1R4kfz0SLzbVMctFNA1ZHixpsMbaQCiSNf0TQ-twWBLWrUmByCL7RT5Kr4JfjeICgG_nab2jaV6Vc-6reGj95XSDqmKkJnd-vUwa65zh5kGxhCQZlPKXZn6jertj_Kkl-gaxWHEAXFB4v7wRj2LTUYeHFJEKWuor9NbijTVDq0yF8ZTpk4ILjX33zE"
+  }
+}

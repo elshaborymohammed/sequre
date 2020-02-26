@@ -17,7 +17,7 @@ abstract class CompactTest {
     lateinit var mockServer: MockWebServer
 
     @Before
-    fun setDagger() {
+    fun initDagger() {
         inject(com.ocs.sequre.app.di.DaggerTestAppComponent.builder().build())
     }
 

@@ -1,7 +1,8 @@
 package com.ocs.sequre.app.di
 
 import com.compact.di.module.TestSchedulerModule
-import com.ocs.sequre.presentation.viewmodel.AuthViewModelTest
+import com.ocs.sequre.presentation.api.auth.AuthLoginApi
+import com.ocs.sequre.presentation.integration.auth.AuthLogin
 import dagger.Component
 import javax.inject.Singleton
 
@@ -16,5 +17,6 @@ import javax.inject.Singleton
     ]
 )
 interface TestAppComponent {
-    fun inject(testClass: AuthViewModelTest)
+    fun inject(testClass: AuthLogin)
+    fun inject(testClass: AuthLoginApi)
 }

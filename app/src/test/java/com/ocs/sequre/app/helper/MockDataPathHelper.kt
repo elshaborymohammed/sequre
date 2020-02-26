@@ -12,4 +12,7 @@ import java.lang.reflect.Type
 object MockDataPathHelper {
     const val MOCK_DATA_PATH_LOGIN_SUCCESS = "auth/login/success.json"
     const val MOCK_DATA_PATH_LOGIN_ERROR = "auth/login/error.json"
+
+    const val MOCK_DATA_PATH_REGISTER_SUCCESS = "auth/register/success.json"
+    const val MOCK_DATA_PATH_REGISTER_ERROR = "auth/register/error.json"
 }

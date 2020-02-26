@@ -1,4 +1,4 @@
-package com.ocs.sequre.presentation.viewmodel
+package com.ocs.sequre.presentation.viewmodel.auth
 
 import com.compact.response.ApiException
 import com.jakewharton.rxrelay2.BehaviorRelay
@@ -7,6 +7,7 @@ import com.ocs.sequre.app.helper.MockDataHelper.fromJson
 import com.ocs.sequre.app.helper.MockDataHelper.loadJson
 import com.ocs.sequre.app.helper.MockDataPathHelper
 import com.ocs.sequre.data.remote.model.response.auth.AuthModel
+import com.ocs.sequre.presentation.viewmodel.AuthViewModel
 import io.reactivex.Single
 import io.reactivex.observers.TestObserver
 import org.junit.Before
@@ -18,7 +19,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import java.io.IOException
 
 @RunWith(MockitoJUnitRunner::class)
-class AuthViewModelTest {
+class AuthLoginTest {
 
     @Mock
     lateinit var viewModel: AuthViewModel
@@ -42,7 +43,7 @@ class AuthViewModelTest {
     }
 
     @Test
-    fun loginSuccess() {
+    fun success() {
         val mock = setUpSuccess()
         viewModel.login("", "").subscribe(subscriber)
         viewModel.loading().subscribe(loading)
@@ -54,7 +55,7 @@ class AuthViewModelTest {
     }
 
     @Test
-    fun loginAPIError() {
+    fun errorAPI() {
         val mock = setUpAPIError()
         viewModel.login("", "").subscribe(subscriber)
 
@@ -65,7 +66,7 @@ class AuthViewModelTest {
     }
 
     @Test
-    fun loginIOError() {
+    fun errorIO() {
         val mock = setUpIOError()
         viewModel.login("", "").subscribe(subscriber)
 
