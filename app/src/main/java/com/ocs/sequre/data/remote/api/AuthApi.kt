@@ -25,10 +25,4 @@ interface AuthApi {
 
     @POST("auth/check/register")
     fun check(@Body body: AuthValidation): Completable
-
-    @POST("auth/resend")
-    fun resend(@Body body: Resend): Single<Void>
-
-    @GET("countries")
-    fun countries(): Single<Void>
 }

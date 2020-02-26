@@ -19,6 +19,18 @@ class ProfileViewModel @Inject constructor(
     private var profile: BehaviorRelay<Profile> = BehaviorRelay.create()
     private var dependents: BehaviorRelay<List<Dependent>> = BehaviorRelay.create()
 
+    fun profile(): Observable<Profile> {
+        return profile.compose(schedulers.applyOnObservable())
+    }
+
+    fun dependents(): Observable<List<Dependent>> {
+        return dependents.compose(schedulers.applyOnObservable())
+    }
+
+    fun error(): Observable<Throwable> {
+        return error.compose(schedulers.applyOnObservable())
+    }
+
     fun call() {
         subscribe(
             get().subscribe(profile::accept, error::accept)
@@ -37,17 +49,5 @@ class ProfileViewModel @Inject constructor(
         return api.update(body)
             .compose(schedulers.applyOnCompletable())
             .compose(composeLoadingCompletable())
-    }
-
-    fun profile(): Observable<Profile> {
-        return profile.compose(schedulers.applyOnObservable())
-    }
-
-    fun dependents(): Observable<List<Dependent>> {
-        return dependents.compose(schedulers.applyOnObservable())
-    }
-
-    fun error(): Observable<Throwable> {
-        return error.compose(schedulers.applyOnObservable())
     }
 }

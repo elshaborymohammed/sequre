@@ -50,16 +50,4 @@ class AuthViewModel @Inject constructor(
         return api.check(AuthValidation(phone = phone))
             .compose(compose.applyOnCompletable())
     }
-
-    fun resend(body: Resend): Single<Void> {
-        return api.resend(body)
-            .compose(compose.applyOnSingle())
-            .compose(composeLoadingSingle())
-    }
-
-    fun countries(): Single<Void> {
-        return api.countries()
-            .compose(compose.applyOnSingle())
-            .compose(composeLoadingSingle())
-    }
 }

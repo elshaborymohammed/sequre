@@ -1,0 +1,26 @@
+{
+  "success": false,
+  "code": 0,
+  "errors": [
+    {
+      "path": "name",
+      "message": "The name field is required."
+    },
+    {
+      "path": "email",
+      "message": "The email field is required."
+    },
+    {
+      "path": "password",
+      "message": "The password field is required."
+    },
+    {
+      "path": "c_code",
+      "message": "The c code field is required."
+    },
+    {
+      "path": "mobile",
+      "message": "The mobile field is required."
+    }
+  ]
+}
