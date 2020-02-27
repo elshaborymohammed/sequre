@@ -7,11 +7,11 @@ import com.ocs.sequre.app.di.TestAppComponent
 import com.ocs.sequre.app.helper.MockDataPathHelper
 import com.ocs.sequre.data.remote.api.RequesterAuthApi
 import com.ocs.sequre.data.remote.model.response.auth.AuthModel
+import com.ocs.sequre.domain.entity.Registration
 import com.ocs.sequre.presentation.preference.AuthPreference
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel
 import io.reactivex.observers.TestObserver
 import io.reactivex.schedulers.Schedulers
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
@@ -20,14 +20,17 @@ import javax.inject.Inject
 import javax.net.ssl.HttpsURLConnection
 
 @RunWith(MockitoJUnitRunner::class)
-class AuthLogin : CompactTest() {
+class AuthRegisterIntegrationTest : CompactTest() {
 
     @Inject
     lateinit var api: RequesterAuthApi
+    @Inject
+    lateinit var compose: RxCompactSchedulers
     @Mock
     lateinit var preference: AuthPreference
+    @Mock
+    lateinit var body: Registration
 
-    private lateinit var compose: RxCompactSchedulers
     private lateinit var viewModel: AuthViewModel
     private val subscriber = TestObserver<AuthModel>()
 
@@ -35,17 +38,14 @@ class AuthLogin : CompactTest() {
         testAppComponent.inject(this)
     }
 
-    @Before
-    fun setup() {
-        compose = RxCompactSchedulers(Schedulers.trampoline(), Schedulers.trampoline())
+    override fun setup() {
+        viewModel = AuthViewModel(api, preference, compose)
     }
 
     @Test
     fun serverOK() {
         setUpServerOK()
-        viewModel = AuthViewModel(api, preference, compose)
-
-        viewModel.login("", "")
+        viewModel.register(body)
             .subscribeOn(Schedulers.trampoline())
             .observeOn(Schedulers.trampoline())
             .subscribe(subscriber)
@@ -53,15 +53,25 @@ class AuthLogin : CompactTest() {
         subscriber.assertSubscribed()
         subscriber.awaitTerminalEvent()
         subscriber.assertNoErrors()
-//        subscriber.assertValue(mockTags)
     }
 
     @Test
     fun serverBAD() {
         setUpServerBAD()
+        viewModel.register(body)
+            .subscribeOn(Schedulers.trampoline())
+            .observeOn(Schedulers.trampoline())
+            .subscribe(subscriber)
 
-        viewModel = AuthViewModel(api, preference, compose)
-        viewModel.login("", "")
+        subscriber.assertSubscribed()
+        subscriber.awaitTerminalEvent()
+        subscriber.assertError(ApiException::class.java)
+    }
+
+    @Test
+    fun serverERROR() {
+        setUpServerError()
+        viewModel.register(body)
             .subscribeOn(Schedulers.trampoline())
             .observeOn(Schedulers.trampoline())
             .subscribe(subscriber)
@@ -74,14 +84,18 @@ class AuthLogin : CompactTest() {
     private fun setUpServerOK() {
         mockHttpResponse(
             HttpsURLConnection.HTTP_OK,
-            MockDataPathHelper.MOCK_DATA_PATH_LOGIN_SUCCESS
+            MockDataPathHelper.MOCK_DATA_PATH_REGISTER_SUCCESS
         )
     }
 
     private fun setUpServerBAD() {
         mockHttpResponse(
             HttpsURLConnection.HTTP_BAD_REQUEST,
-            MockDataPathHelper.MOCK_DATA_PATH_LOGIN_ERROR
+            MockDataPathHelper.MOCK_DATA_PATH_REGISTER_ERROR
         )
+    }
+
+    private fun setUpServerError() {
+        mockHttpResponse(HttpsURLConnection.HTTP_INTERNAL_ERROR)
     }
 }

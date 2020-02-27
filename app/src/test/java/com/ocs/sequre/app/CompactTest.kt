@@ -19,6 +19,7 @@ abstract class CompactTest {
     @Before
     fun initDagger() {
         inject(com.ocs.sequre.app.di.DaggerTestAppComponent.builder().build())
+        setup()
     }
 
     /**
@@ -26,11 +27,17 @@ abstract class CompactTest {
      */
     abstract fun inject(testAppComponent: TestAppComponent)
 
+    open fun setup() {}
+
     /**
      * used for creating MockResponse
      */
-    open fun mockHttpResponse(responseCode: Int, fileName: String) = mockServer.enqueue(
-            MockResponse().setResponseCode(responseCode).setBody(MockDataHelper.loadJson(fileName))
+    fun mockHttpResponse(responseCode: Int, fileName: String) = mockServer.enqueue(
+        MockResponse().setResponseCode(responseCode).setBody(MockDataHelper.loadJson(fileName))
+    )
+
+    fun mockHttpResponse(responseCode: Int) = mockServer.enqueue(
+        MockResponse().setResponseCode(responseCode)
     )
 
     @After

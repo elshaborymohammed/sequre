@@ -23,11 +23,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(DataViewModel::class)
-    internal abstract fun providesDataViewModel(viewModel: DataViewModel): ViewModel
-
-    @Binds
-    @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     internal abstract fun providesProfileViewModel(viewModel: ProfileViewModel): ViewModel
 

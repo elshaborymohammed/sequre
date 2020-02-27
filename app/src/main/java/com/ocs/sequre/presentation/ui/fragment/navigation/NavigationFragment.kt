@@ -2,14 +2,12 @@ package com.ocs.sequre.presentation.ui.fragment.navigation
 
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.presentation.ui.fragment.auth.LandingFragment
-import com.ocs.sequre.presentation.viewmodel.DataViewModel
 import kotlinx.android.synthetic.main.fragment_navigation.*
 
 class NavigationFragment : BaseFragment() {

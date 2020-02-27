@@ -39,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:gravity="top|fill"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -46,7 +47,8 @@
             android:id="@+id/input_country"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="16dp"
+            android:layout_gravity="top|start"
+            android:layout_marginBottom="20dp"
             android:layout_weight="0.25"
             android:background="@drawable/ll_drop_down_list"
             android:entries="@array/country_code_array"

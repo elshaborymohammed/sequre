@@ -1,0 +1,14 @@
+{
+  "success": false,
+  "code": 0,
+  "errors": [
+    {
+      "path": "email",
+      "message": "The email field is required."
+    },
+    {
+      "path": "mobile",
+      "message": "The mobile field is required."
+    }
+  ]
+}

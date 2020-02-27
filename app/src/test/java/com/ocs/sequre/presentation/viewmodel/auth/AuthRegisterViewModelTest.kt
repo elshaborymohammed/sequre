@@ -20,7 +20,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import java.io.IOException
 
 @RunWith(MockitoJUnitRunner::class)
-class AuthRegisterTest {
+class AuthRegisterViewModelTest {
 
     @Mock
     lateinit var viewModel: AuthViewModel
