@@ -8,18 +8,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+
+        <include
+            android:id="@+id/search_bar"
+            layout="@layout/layout_search_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@id/end"
+            app:layout_constraintStart_toStartOf="@id/start"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+            android:id="@+id/header"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="top|center"
-            android:layout_margin="24dp"
-            app:cardBackgroundColor="@color/colorAccent"
+            android:layout_marginVertical="8dp"
+            app:cardBackgroundColor="@android:color/transparent"
             app:cardCornerRadius="20dp"
             app:cardElevation="8dp"
+            app:cardPreventCornerOverlap="false"
             app:layout_constraintBottom_toTopOf="@id/cards"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="@id/end"
+            app:layout_constraintStart_toStartOf="@id/start"
+            app:layout_constraintTop_toBottomOf="@id/search_bar">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="fill"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/bg_home" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,7 +71,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="128dp"
                     android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum has been the industry's standard dummy text ever since the 1500s, when an unknow printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
                     android:textAppearance="?attr/textAppearanceCaption"
                     android:textColor="#fff" />
@@ -46,19 +79,19 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-
         <androidx.cardview.widget.CardView
             android:id="@+id/cards"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:layout_margin="24dp"
+            android:layout_marginVertical="12dp"
             app:cardBackgroundColor="#EBEBEB"
             app:cardCornerRadius="20dp"
             app:cardElevation="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintEnd_toEndOf="@id/end"
+            app:layout_constraintStart_toStartOf="@id/start"
+            app:layout_constraintTop_toBottomOf="@id/header">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -73,7 +106,8 @@
                     style="@style/Widget.AppCompat.ImageButton"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@drawable/sh_border_rounded"
+                    android:background="@drawable/sh_border_rounded_card"
+                    android:elevation="8dp"
                     android:src="@drawable/ic_doctor_colored"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintBottom_toTopOf="@id/second_opinion_text"
@@ -92,7 +126,8 @@
                     style="@style/Widget.AppCompat.ImageButton"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@drawable/sh_border_rounded"
+                    android:background="@drawable/sh_border_rounded_card"
+                    android:elevation="8dp"
                     android:src="@drawable/ic_credit_card"
                     app:layout_constraintBottom_toBottomOf="@id/second_opinion"
                     app:layout_constraintDimensionRatio="1:1"
@@ -105,7 +140,7 @@
                     style="@style/Widget.AppCompat.ImageButton"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:background="@drawable/sh_border_rounded"
+                    android:background="@drawable/sh_border_rounded_card"
                     android:src="@drawable/ic_customer_support"
                     app:layout_constraintBottom_toBottomOf="@id/second_opinion"
                     app:layout_constraintDimensionRatio="1:1"
@@ -115,12 +150,14 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/second_opinion_text"
-                    android:textAppearance="?attr/textAppearanceCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:elevation="8dp"
                     android:gravity="center"
-                    android:text="Second\nOpinion"
+                    android:text="@string/second_opinion"
+                    android:textAppearance="?attr/textAppearanceCaption"
+                    app:fontFamily="@font/roboto_medium"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/second_opinion"
                     app:layout_constraintStart_toStartOf="@id/second_opinion"
@@ -128,12 +165,13 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/discount_card_text"
-                    android:textAppearance="?attr/textAppearanceCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
-                    android:text="Discount\nCard"
+                    android:text="@string/discount_card"
+                    android:textAppearance="?attr/textAppearanceCaption"
+                    app:fontFamily="@font/roboto_medium"
                     app:layout_constraintBottom_toBottomOf="@id/second_opinion_text"
                     app:layout_constraintEnd_toEndOf="@id/discount_card_image"
                     app:layout_constraintStart_toStartOf="@id/discount_card_image"
@@ -141,12 +179,13 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/upcoming_service_text"
-                    android:textAppearance="?attr/textAppearanceCaption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
-                    android:text="Upcoming\nService"
+                    android:text="@string/upcoming_service"
+                    android:textAppearance="?attr/textAppearanceCaption"
+                    app:fontFamily="@font/roboto_medium"
                     app:layout_constraintBottom_toBottomOf="@id/second_opinion_text"
                     app:layout_constraintEnd_toEndOf="@id/upcoming_service_image"
                     app:layout_constraintStart_toStartOf="@id/upcoming_service_image"

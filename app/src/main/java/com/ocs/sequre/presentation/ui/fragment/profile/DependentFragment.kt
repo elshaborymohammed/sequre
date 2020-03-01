@@ -13,6 +13,7 @@ import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.domain.entity.Dependent
 import com.ocs.sequre.presentation.ui.viewholder.DependentViewHolder
+import com.ocs.sequre.presentation.viewmodel.AuthViewModel
 import com.ocs.sequre.presentation.viewmodel.DependentViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_profile_data.*
@@ -20,7 +21,8 @@ import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 
 abstract class DependentFragment(private val skip: Long) : BaseFragment() {
 
-    protected lateinit var viewModel: DependentViewModel
+    protected lateinit var authViewModel: AuthViewModel
+    protected lateinit var dependentViewModel: DependentViewModel
     protected lateinit var viewHolder: DependentViewHolder
 
     override fun layoutRes(): Int {
@@ -31,7 +33,9 @@ abstract class DependentFragment(private val skip: Long) : BaseFragment() {
         super.onViewBound(view)
         viewHolder = DependentViewHolder(view, skip)
 
-        viewModel =
+        authViewModel =
+            ViewModelProvider(this, factory).get(AuthViewModel::class.java)
+        dependentViewModel =
             ViewModelProvider(this, factory).get(DependentViewModel::class.java)
 
         view.input_avatar.setOnClickListener {
@@ -42,7 +46,7 @@ abstract class DependentFragment(private val skip: Long) : BaseFragment() {
         }
         view.delete.setOnClickListener {
             subscribe(
-                viewModel.delete(viewHolder.get().id).subscribe(::onSuccess, onError())
+                dependentViewModel.delete(viewHolder.get().id).subscribe(::onSuccess, onError())
             )
         }
         view.input_avatar.setOnClickListener {
@@ -99,13 +103,21 @@ abstract class DependentFragment(private val skip: Long) : BaseFragment() {
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            viewModel.loading().subscribe(::loading),
-            viewHolder.validations().subscribe(
-                requireView().update::setEnabled,
-                Throwable::printStackTrace
-            )
+            dependentViewModel.loading().subscribe(::loading),
+            authViewModel.countryCode().subscribe({
+                viewHolder.setCountries(it)
+                onDataLoaded()
+                subscribe(
+                    viewHolder.validations().subscribe(
+                        requireView().update::setEnabled,
+                        Throwable::printStackTrace
+                    )
+                )
+            }, onError())
         )
     }
+
+    open fun onDataLoaded() {}
 
     abstract fun onSaveClicked(it: Dependent)
 }

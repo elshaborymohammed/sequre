@@ -1,8 +1,12 @@
 package com.ocs.sequre.presentation.ui.viewholder
 
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.compact.app.extensions.*
 import com.jakewharton.rxbinding3.view.focusChanges
+import com.ocs.sequre.domain.entity.Country
 import com.ocs.sequre.domain.entity.Registration
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -29,6 +33,33 @@ class UserRegistrationDataViewHolder constructor(private val view: View) {
     private val phoneFocusChanges: Observable<Boolean>
         get() = view.input_phone.editText!!.focusChanges()
 
+    fun setCountries(it: List<Country>) {
+        view.input_country.apply {
+            val dataAdapter: ArrayAdapter<Country> =
+                ArrayAdapter(
+                    view.context,
+                    android.R.layout.simple_spinner_item,
+                    it
+                )
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter = dataAdapter
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    view?.findViewById<TextView>(android.R.id.text1)?.text = it[position].code
+                }
+            }
+        }
+    }
+
     fun set(obj: Registration) {
         view.input_country.setSelection(0, true)
         view.input_phone.editText?.setText(obj.phone)
@@ -42,7 +73,7 @@ class UserRegistrationDataViewHolder constructor(private val view: View) {
         return Registration(
             name = view.input_name.text(),
             email = view.input_email.text(),
-            countryCode = view.resources.getStringArray(com.ocs.sequre.R.array.country_code_array)[view.input_country.selectedItemPosition],
+            countryCode = (view.input_country.selectedItem as Country).code,
             phone = view.input_phone.text(),
             password = view.input_password.text()
         )

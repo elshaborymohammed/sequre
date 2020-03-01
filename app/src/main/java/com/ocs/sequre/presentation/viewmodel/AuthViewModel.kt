@@ -5,8 +5,8 @@ import com.compact.executor.RxCompactSchedulers
 import com.ocs.sequre.data.remote.api.RequesterAuthApi
 import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
 import com.ocs.sequre.data.remote.model.request.auth.Login
-import com.ocs.sequre.data.remote.model.request.auth.Resend
 import com.ocs.sequre.data.remote.model.response.auth.AuthModel
+import com.ocs.sequre.domain.entity.Country
 import com.ocs.sequre.domain.entity.Registration
 import com.ocs.sequre.presentation.preference.AuthPreference
 import io.reactivex.Completable
@@ -33,6 +33,13 @@ class AuthViewModel @Inject constructor(
             .compose(composeLoadingSingle())
             .map { it.data }
             .doOnSuccess { preference.set(it.token) }
+    }
+
+    fun countryCode(): Single<List<Country>> {
+        return api.countryCode()
+            .compose(compose.applyOnSingle())
+            .compose(composeLoadingSingle())
+            .map { it.data }
     }
 
     fun check(body: AuthValidation): Completable {

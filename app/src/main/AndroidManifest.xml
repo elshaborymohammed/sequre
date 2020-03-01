@@ -19,28 +19,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--        <activity-->
-        <!--            android:name="com.ocs.sequre.presentation.ui.activity.LaunchActivity"-->
-        <!--            android:launchMode="singleTask"-->
-        <!--            android:theme="@style/AppTheme.Launcher">-->
-        <!--            <intent-filter>-->
-        <!--                <action android:name="android.intent.action.MAIN" />-->
-
-        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-        <!--            </intent-filter>-->
-        <!--        </activity>-->
-
         <activity
-            android:name="com.ocs.sequre.presentation.ui.activity.MainActivity"
-            android:clearTaskOnLaunch="true"
-            android:configChanges="locale"
-            android:windowSoftInputMode="adjustResize">
+            android:name="com.ocs.sequre.presentation.ui.activity.LaunchActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="com.ocs.sequre.presentation.ui.activity.LanguageActivity" />
+
+        <activity
+            android:name="com.ocs.sequre.presentation.ui.activity.AuthActivity"
+            android:clearTaskOnLaunch="true"
+            android:configChanges="locale"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="com.ocs.sequre.presentation.ui.activity.HomeActivity"
+            android:clearTaskOnLaunch="true"
+            android:configChanges="locale"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

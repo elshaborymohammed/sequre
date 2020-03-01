@@ -2,24 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    android:label="Nav Graph"
-    app:startDestination="@id/auth_navigation">
-
-    <navigation
-        android:id="@+id/auth_navigation"
-        app:startDestination="@id/auth_graph">
-
-        <include app:graph="@navigation/auth_graph" />
-
-        <action
-            android:id="@+id/action_global_navigationFragment"
-            app:destination="@id/navigationFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </navigation>
+    android:id="@+id/home_graph"
+    android:label="Home Graph"
+    app:startDestination="@id/navigationFragment">
 
     <fragment
         android:id="@+id/navigationFragment"

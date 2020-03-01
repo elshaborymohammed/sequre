@@ -54,7 +54,7 @@
         <com.compact.widget.OTPView
             android:id="@+id/otp_code"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:inputType="numberSigned"
             android:maxLength="6"
             app:backgroundDrawable="@drawable/ic_otp"

@@ -27,7 +27,7 @@ public abstract class BasePreference<T> {
 
     public T get() {
         return sharedPreferences().getString(key(), defValue()).isEmpty() ? null :
-                (T) new Gson().fromJson(sharedPreferences().getString(key(), ""), getType());
+                (T) new Gson().fromJson(sharedPreferences().getString(key(), defValue()), getType());
     }
 
     public boolean clear() {

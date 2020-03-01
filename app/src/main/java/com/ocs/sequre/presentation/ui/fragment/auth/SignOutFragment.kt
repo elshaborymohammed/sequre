@@ -5,6 +5,7 @@ import android.view.View
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseBottomSheet
 import com.ocs.sequre.presentation.preference.AuthPreference
+import com.ocs.sequre.presentation.ui.activity.HomeActivity
 import com.ocs.sequre.presentation.ui.activity.LaunchActivity
 import kotlinx.android.synthetic.main.fragment_auth_sign_out.*
 import javax.inject.Inject

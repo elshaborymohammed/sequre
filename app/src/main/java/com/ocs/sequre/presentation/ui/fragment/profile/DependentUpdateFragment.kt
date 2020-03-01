@@ -9,17 +9,19 @@ class DependentUpdateFragment : DependentFragment(0) {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         view.title.text = "Edit Dependent"
-
-        DependentUpdateFragmentArgs.fromBundle(requireArguments()).data?.apply {
-            viewHolder.set(this)
-            view.delete.visibility = View.VISIBLE
-        }
 //        view.update.isEnabled = true
     }
 
     override fun onSaveClicked(it: Dependent) {
         subscribe(
-            viewModel.update(it.id, it).subscribe(::onSuccess, onError())
+            dependentViewModel.update(it.id, it).subscribe(::onSuccess, onError())
         )
+    }
+
+    override fun onDataLoaded() {
+        DependentUpdateFragmentArgs.fromBundle(requireArguments()).data?.apply {
+            viewHolder.set(this)
+            requireView().delete.visibility = View.VISIBLE
+        }
     }
 }

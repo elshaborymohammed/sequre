@@ -65,17 +65,15 @@ abstract class BaseFragment : CompactFragment() {
         }
     }
 
-    protected fun onSuccess() =
-        Snackbar.make(
-            requireView(),
+    protected fun onSuccess() {
+        Toast.makeText(
+            requireContext(),
             getString(R.string.saved_successfully),
-            Snackbar.LENGTH_SHORT
-        ).addCallback(object : Snackbar.Callback() {
-            override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-                findNavController().navigateUp()
-            }
-        }).show()
+            Toast.LENGTH_SHORT
+        ).show()
 
+        findNavController().navigateUp()
+    }
 
     protected open fun onError(): (it: Throwable) -> Unit {
         return {

@@ -8,6 +8,7 @@ import com.compact.app.extensions.text
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.base64
+import com.ocs.sequre.domain.entity.Country
 import com.ocs.sequre.domain.entity.Dependent
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -37,7 +38,7 @@ class DependentViewHolder constructor(private val view: View, private val skip: 
     fun set(obj: Dependent) {
         view.apply {
             this@DependentViewHolder.id = obj.id
-            input_country.setSelection(0, true)
+            selectCountry(obj.countryCode ?: "+20")
             input_relationship.editText?.setText(obj.relationship)
             input_phone.editText?.setText(obj.phone)
             input_name.editText?.setText(obj.name)
@@ -64,7 +65,7 @@ class DependentViewHolder constructor(private val view: View, private val skip: 
             relationship = view.input_relationship.text(),
             name = view.input_name.text(),
             email = view.input_email.text(),
-            countryCode = view.resources.getStringArray(R.array.country_code_array)[view.input_country.selectedItemPosition],
+            countryCode = (view.input_country.selectedItem as Country).code,
             phone = view.input_phone.text(),
             gender = view.input_gender.text(),
             birthDate = view.input_birth_date.text(),

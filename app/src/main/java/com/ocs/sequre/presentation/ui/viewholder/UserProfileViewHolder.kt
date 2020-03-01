@@ -8,6 +8,7 @@ import com.compact.app.extensions.text
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.base64
+import com.ocs.sequre.domain.entity.Country
 import com.ocs.sequre.domain.entity.Profile
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -38,7 +39,7 @@ class UserProfileViewHolder constructor(private val view: View) : UserDataViewHo
 
     fun set(obj: Profile) {
         view.apply {
-            input_country.setSelection(0, true)
+            selectCountry(obj.countryCode ?: "+20")
             input_phone.editText?.setText(obj.phone)
             input_name.editText?.setText(obj.name)
             input_email.editText?.setText(obj.email)
@@ -60,7 +61,7 @@ class UserProfileViewHolder constructor(private val view: View) : UserDataViewHo
         return Profile(
             name = view.input_name.text(),
             email = view.input_email.text(),
-            countryCode = view.resources.getStringArray(R.array.country_code_array)[view.input_country.selectedItemPosition],
+            countryCode = (view.input_country.selectedItem as Country).code,
             phone = view.input_phone.text(),
             gender = view.input_gender.text(),
             birthDate = view.input_birth_date.text(),

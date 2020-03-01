@@ -6,6 +6,7 @@ import com.compact.app.extensions.*
 import com.jakewharton.rxbinding3.view.focusChanges
 import com.jakewharton.rxbinding3.widget.textChanges
 import com.ocs.sequre.app.CompactDatePicker
+import com.ocs.sequre.domain.entity.Country
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 import kotlinx.android.synthetic.main.layout_user_profile_data.view.*
@@ -29,33 +30,9 @@ abstract class UserDataViewHolder constructor(private val view: View, private va
     private val phoneFocusChanges: Observable<Boolean>
         get() = view.input_phone.editText!!.focusChanges()
 
+    private lateinit var countries: List<Country>
+
     init {
-        view.input_country.apply {
-            val dataAdapter: ArrayAdapter<String> =
-                ArrayAdapter(
-                    view.context,
-                    android.R.layout.simple_spinner_item,
-                    view.resources.getStringArray(com.ocs.sequre.R.array.country_code_name_array)
-                )
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            adapter = dataAdapter
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-
-                }
-
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    view?.findViewById<TextView>(android.R.id.text1)?.text =
-                        view?.resources!!.getStringArray(com.ocs.sequre.R.array.country_code_array)[position]
-                }
-            }
-        }
-
         view.input_gender.apply {
             (editText as AutoCompleteTextView).run {
                 threshold = 1 //will start working from first character
@@ -78,6 +55,49 @@ abstract class UserDataViewHolder constructor(private val view: View, private va
                     }.build()
             }
             setEndIconOnClickListener { performClick() }
+        }
+    }
+
+    fun setCountries(it: List<Country>) {
+        countries = it
+        view.input_country.apply {
+            val dataAdapter: ArrayAdapter<Country> =
+                ArrayAdapter(
+                    view.context,
+                    android.R.layout.simple_spinner_item,
+                    countries
+                )
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter = dataAdapter
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    view?.findViewById<TextView>(android.R.id.text1)?.text = it[position].code
+                }
+            }
+        }
+    }
+
+    fun selectCountry(code: String) {
+        view.input_country.apply {
+            adapter?.let {
+                if (countries.isNotEmpty()) {
+                    setSelection(
+                        countries.indexOfFirst {
+                            it.code == code
+                        }, true
+                    )
+                }
+
+            }
         }
     }
 

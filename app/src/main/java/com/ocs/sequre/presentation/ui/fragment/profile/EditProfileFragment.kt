@@ -12,14 +12,16 @@ import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.presentation.ui.viewholder.UserProfileViewHolder
+import com.ocs.sequre.presentation.viewmodel.AuthViewModel
 import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_profile_data.*
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 
 class EditProfileFragment : BaseFragment() {
+    protected lateinit var authViewModel: AuthViewModel
+    private lateinit var profileViewModel: ProfileViewModel
     private lateinit var viewHolder: UserProfileViewHolder
-    private lateinit var viewModel: ProfileViewModel
 
     override fun layoutRes(): Int {
         return R.layout.fragment_profile_data
@@ -28,7 +30,10 @@ class EditProfileFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewHolder = UserProfileViewHolder(view)
-        viewModel = ViewModelProvider(requireActivity(), factory).get(ProfileViewModel::class.java)
+        authViewModel =
+            ViewModelProvider(this, factory).get(AuthViewModel::class.java)
+        profileViewModel =
+            ViewModelProvider(requireActivity(), factory).get(ProfileViewModel::class.java)
 
         view.input_avatar.setOnClickListener {
             if (ActivityCompat.checkSelfPermission(
@@ -47,7 +52,7 @@ class EditProfileFragment : BaseFragment() {
         }
         view.update.setOnClickListener {
             subscribe(
-                viewModel.update(viewHolder.get()).subscribe(::onSuccess, onError())
+                profileViewModel.update(viewHolder.get()).subscribe(::onSuccess, onError())
             )
         }
     }
@@ -93,12 +98,17 @@ class EditProfileFragment : BaseFragment() {
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            viewModel.loading().subscribe(::loading),
-            viewModel.profile().subscribe(viewHolder::set),
-            viewHolder.validations().subscribe(
-                requireView().update::setEnabled,
-                Throwable::printStackTrace
-            )
+            profileViewModel.loading().subscribe(::loading),
+            authViewModel.countryCode().subscribe({
+                viewHolder.setCountries(it)
+                subscribe(profileViewModel.profile().subscribe(viewHolder::set))
+                subscribe(
+                    viewHolder.validations().subscribe(
+                        requireView().update::setEnabled,
+                        Throwable::printStackTrace
+                    )
+                )
+            }, onError())
         )
     }
 }

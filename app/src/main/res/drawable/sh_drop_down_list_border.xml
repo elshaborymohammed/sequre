@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:autoMirrored="true">
+
+    <item android:drawable="@drawable/sh_border_rounded" />
+    <item
+        android:id="@+id/w1"
+        android:drawable="@drawable/ic_chevron_down"
+        android:gravity="end|center" />
+</layer-list>

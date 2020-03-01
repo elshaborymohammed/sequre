@@ -37,7 +37,6 @@
     <string name="offers">Offers</string>
     <string name="profile">Profile</string>
     <string name="shopping_cart">Shopping Cart</string>
-    <string name="search_for_your_product">Search for your product</string>
 
     <string name="change_password">Change Password</string>
     <string name="old_password">Old Password</string>
@@ -109,16 +108,6 @@
         <item>ar</item>
     </string-array>
 
-    <string-array name="country_code_name_array">
-        <item>+20 - EGP</item>
-        <item>+966 - KSA</item>
-    </string-array>
-
-    <string-array name="country_code_array">
-        <item>+20</item>
-        <item>+966</item>
-    </string-array>
-
     <string-array name="pain_array">
         <item>Leg</item>
         <item>Arm</item>
@@ -138,5 +127,10 @@
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
     <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
+    <string name="second_opinion">Second\nOpinion</string>
+    <string name="discount_card">Discount\nCard</string>
+    <string name="upcoming_service">Upcoming\nService</string>
+    <string name="find_service_provider">Find Service Provider</string>
+    <string name="delete_profile">Delete Profile</string>
     <!-- endregion -->
 </resources>

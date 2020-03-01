@@ -2,19 +2,14 @@ package com.ocs.sequre.app.di.module
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import com.compact.di.qualifier.ApplicationContext
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.ocs.sequre.data.remote.model.response.auth.AuthModel
-import com.ocs.sequre.data.remote.model.response.success.ResponseSuccess
 import com.ocs.sequre.presentation.preference.AuthPreference
-import com.ocs.sequre.presentation.ui.activity.SplashFragment
+import com.ocs.sequre.presentation.ui.activity.LaunchActivity
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
 import okhttp3.*
-import okhttp3.logging.HttpLoggingInterceptor
+import java.util.*
 import javax.inject.Singleton
 
 @Module
@@ -24,7 +19,7 @@ class NetworkInterceptorModule {
     fun providesAuthenticator(@ApplicationContext context: Context): Authenticator {
         return object : Authenticator {
             override fun authenticate(route: Route?, response: Response): Request {
-                val intent = Intent(context, SplashFragment::class.java)
+                val intent = Intent(context, LaunchActivity::class.java)
                 intent.flags =
                     Intent.FLAG_ACTIVITY_CLEAR_TOP and
                             Intent.FLAG_ACTIVITY_CLEAR_TASK and
@@ -50,8 +45,9 @@ class NetworkInterceptorModule {
     fun providesAuthenticationInterceptor(auth: AuthPreference): Interceptor {
         return Interceptor.invoke {
             when {
-                it.request().url.toString().toLowerCase().endsWith("/auth/login") or
-                        it.request().url.toString().toLowerCase().endsWith("/auth/register") -> {
+                it.request().url.toString().toLowerCase(Locale.ROOT).contains("/auth/") or
+                        it.request().url.toString().toLowerCase(Locale.ROOT).contains("/location/") or
+                        it.request().url.toString().toLowerCase(Locale.ROOT).contains("addresses.overcoffees.com/api/") -> {
                     val response = it.proceed(it.request())
 //                    response.run {
 //                        if (code == 200) {
@@ -87,13 +83,13 @@ class NetworkInterceptorModule {
     fun providesCountriesInterceptor(): Interceptor {
         return Interceptor.invoke {
             when {
-                it.request().url.toString().toLowerCase().endsWith("/countries") -> {
+                it.request().url.toString().toLowerCase(Locale.ROOT).endsWith("/location/countries/codes") -> {
                     it.proceed(
                         it.request().newBuilder()
                             .url("https://addresses.overcoffees.com/api/country/codes")
                             .addHeader(
                                 "authorization",
-                                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6Im93bmVyIiwiaWF0IjoxNTc5NTEyMDE0LCJleHAiOjE1Nzk1OTg0MTR9.pLMGZfJ573VzJHJvETd9js2wXBxk-_a3SU_vwILr6E0"
+                                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6ImRldmVsb3BlciIsImlhdCI6MTU3OTUxMzAzNCwiZXhwIjoxMDIxOTUxMzAzNH0.W4Ky9zm0UWL91jn7XSg8pfoewaiq1U3GM0ZmGjG0s78"
                             )
                             .build()
                     )

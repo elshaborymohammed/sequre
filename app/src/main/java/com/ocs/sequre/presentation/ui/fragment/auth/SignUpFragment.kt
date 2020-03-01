@@ -47,9 +47,9 @@ class SignUpFragment : BaseFragment() {
         return arrayOf(
             viewModel.loading().subscribe(::loading),
             signUpViewHolder.validations().subscribe(
-                { requireView().next.isEnabled = it },
-                Throwable::printStackTrace
-            )//,
+                { requireView().next.isEnabled = it }, Throwable::printStackTrace
+            ), viewModel.countryCode().subscribe(signUpViewHolder::setCountries, onError())
+            //,
 //            signUpViewHolder.validationData({
 //                subscribe(
 //                    viewModel.checkEmail(it).subscribe(
