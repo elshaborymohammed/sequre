@@ -8,7 +8,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.signature.ObjectKey
-import com.compact.app.extensions.isNotNullOrEmpty
 import com.google.android.material.tabs.TabLayoutMediator
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
@@ -62,7 +61,7 @@ class ProfileFragment : BaseFragment() {
                     email.text = it.email
                     phone.text = "0${it.phone}"
                     birth_date?.apply {
-                        text = if (it.birthDate!!.isNotNullOrEmpty()) {
+                        text = if (!it.birthDate.isNullOrEmpty()) {
                             val date = SimpleDateFormat("yyyy-MM-dd").parse(it.birthDate.toString())
                             SimpleDateFormat("dd-MM-yyyy").format(date)
                         } else {
@@ -72,7 +71,8 @@ class ProfileFragment : BaseFragment() {
 
                     GlideApp.with(avatar)
                         .load(it.photo)
-                        .error(R.drawable.ic_profile_avatar)
+                        .placeholder(R.drawable.ic_profile_placeholder)
+                        .error(R.drawable.ic_profile_placeholder)
                         .signature(ObjectKey(it.photo ?: ""))
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true)

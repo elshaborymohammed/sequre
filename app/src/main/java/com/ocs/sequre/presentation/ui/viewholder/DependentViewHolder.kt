@@ -50,7 +50,9 @@ class DependentViewHolder constructor(private val view: View, private val skip: 
             obj.photo?.let { ObjectKey(it) }?.let {
                 GlideApp.with(input_avatar)
                     .load(obj.photo)
-                    .error(R.drawable.ic_profile_avatar)
+                    .placeholder(R.drawable.ic_profile_placeholder)
+                    .error(R.drawable.ic_profile_placeholder)
+//                    .error(R.drawable.ic_profile_avatar)
                     .signature(it)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)

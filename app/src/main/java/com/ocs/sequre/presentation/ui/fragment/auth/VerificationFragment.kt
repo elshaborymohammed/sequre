@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit
 
 class VerificationFragment : BaseFragment() {
     private lateinit var viewModel: AuthViewModel
+    private val countDown: Long = 60L
 
     override fun layoutRes(): Int {
         return R.layout.fragment_auth_verification
@@ -87,15 +88,16 @@ class VerificationFragment : BaseFragment() {
 
     private fun timer() {
         subscribe(
-            Flowable.intervalRange(1, 30, 0, 1, TimeUnit.SECONDS)
+            Flowable.intervalRange(1, countDown, 0, 1, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
                     resend.visibility = View.GONE
-                    view?.try_resend?.text = getString(R.string.try_resend_code, 30)
+                    view?.try_resend?.text = getString(R.string.try_resend_code, countDown)
                 }
+                .map { countDown - it }
                 .subscribe({
-                    view?.try_resend?.text = getString(R.string.try_resend_code, 30 - it)
+                    view?.try_resend?.text = getString(R.string.try_resend_code, it)
                 }, Throwable::printStackTrace, {
                     resend.visibility = View.VISIBLE
                 })

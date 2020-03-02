@@ -20,13 +20,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginHorizontal="24dp"
                 android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
                     android:text="Second Opinion"
                     android:textAppearance="?attr/textAppearanceBody1" />
 
@@ -50,43 +52,50 @@
                 layout="@layout/layout_second_opinion_ask"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp" />
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="16dp" />
 
             <include
                 layout="@layout/layout_second_opinion_speciality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp" />
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="16dp" />
 
             <include
                 layout="@layout/layout_second_opinion_question_yes_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp" />
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="16dp" />
 
             <include
                 layout="@layout/layout_second_opinion_question_multi_choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp" />
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="16dp" />
 
             <include
                 layout="@layout/layout_second_opinion_question_yes_no_gen_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp" />
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="16dp" />
 
             <include
                 layout="@layout/layout_second_opinion_question_yes_no_gen_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp" />
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="16dp" />
 
             <include
                 layout="@layout/layout_second_opinion_question_multi_choice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp" />
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginVertical="16dp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

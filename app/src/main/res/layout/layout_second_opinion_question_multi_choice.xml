@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
         android:text="Do you suffer from any of the below ?"
-        android:textAppearance="?attr/textAppearanceBody2" />
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:textSize="22sp" />
 
     <LinearLayout
         android:id="@+id/answers"
@@ -23,17 +24,20 @@
         <com.google.android.material.checkbox.MaterialCheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Swelling" />
+            android:text="Swelling"
+            android:textAppearance="?attr/textAppearanceBody2" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bruising" />
+            android:text="Bruising"
+            android:textAppearance="?attr/textAppearanceBody2" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tenderness" />
+            android:text="Tenderness"
+            android:textAppearance="?attr/textAppearanceBody2" />
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton

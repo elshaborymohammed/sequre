@@ -10,13 +10,13 @@ apply plugin: 'io.fabric'
 apply from: "../dependencies.gradle"
 
 def getMyVersionCode = { ->
-    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : 1
+    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : 2
     println "VersionCode is set to $code"
     return code
 }
 
 def getMyVersionName = { ->
-    def name = project.hasProperty('versionName') ? versionName : "0.0.1"
+    def name = project.hasProperty('versionName') ? versionName : "0.0.2"
     println "VersionName is set to $name"
     return name
 }

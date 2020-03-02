@@ -49,7 +49,8 @@ class UserProfileViewHolder constructor(private val view: View) : UserDataViewHo
             }
             GlideApp.with(input_avatar)
                 .load(obj.photo)
-                .error(R.drawable.ic_profile_avatar)
+                .placeholder(R.drawable.ic_profile_placeholder)
+                .error(R.drawable.ic_profile_placeholder)
                 .signature(ObjectKey(obj.photo ?: ""))
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)

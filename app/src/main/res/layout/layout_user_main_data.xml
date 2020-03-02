@@ -35,33 +35,41 @@
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:gravity="top|fill"
-        android:orientation="horizontal"
-        android:weightSum="1">
+        android:gravity="top">
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/input_country"
+            style="@style/Widget.AppCompat.Spinner.DropDown"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="top|start"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="0.25"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/sh_drop_down_list"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBaseline_creator="1"
+            app:layout_constraintBottom_toBottomOf="@id/input_phone"
+            app:layout_constraintEnd_toStartOf="@id/input_phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/input_phone"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.3" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="top|end"
             android:layout_marginStart="8dp"
-            android:layout_weight="0.75"
             android:hint="@string/mobile"
             android:tag="mobile"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/input_country"
+            app:layout_constraintTop_toTopOf="parent"
             app:placeholderText="ex. 1091021133">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -70,5 +78,5 @@
                 android:layout_height="match_parent"
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

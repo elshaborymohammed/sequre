@@ -41,6 +41,7 @@
             style="@style/App.Widget.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:autoSizeTextType="none"
             android:enabled="false"
             android:includeFontPadding="true"
             android:inputType="none"

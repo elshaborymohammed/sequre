@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
         android:text="@string/are_you_requesting_the_second_opinion"
-        android:textAppearance="?attr/textAppearanceBody2" />
+        android:textSize="22sp"
+        android:textAppearance="?attr/textAppearanceBody1" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"

@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
         android:text="Have you had your leg broken before ?"
-        android:textAppearance="?attr/textAppearanceBody2" />
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:textSize="22sp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/yes"

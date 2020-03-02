@@ -10,10 +10,6 @@
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-
-        <item name="listPreferredItemHeight">16dp</item>
-        <item name="listPreferredItemHeightSmall">48dp</item>
-        <item name="listPreferredItemHeightLarge">32dp</item>
         <item name="android:textCursorDrawable">@drawable/ic_cursor</item>
 
         <item name="android:datePickerDialogTheme">@style/App.Widget.DatePicker</item>
@@ -25,6 +21,7 @@
         <item name="materialButtonStyle">@style/App.Widget.Button</item>
         <item name="preferenceStyle">@style/App.Widget.Preference.EditTextPreference</item>
         <item name="progressBarStyle">@style/Widget.AppCompat.ProgressBar</item>
+        <item name="android:textViewStyle">@style/App.Widget.TextView</item>
 
         <item name="titleTextAppearance">@style/App.TextAppearance.Title</item>
         <item name="subtitleTextAppearance">@style/App.TextAppearance.Subtitle</item>
@@ -107,9 +104,13 @@
         <item name="android:textAppearance">@style/App.TextAppearance.Button</item>
     </style>
 
-    <style name="App.Widget.TextView.Title" parent="Widget.MaterialComponents.TextView" />
-
     <style name="App.Widget.Preference.EditTextPreference" parent="Preference.DialogPreference.EditTextPreference" />
+
+    <style name="App.Widget.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="autoSizeTextType">none</item>
+    </style>
+
+    <style name="App.Widget.TextView.Title" parent="Widget.MaterialComponents.TextView" />
 
     <style name="App.Widget.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="boxBackgroundColor">@null</item>
@@ -124,8 +125,6 @@
         <item name="endIconMode">clear_text</item>
         <item name="errorEnabled">true</item>
         <item name="android:paddingStart">0dp</item>
-        <item name="android:paddingTop">0dp</item>
-        <item name="android:paddingBottom">0dp</item>
         <item name="android:maxLines">1</item>
     </style>
 
@@ -134,6 +133,7 @@
         <item name="android:maxLines">1</item>
         <item name="backgroundTint">@android:color/transparent</item>
         <item name="android:textAppearance">@style/App.TextAppearance.Caption</item>
+        <item name="autoSizeTextType">none</item>
     </style>
 
 
@@ -147,14 +147,14 @@
 
     <!--  region Text Appearance -->
 
-    <style name="App.TextAppearance.Title" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+    <style name="App.TextAppearance.Title" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textColor">#000</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:color">#000</item>
+        <item name="android:textSize">25sp</item>
         <item name="fontFamily">@font/roboto_medium</item>
     </style>
 
-    <style name="App.TextAppearance.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+    <style name="App.TextAppearance.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="android:textColor">#000</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
@@ -164,7 +164,7 @@
     <style name="App.TextAppearance.Body1" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textColor">#000</item>
         <item name="android:color">#000</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="fontFamily">@font/roboto_medium</item>
     </style>
 

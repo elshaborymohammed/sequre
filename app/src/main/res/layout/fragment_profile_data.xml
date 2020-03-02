@@ -35,14 +35,13 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="0dp" />
 
-            <!--    style="@style/App.TextAppearance.Headline3"-->
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/edit_profile"
-                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textAppearance="?attr/textAppearanceBody1"
                 app:layout_constraintStart_toStartOf="@id/guideline_start"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,7 +52,8 @@
                 android:layout_marginTop="16dp"
                 android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="@id/guideline_start"
-                app:layout_constraintTop_toBottomOf="@id/title" />
+                app:layout_constraintTop_toBottomOf="@id/title"
+                app:srcCompat="@drawable/ic_profile_placeholder" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/camera"

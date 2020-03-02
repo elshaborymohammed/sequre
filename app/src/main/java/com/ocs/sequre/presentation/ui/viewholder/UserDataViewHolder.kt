@@ -39,7 +39,8 @@ abstract class UserDataViewHolder constructor(private val view: View, private va
                 setAdapter(
                     ArrayAdapter(
                         view.context,
-                        android.R.layout.select_dialog_item,
+                        com.ocs.sequre.R.layout.select_dialog_item,
+                        com.ocs.sequre.R.id.text,
                         view.resources.getStringArray(com.ocs.sequre.R.array.gender_array)
                     )
                 )
@@ -96,7 +97,6 @@ abstract class UserDataViewHolder constructor(private val view: View, private va
                         }, true
                     )
                 }
-
             }
         }
     }
