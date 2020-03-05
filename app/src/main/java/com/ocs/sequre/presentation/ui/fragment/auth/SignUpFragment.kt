@@ -74,7 +74,6 @@ class SignUpFragment : BaseFragment() {
                 input.error = e.message
                 input.isErrorEnabled = true
             }
-
         }
     }
 }

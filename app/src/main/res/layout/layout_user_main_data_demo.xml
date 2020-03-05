@@ -15,7 +15,6 @@
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/App.Widget.TextInputEditText"
-            android:inputType="textPersonName"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -42,28 +41,22 @@
         android:layout_marginTop="8dp"
         android:gravity="top">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/input_country"
+            style="@style/Widget.AppCompat.Spinner.DropDown"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:endIconDrawable="@drawable/ic_chevron_down"
-            app:endIconMode="dropdown_menu"
-            app:endIconTint="@color/colorAccent"
-            app:errorEnabled="false"
-            app:layout_constraintBaseline_toBaselineOf="@id/input_phone"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/sh_drop_down_list"
+            android:spinnerMode="dropdown"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBaseline_creator="1"
+            app:layout_constraintBottom_toBottomOf="@id/input_phone"
             app:layout_constraintEnd_toStartOf="@id/input_phone"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/input_phone"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.3">
-
-            <com.google.android.material.textview.MaterialAutoCompleteTextView
-                style="@style/App.Widget.TextInputEditText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:editable="false"
-                android:inputType="none" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintWidth_percent="0.3" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_phone"
@@ -72,9 +65,11 @@
             android:layout_marginStart="8dp"
             android:hint="@string/mobile"
             android:tag="mobile"
-            app:layout_constraintBaseline_toBaselineOf="@id/input_country"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/input_country"
+            app:layout_constraintTop_toTopOf="parent"
             app:placeholderText="ex. 1091021133">
 
             <com.google.android.material.textfield.TextInputEditText

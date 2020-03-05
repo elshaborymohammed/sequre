@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 
 abstract class DependentFragment(private val skip: Long) : BaseFragment() {
 
-    protected lateinit var authViewModel: AuthViewModel
+    private lateinit var authViewModel: AuthViewModel
     protected lateinit var dependentViewModel: DependentViewModel
     protected lateinit var viewHolder: DependentViewHolder
 
@@ -31,7 +31,7 @@ abstract class DependentFragment(private val skip: Long) : BaseFragment() {
 
     override fun onViewBound(view: View) {
         super.onViewBound(view)
-        viewHolder = DependentViewHolder(view, skip)
+        viewHolder = DependentViewHolder(view, focusChangesSkip = skip)
 
         authViewModel =
             ViewModelProvider(this, factory).get(AuthViewModel::class.java)
@@ -39,8 +39,12 @@ abstract class DependentFragment(private val skip: Long) : BaseFragment() {
             ViewModelProvider(this, factory).get(DependentViewModel::class.java)
 
         view.input_avatar.setOnClickListener {
-            ImagePicker.build(this)
+            requestImageCapture()
         }
+        view.camera.setOnClickListener {
+            view.input_avatar.performClick()
+        }
+
         view.update.setOnClickListener {
             onSaveClicked(viewHolder.get())
         }
@@ -48,20 +52,6 @@ abstract class DependentFragment(private val skip: Long) : BaseFragment() {
             subscribe(
                 dependentViewModel.delete(viewHolder.get().id).subscribe(::onSuccess, onError())
             )
-        }
-        view.input_avatar.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    ImagePicker.PERMISSIONS[0]
-                ) != PERMISSION_GRANTED
-            ) {
-                requestPermissions(
-                    ImagePicker.PERMISSIONS,
-                    ImagePicker.REQUEST_CODE
-                )
-            } else {
-                ImagePicker.build(this)
-            }
         }
 
         view.update.isEnabled = false
@@ -103,16 +93,15 @@ abstract class DependentFragment(private val skip: Long) : BaseFragment() {
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
+            viewHolder.validations().subscribe(
+                requireView().update::setEnabled,
+                Throwable::printStackTrace
+            ),
             dependentViewModel.loading().subscribe(::loading),
+            authViewModel.loading().subscribe(::loading),
             authViewModel.countryCode().subscribe({
                 viewHolder.setCountries(it)
                 onDataLoaded()
-                subscribe(
-                    viewHolder.validations().subscribe(
-                        requireView().update::setEnabled,
-                        Throwable::printStackTrace
-                    )
-                )
             }, onError())
         )
     }

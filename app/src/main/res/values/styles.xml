@@ -119,13 +119,14 @@
         <item name="boxStrokeErrorColor">@color/colorAccent</item>
         <item name="hintAnimationEnabled">true</item>
         <item name="hintEnabled">true</item>
-        <item name="hintTextAppearance">@style/App.TextAppearance.Hint</item>
-        <item name="errorTextAppearance">@style/App.TextAppearance.Error</item>
         <item name="hintTextColor">@color/colorAccent</item>
         <item name="endIconMode">clear_text</item>
         <item name="errorEnabled">true</item>
         <item name="android:paddingStart">0dp</item>
         <item name="android:maxLines">1</item>
+        <item name="placeholderTextAppearance">@style/App.TextAppearance.Caption</item>
+        <item name="hintTextAppearance">@style/App.TextAppearance.Hint</item>
+        <item name="errorTextAppearance">@style/App.TextAppearance.Error</item>
     </style>
 
     <style name="App.Widget.TextInputEditText" parent="Widget.AppCompat.EditText">

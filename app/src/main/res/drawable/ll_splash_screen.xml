@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:gravity="fill|center">
         <shape android:shape="rectangle">
@@ -13,6 +14,7 @@
 
     <item
         android:end="-32dp"
+        tools:targetApi="m"
         android:gravity="top|end">
         <rotate
             android:drawable="@drawable/ic_splash"
@@ -22,5 +24,6 @@
     <item
         android:drawable="@drawable/ic_splash"
         android:gravity="bottom|start"
-        android:start="-32dp" />
+        android:start="-32dp"
+        tools:targetApi="m" />
 </layer-list>

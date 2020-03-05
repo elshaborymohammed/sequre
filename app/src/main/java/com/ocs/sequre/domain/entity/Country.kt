@@ -16,6 +16,6 @@ data class Country(
     val shortName: String
 ) : Serializable {
     override fun toString(): String {
-        return "$code - $name"
+        return "$code"
     }
 }

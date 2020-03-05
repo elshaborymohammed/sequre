@@ -11,18 +11,19 @@ import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import kotlinx.android.synthetic.main.card_menu.view.*
 
-class MenuAdapter :
-    CompactRecyclerView.Adapter<MenuAdapter.Menu, MenuAdapter.ViewHolder> {
+class MenuAdapter() :
+    CompactRecyclerView.Adapter<MenuAdapter.Menu, MenuAdapter.ViewHolder>() {
 
     private lateinit var listener: OnItemClickListener
 
-    constructor(){
+    init {
         swap(Menu.getMenus())
     }
+
     override fun itemDecorations(): Array<RecyclerView.ItemDecoration> {
         return arrayOf(
             CompactRecyclerView.SpacesItemDecoration.Linear.builder(context)
-                .top(32).left(12).right(12).build()
+                .top(64).left(12).right(12).build()
         )
     }
 

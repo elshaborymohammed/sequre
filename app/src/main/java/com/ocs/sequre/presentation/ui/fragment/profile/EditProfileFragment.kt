@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.view.View
-import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import com.compact.picker.ImagePicker
 import com.ocs.sequre.R
@@ -19,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_profile_data.*
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 
 class EditProfileFragment : BaseFragment() {
-    protected lateinit var authViewModel: AuthViewModel
+    private lateinit var authViewModel: AuthViewModel
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var viewHolder: UserProfileViewHolder
 
@@ -36,20 +35,12 @@ class EditProfileFragment : BaseFragment() {
             ViewModelProvider(requireActivity(), factory).get(ProfileViewModel::class.java)
 
         view.input_avatar.setOnClickListener {
-            if (ActivityCompat.checkSelfPermission(
-                    requireContext(),
-                    ImagePicker.PERMISSIONS[0]
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    requireActivity(),
-                    ImagePicker.PERMISSIONS,
-                    ImagePicker.REQUEST_CODE
-                )
-            } else {
-                ImagePicker.build(this)
-            }
+            requestImageCapture()
         }
+        view.camera.setOnClickListener {
+            view.input_avatar.performClick()
+        }
+
         view.update.setOnClickListener {
             subscribe(
                 profileViewModel.update(viewHolder.get()).subscribe(::onSuccess, onError())

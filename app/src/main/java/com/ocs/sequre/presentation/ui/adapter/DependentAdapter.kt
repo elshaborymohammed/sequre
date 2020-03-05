@@ -53,7 +53,7 @@ class DependentAdapter :
                     listener.setOnItemClickListener(it)
                 }
 
-                relation.text = it.relationship
+                relation.setText(it.relationship.stringRes)
                 name.text = it.name
                 email.text = it.email
                 phone.text = it.phone.run { if (this.startsWith("0")) this else "0${this}" }

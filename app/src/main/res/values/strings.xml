@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">SeQure</string>
+    <string name="slogan">
+        <![CDATA[
+        Your
+        <b><font color=#007DC3>Health</font></b>
+        is Our Priority
+        ]]></string>
+
+    <string name="slogan2">Your <font fgcolor='#007DC3'>Health</font> is Our Priority</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="openDrawer">open_drawer</string>
@@ -87,6 +96,12 @@
     <string name="change_language">Change Language</string>
     <string name="my_profile">My Profile</string>
     <string name="saved_successfully">Data saved successfully</string>
+
+    <string name="relationship_husband">Husband</string>
+    <string name="relationship_wife">Wife</string>
+    <string name="relationship_son">Son</string>
+    <string name="relationship_daughter">Daughter</string>
+    <string name="relationship_other">Other</string>
 
     <!--  region Validation messages -->
     <string name="invalid_phone_or_password">Invalid mobile or password</string>

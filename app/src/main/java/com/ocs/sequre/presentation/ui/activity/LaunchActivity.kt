@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.ocs.sequre.R
 import com.ocs.sequre.presentation.preference.AuthPreference
 import com.ocs.sequre.presentation.preference.LanguageStatusPreference
 import dagger.android.AndroidInjection
@@ -13,12 +14,21 @@ class LaunchActivity : AppCompatActivity() {
 
     @Inject
     lateinit var auth: AuthPreference
+
     @Inject
     lateinit var lang: LanguageStatusPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_splash)
+
+//        view.slogan.text =
+//            HtmlCompat.fromHtml(
+//                getString(R.string.slogan),
+//                HtmlCompat.FROM_HTML_MODE_COMPACT
+//            )
+
         Handler().postDelayed({
             if (auth.hasToken()) {
                 val intent = Intent(this, HomeActivity::class.java)

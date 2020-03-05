@@ -8,7 +8,6 @@ import com.compact.app.extensions.text
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.base64
-import com.ocs.sequre.domain.entity.Country
 import com.ocs.sequre.domain.entity.Profile
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 import kotlinx.android.synthetic.main.layout_user_profile_data.view.*
 
-class UserProfileViewHolder constructor(private val view: View) : UserDataViewHolder(view, 0) {
+class UserProfileViewHolder constructor(private val view: View) : UserDataViewHolder(view, 0, 0) {
 
     init {
         view.input_relationship.visibility = View.GONE
@@ -39,13 +38,15 @@ class UserProfileViewHolder constructor(private val view: View) : UserDataViewHo
 
     fun set(obj: Profile) {
         view.apply {
-            selectCountry(obj.countryCode ?: "+20")
-            input_phone.editText?.setText(obj.phone)
-            input_name.editText?.setText(obj.name)
-            input_email.editText?.setText(obj.email)
-            input_birth_date.editText?.setText((obj.birthDate ?: "").toString())
+            input_phone.text(obj.phone ?: "")
+            input_name.text(obj.name ?: "")
+            input_email.text(obj.email ?: "")
+            input_birth_date.text(obj.birthDate ?: "")
             (input_gender.editText as AutoCompleteTextView).apply {
                 setText(obj.gender, false)
+            }
+            (input_country.editText as AutoCompleteTextView).apply {
+                setText(obj.countryCode ?: "+20", false)
             }
             GlideApp.with(input_avatar)
                 .load(obj.photo)
@@ -62,7 +63,7 @@ class UserProfileViewHolder constructor(private val view: View) : UserDataViewHo
         return Profile(
             name = view.input_name.text(),
             email = view.input_email.text(),
-            countryCode = (view.input_country.selectedItem as Country).code,
+            countryCode = view.input_country.text(),
             phone = view.input_phone.text(),
             gender = view.input_gender.text(),
             birthDate = view.input_birth_date.text(),
