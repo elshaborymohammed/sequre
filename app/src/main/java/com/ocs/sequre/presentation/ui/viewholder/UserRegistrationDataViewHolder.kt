@@ -43,37 +43,15 @@ class UserRegistrationDataViewHolder constructor(private val view: View) {
                     R.id.text,
                     it
                 ).apply {
-//                    onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//                        override fun onNothingSelected(parent: AdapterView<*>?) {
-//
-//                        }
-//
-//                        override fun onItemSelected(
-//                            parent: AdapterView<*>?,
-//                            view: View?,
-//                            position: Int,
-//                            id: Long
-//                        ) {
-//                            view?.findViewById<TextView>(android.R.id.text1)?.apply {
-//                                text = it[position].code
-//                            }
-//                        }
-//                    }
                     setAdapter(this)
+                    setOnItemClickListener { parent, view, position, id ->
+                        text(it[position].code)
+                    }
                 }
-                setText("+20", false)
+                text("+20")
             }
         }
     }
-
-//    fun set(obj: Registration) {
-//        view.input_country.text(obj.countryCode ?: "+20")
-//        view.input_phone.text(obj.phone)
-//        view.input_name.text(obj.name)
-//        view.input_email.text(obj.email)
-//        view.input_password.text(obj.password)
-//        view.input_password_confirm.text(obj.password)
-//    }
 
     fun get(): Registration {
         return Registration(

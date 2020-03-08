@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.compact.picker.ImagePicker
+import com.google.android.material.textfield.TextInputLayout
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.BaseFragment
@@ -16,6 +17,7 @@ import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_profile_data.*
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
+import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 
 class EditProfileFragment : BaseFragment() {
     private lateinit var authViewModel: AuthViewModel
@@ -40,7 +42,6 @@ class EditProfileFragment : BaseFragment() {
         view.camera.setOnClickListener {
             view.input_avatar.performClick()
         }
-
         view.update.setOnClickListener {
             subscribe(
                 profileViewModel.update(viewHolder.get()).subscribe(::onSuccess, onError())
@@ -82,24 +83,39 @@ class EditProfileFragment : BaseFragment() {
         }
     }
 
+    override fun subscriptions(): Array<Disposable> {
+        return arrayOf(
+            profileViewModel.loading().subscribe(::loading),
+            viewHolder.validations().subscribe(
+                requireView().update::setEnabled,
+                Throwable::printStackTrace
+            ),
+            profileViewModel.profile().subscribe(viewHolder::set),
+            countries()
+        )
+    }
+
     override fun onDestroyView() {
         loading(false)
         super.onDestroyView()
     }
 
-    override fun subscriptions(): Array<Disposable> {
-        return arrayOf(
-            profileViewModel.loading().subscribe(::loading),
-            authViewModel.countryCode().subscribe({
-                viewHolder.setCountries(it)
-                subscribe(profileViewModel.profile().subscribe(viewHolder::set))
-                subscribe(
-                    viewHolder.validations().subscribe(
-                        requireView().update::setEnabled,
-                        Throwable::printStackTrace
-                    )
-                )
-            }, onError())
-        )
-    }
+    private fun countries(): Disposable = authViewModel.countryCode()
+        .subscribe({
+            viewHolder.setCountries(it)
+            view!!.input_country.apply {
+                endIconMode = TextInputLayout.END_ICON_DROPDOWN_MENU
+                setEndIconDrawable(R.drawable.ic_chevron_down)
+            }
+        }, {
+            onError()
+            view!!.input_country.apply {
+                setEndIconDrawable(R.drawable.ic_chevron_down)
+                endIconMode = TextInputLayout.END_ICON_CUSTOM
+                setEndIconOnClickListener {
+                    subscribe(countries())
+                }
+            }
+        })
+
 }

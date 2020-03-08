@@ -24,7 +24,7 @@ class Dependent(
     val email: String,
     @SerializedName("c_code")
     @Expose
-    val countryCode: String,
+    val countryCode: String = "+20",
     phone: String = "",
     @SerializedName("birth")
     @Expose

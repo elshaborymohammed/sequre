@@ -1,13 +1,13 @@
-package com.ocs.sequre.presentation.ui.fragment.profile
+package com.ocs.sequre.presentation.ui.fragment.profile.dependent
 
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.graphics.Bitmap
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.compact.picker.ImagePicker
+import com.google.android.material.textfield.TextInputLayout
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.BaseFragment
@@ -18,8 +18,12 @@ import com.ocs.sequre.presentation.viewmodel.DependentViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_profile_data.*
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
+import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 
-abstract class DependentFragment(private val skip: Long) : BaseFragment() {
+abstract class DependentFragment(
+    private val textChangesSkip: Long,
+    private val focusChangesSkip: Long
+) : BaseFragment() {
 
     private lateinit var authViewModel: AuthViewModel
     protected lateinit var dependentViewModel: DependentViewModel
@@ -31,7 +35,12 @@ abstract class DependentFragment(private val skip: Long) : BaseFragment() {
 
     override fun onViewBound(view: View) {
         super.onViewBound(view)
-        viewHolder = DependentViewHolder(view, focusChangesSkip = skip)
+        viewHolder =
+            DependentViewHolder(
+                view,
+                textChangesSkip = textChangesSkip,
+                focusChangesSkip = focusChangesSkip
+            )
 
         authViewModel =
             ViewModelProvider(this, factory).get(AuthViewModel::class.java)
@@ -55,6 +64,7 @@ abstract class DependentFragment(private val skip: Long) : BaseFragment() {
         }
 
         view.update.isEnabled = false
+        onDataLoaded()
     }
 
     override fun onRequestPermissionsResult(
@@ -99,12 +109,27 @@ abstract class DependentFragment(private val skip: Long) : BaseFragment() {
             ),
             dependentViewModel.loading().subscribe(::loading),
             authViewModel.loading().subscribe(::loading),
-            authViewModel.countryCode().subscribe({
-                viewHolder.setCountries(it)
-                onDataLoaded()
-            }, onError())
+            countries()
         )
     }
+
+    private fun countries(): Disposable = authViewModel.countryCode()
+        .subscribe({
+            viewHolder.setCountries(it)
+            view!!.input_country.apply {
+                endIconMode = TextInputLayout.END_ICON_DROPDOWN_MENU
+                setEndIconDrawable(R.drawable.ic_chevron_down)
+            }
+        }, {
+            onError()
+            view!!.input_country.apply {
+                setEndIconDrawable(R.drawable.ic_chevron_down)
+                endIconMode = TextInputLayout.END_ICON_CUSTOM
+                setEndIconOnClickListener {
+                    subscribe(countries())
+                }
+            }
+        })
 
     open fun onDataLoaded() {}
 

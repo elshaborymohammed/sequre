@@ -1,7 +1,9 @@
 package com.ocs.sequre.presentation.ui.viewholder
 
 import android.view.View
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.DatePicker
 import com.compact.app.extensions.email
 import com.compact.app.extensions.fullName
 import com.compact.app.extensions.notNullOrEmpty
@@ -40,65 +42,8 @@ abstract class UserDataViewHolder constructor(
         get() = view.input_phone.editText!!.focusChanges()
 
     init {
-        view.input_relationship.apply {
-            (editText as AutoCompleteTextView).run {
-                ArrayAdapter(
-                    view.context,
-                    R.layout.select_dialog_item,
-                    R.id.text,
-                    Relationship.values()
-                ).also {
-                    onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                        override fun onNothingSelected(parent: AdapterView<*>?) {
-
-                        }
-
-                        override fun onItemSelected(
-                            parent: AdapterView<*>?,
-                            view: View?,
-                            position: Int,
-                            id: Long
-                        ) {
-                            view?.findViewById<TextView>(R.id.text)?.apply {
-                                setText(it.getItem(position)!!.stringRes)
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-
         view.input_relationship.setAdapter(Relationship.values(view.context))
         view.input_gender.setAdapter(R.array.gender_array)
-
-//        view.input_relationship.apply {
-//            (editText as AutoCompleteTextView).run {
-//                threshold = 1 //will start working from first character
-//                setAdapter(
-//                    ArrayAdapter(
-//                        context,
-//                        com.ocs.sequre.R.layout.select_dialog_item,
-//                        com.ocs.sequre.R.id.text,
-//                        view.resources.getStringArray(com.ocs.sequre.R.array.relationship_array)
-//                    )
-//                )
-//            }
-//        }
-
-//        view.input_gender.apply {
-//            (editText as AutoCompleteTextView).run {
-//                threshold = 1 //will start working from first character
-//                setAdapter(
-//                    ArrayAdapter(
-//                        context,
-//                        com.ocs.sequre.R.layout.select_dialog_item,
-//                        com.ocs.sequre.R.id.text,
-//                        view.resources.getStringArray(com.ocs.sequre.R.array.gender_array)
-//                    )
-//                )
-//            }
-//        }
 
         view.input_birth_date.apply {
             setOnClickListener {
@@ -122,25 +67,11 @@ abstract class UserDataViewHolder constructor(
                     R.id.text,
                     it
                 ).run {
-//                    onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//                        override fun onNothingSelected(parent: AdapterView<*>?) {
-//
-//                        }
-//
-//                        override fun onItemSelected(
-//                            parent: AdapterView<*>?,
-//                            view: View?,
-//                            position: Int,
-//                            id: Long
-//                        ) {
-//                            view?.findViewById<TextView>(android.R.id.text1)?.apply {
-//                                text = it[position].code
-//                            }
-//                        }
-//                    }
                     setAdapter(this)
+                    setOnItemClickListener { parent, view, position, id ->
+                        setText(it[position].code, false)
+                    }
                 }
-                setText("+20", false)
             }
         }
     }

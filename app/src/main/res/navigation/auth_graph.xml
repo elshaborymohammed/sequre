@@ -6,41 +6,6 @@
     app:startDestination="@id/signInFragment">
 
     <fragment
-        android:id="@+id/landingFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.auth.LandingFragment"
-        android:label="LandingFragment"
-        tools:layout="@layout/fragment_auth_landing">
-        <action
-            android:id="@+id/action_landingFragment_to_signInFragment"
-            app:destination="@id/signInFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_landingFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/languageFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment"
-        android:label="LanguageFragment"
-        tools:layout="@layout/fragment_language">
-        <action
-            android:id="@+id/action_languageFragment_to_signInFragment"
-            app:destination="@id/signInFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-
-    <fragment
         android:id="@+id/signInFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.auth.SignInFragment"
         android:label="SignInFragment"
@@ -75,13 +40,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_signUpFragment_to_signInFragment"
-            app:destination="@id/signInFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+<!--        <action-->
+        <!--            android:id="@+id/action_signUpFragment_to_signInFragment"-->
+        <!--            app:destination="@id/signInFragment"-->
+        <!--            app:enterAnim="@anim/slide_in_right"-->
+        <!--            app:exitAnim="@anim/slide_out_left"-->
+        <!--            app:popEnterAnim="@anim/slide_in_left"-->
+        <!--            app:popExitAnim="@anim/slide_out_right" />-->
     </fragment>
 
     <fragment

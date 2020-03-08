@@ -15,9 +15,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/App.Widget.TextInputEditText"
-            android:inputType="textPersonName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -37,6 +37,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/country"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -47,7 +48,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:endIconDrawable="@drawable/ic_chevron_down"
-            app:endIconMode="dropdown_menu"
+            app:endIconMode="custom"
             app:endIconTint="@color/colorAccent"
             app:errorEnabled="false"
             app:layout_constraintBaseline_toBaselineOf="@id/input_phone"
@@ -60,6 +61,8 @@
                 style="@style/App.Widget.TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:dropDownAnchor="@id/country"
+                android:dropDownWidth="match_parent"
                 android:editable="false"
                 android:inputType="none" />
 

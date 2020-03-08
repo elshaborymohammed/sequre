@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 import kotlinx.android.synthetic.main.layout_user_profile_data.view.*
 
-class UserProfileViewHolder constructor(private val view: View) : UserDataViewHolder(view, 0, 0) {
+class UserProfileViewHolder constructor(private val view: View) : UserDataViewHolder(view, 1, 0) {
 
     init {
         view.input_relationship.visibility = View.GONE
@@ -30,7 +30,6 @@ class UserProfileViewHolder constructor(private val view: View) : UserDataViewHo
             gender,
             birthDate,
             Function5 { name: Boolean, email: Boolean, phone: Boolean, gender: Boolean, birthDate: Boolean ->
-                println("name = [${name}], email = [${email}], phone = [${phone}], gender = [${gender}], birthDate = [${birthDate}]")
                 name && email && phone && gender && birthDate
             }
         ).subscribeOn(AndroidSchedulers.mainThread()).observeOn(AndroidSchedulers.mainThread())

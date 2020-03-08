@@ -3,6 +3,7 @@ package com.ocs.sequre.presentation.ui.fragment.auth
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.compact.app.extensions.text
 import com.google.android.material.textfield.TextInputLayout
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
@@ -13,10 +14,11 @@ import com.ocs.sequre.presentation.ui.viewholder.UserRegistrationDataViewHolder
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_auth_sign_up.view.*
+import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 
 class SignUpFragment : BaseFragment() {
     private lateinit var viewModel: AuthViewModel
-    private lateinit var signUpViewHolder: UserRegistrationDataViewHolder
+    private lateinit var viewHolder: UserRegistrationDataViewHolder
 
     override fun layoutRes(): Int {
         return R.layout.fragment_auth_sign_up
@@ -26,29 +28,30 @@ class SignUpFragment : BaseFragment() {
         super.onViewBound(view)
         view.next.isEnabled = false
         viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
-        signUpViewHolder = UserRegistrationDataViewHolder(view)
+        viewHolder = UserRegistrationDataViewHolder(view)
 
         view.next.setOnClickListener {
             viewModel.check(
                 AuthValidation(
-                    phone = signUpViewHolder.get().phone,
-                    email = signUpViewHolder.get().email
+                    phone = viewHolder.get().phone,
+                    email = viewHolder.get().email
                 )
             ).subscribe({
                 findNavController().navigate(
                     R.id.action_signUpFragment_to_verificationFragment,
-                    VerificationFragmentArgs(signUpViewHolder.get()).toBundle()
+                    VerificationFragmentArgs(viewHolder.get()).toBundle()
                 )
             }, onError())
         }
+        view.input_country.text("+20")
     }
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
             viewModel.loading().subscribe(::loading),
-            signUpViewHolder.validations().subscribe(
+            viewHolder.validations().subscribe(
                 { requireView().next.isEnabled = it }, Throwable::printStackTrace
-            ), viewModel.countryCode().subscribe(signUpViewHolder::setCountries, onError())
+            ), countries()
             //,
 //            signUpViewHolder.validationData({
 //                subscribe(
@@ -76,4 +79,22 @@ class SignUpFragment : BaseFragment() {
             }
         }
     }
+
+    private fun countries(): Disposable = viewModel.countryCode()
+        .subscribe({
+            viewHolder.setCountries(it)
+            view!!.input_country.apply {
+                endIconMode = TextInputLayout.END_ICON_DROPDOWN_MENU
+                setEndIconDrawable(R.drawable.ic_chevron_down)
+            }
+        }, {
+            onError()
+            view!!.input_country.apply {
+                setEndIconDrawable(R.drawable.ic_chevron_down)
+                endIconMode = TextInputLayout.END_ICON_CUSTOM
+                setEndIconOnClickListener {
+                    subscribe(countries())
+                }
+            }
+        })
 }

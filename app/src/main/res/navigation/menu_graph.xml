@@ -77,13 +77,13 @@
 
         <fragment
             android:id="@+id/dependentCreateFragment"
-            android:name="com.ocs.sequre.presentation.ui.fragment.profile.DependentCreateFragment"
+            android:name="com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentCreateFragment"
             android:label="DependentCreateFragment"
             tools:layout="@layout/fragment_profile_data" />
 
         <fragment
             android:id="@+id/dependentUpdateFragment"
-            android:name="com.ocs.sequre.presentation.ui.fragment.profile.DependentUpdateFragment"
+            android:name="com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentUpdateFragment"
             android:label="DependentUpdateFragment"
             tools:layout="@layout/fragment_profile_data">
             <argument

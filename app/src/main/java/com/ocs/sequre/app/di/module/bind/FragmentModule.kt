@@ -1,12 +1,15 @@
 package com.ocs.sequre.app.di.module.bind
 
-import com.ocs.sequre.presentation.ui.activity.SplashFragment
+import com.ocs.sequre.presentation.ui.activity.LaunchFragment
 import com.ocs.sequre.presentation.ui.fragment.auth.*
 import com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.SecondOpinionFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.*
+import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentCreateFragment
+import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentUpdateFragment
+import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentsFragment
 import com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment
 import com.ocs.sequre.presentation.ui.fragment.setting.SettingFragment
 import dagger.Module
@@ -18,7 +21,7 @@ abstract class FragmentModule {
 
     //region Auth Fragments
     @ContributesAndroidInjector
-    internal abstract fun providesSplashFragment(): SplashFragment
+    internal abstract fun providesSplashFragment(): LaunchFragment
 
     @ContributesAndroidInjector
     internal abstract fun providesLandingFragment(): LandingFragment

@@ -22,27 +22,15 @@
         tools:targetApi="n">
 
         <activity
-            android:name="com.ocs.sequre.presentation.ui.activity.LaunchActivity"
+            android:name="com.ocs.sequre.presentation.ui.activity.MainActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Launcher">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.ocs.sequre.presentation.ui.activity.LanguageActivity" />
-
-        <activity
-            android:name="com.ocs.sequre.presentation.ui.activity.AuthActivity"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name="com.ocs.sequre.presentation.ui.activity.HomeActivity"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
