@@ -16,5 +16,6 @@ class HomeFragment : BaseFragment() {
         super.onViewBound(view)
 
         view.second_opinion.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_navigationFragment_to_secondOpinionFragment))
+        view.discount_card.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_navigationFragment_to_secondOpinionFragment))
     }
 }

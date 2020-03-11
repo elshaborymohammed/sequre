@@ -42,6 +42,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigationFragment_to_discount_card_navigation"
+            app:destination="@id/discount_card_navigation" />
     </fragment>
 
     <fragment
@@ -57,4 +60,11 @@
         tools:layout="@layout/fragment_menu" />
 
     <include app:graph="@navigation/menu_graph" />
+
+    <navigation
+        android:id="@+id/discount_card_navigation"
+        app:startDestination="@id/discount_card_graph">
+
+        <include app:graph="@navigation/discount_card_graph" />
+    </navigation>
 </navigation>

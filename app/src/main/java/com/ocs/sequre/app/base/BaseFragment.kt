@@ -3,6 +3,7 @@ package com.ocs.sequre.app.base
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -22,7 +23,8 @@ import java.io.IOException
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
-abstract class BaseFragment : CompactFragment() {
+abstract class BaseFragment(@StringRes private val titleRes: Int = -1, @StringRes private val subtitleRes: Int = -1) :
+    CompactFragment() {
     @Inject
     protected lateinit var factory: ViewModelProvider.Factory
 
@@ -33,7 +35,14 @@ abstract class BaseFragment : CompactFragment() {
             setNavigationOnClickListener {
                 Navigation.findNavController(view).navigateUp()
             }
-//            setToolBar(this)
+            if (titleRes != -1) {
+                setTitle(titleRes)
+            }
+            if (subtitleRes != -1) {
+                setTitle(subtitleRes)
+            }
+
+            setToolBar(this)
         }
         progressBar = AlertDialog.Builder(requireContext())
             .setView(R.layout.layout_progress_bar)

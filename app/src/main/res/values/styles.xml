@@ -25,6 +25,7 @@
 
         <item name="titleTextAppearance">@style/App.TextAppearance.Title</item>
         <item name="subtitleTextAppearance">@style/App.TextAppearance.Subtitle</item>
+
         <item name="textAppearanceBody1">@style/App.TextAppearance.Body1</item>
         <item name="textAppearanceBody2">@style/App.TextAppearance.Body2</item>
         <item name="textAppearanceCaption">@style/App.TextAppearance.Caption</item>
@@ -155,9 +156,9 @@
     </style>
 
     <style name="App.TextAppearance.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle2">
-        <item name="android:textColor">#000</item>
+        <item name="android:textColor">#007DC3</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">14sp</item>
+        <item name="color">#007DC3</item>
         <item name="fontFamily">@font/roboto_regular</item>
     </style>
 

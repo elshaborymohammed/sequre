@@ -112,7 +112,7 @@
                     app:layout_constrainedWidth="true"
                     app:layout_constraintBottom_toTopOf="@id/second_opinion_text"
                     app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toStartOf="@id/discount_card_image"
+                    app:layout_constraintEnd_toStartOf="@id/discount_card"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -122,7 +122,7 @@
                     app:layout_constraintWidth_percent="0.25" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/discount_card_image"
+                    android:id="@+id/discount_card"
                     style="@style/Widget.AppCompat.ImageButton"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -131,12 +131,12 @@
                     android:src="@drawable/ic_credit_card"
                     app:layout_constraintBottom_toBottomOf="@id/second_opinion"
                     app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toStartOf="@id/upcoming_service_image"
+                    app:layout_constraintEnd_toStartOf="@id/upcoming_service"
                     app:layout_constraintStart_toEndOf="@id/second_opinion"
                     app:layout_constraintTop_toTopOf="@id/second_opinion" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/upcoming_service_image"
+                    android:id="@+id/upcoming_service"
                     style="@style/Widget.AppCompat.ImageButton"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -146,7 +146,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/second_opinion"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/discount_card_image"
+                    app:layout_constraintStart_toEndOf="@id/discount_card"
                     app:layout_constraintTop_toTopOf="@id/second_opinion" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -174,8 +174,8 @@
                     android:textAppearance="?attr/textAppearanceCaption"
                     app:fontFamily="@font/roboto_medium"
                     app:layout_constraintBottom_toBottomOf="@id/second_opinion_text"
-                    app:layout_constraintEnd_toEndOf="@id/discount_card_image"
-                    app:layout_constraintStart_toStartOf="@id/discount_card_image"
+                    app:layout_constraintEnd_toEndOf="@id/discount_card"
+                    app:layout_constraintStart_toStartOf="@id/discount_card"
                     app:layout_constraintTop_toTopOf="@id/second_opinion_text" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -188,8 +188,8 @@
                     android:textAppearance="?attr/textAppearanceCaption"
                     app:fontFamily="@font/roboto_medium"
                     app:layout_constraintBottom_toBottomOf="@id/second_opinion_text"
-                    app:layout_constraintEnd_toEndOf="@id/upcoming_service_image"
-                    app:layout_constraintStart_toStartOf="@id/upcoming_service_image"
+                    app:layout_constraintEnd_toEndOf="@id/upcoming_service"
+                    app:layout_constraintStart_toStartOf="@id/upcoming_service"
                     app:layout_constraintTop_toTopOf="@id/second_opinion_text" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

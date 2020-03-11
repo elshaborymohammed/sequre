@@ -30,4 +30,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DependentViewModel::class)
     internal abstract fun providesDependentViewModel(viewModel: DependentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DiscountCardViewModel::class)
+    internal abstract fun providesDiscountCardViewModel(viewModel: DiscountCardViewModel): ViewModel
 }

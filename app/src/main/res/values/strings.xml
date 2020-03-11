@@ -71,6 +71,7 @@
     <string name="write_here_what_you_feel">Write here what you feel....</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="ok">OK</string>
     <string name="choose_doctor">Choose a Doctor</string>
     <string name="medical_reports">Medical Reports</string>
     <string name="lab_tests">Lab Tests</string>
@@ -129,8 +130,11 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
     <string name="second_opinion">Second\nOpinion</string>
     <string name="discount_card">Discount\nCard</string>
+    <string name="discount_card_title">Discount Packages</string>
+    <string name="discount_card_subtitle">Choose your package</string>
     <string name="upcoming_service">Upcoming\nService</string>
     <string name="find_service_provider">Find Service Provider</string>
     <string name="delete_profile">Delete Profile</string>
+    <string name="your_purchase_has_been_successful">Your purchase has been successful</string>
     <!-- endregion -->
 </resources>

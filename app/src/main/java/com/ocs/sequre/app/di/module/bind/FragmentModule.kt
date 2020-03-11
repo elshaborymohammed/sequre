@@ -2,6 +2,8 @@ package com.ocs.sequre.app.di.module.bind
 
 import com.ocs.sequre.presentation.ui.activity.SplashFragment
 import com.ocs.sequre.presentation.ui.fragment.auth.*
+import com.ocs.sequre.presentation.ui.fragment.discount.DiscountCardsFragment
+import com.ocs.sequre.presentation.ui.fragment.discount.PurchaseSuccessfullyFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment
@@ -79,5 +81,14 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun providesDependentUpdateFragment(): DependentUpdateFragment
+    //endregion
+
+
+    //region Discount Cards Fragments
+    @ContributesAndroidInjector
+    internal abstract fun providesDiscountCardsFragment(): DiscountCardsFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesPurchaseSuccessfully(): PurchaseSuccessfullyFragment
     //endregion
 }
