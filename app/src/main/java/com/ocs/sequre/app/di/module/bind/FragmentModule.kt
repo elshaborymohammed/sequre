@@ -1,14 +1,22 @@
 package com.ocs.sequre.app.di.module.bind
 
-import com.ocs.sequre.presentation.ui.activity.SplashFragment
+import com.ocs.sequre.presentation.ui.activity.LaunchFragment
 import com.ocs.sequre.presentation.ui.fragment.auth.*
+import com.ocs.sequre.presentation.ui.fragment.discount.DiscountCardSummaryFragment
 import com.ocs.sequre.presentation.ui.fragment.discount.DiscountCardsFragment
+import com.ocs.sequre.presentation.ui.fragment.discount.OfferFragment
 import com.ocs.sequre.presentation.ui.fragment.discount.PurchaseSuccessfullyFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.SecondOpinionFragment
-import com.ocs.sequre.presentation.ui.fragment.profile.*
+import com.ocs.sequre.presentation.ui.fragment.profile.AddressFragment
+import com.ocs.sequre.presentation.ui.fragment.profile.ChangePasswordFragment
+import com.ocs.sequre.presentation.ui.fragment.profile.EditProfileFragment
+import com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment
+import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentCreateFragment
+import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentUpdateFragment
+import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentsFragment
 import com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment
 import com.ocs.sequre.presentation.ui.fragment.setting.SettingFragment
 import dagger.Module
@@ -20,7 +28,7 @@ abstract class FragmentModule {
 
     //region Auth Fragments
     @ContributesAndroidInjector
-    internal abstract fun providesSplashFragment(): SplashFragment
+    internal abstract fun providesSplashFragment(): LaunchFragment
 
     @ContributesAndroidInjector
     internal abstract fun providesLandingFragment(): LandingFragment
@@ -87,6 +95,12 @@ abstract class FragmentModule {
     //region Discount Cards Fragments
     @ContributesAndroidInjector
     internal abstract fun providesDiscountCardsFragment(): DiscountCardsFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesDiscountCardSummaryFragment(): DiscountCardSummaryFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesOfferFragment(): OfferFragment
 
     @ContributesAndroidInjector
     internal abstract fun providesPurchaseSuccessfully(): PurchaseSuccessfullyFragment

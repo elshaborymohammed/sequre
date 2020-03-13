@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/offers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:background="@drawable/sh_border_rounded_outline"
+        android:backgroundTint="#EBEBEB"
+        android:orientation="horizontal" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        style="@style/Widget.MaterialComponents.TabLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:tabGravity="center"
+        app:tabIconTint="@color/se_tab_color"
+        app:tabIndicator="@null"
+        app:tabMaxWidth="12dp"
+        app:tabMode="fixed"
+        app:tabPadding="0dp" />
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.compact.di.qualifier.ApplicationContext
 import com.ocs.sequre.presentation.preference.AuthPreference
-import com.ocs.sequre.presentation.ui.activity.LaunchActivity
+import com.ocs.sequre.presentation.ui.activity.MainActivity
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
@@ -19,7 +19,7 @@ class NetworkInterceptorModule {
     fun providesAuthenticator(@ApplicationContext context: Context): Authenticator {
         return object : Authenticator {
             override fun authenticate(route: Route?, response: Response): Request {
-                val intent = Intent(context, LaunchActivity::class.java)
+                val intent = Intent(context, MainActivity::class.java)
                 intent.flags =
                     Intent.FLAG_ACTIVITY_CLEAR_TOP and
                             Intent.FLAG_ACTIVITY_CLEAR_TASK and

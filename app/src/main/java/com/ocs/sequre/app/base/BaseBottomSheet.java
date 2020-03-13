@@ -10,7 +10,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -49,13 +48,8 @@ public abstract class BaseBottomSheet extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        postponeEnterTransition();
         onViewBound(view);
         disposables.addAll(subscriptions());
-        view.getViewTreeObserver().addOnPreDrawListener(() -> {
-            startPostponedEnterTransition();
-            return true;
-        });
     }
 
     @Override
@@ -77,10 +71,16 @@ public abstract class BaseBottomSheet extends BottomSheetDialogFragment {
         if (dialog.getWindow() != null) {
             dialog.getWindow().setGravity(Gravity.BOTTOM);
             dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-            dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+//            dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             dialog.setCancelable(false);
         }
         return dialog;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
 
     private void setBottomSheetBehavior() {

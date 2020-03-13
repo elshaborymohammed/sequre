@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ocs.sequre">
 
     <dist:module dist:instant="true" />
@@ -8,6 +9,23 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- region firebase message -->
+    <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more. -->
+    <meta-data
+        android:name="com.google.firebase.messaging.default_notification_icon"
+        android:resource="@drawable/ic_icon" />
+    <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+         notification message. See README(https://goo.gl/6BKBk7) for more. -->
+    <meta-data
+        android:name="com.google.firebase.messaging.default_notification_color"
+        android:resource="@color/colorAccent" />
+
+    <meta-data
+        android:name="com.google.firebase.messaging.default_notification_channel_id"
+        android:value="@string/default_notification_channel_id" />
+    <!-- endregion -->
 
     <application
         android:name="com.ocs.sequre.app.App"
@@ -17,12 +35,13 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@drawable/ic_icon"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:targetApi="n">
 
         <activity
-            android:name="com.ocs.sequre.presentation.ui.activity.LaunchActivity"
+            android:name="com.ocs.sequre.presentation.ui.activity.MainActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Launcher">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,19 +49,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.ocs.sequre.presentation.ui.activity.LanguageActivity" />
+        <!-- region Services -->
+        <service
+            android:name=".presentation.ui.service.CloudMessageService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- endregion -->
 
-        <activity
-            android:name="com.ocs.sequre.presentation.ui.activity.AuthActivity"
-            android:clearTaskOnLaunch="true"
-            android:configChanges="locale"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name="com.ocs.sequre.presentation.ui.activity.HomeActivity"
-            android:clearTaskOnLaunch="true"
-            android:configChanges="locale"
-            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

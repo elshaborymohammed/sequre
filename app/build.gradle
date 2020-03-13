@@ -10,13 +10,13 @@ apply plugin: 'io.fabric'
 apply from: "../dependencies.gradle"
 
 def getMyVersionCode = { ->
-    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : 2
+    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : 4
     println "VersionCode is set to $code"
     return code
 }
 
 def getMyVersionName = { ->
-    def name = project.hasProperty('versionName') ? versionName : "0.0.2"
+    def name = project.hasProperty('versionName') ? versionName : "0.0.4"
     println "VersionName is set to $name"
     return name
 }
@@ -116,9 +116,10 @@ dependencies {
     implementation image.transformations
     kapt image.compiler
 
-    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    implementation 'com.google.firebase:firebase-analytics:17.2.3'
     implementation 'com.google.firebase:firebase-auth:19.2.0'
     implementation 'com.google.firebase:firebase-perf:19.0.5'
+    implementation 'com.google.firebase:firebase-messaging:20.1.2'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 
 

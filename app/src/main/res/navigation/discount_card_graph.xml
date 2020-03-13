@@ -9,11 +9,33 @@
         android:id="@+id/discountCardsFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.discount.DiscountCardsFragment"
         android:label="DiscountCardsFragment"
-        tools:layout="@layout/fragment_discount_card" />
+        tools:layout="@layout/fragment_discount_card">
+        <action
+            android:id="@+id/action_discountCardsFragment_to_discountCardSummaryFragment"
+            app:destination="@id/discountCardSummaryFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/discountCardSummaryFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.discount.DiscountCardSummaryFragment"
+        android:label="DiscountCardSummaryFragment"
+        tools:layout="@layout/fragment_discount_card_summary">
+        <action
+            android:id="@+id/action_discountCardSummaryFragment_to_offerFragment"
+            app:destination="@id/offerFragment" />
+        <action
+            android:id="@+id/action_discountCardSummaryFragment_to_purchaseSuccessfullyFragment"
+            app:destination="@id/purchaseSuccessfullyFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/offerFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.discount.OfferFragment"
+        android:label="OfferFragment"
+        tools:layout="@layout/fragment_discount_card_offer" />
 
     <dialog
         android:id="@+id/purchaseSuccessfullyFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.discount.PurchaseSuccessfullyFragment"
         android:label="PurchaseSuccessfullyFragment"
-        tools:layout="@layout/fragment_purchase_successfully" />
+        tools:layout="@layout/fragment_discount_card_purchase_successfully" />
 </navigation>

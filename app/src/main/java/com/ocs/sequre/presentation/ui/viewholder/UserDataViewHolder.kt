@@ -1,51 +1,49 @@
 package com.ocs.sequre.presentation.ui.viewholder
 
 import android.view.View
-import android.widget.*
-import com.compact.app.extensions.*
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.DatePicker
+import com.compact.app.extensions.email
+import com.compact.app.extensions.fullName
+import com.compact.app.extensions.notNullOrEmpty
+import com.compact.app.extensions.phone
 import com.jakewharton.rxbinding3.view.focusChanges
-import com.jakewharton.rxbinding3.widget.textChanges
+import com.ocs.sequre.R
 import com.ocs.sequre.app.CompactDatePicker
+import com.ocs.sequre.app.base.setAdapter
 import com.ocs.sequre.domain.entity.Country
+import com.ocs.sequre.domain.entity.Relationship
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 import kotlinx.android.synthetic.main.layout_user_profile_data.view.*
 
-abstract class UserDataViewHolder constructor(private val view: View, private val skip: Long = 1) {
-    protected val relationship: Observable<Boolean>
-        get() = view.input_relationship.notNullOrEmpty(skip)
+abstract class UserDataViewHolder constructor(
+    private val view: View,
+    private val textChangesSkip: Long = 1,
+    private val focusChangesSkip: Long = 1
+) {
     protected val name: Observable<Boolean>
-        get() = view.input_name.username(skip)
+        get() = view.input_name.fullName(textChangesSkip, focusChangesSkip)
     protected val phone: Observable<Boolean>
-        get() = view.input_phone.phone(skip)
+        get() = view.input_phone.phone(textChangesSkip, focusChangesSkip)
     protected val email: Observable<Boolean>
-        get() = view.input_email.email(skip)
+        get() = view.input_email.email(textChangesSkip, focusChangesSkip)
+    protected val relationship: Observable<Boolean>
+        get() = view.input_relationship.notNullOrEmpty(textChangesSkip, focusChangesSkip)
     protected val gender: Observable<Boolean>
-        get() = view.input_gender.editText!!.textChanges().map { it.isNotNullOrEmpty() }
+        get() = view.input_gender.notNullOrEmpty(textChangesSkip, focusChangesSkip)
     protected val birthDate: Observable<Boolean>
-        get() = view.input_birth_date.editText!!.textChanges().map { it.isNotNullOrEmpty() }
+        get() = view.input_birth_date.notNullOrEmpty(textChangesSkip, focusChangesSkip)
 
     private val emailFocusChanges: Observable<Boolean>
         get() = view.input_email.editText!!.focusChanges()
     private val phoneFocusChanges: Observable<Boolean>
         get() = view.input_phone.editText!!.focusChanges()
 
-    private lateinit var countries: List<Country>
-
     init {
-        view.input_gender.apply {
-            (editText as AutoCompleteTextView).run {
-                threshold = 1 //will start working from first character
-                setAdapter(
-                    ArrayAdapter(
-                        view.context,
-                        com.ocs.sequre.R.layout.select_dialog_item,
-                        com.ocs.sequre.R.id.text,
-                        view.resources.getStringArray(com.ocs.sequre.R.array.gender_array)
-                    )
-                )
-            }
-        }
+        view.input_relationship.setAdapter(Relationship.values(view.context))
+        view.input_gender.setAdapter(R.array.gender_array)
 
         view.input_birth_date.apply {
             setOnClickListener {
@@ -60,42 +58,19 @@ abstract class UserDataViewHolder constructor(private val view: View, private va
     }
 
     fun setCountries(it: List<Country>) {
-        countries = it
         view.input_country.apply {
-            val dataAdapter: ArrayAdapter<Country> =
+            (editText as AutoCompleteTextView).run {
+                threshold = 1 //will start working from first character
                 ArrayAdapter(
                     view.context,
-                    android.R.layout.simple_spinner_item,
-                    countries
-                )
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            adapter = dataAdapter
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-
-                }
-
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    view?.findViewById<TextView>(android.R.id.text1)?.text = it[position].code
-                }
-            }
-        }
-    }
-
-    fun selectCountry(code: String) {
-        view.input_country.apply {
-            adapter?.let {
-                if (countries.isNotEmpty()) {
-                    setSelection(
-                        countries.indexOfFirst {
-                            it.code == code
-                        }, true
-                    )
+                    R.layout.select_dialog_item,
+                    R.id.text,
+                    it
+                ).run {
+                    setAdapter(this)
+                    setOnItemClickListener { parent, view, position, id ->
+                        setText(it[position].code, false)
+                    }
                 }
             }
         }

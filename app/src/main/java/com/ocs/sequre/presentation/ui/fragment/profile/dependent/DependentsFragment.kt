@@ -1,4 +1,4 @@
-package com.ocs.sequre.presentation.ui.fragment.profile
+package com.ocs.sequre.presentation.ui.fragment.profile.dependent
 
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +28,9 @@ class DependentsFragment : BaseFragment() {
         adapter.setOnItemClickListener {
             findNavController().navigate(
                 R.id.dependentUpdateFragment,
-                DependentUpdateFragmentArgs(it).toBundle()
+                DependentUpdateFragmentArgs(
+                    it
+                ).toBundle()
             )
         }
         view.list_item.adapter = adapter

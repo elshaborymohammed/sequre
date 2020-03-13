@@ -5,15 +5,17 @@ import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
 import com.ocs.sequre.data.adapter.GenderTypeAdapter
 import com.ocs.sequre.data.adapter.ImageTypeAdapter
+import com.ocs.sequre.data.adapter.RelationshipTypeAdapter
 import java.io.Serializable
 
 class Dependent(
     @SerializedName("id")
     @Expose
     val id: Int,
+    @JsonAdapter(RelationshipTypeAdapter::class)
     @SerializedName("relationship")
     @Expose
-    val relationship: String,
+    val relationship: Relationship,
     @SerializedName("name")
     @Expose
     val name: String,
@@ -22,7 +24,7 @@ class Dependent(
     val email: String,
     @SerializedName("c_code")
     @Expose
-    val countryCode: String,
+    val countryCode: String = "+20",
     phone: String = "",
     @SerializedName("birth")
     @Expose

@@ -1,10 +1,10 @@
-package com.ocs.sequre.presentation.ui.fragment.profile
+package com.ocs.sequre.presentation.ui.fragment.profile.dependent
 
 import android.view.View
 import com.ocs.sequre.domain.entity.Dependent
 import kotlinx.android.synthetic.main.fragment_profile_data.view.*
 
-class DependentUpdateFragment : DependentFragment(0) {
+class DependentUpdateFragment : DependentFragment(0, 0) {
 
     override fun onViewBound(view: View) {
         super.onViewBound(view)
@@ -19,7 +19,9 @@ class DependentUpdateFragment : DependentFragment(0) {
     }
 
     override fun onDataLoaded() {
-        DependentUpdateFragmentArgs.fromBundle(requireArguments()).data?.apply {
+        DependentUpdateFragmentArgs.fromBundle(
+            requireArguments()
+        ).data?.apply {
             viewHolder.set(this)
             requireView().delete.visibility = View.VISIBLE
         }

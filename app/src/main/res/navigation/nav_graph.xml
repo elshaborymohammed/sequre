@@ -4,7 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     android:label="Nav Graph"
-    app:startDestination="@id/auth_navigation">
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.ocs.sequre.presentation.ui.activity.LaunchFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_auth_graph"
+            app:destination="@id/auth_navigation"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_splashFragment_to_navigationFragment"
+            app:destination="@id/navigationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_splashFragment_to_languageFragment"
+            app:destination="@id/languageFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="false" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment"
+        android:label="LanguageFragment"
+        tools:layout="@layout/fragment_language">
+        <action
+            android:id="@+id/action_languageFragment_to_auth_navigation"
+            app:destination="@id/auth_navigation"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
     <navigation
         android:id="@+id/auth_navigation"

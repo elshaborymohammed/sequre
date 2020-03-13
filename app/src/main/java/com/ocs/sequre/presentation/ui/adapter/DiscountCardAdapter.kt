@@ -21,7 +21,7 @@ class DiscountCardAdapter :
 
     override fun itemDecorations(): Array<RecyclerView.ItemDecoration> {
         return arrayOf(
-            CompactRecyclerView.SpacesItemDecoration.Grid.builder(context).space(8).build()
+            CompactRecyclerView.SpacesItemDecoration.Grid.builder(context).space(0).build()
         )
     }
 
@@ -54,7 +54,7 @@ class DiscountCardAdapter :
                     listener.setOnItemClickListener(it)
                 }
                 name.text = it.name
-                price.text = it.price
+                price.text = it.price.toString()
             }
         }
     }

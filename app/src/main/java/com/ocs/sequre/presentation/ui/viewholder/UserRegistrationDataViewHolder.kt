@@ -1,11 +1,11 @@
 package com.ocs.sequre.presentation.ui.viewholder
 
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.TextView
+import android.widget.AutoCompleteTextView
 import com.compact.app.extensions.*
 import com.jakewharton.rxbinding3.view.focusChanges
+import com.ocs.sequre.R
 import com.ocs.sequre.domain.entity.Country
 import com.ocs.sequre.domain.entity.Registration
 import io.reactivex.Observable
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.layout_user_main_data.view.*
 
 class UserRegistrationDataViewHolder constructor(private val view: View) {
     private val name: Observable<Boolean>
-        get() = view.input_name.username()
+        get() = view.input_name.fullName()
     private val phone: Observable<Boolean>
         get() = view.input_phone.phone()
     private val email: Observable<Boolean>
@@ -35,45 +35,29 @@ class UserRegistrationDataViewHolder constructor(private val view: View) {
 
     fun setCountries(it: List<Country>) {
         view.input_country.apply {
-            val dataAdapter: ArrayAdapter<Country> =
+            (editText as AutoCompleteTextView).run {
+                threshold = 1 //will start working from first character
                 ArrayAdapter(
                     view.context,
-                    android.R.layout.simple_spinner_item,
+                    R.layout.select_dialog_item,
+                    R.id.text,
                     it
-                )
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            adapter = dataAdapter
-            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-
+                ).apply {
+                    setAdapter(this)
+                    setOnItemClickListener { parent, view, position, id ->
+                        text(it[position].code)
+                    }
                 }
-
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    view?.findViewById<TextView>(android.R.id.text1)?.text = it[position].code
-                }
+                text("+20")
             }
         }
-    }
-
-    fun set(obj: Registration) {
-        view.input_country.setSelection(0, true)
-        view.input_phone.editText?.setText(obj.phone)
-        view.input_name.editText?.setText(obj.name)
-        view.input_email.editText?.setText(obj.email)
-        view.input_password.editText?.setText(obj.password)
-        view.input_password_confirm.editText?.setText(obj.password)
     }
 
     fun get(): Registration {
         return Registration(
             name = view.input_name.text(),
             email = view.input_email.text(),
-            countryCode = (view.input_country.selectedItem as Country).code,
+            countryCode = view.input_country.text(),
             phone = view.input_phone.text(),
             password = view.input_password.text()
         )
@@ -81,24 +65,24 @@ class UserRegistrationDataViewHolder constructor(private val view: View) {
 
     fun validations(): Observable<Boolean> {
         return Observable.combineLatest(
-            name,
-            email,
-            phone,
-            password,
-            passwordConfirm,
-            Function5 { name: Boolean, email: Boolean, phone: Boolean, password: Boolean, passwordConfirm: Boolean ->
-                name && email && phone && password && passwordConfirm
-            }
-        ).distinctUntilChanged()
+                name,
+                email,
+                phone,
+                password,
+                passwordConfirm,
+                Function5 { name: Boolean, email: Boolean, phone: Boolean, password: Boolean, passwordConfirm: Boolean ->
+                    name && email && phone && password && passwordConfirm
+                }
+            ).distinctUntilChanged()
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
     private fun emailValidation(block: ((email: String) -> Unit)): Observable<Boolean> =
         Observable.combineLatest(
-            email,
-            emailFocusChanges,
-            BiFunction { t1: Boolean, t2: Boolean -> t1 && !t2 })
+                email,
+                emailFocusChanges,
+                BiFunction { t1: Boolean, t2: Boolean -> t1 && !t2 })
             .distinctUntilChanged()
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
@@ -106,10 +90,10 @@ class UserRegistrationDataViewHolder constructor(private val view: View) {
 
     private fun phoneValidation(block: ((phone: String) -> Unit)): Observable<Boolean> =
         Observable.combineLatest(
-            phone,
-            phoneFocusChanges,
-            BiFunction { t1: Boolean, t2: Boolean -> t1 && !t2 }
-        ).distinctUntilChanged()
+                phone,
+                phoneFocusChanges,
+                BiFunction { t1: Boolean, t2: Boolean -> t1 && !t2 }
+            ).distinctUntilChanged()
             .subscribeOn(AndroidSchedulers.mainThread())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { if (it) block(view.input_phone.text()) }
@@ -119,9 +103,10 @@ class UserRegistrationDataViewHolder constructor(private val view: View) {
         phone: ((phone: String) -> Unit)
     ): Observable<Boolean> {
         return Observable.combineLatest(
-            emailValidation(email),
-            phoneValidation(phone),
-            BiFunction { email: Boolean, phone: Boolean -> email && phone }).distinctUntilChanged()
+                emailValidation(email),
+                phoneValidation(phone),
+                BiFunction { email: Boolean, phone: Boolean -> email && phone })
+            .distinctUntilChanged()
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
     }

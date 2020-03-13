@@ -26,7 +26,7 @@ class LanguageFragment : BaseFragment() {
                 resources.getStringArray(R.array.lang_array)[view.language.selectedItemPosition]
             if (viewModel.setLang(lang)) {
                 Locale.setDefault(Locale(lang))
-                findNavController().navigate(R.id.action_languageFragment_to_signInFragment)
+                findNavController().navigate(R.id.action_languageFragment_to_auth_navigation)
             }
         }
     }

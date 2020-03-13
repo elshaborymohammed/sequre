@@ -13,7 +13,7 @@ class PurchaseSuccessfullyFragment : BaseBottomSheet() {
     lateinit var auth: AuthPreference
 
     override fun layoutRes(): Int {
-        return R.layout.fragment_purchase_successfully
+        return R.layout.fragment_discount_card_purchase_successfully
     }
 
     override fun onViewBound(view: View) {

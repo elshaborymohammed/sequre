@@ -6,4 +6,5 @@
     android:layout_height="wrap_content"
     android:background="@null"
     android:elevation="0dp"
+    android:tag="toolbar"
     app:navigationIcon="@drawable/ic_chevron_left" />

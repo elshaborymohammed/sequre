@@ -11,12 +11,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/relationship"
-        android:tag="relationship">
+        android:paddingTop="8dp"
+        android:tag="relationship"
+        app:boxCollapsedPaddingTop="0dp"
+        app:endIconDrawable="@drawable/ic_chevron_down"
+        app:endIconMode="dropdown_menu"
+        app:endIconTint="@color/colorAccent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textview.MaterialAutoCompleteTextView
             style="@style/App.Widget.TextInputEditText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:editable="false"
+            android:inputType="none"
+            android:paddingTop="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <include
@@ -41,9 +49,7 @@
             style="@style/App.Widget.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:autoSizeTextType="none"
-            android:enabled="false"
-            android:includeFontPadding="true"
+            android:editable="false"
             android:inputType="none"
             android:paddingTop="8dp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -56,7 +62,7 @@
         android:enabled="true"
         android:hint="@string/date_of_birth"
         android:paddingTop="8dp"
-        android:tag="birth1"
+        android:tag="birth"
         app:boxCollapsedPaddingTop="0dp"
         app:endIconDrawable="@drawable/ic_date"
         app:endIconMode="custom"
@@ -66,7 +72,7 @@
             style="@style/App.Widget.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:enabled="false"
-            android:inputType="date" />
+            android:editable="false"
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>
