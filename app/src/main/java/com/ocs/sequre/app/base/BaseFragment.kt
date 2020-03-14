@@ -38,15 +38,6 @@ abstract class BaseFragment(@StringRes private val titleRes: Int? = null, @Strin
     private lateinit var progressBar: AlertDialog
 
     override fun onViewBound(view: View) {
-//        view.findViewById<MaterialToolbar>(R.id.toolbar_title)?.apply {
-//            setNavigationOnClickListener {
-//                Navigation.findNavController(view).navigateUp()
-//            }
-//            titleRes?.apply { setTitle(this) }
-//            subtitleRes?.apply { setTitle(this) }
-////            setToolBar(this)
-//        }
-
         view.findViewById<MaterialToolbar>(R.id.toolbar)?.apply {
             setNavigationOnClickListener {
                 Navigation.findNavController(view).navigateUp()

@@ -5,7 +5,7 @@ import com.compact.executor.RxCompactSchedulers
 import com.ocs.sequre.data.remote.api.RequesterAuthApi
 import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
 import com.ocs.sequre.data.remote.model.request.auth.Login
-import com.ocs.sequre.data.remote.model.response.auth.AuthModel
+import com.ocs.sequre.domain.entity.AuthModel
 import com.ocs.sequre.domain.entity.Country
 import com.ocs.sequre.domain.entity.Registration
 import com.ocs.sequre.presentation.preference.AuthPreference

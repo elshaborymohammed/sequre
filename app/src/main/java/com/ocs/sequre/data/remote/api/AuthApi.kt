@@ -3,7 +3,7 @@ package com.ocs.sequre.data.remote.api
 import com.compact.requester.annotation.Requester
 import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
 import com.ocs.sequre.data.remote.model.request.auth.Login
-import com.ocs.sequre.data.remote.model.response.auth.AuthModel
+import com.ocs.sequre.domain.entity.AuthModel
 import com.ocs.sequre.data.remote.model.response.success.ResponseSuccess
 import com.ocs.sequre.domain.entity.Country
 import com.ocs.sequre.domain.entity.Registration

@@ -5,19 +5,24 @@ import com.compact.executor.RxCompactSchedulers
 import com.ocs.sequre.domain.entity.DiscountCard
 import com.ocs.sequre.domain.entity.Offer
 import io.reactivex.Single
+import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 class DiscountCardViewModel @Inject constructor(
     private val schedulers: RxCompactSchedulers
 ) : CompactDataViewModel<List<DiscountCard>>() {
 
-    override fun call() {
+    override fun subscription(): Disposable {
+        return get().compose(composeLoadingSingle()).subscribe(onSuccess(), onError())
+    }
+
+    fun get(): Single<List<DiscountCard>> {
         val list = ArrayList<DiscountCard>()
         for (i in 1..6) {
             list.add(DiscountCard(i, "name $i", (i * 1000).toDouble()))
         }
-
-        data.accept(list)
+        return Single.just(list)
+            .compose(schedulers.applyOnSingle())
     }
 
     fun offers(): Single<List<Offer>> {

@@ -47,7 +47,7 @@
         android:textAppearance="?attr/textAppearanceCaption" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/commits"
+        android:id="@+id/address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -57,7 +57,6 @@
         android:hint="@string/write_here_what_you_feel"
         android:lines="6"
         android:textAppearance="?attr/textAppearanceCaption" />
-
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/save"

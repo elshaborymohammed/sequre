@@ -4,8 +4,7 @@
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ll_background"
-    android:orientation="vertical">
+    android:background="@drawable/ll_background">
 
     <include
         layout="@layout/layout_app_bar"

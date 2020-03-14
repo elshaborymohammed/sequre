@@ -5,7 +5,7 @@ import com.ocs.sequre.app.CompactTest
 import com.ocs.sequre.app.di.TestAppComponent
 import com.ocs.sequre.app.helper.MockDataPathHelper
 import com.ocs.sequre.data.remote.api.RequesterDependentAPI
-import com.ocs.sequre.data.remote.model.response.auth.AuthModel
+import com.ocs.sequre.domain.entity.AuthModel
 import com.ocs.sequre.domain.entity.Dependent
 import com.ocs.sequre.presentation.viewmodel.DependentViewModel
 import io.reactivex.observers.TestObserver

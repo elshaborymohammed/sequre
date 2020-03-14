@@ -6,7 +6,7 @@ import com.jakewharton.rxrelay2.Relay
 import com.ocs.sequre.app.helper.MockDataHelper.fromJson
 import com.ocs.sequre.app.helper.MockDataHelper.loadJson
 import com.ocs.sequre.app.helper.MockDataPathHelper
-import com.ocs.sequre.data.remote.model.response.auth.AuthModel
+import com.ocs.sequre.domain.entity.AuthModel
 import com.ocs.sequre.domain.entity.Registration
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel
 import io.reactivex.Single

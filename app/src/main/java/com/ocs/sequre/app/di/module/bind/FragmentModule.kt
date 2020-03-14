@@ -17,6 +17,9 @@ import com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentCreateFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentUpdateFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentsFragment
+import com.ocs.sequre.presentation.ui.fragment.provider.MapsFragment
+import com.ocs.sequre.presentation.ui.fragment.provider.ServiceProviderFragment
+import com.ocs.sequre.presentation.ui.fragment.provider.ServiceProvidersFragment
 import com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment
 import com.ocs.sequre.presentation.ui.fragment.setting.SettingFragment
 import dagger.Module
@@ -91,7 +94,6 @@ abstract class FragmentModule {
     internal abstract fun providesDependentUpdateFragment(): DependentUpdateFragment
     //endregion
 
-
     //region Discount Cards Fragments
     @ContributesAndroidInjector
     internal abstract fun providesDiscountCardsFragment(): DiscountCardsFragment
@@ -104,5 +106,16 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun providesPurchaseSuccessfully(): PurchaseSuccessfullyFragment
+    //endregion
+
+    //region Service Provider Fragments
+    @ContributesAndroidInjector
+    internal abstract fun providesServiceProviderFragment(): ServiceProviderFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesMapsFragment(): MapsFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesServiceProvidersFragment(): ServiceProvidersFragment
     //endregion
 }

@@ -6,7 +6,7 @@ import com.ocs.sequre.app.CompactTest
 import com.ocs.sequre.app.di.TestAppComponent
 import com.ocs.sequre.app.helper.MockDataPathHelper
 import com.ocs.sequre.data.remote.api.RequesterAuthApi
-import com.ocs.sequre.data.remote.model.response.auth.AuthModel
+import com.ocs.sequre.domain.entity.AuthModel
 import com.ocs.sequre.domain.entity.Registration
 import com.ocs.sequre.presentation.preference.AuthPreference
 import com.ocs.sequre.presentation.viewmodel.AuthViewModel

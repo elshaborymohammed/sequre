@@ -1,4 +1,4 @@
-package com.ocs.sequre.data.remote.model.response
+package com.ocs.sequre.domain.entity
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

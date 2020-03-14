@@ -1,7 +1,7 @@
 package com.ocs.sequre.data.remote.api
 
 import com.compact.requester.annotation.Requester
-import com.ocs.sequre.data.remote.model.response.ProfileResponse
+import com.ocs.sequre.domain.entity.ProfileResponse
 import com.ocs.sequre.data.remote.model.response.success.ResponseSuccess
 import com.ocs.sequre.domain.entity.Profile
 import io.reactivex.Completable

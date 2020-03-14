@@ -31,11 +31,21 @@
         android:id="@+id/offerFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.discount.OfferFragment"
         android:label="OfferFragment"
-        tools:layout="@layout/fragment_discount_card_offer" />
+        tools:layout="@layout/fragment_discount_card_offer">
+        <action
+            android:id="@+id/action_offerFragment_to_serviceProviderFragment"
+            app:destination="@id/serviceProviderFragment" />
+    </fragment>
 
     <dialog
         android:id="@+id/purchaseSuccessfullyFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.discount.PurchaseSuccessfullyFragment"
         android:label="PurchaseSuccessfullyFragment"
         tools:layout="@layout/fragment_discount_card_purchase_successfully" />
+
+    <fragment
+        android:id="@+id/serviceProviderFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.provider.ServiceProviderFragment"
+        android:label="ServiceProviderFragment"
+        tools:layout="@layout/fragment_service_provider" />
 </navigation>

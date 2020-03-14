@@ -116,6 +116,7 @@ dependencies {
     implementation image.transformations
     kapt image.compiler
 
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.firebase:firebase-analytics:17.2.3'
     implementation 'com.google.firebase:firebase-auth:19.2.0'
     implementation 'com.google.firebase:firebase-perf:19.0.5'

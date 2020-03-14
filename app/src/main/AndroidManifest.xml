@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.ocs.sequre">
 
-    <dist:module dist:instant="true" />
+    <dist:module dist:instant="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <!-- region firebase message -->
-    <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
-     See README(https://goo.gl/l4GJaQ) for more. -->
     <meta-data
         android:name="com.google.firebase.messaging.default_notification_icon"
         android:resource="@drawable/ic_icon" />
-    <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-         notification message. See README(https://goo.gl/6BKBk7) for more. -->
     <meta-data
         android:name="com.google.firebase.messaging.default_notification_color"
         android:resource="@color/colorAccent" />
-
     <meta-data
         android:name="com.google.firebase.messaging.default_notification_channel_id"
         android:value="@string/default_notification_channel_id" />
     <!-- endregion -->
 
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <application
-        android:name="com.ocs.sequre.app.App"
+        android:name=".app.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_icon"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@drawable/ic_icon"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:targetApi="n">
+        android:theme="@style/AppTheme">
+
+        <!-- region google maps SDK -->
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <!-- endregion -->
 
         <activity
-            android:name="com.ocs.sequre.presentation.ui.activity.MainActivity"
+            android:name=".presentation.ui.activity.MainActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -58,7 +71,6 @@
             </intent-filter>
         </service>
         <!-- endregion -->
-
     </application>
 
 </manifest>

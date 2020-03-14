@@ -156,5 +156,8 @@
     <string name="benefits">Benefits</string>
     <string name="policy">Policy</string>
     <string name="offer_details">Offer Details</string>
+    <string name="service_providers">Service Providers</string>
+    <string name="list">List</string>
+    <string name="map">Map</string>
     <!-- endregion -->
 </resources>

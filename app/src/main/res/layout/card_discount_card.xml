@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.MaterialComponents.CardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@android:color/transparent"
-    app:cardElevation="0dp"
-    app:cardUseCompatPadding="true">
+    android:layout_marginTop="8dp"
+    android:background="@null">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="145dp"
@@ -39,4 +39,4 @@
             app:layout_constraintTop_toBottomOf="@id/name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>
+</FrameLayout>
