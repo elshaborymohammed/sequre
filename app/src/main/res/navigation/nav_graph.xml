@@ -95,7 +95,7 @@
 
     <fragment
         android:id="@+id/secondOpinionFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.secondOpinion.SecondOpinionFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionFragment"
         android:label="SecondOpinionFragment"
         tools:layout="@layout/fragment_second_opinion" />
 

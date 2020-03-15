@@ -9,7 +9,7 @@ import com.ocs.sequre.presentation.ui.fragment.discount.PurchaseSuccessfullyFrag
 import com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment
-import com.ocs.sequre.presentation.ui.fragment.secondOpinion.SecondOpinionFragment
+import com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.AddressFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.ChangePasswordFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.EditProfileFragment
