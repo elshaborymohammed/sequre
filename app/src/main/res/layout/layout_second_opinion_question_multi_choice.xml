@@ -39,14 +39,4 @@
             android:text="Tenderness"
             android:textAppearance="?attr/textAppearanceBody2" />
     </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/submit"
-        style="@style/App.Widget.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginVertical="8dp"
-        android:paddingVertical="16dp"
-        android:text="@string/submit" />
 </androidx.appcompat.widget.LinearLayoutCompat>

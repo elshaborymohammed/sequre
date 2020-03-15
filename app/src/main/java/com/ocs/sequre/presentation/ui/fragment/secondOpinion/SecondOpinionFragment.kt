@@ -1,4 +1,4 @@
-package com.ocs.sequre.presentation.ui.fragment.navigation
+package com.ocs.sequre.presentation.ui.fragment.secondOpinion
 
 import android.view.View
 import com.ocs.sequre.R

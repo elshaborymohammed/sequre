@@ -51,7 +51,7 @@
             </LinearLayout>
 
             <include
-                layout="@layout/layout_second_opinion_ask"
+                layout="@layout/layout_second_opinion_speciality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="24dp"
