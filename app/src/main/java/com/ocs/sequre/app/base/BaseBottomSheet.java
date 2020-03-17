@@ -10,10 +10,12 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -61,7 +63,7 @@ public abstract class BaseBottomSheet extends BottomSheetDialogFragment {
         bottomSheet.setBackgroundColor(Color.TRANSPARENT);
 
         setHasOptionsMenu(true);
-        setBottomSheetBehavior();
+        setBottomSheetBehavior(getView());
     }
 
     @NonNull
@@ -83,8 +85,17 @@ public abstract class BaseBottomSheet extends BottomSheetDialogFragment {
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
 
-    private void setBottomSheetBehavior() {
-        bottomSheetBehavior = BottomSheetBehavior.from((View) requireView().getParent());
+    private View getChild(ViewParent parent) {
+        System.out.println("view = " + parent.getParent());
+        if (parent.getParent() instanceof CoordinatorLayout) {
+            return (View) parent;
+        } else
+            return getChild(parent.getParent());
+    }
+
+    private void setBottomSheetBehavior(View view) {
+        System.out.println("view = " + view.getParent());
+        bottomSheetBehavior = BottomSheetBehavior.from((View) view.getParent());
         bottomSheetBehavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO, true);
         bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
 

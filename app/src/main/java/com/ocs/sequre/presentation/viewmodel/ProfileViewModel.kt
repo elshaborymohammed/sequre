@@ -19,6 +19,10 @@ class ProfileViewModel @Inject constructor(
     private var profile: BehaviorRelay<Profile> = BehaviorRelay.create()
     private var dependents: BehaviorRelay<List<Dependent>> = BehaviorRelay.create()
 
+    init {
+        call()
+    }
+
     fun profile(): Observable<Profile> {
         return profile.compose(schedulers.applyOnObservable())
     }

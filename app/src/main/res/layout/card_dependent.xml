@@ -47,13 +47,13 @@
         android:layout_marginStart="12dp"
         android:elevation="8dp"
         android:textAppearance="?attr/textAppearanceBody2"
-        app:layout_constraintBottom_toTopOf="@id/relation"
+        app:layout_constraintBottom_toTopOf="@id/relationship"
         app:layout_constraintStart_toEndOf="@id/image"
         app:layout_constraintTop_toTopOf="@id/image"
         app:layout_constraintVertical_chainStyle="spread" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/relation"
+        android:id="@+id/relationship"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -69,9 +69,9 @@
         android:layout_height="wrap_content"
         android:elevation="8dp"
         android:textAppearance="@style/App.TextAppearance.Caption"
-        app:layout_constraintBaseline_toBaselineOf="@id/relation"
+        app:layout_constraintBaseline_toBaselineOf="@id/relationship"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/relation" />
+        app:layout_constraintStart_toEndOf="@id/relationship" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/birth_date"
@@ -82,7 +82,7 @@
         android:textAppearance="@style/App.TextAppearance.Caption"
         app:layout_constraintBottom_toTopOf="@id/email"
         app:layout_constraintStart_toStartOf="@id/name"
-        app:layout_constraintTop_toBottomOf="@id/relation" />
+        app:layout_constraintTop_toBottomOf="@id/relationship" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/email"

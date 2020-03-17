@@ -8,7 +8,7 @@ import com.compact.widget.recyclerview.CompactRecyclerView
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.domain.entity.MedicalDocument
-import kotlinx.android.synthetic.main.card_image.view.*
+import kotlinx.android.synthetic.main.card_medical_document.view.*
 
 class DocumentAdapter :
     CompactRecyclerView.Adapter<MedicalDocument, DocumentAdapter.ViewHolder>() {
@@ -23,7 +23,7 @@ class DocumentAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.card_image, parent, false)
+                .inflate(R.layout.card_medical_document, parent, false)
         )
     }
 

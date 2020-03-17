@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/second_opinion_graph"
+    app:startDestination="@id/secondOpinionFragment">
+
+    <fragment
+        android:id="@+id/secondOpinionFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionFragment"
+        android:label="SecondOpinionFragment"
+        tools:layout="@layout/fragment_second_opinion">
+        <action
+            android:id="@+id/action_secondOpinionFragment_to_secondOpinionChooseSpecialityFragment"
+            app:destination="@id/secondOpinionChooseSpecialityFragment" />
+        <action
+            android:id="@+id/action_secondOpinionFragment_to_dependentsSummeryFragment"
+            app:destination="@id/dependentsSummeryFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/dependentsSummeryFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.dependent.DependentsSummeryFragment"
+        android:label="DependentsSummeryFragment"
+        tools:layout="@layout/fragment_dependents_summary">
+        <action
+            android:id="@+id/action_dependentsSummeryFragment_to_secondOpinionChooseSpecialityFragment"
+            app:destination="@id/secondOpinionChooseSpecialityFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/secondOpinionChooseSpecialityFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionChooseSpecialityFragment"
+        android:label="ChooseSpecialityFragment"
+        tools:layout="@layout/fragment_second_opinion_choose_speciality">
+        <action
+            android:id="@+id/action_secondOpinionChooseSpecialityFragment_to_secondOpinionQuestionsSpecialityFragment"
+            app:destination="@id/secondOpinionQuestionsSpecialityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondOpinionQuestionsSpecialityFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionQuestionsSpecialityFragment"
+        android:label="QuestionsSpecialityFragment"
+        tools:layout="@layout/fragment_second_opinion_question_speciality">
+        <action
+            android:id="@+id/action_secondOpinionQuestionsSpecialityFragment_to_secondOpinionQuestionsGeneralFirstFragment"
+            app:destination="@id/secondOpinionQuestionsGeneralFirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondOpinionQuestionsGeneralFirstFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionQuestionsGeneralFirstFragment"
+        android:label="QuestionsGeneralFirstFragment"
+        tools:layout="@layout/fragment_second_opinion_question_general_01">
+        <action
+            android:id="@+id/action_secondOpinionQuestionsGeneralFirstFragment_to_secondOpinionQuestionsGeneralSecondFragment"
+            app:destination="@id/secondOpinionQuestionsGeneralSecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondOpinionQuestionsGeneralSecondFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionQuestionsGeneralSecondFragment"
+        android:label="QuestionsGeneralSecondFragment"
+        tools:layout="@layout/fragment_second_opinion_question_general_02" />
+</navigation>

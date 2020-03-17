@@ -30,11 +30,11 @@ abstract class UserDataViewHolder constructor(
     protected val email: Observable<Boolean>
         get() = view.input_email.email(textChangesSkip, focusChangesSkip)
     protected val relationship: Observable<Boolean>
-        get() = view.input_relationship.notNullOrEmpty(textChangesSkip, focusChangesSkip)
+        get() = view.input_relationship.notNullOrEmpty(textChangesSkip, 0)
     protected val gender: Observable<Boolean>
-        get() = view.input_gender.notNullOrEmpty(textChangesSkip, focusChangesSkip)
+        get() = view.input_gender.notNullOrEmpty(textChangesSkip, 0)
     protected val birthDate: Observable<Boolean>
-        get() = view.input_birth_date.notNullOrEmpty(textChangesSkip, focusChangesSkip)
+        get() = view.input_birth_date.notNullOrEmpty(textChangesSkip, 0)
 
     private val emailFocusChanges: Observable<Boolean>
         get() = view.input_email.editText!!.focusChanges()

@@ -74,30 +74,29 @@
         tools:layout="@layout/fragment_navigation">
 
         <action
-            android:id="@+id/action_navigationFragment_to_secondOpinionFragment"
-            app:destination="@id/secondOpinionFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-
-        <action
             android:id="@+id/action_navigationFragment_to_menuFragment"
             app:destination="@id/menuFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigationFragment_to_second_opinion_navigation"
+            app:destination="@id/second_opinion_navigation"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_navigationFragment_to_discount_card_navigation"
-            app:destination="@id/discount_card_navigation" />
+            app:destination="@id/discount_card_navigation"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
-    <fragment
-        android:id="@+id/secondOpinionFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionFragment"
-        android:label="SecondOpinionFragment"
-        tools:layout="@layout/fragment_second_opinion" />
 
     <fragment
         android:id="@+id/menuFragment"
@@ -105,7 +104,12 @@
         android:label="MenuFragment"
         tools:layout="@layout/fragment_menu" />
 
-    <include app:graph="@navigation/menu_graph" />
+    <navigation
+        android:id="@+id/second_opinion_navigation"
+        app:startDestination="@id/second_opinion_graph">
+
+        <include app:graph="@navigation/second_opinion_graph" />
+    </navigation>
 
     <navigation
         android:id="@+id/discount_card_navigation"
@@ -113,4 +117,6 @@
 
         <include app:graph="@navigation/discount_card_graph" />
     </navigation>
+
+    <include app:graph="@navigation/menu_graph" />
 </navigation>

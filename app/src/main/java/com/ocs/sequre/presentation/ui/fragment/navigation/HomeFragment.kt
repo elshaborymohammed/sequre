@@ -15,7 +15,7 @@ class HomeFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
 
-        view.second_opinion.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_navigationFragment_to_secondOpinionFragment))
+        view.second_opinion.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_navigationFragment_to_second_opinion_navigation))
         view.discount_card.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_navigationFragment_to_discount_card_navigation))
     }
 }

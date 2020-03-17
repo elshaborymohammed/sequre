@@ -2,7 +2,7 @@ package com.ocs.sequre.presentation.viewmodel
 
 import com.compact.app.viewmodel.CompactViewModel
 import com.compact.executor.RxCompactSchedulers
-import com.ocs.sequre.data.remote.api.RequesterAuthApi
+import com.ocs.sequre.data.remote.api.RequesterAuthAPI
 import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
 import com.ocs.sequre.data.remote.model.request.auth.Login
 import com.ocs.sequre.domain.entity.AuthModel
@@ -14,7 +14,7 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class AuthViewModel @Inject constructor(
-    private val api: RequesterAuthApi,
+    private val api: RequesterAuthAPI,
     private val preference: AuthPreference,
     private val compose: RxCompactSchedulers
 ) : CompactViewModel() {

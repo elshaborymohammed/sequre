@@ -28,6 +28,11 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(SecondOpinionViewModel::class)
+    internal abstract fun providesSecondOpinionViewModel(viewModel: SecondOpinionViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(DependentViewModel::class)
     internal abstract fun providesDependentViewModel(viewModel: DependentViewModel): ViewModel
 

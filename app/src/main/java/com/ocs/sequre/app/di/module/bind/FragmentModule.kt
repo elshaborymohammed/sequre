@@ -2,6 +2,10 @@ package com.ocs.sequre.app.di.module.bind
 
 import com.ocs.sequre.presentation.ui.activity.LaunchFragment
 import com.ocs.sequre.presentation.ui.fragment.auth.*
+import com.ocs.sequre.presentation.ui.fragment.dependent.DependentCreateFragment
+import com.ocs.sequre.presentation.ui.fragment.dependent.DependentUpdateFragment
+import com.ocs.sequre.presentation.ui.fragment.dependent.DependentsFragment
+import com.ocs.sequre.presentation.ui.fragment.dependent.DependentsSummeryFragment
 import com.ocs.sequre.presentation.ui.fragment.discount.DiscountCardSummaryFragment
 import com.ocs.sequre.presentation.ui.fragment.discount.DiscountCardsFragment
 import com.ocs.sequre.presentation.ui.fragment.discount.OfferFragment
@@ -9,17 +13,14 @@ import com.ocs.sequre.presentation.ui.fragment.discount.PurchaseSuccessfullyFrag
 import com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment
-import com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.AddressFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.ChangePasswordFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.EditProfileFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment
-import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentCreateFragment
-import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentUpdateFragment
-import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentsFragment
 import com.ocs.sequre.presentation.ui.fragment.provider.MapsFragment
 import com.ocs.sequre.presentation.ui.fragment.provider.ServiceProviderFragment
 import com.ocs.sequre.presentation.ui.fragment.provider.ServiceProvidersFragment
+import com.ocs.sequre.presentation.ui.fragment.secondopinion.*
 import com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment
 import com.ocs.sequre.presentation.ui.fragment.setting.SettingFragment
 import dagger.Module
@@ -55,9 +56,23 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun providesHomeFragment(): HomeFragment
+    //endregion
 
+    //region Second Opinion Fragments
     @ContributesAndroidInjector
     internal abstract fun providesSecondOpinionFragment(): SecondOpinionFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesSecondOpinionChooseSpecialityFragment(): SecondOpinionChooseSpecialityFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesSecondOpinionQuestionsSpecialityFragment(): SecondOpinionQuestionsSpecialityFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesSecondOpinionQuestionsGeneralFirstFragment(): SecondOpinionQuestionsGeneralFirstFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesSecondOpinionQuestionsGeneralSecondFragment(): SecondOpinionQuestionsGeneralSecondFragment
     //endregion
 
     //region Side Menu Fragments
@@ -83,9 +98,14 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun providesAddressFragment(): AddressFragment
+    //endregion
 
+    //region Dependent Fragments
     @ContributesAndroidInjector
     internal abstract fun providesDependentsFragment(): DependentsFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun providesDependentsSummeryFragment(): DependentsSummeryFragment
 
     @ContributesAndroidInjector
     internal abstract fun providesDependentCreateFragment(): DependentCreateFragment

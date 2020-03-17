@@ -1,4 +1,4 @@
-package com.ocs.sequre.presentation.ui.fragment.profile.dependent
+package com.ocs.sequre.presentation.ui.fragment.dependent
 
 import android.view.View
 import com.ocs.sequre.domain.entity.Dependent

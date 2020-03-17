@@ -31,15 +31,15 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/avatar"
         android:layout_width="128dp"
-        app:srcCompat="@drawable/ic_profile_placeholder"
         android:layout_height="128dp"
         android:layout_marginTop="8dp"
+        android:scaleType="fitXY"
         android:textAppearance="?attr/textAppearanceCaption"
         app:layout_constraintDimensionRatio="W,1:1"
         app:layout_constraintHeight_percent="0.6"
-        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:srcCompat="@drawable/ic_profile_placeholder" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/name"

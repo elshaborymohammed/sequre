@@ -11,11 +11,11 @@ import com.compact.widget.recyclerview.CompactRecyclerView
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.domain.entity.Dependent
-import kotlinx.android.synthetic.main.card_dependent.view.*
+import kotlinx.android.synthetic.main.card_dependent_summery.view.*
 import java.text.SimpleDateFormat
 
-class DependentAdapter :
-    CompactRecyclerView.Adapter<Dependent, DependentAdapter.ViewHolder>() {
+class DependentSummeryAdapter :
+    CompactRecyclerView.Adapter<Dependent, DependentSummeryAdapter.ViewHolder>() {
 
     private lateinit var listener: OnItemClickListener
 
@@ -28,7 +28,7 @@ class DependentAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.card_dependent, parent, false)
+                .inflate(R.layout.card_dependent_summery, parent, false)
         )
     }
 
@@ -55,17 +55,6 @@ class DependentAdapter :
 
                 relationship.setText(it.relationship.stringRes)
                 name.text = it.name
-                email.text = it.email
-                phone.text = it.phone.run { if (this.startsWith("0")) this else "0${this}" }
-                gender.text = it.gender
-                birth_date?.apply {
-                    text = if (it.birthDate.isNotNullOrEmpty()) {
-                        val date = SimpleDateFormat("yyyy-MM-dd").parse(it.birthDate.toString())
-                        SimpleDateFormat("dd-MM-yyyy").format(date)
-                    } else {
-                        "dd-MM-yyyy"
-                    }
-                }
                 GlideApp.with(this)
                     .load(it.photo)
                     .signature(ObjectKey(it.photo ?: ""))

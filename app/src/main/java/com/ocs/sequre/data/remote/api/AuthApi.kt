@@ -14,7 +14,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 @Requester
-interface AuthApi {
+interface AuthAPI {
 
     @POST("auth/login")
     fun login(@Body body: Login): Single<ResponseSuccess<AuthModel>>

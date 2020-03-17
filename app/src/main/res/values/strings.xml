@@ -142,6 +142,7 @@
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>
     <string name="attachment_summary_on">Automatically download attachments for incoming emails</string>
+    <string name="second_opinion_title">Second Opinion</string>
     <string name="second_opinion">Second\nOpinion</string>
     <string name="discount_card">Discount\nCard</string>
     <string name="discount_card_title">Discount Packages</string>
@@ -159,5 +160,8 @@
     <string name="service_providers">Service Providers</string>
     <string name="list">List</string>
     <string name="map">Map</string>
+    <string name="please_choose_your_dependent">Please Choose your Dependent</string>
+    <string name="we_are_pleased_to_help_you">We are pleased to help you</string>
+    <string name="good_morning_ahmed">Good Morning, Ahmed</string>
     <!-- endregion -->
 </resources>

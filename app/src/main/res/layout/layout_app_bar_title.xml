@@ -8,20 +8,4 @@
     app:elevation="0dp">
 
     <include layout="@layout/layout_tool_bar_title" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/sign_in"
-        android:textAppearance="?attr/titleTextAppearance" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/sign_in"
-        android:textAppearance="?attr/subtitleTextAppearance" />
 </com.google.android.material.appbar.AppBarLayout>

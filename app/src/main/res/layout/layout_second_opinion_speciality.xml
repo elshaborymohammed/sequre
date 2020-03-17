@@ -14,8 +14,8 @@
         android:textAppearance="?attr/textAppearanceBody1"
         android:textSize="22sp" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/search_speciality"
+    <com.google.android.material.textview.MaterialAutoCompleteTextView
+        android:id="@+id/speciality"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -36,7 +36,7 @@
         android:textSize="22sp" />
 
     <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/pain_place"
+        android:id="@+id/pain"
         style="@style/Widget.AppCompat.Spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

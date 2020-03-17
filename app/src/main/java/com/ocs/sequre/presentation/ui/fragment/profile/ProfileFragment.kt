@@ -12,7 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.app.base.BaseFragment
-import com.ocs.sequre.presentation.ui.fragment.profile.dependent.DependentsFragment
+import com.ocs.sequre.presentation.ui.fragment.dependent.DependentsFragment
 import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.card_profile.view.*
