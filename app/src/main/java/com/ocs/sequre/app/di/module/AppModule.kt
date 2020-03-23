@@ -23,7 +23,8 @@ import javax.inject.Singleton
         GsonModule::class,
         RequestBuilderModule::class,
         RequestModule::class,
-        SchedulerModule::class
+        SchedulerModule::class,
+        GlideModule::class
     ]
 )
 class AppModule {

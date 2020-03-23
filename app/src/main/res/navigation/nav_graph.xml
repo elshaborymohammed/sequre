@@ -95,6 +95,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigationFragment_to_notificationsFragment"
+            app:destination="@id/notificationsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
 
@@ -119,4 +126,26 @@
     </navigation>
 
     <include app:graph="@navigation/menu_graph" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.notifications.NotificationsFragment"
+        android:label="NotificationsFragment"
+        tools:layout="@layout/fragment_notifications">
+        <action
+            android:id="@+id/action_notificationsFragment_to_secondOpinionReportFragment"
+            app:destination="@id/secondOpinionReportFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondOpinionReportFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondOpinion.SecondOpinionReportFragment"
+        android:label="SecondOpinionReportFragment"
+        tools:layout="@layout/fragment_report">
+        <argument
+            android:name="notification"
+            app:argType="com.ocs.sequre.domain.entity.Notification" />
+    </fragment>
 </navigation>

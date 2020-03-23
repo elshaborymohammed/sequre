@@ -43,6 +43,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ServiceProviderViewModel::class)
-    internal abstract fun providesServiceProviderViewModel(viewModel: ServiceProviderViewModel): ViewModel
+    @ViewModelKey(NotificationsViewModel::class)
+    internal abstract fun provideNotificationsViewModel(viewModel: NotificationsViewModel): ViewModel
 }

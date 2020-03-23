@@ -13,6 +13,7 @@ import com.ocs.sequre.presentation.ui.fragment.discount.PurchaseSuccessfullyFrag
 import com.ocs.sequre.presentation.ui.fragment.navigation.HomeFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.MenuFragment
 import com.ocs.sequre.presentation.ui.fragment.navigation.NavigationFragment
+import com.ocs.sequre.presentation.ui.fragment.notifications.NotificationsFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.AddressFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.ChangePasswordFragment
 import com.ocs.sequre.presentation.ui.fragment.profile.EditProfileFragment
@@ -20,6 +21,8 @@ import com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment
 import com.ocs.sequre.presentation.ui.fragment.provider.MapsFragment
 import com.ocs.sequre.presentation.ui.fragment.provider.ServiceProviderFragment
 import com.ocs.sequre.presentation.ui.fragment.provider.ServiceProvidersFragment
+import com.ocs.sequre.presentation.ui.fragment.secondOpinion.SecondOpinionDoctorsFragment
+import com.ocs.sequre.presentation.ui.fragment.secondOpinion.SecondOpinionReportFragment
 import com.ocs.sequre.presentation.ui.fragment.secondopinion.*
 import com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment
 import com.ocs.sequre.presentation.ui.fragment.setting.SettingFragment
@@ -73,6 +76,9 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun providesSecondOpinionQuestionsGeneralSecondFragment(): SecondOpinionQuestionsGeneralSecondFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun provideSecondOpinionDoctorsFragment(): SecondOpinionDoctorsFragment
     //endregion
 
     //region Side Menu Fragments
@@ -138,4 +144,10 @@ abstract class FragmentModule {
     @ContributesAndroidInjector
     internal abstract fun providesServiceProvidersFragment(): ServiceProvidersFragment
     //endregion
+
+    @ContributesAndroidInjector
+    internal abstract fun provideNotificationsFragment(): NotificationsFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun provideNotificationDetailsFragment(): SecondOpinionReportFragment
 }

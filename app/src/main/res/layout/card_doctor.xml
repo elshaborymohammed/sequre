@@ -1,82 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:elevation="3dp"
+    android:paddingStart="2dp"
+    android:paddingTop="2dp"
+    android:paddingEnd="2dp"
+    tools:layout_margin="8dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="8dp">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/guide_line"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/point"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/guide_line"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/sh_border_rounded_outline"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/point"
-            app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/point"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="@id/image"
+        app:layout_constraintStart_toStartOf="@id/image"
+        app:layout_constraintTop_toTopOf="@id/image" />
 
-        <View
-            android:id="@+id/point"
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            app:layout_constraintEnd_toEndOf="@id/image"
-            app:layout_constraintStart_toStartOf="@id/image"
-            app:layout_constraintTop_toTopOf="@id/image" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="48dp"
+        android:elevation="2dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="W,1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@tools:sample/avatars" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginVertical="12dp"
-            android:layout_marginStart="16dp"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="W,1:1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/name"
+        style="@style/App.TextAppearance.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:elevation="3dp"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:textSize="@dimen/text_default"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toTopOf="@id/image"
+        tools:text="Mona Ibrahim" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="Mona Ibrahim"
-            android:textAppearance="?attr/textAppearanceBody1"
-            app:layout_constraintStart_toEndOf="@id/image"
-            app:layout_constraintTop_toTopOf="@id/image" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/address"
+        style="@style/App.TextAppearance.Default"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:elevation="3dp"
+        android:textColor="#5E5E5E"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="@id/guide_line"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintWidth_default="spread"
+        app:layout_constraintWidth_percent="0.60"
+        tools:text="I'm a therapist doctor works at hospital name" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            android:layout_marginStart="12dp"
-            android:text="I'm a therapist doctor works at hospital name"
-            android:textAppearance="?attr/textAppearanceCaption"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toEndOf="@id/guide_line"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@id/image"
-            app:layout_constraintTop_toBottomOf="@id/name"
-            app:layout_constraintWidth_default="spread"
-            app:layout_constraintWidth_percent="0.60" />
+    <com.google.android.material.button.MaterialButton
+        style="@style/App.Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:minWidth="0dp"
+        android:minHeight="6dp"
+        android:paddingStart="24dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="6dp"
+        android:text="@string/choose"
+        android:textSize="14sp"
+        app:cornerRadius="18dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guide_line"
+        app:layout_constraintTop_toBottomOf="@id/address"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.30" />
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/App.Widget.Button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="12dp"
-            android:text="@string/choose"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toEndOf="@id/guide_line"
-            app:layout_constraintTop_toBottomOf="@id/address"
-            app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.40" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
