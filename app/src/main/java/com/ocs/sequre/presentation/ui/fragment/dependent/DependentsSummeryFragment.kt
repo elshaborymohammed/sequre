@@ -6,9 +6,9 @@ import androidx.navigation.fragment.findNavController
 import com.compact.app.extensions.setVisibility
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseBottomSheet
-import com.ocs.sequre.app.base.BaseFragment
-import com.ocs.sequre.presentation.ui.adapter.DependentAdapter
+import com.ocs.sequre.data.remote.model.request.secondopinion.SecondOpinionBody
 import com.ocs.sequre.presentation.ui.adapter.DependentSummeryAdapter
+import com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionChooseSpecialityFragmentArgs
 import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_dependents.view.*
@@ -26,9 +26,16 @@ class DependentsSummeryFragment : BaseBottomSheet() {
     override fun onViewBound(view: View) {
         viewModel =
             ViewModelProvider(this, factory).get(ProfileViewModel::class.java)
+
         adapter = DependentSummeryAdapter()
         adapter.setOnItemClickListener {
-            findNavController().navigate(R.id.action_dependentsSummeryFragment_to_secondOpinionChooseSpecialityFragment)
+            findNavController().navigate(
+                R.id.action_dependentsSummeryFragment_to_secondOpinionChooseSpecialityFragment,
+                SecondOpinionChooseSpecialityFragmentArgs(
+                    SecondOpinionBody.FOR_OTHER,
+                    it.id
+                ).toBundle()
+            )
         }
         view.list_item.adapter = adapter
     }
@@ -43,6 +50,9 @@ class DependentsSummeryFragment : BaseBottomSheet() {
                     requireView().empty.setVisibility(false)
                     requireView().list_item.setVisibility(true)
                     adapter.swap(it)
+                    adapter.addAll(it)
+                    adapter.addAll(it)
+                    adapter.addAll(it)
                 }
             }, ::print)
         )

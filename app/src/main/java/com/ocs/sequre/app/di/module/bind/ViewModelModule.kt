@@ -33,6 +33,11 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(MedicalDocumentViewModel::class)
+    internal abstract fun providesMedicalDocumentViewModel(viewModel: MedicalDocumentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(DependentViewModel::class)
     internal abstract fun providesDependentViewModel(viewModel: DependentViewModel): ViewModel
 

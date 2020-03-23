@@ -21,6 +21,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.util.Objects;
+
 import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
@@ -57,7 +59,7 @@ public abstract class BaseBottomSheet extends BottomSheetDialogFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        View bottomSheet = ((View) getView().getParent());
+        View bottomSheet = ((View) Objects.requireNonNull(getView()).getParent());
         bottomSheet.setBackgroundTintMode(PorterDuff.Mode.CLEAR);
         bottomSheet.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
         bottomSheet.setBackgroundColor(Color.TRANSPARENT);
@@ -94,7 +96,6 @@ public abstract class BaseBottomSheet extends BottomSheetDialogFragment {
     }
 
     private void setBottomSheetBehavior(View view) {
-        System.out.println("view = " + view.getParent());
         bottomSheetBehavior = BottomSheetBehavior.from((View) view.getParent());
         bottomSheetBehavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO, true);
         bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {

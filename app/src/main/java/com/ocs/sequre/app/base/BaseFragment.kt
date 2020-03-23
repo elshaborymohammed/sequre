@@ -8,6 +8,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.CallSuper
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -30,13 +31,17 @@ import java.io.IOException
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
-abstract class BaseFragment(@StringRes private val titleRes: Int? = null, @StringRes private val subtitleRes: Int? = null) :
+abstract class BaseFragment(
+    @StringRes private val titleRes: Int? = null,
+    @StringRes private val subtitleRes: Int? = null
+) :
     CompactFragment() {
     @Inject
     protected lateinit var factory: ViewModelProvider.Factory
 
     private lateinit var progressBar: AlertDialog
 
+    @CallSuper
     override fun onViewBound(view: View) {
         view.findViewById<MaterialToolbar>(R.id.toolbar)?.apply {
             setNavigationOnClickListener {
@@ -46,7 +51,7 @@ abstract class BaseFragment(@StringRes private val titleRes: Int? = null, @Strin
             subtitleRes?.apply { setSubtitle(this) }
 //            setToolBar(this)
         }
-        progressBar = AlertDialog.Builder(requireContext())
+        progressBar = AlertDialog.Builder(view.context)
             .setView(R.layout.layout_progress_bar)
             .setCancelable(false)
             .create()

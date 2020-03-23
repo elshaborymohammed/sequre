@@ -69,8 +69,6 @@ class DependentAdapter :
                 GlideApp.with(this)
                     .load(it.photo)
                     .signature(ObjectKey(it.photo ?: ""))
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
                     .into(image)
             }
         }

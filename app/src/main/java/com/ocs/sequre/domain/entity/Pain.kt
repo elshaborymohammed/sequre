@@ -9,8 +9,9 @@ data class Pain(
     val id: Int,
     @SerializedName("name")
     @Expose
-    val name: String,
-    @SerializedName("name_ar")
-    @Expose
-    val nameAr: String
-)
+    val name: String
+) {
+    override fun toString(): String {
+        return name
+    }
+}

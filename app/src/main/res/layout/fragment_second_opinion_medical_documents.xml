@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -24,27 +25,34 @@
                 android:layout_marginVertical="8dp"
                 android:text="@string/medical_reports"
                 android:textAppearance="?attr/textAppearanceBody1"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/medical_reports"
                 android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:layout_marginVertical="8dp" />
+                android:layout_height="140dp"
+                android:layout_marginVertical="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/card_medical_document" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
+                android:orientation="horizontal"
                 android:text="@string/lab_tests"
                 android:textAppearance="?attr/textAppearanceBody1"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lab_tests"
                 android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:layout_marginVertical="8dp" />
+                android:layout_height="140dp"
+                android:layout_marginVertical="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/card_medical_document" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
@@ -52,19 +60,23 @@
                 android:layout_marginVertical="8dp"
                 android:text="@string/radiology_scans"
                 android:textAppearance="?attr/textAppearanceBody1"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/radiology_scans"
                 android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:layout_marginVertical="8dp" />
+                android:layout_height="140dp"
+                android:layout_marginVertical="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/card_medical_document" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/yes"
+                android:id="@+id/choose_doctor"
                 style="@style/App.Widget.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:layout_gravity="center"
                 android:layout_marginVertical="8dp"
                 android:paddingVertical="16dp"

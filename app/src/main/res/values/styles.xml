@@ -6,6 +6,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
@@ -101,6 +102,19 @@
         <item name="android:paddingBottom">12dp</item>
         <item name="backgroundTint">@android:color/white</item>
         <item name="android:textColor">@color/colorAccent</item>
+        <item name="cornerRadius">@dimen/corner_radius</item>
+        <item name="strokeColor">@color/colorAccent</item>
+        <item name="strokeWidth">@dimen/stroke_width</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textAppearance">@style/App.TextAppearance.Button</item>
+    </style>
+
+    <style name="App.Widget.Button.Toggle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="backgroundTint">@color/se_toggle_button_background_tint</item>
+        <!--        <item name="android:textColor">@color/se_toggle_button_text_tint</item>-->
         <item name="cornerRadius">@dimen/corner_radius</item>
         <item name="strokeColor">@color/colorAccent</item>
         <item name="strokeWidth">@dimen/stroke_width</item>
@@ -225,7 +239,6 @@
     </style>
 
     <style name="App.TextAppearance.Button" parent="TextAppearance.MaterialComponents.Button">
-        <item name="android:textColor">?attr/colorControlNormal</item>
         <item name="android:textSize">17sp</item>
         <item name="fontFamily">@font/roboto_medium</item>
     </style>

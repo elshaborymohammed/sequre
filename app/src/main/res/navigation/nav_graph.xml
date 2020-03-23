@@ -141,7 +141,7 @@
     </fragment>
     <fragment
         android:id="@+id/secondOpinionReportFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.secondOpinion.SecondOpinionReportFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionReportFragment"
         android:label="SecondOpinionReportFragment"
         tools:layout="@layout/fragment_report">
         <argument

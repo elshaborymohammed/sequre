@@ -13,5 +13,5 @@ data class Speciality(
     val name: String,
     @SerializedName("pain")
     @Expose
-    val pains: List<String>
+    val pains: List<Pain>
 ) : Serializable

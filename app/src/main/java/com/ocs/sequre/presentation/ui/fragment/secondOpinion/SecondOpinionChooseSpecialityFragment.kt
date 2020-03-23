@@ -6,16 +6,20 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
+import com.ocs.sequre.data.remote.model.request.secondopinion.SecondOpinionBody
+import com.ocs.sequre.domain.entity.Pain
 import com.ocs.sequre.presentation.viewmodel.SecondOpinionViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.layout_second_opinion_speciality.*
-import kotlinx.android.synthetic.main.layout_second_opinion_speciality.view.*
 
 class SecondOpinionChooseSpecialityFragment : BaseFragment() {
 
     private lateinit var viewModel: SecondOpinionViewModel
+    private var dependentId: Int = 0
+    private var forWho: Int = 0
 
     override fun layoutRes(): Int {
         return R.layout.fragment_second_opinion_choose_speciality
@@ -25,8 +29,38 @@ class SecondOpinionChooseSpecialityFragment : BaseFragment() {
         super.onViewBound(view)
         viewModel = ViewModelProvider(this, factory).get(SecondOpinionViewModel::class.java)
 
-        view.save.setOnClickListener {
-            findNavController().navigate(R.id.action_secondOpinionChooseSpecialityFragment_to_secondOpinionQuestionsSpecialityFragment)
+        arguments?.run {
+            SecondOpinionChooseSpecialityFragmentArgs.fromBundle(this)
+                .let {
+                    dependentId = it.dependentId
+                    forWho = it.forWho
+                }
+        }
+
+        save.setOnClickListener {
+            try {
+                subscribe(
+                    viewModel.post(
+                        SecondOpinionBody(
+                            forOther = forWho,
+                            dependentId = dependentId,
+                            specialityId = speciality.tag as Int,
+                            painId = (pain.selectedItem as Pain).id,
+                            date = "2020-02-02",
+                            description = description.text.toString()
+                        )
+                    ).subscribe({
+                        findNavController().navigate(R.id.action_secondOpinionChooseSpecialityFragment_to_secondOpinionQuestionsSpecialityFragment)
+                    }, onError())
+                )
+            } catch (e: TypeCastException) {
+                e.printStackTrace()
+                Snackbar.make(
+                    requireView(),
+                    "You must select speciality",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
         }
     }
 
@@ -60,11 +94,24 @@ class SecondOpinionChooseSpecialityFragment : BaseFragment() {
                         setAdapter(this)
                         setOnItemClickListener { _, _, position, _ ->
                             setText(it[position].name, false)
-                            setTag(1, it[position].id)
+                            tag = it[position].id
+
+                            pain.run {
+                                ArrayAdapter(
+                                    context,
+                                    android.R.layout.simple_spinner_item,
+                                    android.R.id.text1,
+                                    it[position].pains
+                                ).run {
+                                    setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+                                    adapter = this
+                                }
+                            }
                         }
                     }
                 }
             }, onError())
         )
     }
+
 }

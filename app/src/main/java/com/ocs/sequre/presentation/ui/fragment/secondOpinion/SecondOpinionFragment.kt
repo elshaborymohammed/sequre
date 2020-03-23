@@ -16,12 +16,14 @@ class SecondOpinionFragment : BaseFragment() {
         super.onViewBound(view)
 
         view.for_you.setOnClickListener {
-            findNavController().navigate(R.id.action_secondOpinionFragment_to_secondOpinionChooseSpecialityFragment)
+            findNavController().navigate(
+                R.id.action_secondOpinionFragment_to_secondOpinionChooseSpecialityFragment,
+                SecondOpinionChooseSpecialityFragmentArgs().toBundle()
+            )
         }
 
         view.for_other.setOnClickListener {
             findNavController().navigate(R.id.action_secondOpinionFragment_to_dependentsSummeryFragment)
         }
-
     }
 }

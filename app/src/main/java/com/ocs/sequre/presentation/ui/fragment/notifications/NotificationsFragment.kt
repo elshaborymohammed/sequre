@@ -10,7 +10,7 @@ import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.domain.entity.Notification.Companion.TYPE_OFFER
 import com.ocs.sequre.domain.entity.Notification.Companion.TYPE_OPINION
 import com.ocs.sequre.presentation.ui.adapter.NotificationsAdapter
-import com.ocs.sequre.presentation.ui.fragment.secondOpinion.SecondOpinionReportFragmentArgs
+import com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionReportFragmentArgs
 import com.ocs.sequre.presentation.viewmodel.NotificationsViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_notifications.view.*

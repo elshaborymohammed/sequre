@@ -1,19 +1,13 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="default_notification_channel_id">firebase-messaging</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="openDrawer">open_drawer</string>
     <string name="closeDrawer">close_drawer</string>
 
-    <string name="app_name">SeQure</string>
-    <string name="slogan">
-        <![CDATA[
-        Your
-        <b><font color=#007DC3>Health</font></b>
-        is Our Priority
-        ]]></string>
+    <string name="app_name" tools:ignore="PrivateResource">SeQure</string>
 
-    <string name="slogan2">Your <font fgcolor='#007DC3'>Health</font> is Our Priority</string>
+    <string name="slogan">Your <font fgcolor='#007DC3'>Health</font> is Our Priority</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="language_title">Language</string>
@@ -124,8 +118,7 @@
     </string-array>
 
     <string-array name="pain_array">
-        <item>Leg</item>
-        <item>Arm</item>
+        <item>Select a Pain…</item>
     </string-array>
     <!-- endregion -->
 
@@ -174,5 +167,10 @@
     <string name="dosage">Dosage</string>
     <string name="start_date">Start date</string>
     <string name="comments">Comments</string>
+    <string name="request_some_general_questions">You\'re about to finish the questions to send your request, Some general questions to go</string>
+    <string name="you_are_doing_great">You are doing great</string>
+    <string name="keep_going_answer_the_questions">Keep going answer the questions</string>
+    <string name="great">Great</string>
+    <string name="new_dependent">New Dependent</string>
     <!-- endregion -->
 </resources>

@@ -1,5 +1,6 @@
 package com.ocs.sequre.app.base
 
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.*
@@ -19,6 +20,10 @@ fun ImageView.base64(): String? {
 
 fun Drawable.toBase64(): String {
     return "data:image/png;base64,${ImageHelper.encodeBitmapToBase64(toBitmap())}"
+}
+
+fun Bitmap.toBase64(): String {
+    return "data:image/png;base64,${ImageHelper.encodeBitmapToBase64(this)}"
 }
 
 fun <T> TextInputLayout.setAdapter(adapter: T) where T : ListAdapter, T : Filterable {

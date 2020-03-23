@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/sh_border_rounded_top"
     android:padding="16dp">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -14,8 +14,7 @@
         app:layout_constraintDimensionRatio="1.5:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bg_radiology_brain_scans" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/guide_line"

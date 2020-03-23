@@ -46,8 +46,10 @@ class NetworkInterceptorModule {
         return Interceptor.invoke {
             when {
                 it.request().url.toString().toLowerCase(Locale.ROOT).contains("/auth/") or
-                        it.request().url.toString().toLowerCase(Locale.ROOT).contains("/location/") or
-                        it.request().url.toString().toLowerCase(Locale.ROOT).contains("addresses.overcoffees.com/api/") -> {
+                        it.request().url.toString().toLowerCase(Locale.ROOT)
+                            .contains("/location/") or
+                        it.request().url.toString().toLowerCase(Locale.ROOT)
+                            .contains("addresses.overcoffees.com/api/") -> {
                     val response = it.proceed(it.request())
 //                    response.run {
 //                        if (code == 200) {
@@ -67,7 +69,8 @@ class NetworkInterceptorModule {
                     response
                 }
                 else -> {
-                    val newRequest: Request = it.request().newBuilder()
+                    val newRequest: Request = it.request()
+                        .newBuilder()
                         .addHeader(
                             "Authorization",
                             "Bearer ${auth.get()}"
@@ -83,7 +86,8 @@ class NetworkInterceptorModule {
     fun providesCountriesInterceptor(): Interceptor {
         return Interceptor.invoke {
             when {
-                it.request().url.toString().toLowerCase(Locale.ROOT).endsWith("/location/countries/codes") -> {
+                it.request().url.toString().toLowerCase(Locale.ROOT)
+                    .endsWith("/location/countries/codes") -> {
                     it.proceed(
                         it.request().newBuilder()
                             .url("https://addresses.overcoffees.com/api/country/codes")
@@ -91,6 +95,41 @@ class NetworkInterceptorModule {
                                 "authorization",
                                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6ImRldmVsb3BlciIsImlhdCI6MTU3OTUxMzAzNCwiZXhwIjoxMDIxOTUxMzAzNH0.W4Ky9zm0UWL91jn7XSg8pfoewaiq1U3GM0ZmGjG0s78"
                             )
+                            .build()
+                    )
+                }
+                else -> it.proceed(it.request())
+            }
+        }
+    }
+
+    @Provides
+    @IntoSet
+    fun providesMockInterceptor(): Interceptor {
+        return Interceptor.invoke {
+            when {
+                it.request().url.toString().toLowerCase(Locale.ROOT)
+                    .endsWith("/opinion/getSpecialities".toLowerCase()) or
+                        it.request().url.toString().toLowerCase(Locale.ROOT)
+                            .endsWith("/opinion/getPainQuestions/1".toLowerCase()) or
+                        it.request().url.toString().toLowerCase(Locale.ROOT)
+                            .endsWith("/opinion/getGeneralQuestions/1".toLowerCase()) or
+                        it.request().url.toString().toLowerCase(Locale.ROOT)
+                            .endsWith("/opinion/files/get/1".toLowerCase()) or
+                        it.request().url.toString().toLowerCase(Locale.ROOT)
+                            .endsWith("/opinion/files".toLowerCase()) or
+                        it.request().url.toString().toLowerCase(Locale.ROOT)
+                            .contains("/opinion/files/destroy/".toLowerCase()) or
+                        it.request().url.toString().toLowerCase(Locale.ROOT)
+                            .contains("/opinion/files/destroy/".toLowerCase()) -> {
+                    val url = it.request().url.toString().replace(
+                        "http://sequrep.overcoffees.com/api/",
+                        "https://sequer.getsandbox.com:443/"
+                    )
+                    it.proceed(
+                        it.request().newBuilder()
+                            .url(url)
+                            .addHeader("Content-Type", "application/json")
                             .build()
                     )
                 }

@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="56dp"
-        android:text="@string/slogan2"
+        android:text="@string/slogan"
         android:textAppearance="?attr/textAppearanceBody2"
         android:textSize="20sp" />
 </FrameLayout>
