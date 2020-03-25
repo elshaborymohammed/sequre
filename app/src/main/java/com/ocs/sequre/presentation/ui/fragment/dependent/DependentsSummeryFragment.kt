@@ -3,20 +3,20 @@ package com.ocs.sequre.presentation.ui.fragment.dependent
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.compact.app.extensions.setVisibility
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseBottomSheet
 import com.ocs.sequre.data.remote.model.request.secondopinion.SecondOpinionBody
 import com.ocs.sequre.presentation.ui.adapter.DependentSummeryAdapter
 import com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionChooseSpecialityFragmentArgs
 import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
+import com.ocs.sequre.presentation.viewmodel.SecondOpinionViewModel
 import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.fragment_dependents.view.*
 import kotlinx.android.synthetic.main.layout_list_items.view.*
 
 class DependentsSummeryFragment : BaseBottomSheet() {
 
-    private lateinit var viewModel: ProfileViewModel
+    private lateinit var profileViewModel: ProfileViewModel
+    private lateinit var secondOpinionViewModel: SecondOpinionViewModel
     private lateinit var adapter: DependentSummeryAdapter
 
     override fun layoutRes(): Int {
@@ -24,8 +24,11 @@ class DependentsSummeryFragment : BaseBottomSheet() {
     }
 
     override fun onViewBound(view: View) {
-        viewModel =
-            ViewModelProvider(this, factory).get(ProfileViewModel::class.java)
+        super.onViewBound(view)
+        profileViewModel =
+            ViewModelProvider(requireActivity(), factory).get(ProfileViewModel::class.java)
+        secondOpinionViewModel =
+            ViewModelProvider(requireActivity(), factory).get(SecondOpinionViewModel::class.java)
 
         adapter = DependentSummeryAdapter()
         adapter.setOnItemClickListener {
@@ -42,19 +45,8 @@ class DependentsSummeryFragment : BaseBottomSheet() {
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
-            viewModel.dependents().subscribe({
-                if (it.isNullOrEmpty()) {
-                    requireView().empty.setVisibility(true)
-                    requireView().list_item.setVisibility(false)
-                } else {
-                    requireView().empty.setVisibility(false)
-                    requireView().list_item.setVisibility(true)
-                    adapter.swap(it)
-                    adapter.addAll(it)
-                    adapter.addAll(it)
-                    adapter.addAll(it)
-                }
-            }, ::print)
+            profileViewModel.loading().subscribe(::loading),
+            profileViewModel.dependents().subscribe(adapter::swap, onError())
         )
     }
 }

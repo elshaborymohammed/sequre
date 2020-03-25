@@ -32,14 +32,6 @@ class NetworkInterceptorModule {
         }
     }
 
-//    @Provides
-//    @IntoSet
-//    fun providesBodyInterceptors(): Interceptor {
-//        val interceptor = HttpLoggingInterceptor()
-//        interceptor.level = HttpLoggingInterceptor.Level.HEADERS
-//        return interceptor
-//    }
-
     @Provides
     @IntoSet
     fun providesAuthenticationInterceptor(auth: AuthPreference): Interceptor {
@@ -71,10 +63,9 @@ class NetworkInterceptorModule {
                 else -> {
                     val newRequest: Request = it.request()
                         .newBuilder()
-                        .addHeader(
-                            "Authorization",
-                            "Bearer ${auth.get()}"
-                        ).build()
+                        .addHeader("Authorization", "Bearer ${auth.get()}")
+                        .addHeader("Content-Type", "application/json")
+                        .build()
                     it.proceed(newRequest)
                 }
             }
@@ -95,41 +86,6 @@ class NetworkInterceptorModule {
                                 "authorization",
                                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6ImRldmVsb3BlciIsImlhdCI6MTU3OTUxMzAzNCwiZXhwIjoxMDIxOTUxMzAzNH0.W4Ky9zm0UWL91jn7XSg8pfoewaiq1U3GM0ZmGjG0s78"
                             )
-                            .build()
-                    )
-                }
-                else -> it.proceed(it.request())
-            }
-        }
-    }
-
-    @Provides
-    @IntoSet
-    fun providesMockInterceptor(): Interceptor {
-        return Interceptor.invoke {
-            when {
-                it.request().url.toString().toLowerCase(Locale.ROOT)
-                    .endsWith("/opinion/getSpecialities".toLowerCase()) or
-                        it.request().url.toString().toLowerCase(Locale.ROOT)
-                            .endsWith("/opinion/getPainQuestions/1".toLowerCase()) or
-                        it.request().url.toString().toLowerCase(Locale.ROOT)
-                            .endsWith("/opinion/getGeneralQuestions/1".toLowerCase()) or
-                        it.request().url.toString().toLowerCase(Locale.ROOT)
-                            .endsWith("/opinion/files/get/1".toLowerCase()) or
-                        it.request().url.toString().toLowerCase(Locale.ROOT)
-                            .endsWith("/opinion/files".toLowerCase()) or
-                        it.request().url.toString().toLowerCase(Locale.ROOT)
-                            .contains("/opinion/files/destroy/".toLowerCase()) or
-                        it.request().url.toString().toLowerCase(Locale.ROOT)
-                            .contains("/opinion/files/destroy/".toLowerCase()) -> {
-                    val url = it.request().url.toString().replace(
-                        "http://sequrep.overcoffees.com/api/",
-                        "https://sequer.getsandbox.com:443/"
-                    )
-                    it.proceed(
-                        it.request().newBuilder()
-                            .url(url)
-                            .addHeader("Content-Type", "application/json")
                             .build()
                     )
                 }

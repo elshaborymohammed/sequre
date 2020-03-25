@@ -97,6 +97,11 @@
             android:name="document"
             app:argType="com.ocs.sequre.domain.entity.Document"
             app:nullable="false" />
+
+        <argument
+            android:name="category"
+            app:argType="integer"
+            app:nullable="false" />
     </dialog>
     <fragment
         android:id="@+id/secondOpinionDoctorsFragment"

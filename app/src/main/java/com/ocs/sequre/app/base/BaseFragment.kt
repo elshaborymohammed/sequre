@@ -51,13 +51,16 @@ abstract class BaseFragment(
             subtitleRes?.apply { setSubtitle(this) }
 //            setToolBar(this)
         }
-        progressBar = AlertDialog.Builder(view.context)
-            .setView(R.layout.layout_progress_bar)
-            .setCancelable(false)
-            .create()
-        progressBar.window?.run {
-            setBackgroundDrawableResource(android.R.color.transparent)
-            allowEnterTransitionOverlap = true
+        AlertDialog.Builder(view.context).apply {
+            setView(R.layout.layout_progress_bar)
+            setCancelable(false)
+            create().run {
+                window?.run {
+                    setBackgroundDrawableResource(android.R.color.transparent)
+                    allowEnterTransitionOverlap = true
+                }
+                progressBar = this
+            }
         }
     }
 

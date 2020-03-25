@@ -95,6 +95,7 @@ class SecondOpinionChooseSpecialityFragment : BaseFragment() {
                         setOnItemClickListener { _, _, position, _ ->
                             setText(it[position].name, false)
                             tag = it[position].id
+                            isEnabled = false
 
                             pain.run {
                                 ArrayAdapter(

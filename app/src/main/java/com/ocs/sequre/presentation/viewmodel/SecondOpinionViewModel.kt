@@ -4,6 +4,7 @@ import com.compact.app.viewmodel.CompactViewModel
 import com.compact.executor.RxCompactSchedulers
 import com.ocs.sequre.data.remote.api.RequesterSecondOpinionAPI
 import com.ocs.sequre.data.remote.model.request.secondopinion.SecondOpinionBody
+import com.ocs.sequre.data.remote.model.request.secondopinion.SecondOpinionCachedData
 import com.ocs.sequre.data.remote.model.request.secondopinion.SecondOpinionGeneralAnswerBody
 import com.ocs.sequre.data.remote.model.request.secondopinion.SecondOpinionSpecialityAnswerBody
 import com.ocs.sequre.domain.entity.*
@@ -18,8 +19,6 @@ class SecondOpinionViewModel @Inject constructor(
     private val schedulers: RxCompactSchedulers
 ) : CompactViewModel() {
 
-    private var id: Int = 1
-
     fun specialities(): Single<List<Speciality>> {
         return api.specialities()
             .compose(schedulers.applyOnSingle())
@@ -28,14 +27,14 @@ class SecondOpinionViewModel @Inject constructor(
     }
 
     fun painQuestions(): Single<List<Question>> {
-        return api.painQuestions(id)
+        return api.painQuestions(preference.get().body.painId)
             .compose(schedulers.applyOnSingle())
             .compose(composeLoadingSingle())
             .map { it.data }
     }
 
     fun generalQuestions(): Single<List<Question>> {
-        return api.generalQuestions(id)
+        return api.generalQuestions(preference.get().body.painId)
             .compose(schedulers.applyOnSingle())
             .compose(composeLoadingSingle())
             .map { it.data }
@@ -46,17 +45,17 @@ class SecondOpinionViewModel @Inject constructor(
             .compose(schedulers.applyOnSingle())
             .compose(composeLoadingSingle())
             .map { it.data }
-            .doOnSuccess { preference.set(it.id) }
+            .doOnSuccess { preference.set(SecondOpinionCachedData(it.id, body)) }
     }
 
     fun put(body: SecondOpinionSpecialityAnswerBody): Completable {
-        return api.put(preference.get(), body)
+        return api.put(preference.get().id, body)
             .compose(schedulers.applyOnCompletable())
             .compose(composeLoadingCompletable())
     }
 
     fun put(body: SecondOpinionGeneralAnswerBody): Completable {
-        return api.put(preference.get(), body)
+        return api.put(preference.get().id, body)
             .compose(schedulers.applyOnCompletable())
             .compose(composeLoadingCompletable())
     }

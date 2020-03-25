@@ -41,19 +41,22 @@ class MedicalDocumentsFragment : BaseFragment() {
 
     override fun onViewBound(view: View) {
         super.onViewBound(view)
-        viewModel = ViewModelProvider(this, factory).get(MedicalDocumentViewModel::class.java)
+        viewModel = ViewModelProvider(activity!!, factory).get(MedicalDocumentViewModel::class.java)
 
         MedicalDocumentAdapter().run {
             setOnItemClickListener(
                 { onNewListener(MedicalDocumentBody.MEDICAL) },
-                ::onChangeListener
+                { onChangeListener(MedicalDocumentBody.MEDICAL, it) }
             )
             medicalReportsAdapter = this
             view.medical_reports.adapter = this
         }
 
         MedicalDocumentAdapter().run {
-            setOnItemClickListener({ onNewListener(MedicalDocumentBody.LAB) }, ::onChangeListener)
+            setOnItemClickListener(
+                { onNewListener(MedicalDocumentBody.LAB) },
+                { onChangeListener(MedicalDocumentBody.LAB, it) }
+            )
             labTestsAdapter = this
             view.lab_tests.adapter = this
         }
@@ -61,7 +64,7 @@ class MedicalDocumentsFragment : BaseFragment() {
         MedicalDocumentAdapter().run {
             setOnItemClickListener(
                 { onNewListener(MedicalDocumentBody.RADIOLOGY) },
-                ::onChangeListener
+                { onChangeListener(MedicalDocumentBody.RADIOLOGY, it) }
             )
             radiologyScansAdapter = this
             view.radiology_scans.adapter = this
@@ -75,10 +78,14 @@ class MedicalDocumentsFragment : BaseFragment() {
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(
             viewModel.loading().subscribe(::loading),
-            viewModel.get(1).subscribe({
-                medicalReportsAdapter.swap(it.medical)
-                labTestsAdapter.swap(it.lab)
-                radiologyScansAdapter.swap(it.radiology)
+            viewModel.reload.subscribe({
+                subscribe(
+                    viewModel.get().subscribe({
+                        medicalReportsAdapter.swap(it.medical)
+                        labTestsAdapter.swap(it.lab)
+                        radiologyScansAdapter.swap(it.radiology)
+                    }, onError())
+                )
             }, onError())
         )
     }
@@ -139,10 +146,10 @@ class MedicalDocumentsFragment : BaseFragment() {
         }
     }
 
-    private fun onChangeListener(it: Document) {
+    private fun onChangeListener(@DocumentType category: Int, it: Document) {
         findNavController().navigate(
             R.id.action_medicalDocumentsFragment_to_medicalDocumentEditFragment,
-            MedicalDocumentEditFragmentArgs(it).toBundle()
+            MedicalDocumentEditFragmentArgs(it, category).toBundle()
         )
     }
 
@@ -156,6 +163,7 @@ class MedicalDocumentsFragment : BaseFragment() {
                             photo = resource.toBase64()
                         )
                     ).subscribe({
+                        viewModel.reload.accept("")
                         Snackbar.make(
                             requireView(),
                             R.string.saved_successfully,

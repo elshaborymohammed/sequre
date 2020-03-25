@@ -2,6 +2,7 @@ package com.ocs.sequre.presentation.viewmodel
 
 import com.compact.app.viewmodel.CompactViewModel
 import com.compact.executor.RxCompactSchedulers
+import com.jakewharton.rxrelay2.BehaviorRelay
 import com.ocs.sequre.data.remote.api.RequesterMedicalDocumentAPI
 import com.ocs.sequre.data.remote.model.request.secondopinion.MedicalDocumentBody
 import com.ocs.sequre.domain.entity.MedicalDocument
@@ -15,9 +16,10 @@ class MedicalDocumentViewModel @Inject constructor(
     private val preference: SecondOpinionPreference,
     private val schedulers: RxCompactSchedulers
 ) : CompactViewModel() {
+    val reload = BehaviorRelay.create<Any>()
 
     fun post(body: MedicalDocumentBody): Completable {
-        body.opinionId = preference.get()
+        body.opinionId = preference.get().id
         return api.post(body)
             .compose(schedulers.applyOnCompletable())
             .compose(composeLoadingCompletable())
@@ -29,8 +31,8 @@ class MedicalDocumentViewModel @Inject constructor(
             .compose(composeLoadingCompletable())
     }
 
-    fun get(body: Int): Single<MedicalDocument> {
-        return api.get(body)
+    fun get(): Single<MedicalDocument> {
+        return api.get(preference.get().id)
             .compose(schedulers.applyOnSingle())
             .compose(composeLoadingSingle())
             .map { it.data }

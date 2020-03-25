@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.compact.widget.recyclerview.CompactRecyclerView
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
-import com.ocs.sequre.data.remote.model.request.secondopinion.MedicalDocumentBody
 import com.ocs.sequre.domain.entity.Document
 import kotlinx.android.synthetic.main.card_medical_document.view.*
 
@@ -16,6 +15,10 @@ class MedicalDocumentAdapter :
     CompactRecyclerView.Adapter<Document, MedicalDocumentAdapter.ViewHolder>() {
 
     private lateinit var listener: OnItemClickListener
+
+    init {
+        add(Document(-1, ""))
+    }
 
     override fun layoutManager(): RecyclerView.LayoutManager {
         return LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
@@ -38,7 +41,7 @@ class MedicalDocumentAdapter :
 
     override fun swap(data: List<Document>?) {
         val dataSet = ArrayList<Document>()
-        dataSet.add(Document(-1, MedicalDocumentBody.NEW,""))
+        dataSet.add(Document(-1, ""))
         data?.let { dataSet.addAll(it) }
         super.swap(dataSet)
     }

@@ -155,7 +155,7 @@
     <string name="map">Map</string>
     <string name="please_choose_your_dependent">Please Choose your Dependent</string>
     <string name="we_are_pleased_to_help_you">We are pleased to help you</string>
-    <string name="good_morning_ahmed">Good Morning, Ahmed</string>
+    <string name="good_morning">Good Morning, %1$s</string>
     <string name="notifications">Notifications</string>
     <string name="report">Report</string>
     <string name="diagnosis">Diagnosis</string>

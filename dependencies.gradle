@@ -107,7 +107,7 @@ ext {
     ]
 
     /** CompactKit */
-    compactVersion = '0.0.5_alpha1'
+    compactVersion = '0.0.5_alpha5'
     compact = [
             app                : "com.appcompact.compact:app:$compactVersion",
             otp                : "com.appcompact.compact:otpview:$compactVersion",

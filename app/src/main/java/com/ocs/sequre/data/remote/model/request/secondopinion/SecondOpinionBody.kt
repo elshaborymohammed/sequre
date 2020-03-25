@@ -15,4 +15,10 @@ data class SecondOpinionBody(
         const val FOR_ME = 0
         const val FOR_OTHER = 1
     }
+
+    override fun toString(): String {
+        return "SecondOpinionBody(forOther=$forOther, dependentId=$dependentId, date='$date', specialityId=$specialityId, painId=$painId, description='$description')"
+    }
+
+
 }

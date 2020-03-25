@@ -25,11 +25,11 @@ interface SecondOpinionAPI {
     @GET("opinion/getSpecialities")
     fun specialities(): Single<ResponseSuccess<List<Speciality>>>
 
-    @GET("opinion/getPainQuestions/{id}")
-    fun painQuestions(@Path("id") id: Int): Single<ResponseSuccess<List<Question>>>
+    @GET("opinion/getPainQuestions/{painId}")
+    fun painQuestions(@Path("painId") painId: Int): Single<ResponseSuccess<List<Question>>>
 
-    @GET("opinion/getGeneralQuestions/{id}")
-    fun generalQuestions(@Path("id") id: Int): Single<ResponseSuccess<List<Question>>>
+    @GET("opinion/getGeneralQuestions/{painId}")
+    fun generalQuestions(@Path("painId") painId: Int): Single<ResponseSuccess<List<Question>>>
 
     @Headers("Content-Type: application/json")
     @GET("https://sequre.getsandbox.com/serviceProvider/getAll/{id}")

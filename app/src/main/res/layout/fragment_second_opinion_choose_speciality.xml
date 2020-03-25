@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/good_morning_ahmed"
+                    android:text="@string/good_morning"
                     android:textAppearance="?attr/textAppearanceBody1" />
 
                 <com.google.android.material.textview.MaterialTextView
