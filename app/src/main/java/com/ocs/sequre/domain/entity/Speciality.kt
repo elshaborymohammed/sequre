@@ -5,13 +5,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Speciality(
-    @SerializedName("id")
-    @Expose
-    val id: Int,
-    @SerializedName("name")
-    @Expose
-    val name: String,
-    @SerializedName("pain")
-    @Expose
-    val pains: List<Pain>
+    @Expose @SerializedName("id") val id: Int,
+    @Expose @SerializedName("name") val name: String,
+    @Expose @SerializedName("pain") val pains: List<Pain>
 ) : Serializable

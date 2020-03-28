@@ -64,18 +64,6 @@ abstract class FragmentModule {
     internal abstract fun providesSecondOpinionFragment(): SecondOpinionFragment
 
     @ContributesAndroidInjector
-    internal abstract fun providesSecondOpinionChooseSpecialityFragment(): SecondOpinionChooseSpecialityFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun providesSecondOpinionQuestionsSpecialityFragment(): SecondOpinionQuestionsSpecialityFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun providesSecondOpinionQuestionsGeneralFirstFragment(): SecondOpinionQuestionsGeneralFirstFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun providesSecondOpinionQuestionsGeneralSecondFragment(): SecondOpinionQuestionsGeneralSecondFragment
-
-    @ContributesAndroidInjector
     internal abstract fun providesMedicalDocumentsFragment(): MedicalDocumentsFragment
 
     @ContributesAndroidInjector

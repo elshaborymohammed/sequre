@@ -10,71 +10,20 @@
         android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionFragment"
         android:label="SecondOpinionFragment"
         tools:layout="@layout/fragment_second_opinion">
-        <action
-            android:id="@+id/action_secondOpinionFragment_to_secondOpinionChooseSpecialityFragment"
-            app:destination="@id/secondOpinionChooseSpecialityFragment" />
+
         <action
             android:id="@+id/action_secondOpinionFragment_to_dependentsSummeryFragment"
             app:destination="@id/dependentsSummeryFragment" />
+        <action
+            android:id="@+id/action_secondOpinionFragment_to_medicalDocumentsFragment"
+            app:destination="@id/medicalDocumentsFragment" />
     </fragment>
     <dialog
         android:id="@+id/dependentsSummeryFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.dependent.DependentsSummeryFragment"
         android:label="DependentsSummeryFragment"
-        tools:layout="@layout/fragment_dependents_summary">
-        <action
-            android:id="@+id/action_dependentsSummeryFragment_to_secondOpinionChooseSpecialityFragment"
-            app:destination="@id/secondOpinionChooseSpecialityFragment" />
-    </dialog>
-    <fragment
-        android:id="@+id/secondOpinionChooseSpecialityFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionChooseSpecialityFragment"
-        android:label="ChooseSpecialityFragment"
-        tools:layout="@layout/fragment_second_opinion_choose_speciality">
+        tools:layout="@layout/fragment_dependents_summary" />
 
-        <argument
-            android:name="forWho"
-            android:defaultValue="0"
-            app:argType="integer"
-            app:nullable="false" />
-
-        <argument
-            android:name="dependent_id"
-            android:defaultValue="0"
-            app:argType="integer"
-            app:nullable="false" />
-
-        <action
-            android:id="@+id/action_secondOpinionChooseSpecialityFragment_to_secondOpinionQuestionsSpecialityFragment"
-            app:destination="@id/secondOpinionQuestionsSpecialityFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/secondOpinionQuestionsSpecialityFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionQuestionsSpecialityFragment"
-        android:label="QuestionsSpecialityFragment"
-        tools:layout="@layout/fragment_second_opinion_question_speciality">
-        <action
-            android:id="@+id/action_secondOpinionQuestionsSpecialityFragment_to_secondOpinionQuestionsGeneralFirstFragment"
-            app:destination="@id/secondOpinionQuestionsGeneralFirstFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/secondOpinionQuestionsGeneralFirstFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionQuestionsGeneralFirstFragment"
-        android:label="QuestionsGeneralFirstFragment"
-        tools:layout="@layout/fragment_second_opinion_question_general_01">
-        <action
-            android:id="@+id/action_secondOpinionQuestionsGeneralFirstFragment_to_secondOpinionQuestionsGeneralSecondFragment"
-            app:destination="@id/secondOpinionQuestionsGeneralSecondFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/secondOpinionQuestionsGeneralSecondFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionQuestionsGeneralSecondFragment"
-        android:label="QuestionsGeneralSecondFragment"
-        tools:layout="@layout/fragment_second_opinion_question_general_02">
-        <action
-            android:id="@+id/action_secondOpinionQuestionsGeneralSecondFragment_to_secondOpinionMedicalDocumentFragment"
-            app:destination="@id/medicalDocumentsFragment" />
-    </fragment>
     <fragment
         android:id="@+id/medicalDocumentsFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.MedicalDocumentsFragment"
