@@ -50,22 +50,24 @@ class SecondOpinionFragment : BaseFragment() {
         )
     }
 
+    private fun getSpecialities() = secondOpinionViewModel.specialities()
+        .subscribe({ specialities ->
+            adapter.add(chooseSpeciality(specialities))
+        }, onError())
+
     private fun askForWho(): SecondOpinion.Request.AskForWho =
         SecondOpinion.Request.AskForWho({
             secondOpinionViewModel.body.forWho = SecondOpinion.Body.FOR_ME
+            subscribe(getSpecialities())
         }, {
+            secondOpinionViewModel.showSpeciality()
+                .subscribe({ subscribe(getSpecialities()) }, ::println)
             secondOpinionViewModel.body.forWho = SecondOpinion.Body.FOR_OTHER
             findNavController().navigate(R.id.action_secondOpinionFragment_to_dependentsSummeryFragment)
-        }, {
-            subscribe(secondOpinionViewModel.specialities().subscribe({ specialities ->
-                adapter.add(chooseSpeciality(specialities))
-            }, onError()))
         })
 
     private fun chooseSpeciality(specialities: List<Speciality>): SecondOpinion.Request.ChooseSpeciality =
-        SecondOpinion.Request.ChooseSpeciality(
-            specialities
-        ) { specialityId: Int, painId: Int, description: String ->
+        SecondOpinion.Request.ChooseSpeciality(specialities) { specialityId: Int, painId: Int, description: String ->
             secondOpinionViewModel.body.specialityId = specialityId
             secondOpinionViewModel.body.painId = painId
             secondOpinionViewModel.body.description = description

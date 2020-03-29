@@ -18,8 +18,7 @@ sealed class SecondOpinion {
     sealed class Request : SecondOpinion() {
         class AskForWho(
             var forMeListener: () -> Unit,
-            var forOtherListener: () -> Unit,
-            var onNext: () -> Unit
+            var forOtherListener: () -> Unit
         ) : Request()
 
         class ChooseSpeciality(

@@ -31,15 +31,13 @@ class DependentsSummeryFragment : BaseBottomSheet() {
         adapter.setOnItemClickListener {
             secondOpinionViewModel.body.dependentId = it.id
             dismiss()
-//            findNavController().navigate(
-//                R.id.action_dependentsSummeryFragment_to_secondOpinionChooseSpecialityFragment,
-//                SecondOpinionChooseSpecialityFragmentArgs(
-//                    SecondOpinionBody.FOR_OTHER,
-//                    it.id
-//                ).toBundle()
-//            )
         }
         view.list_item.adapter = adapter
+    }
+
+    override fun onDestroyView() {
+        secondOpinionViewModel.showSpeciality.accept("")
+        super.onDestroyView()
     }
 
     override fun subscriptions(): Array<Disposable> {

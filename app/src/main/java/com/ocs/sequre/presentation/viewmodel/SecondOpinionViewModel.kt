@@ -2,11 +2,14 @@ package com.ocs.sequre.presentation.viewmodel
 
 import com.compact.app.viewmodel.CompactViewModel
 import com.compact.executor.RxCompactSchedulers
+import com.jakewharton.rxrelay2.BehaviorRelay
 import com.ocs.sequre.data.remote.api.RequesterSecondOpinionAPI
 import com.ocs.sequre.domain.entity.*
 import com.ocs.sequre.presentation.preference.SecondOpinionPreference
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class SecondOpinionViewModel @Inject constructor(
@@ -14,6 +17,11 @@ class SecondOpinionViewModel @Inject constructor(
     private val preference: SecondOpinionPreference,
     private val schedulers: RxCompactSchedulers
 ) : CompactViewModel() {
+    val showSpeciality = BehaviorRelay.create<Any>()
+
+    fun showSpeciality(): Observable<Any> {
+        return showSpeciality.observeOn(AndroidSchedulers.mainThread())
+    }
 
     var body = SecondOpinion.Body.Data()
     var speciality = SecondOpinion.Body.SpecialityAnswer()
