@@ -36,30 +36,6 @@ sealed class SecondOpinion {
             val question: Question,
             var listener: (question: Question, answer: List<Int>) -> Unit
         ) : Request()
-
-//        data class MultiChoice(
-//            val id: Int,
-//            val order: Int,
-//            val name: String,
-//            val fields: List<Filed>
-//        ) : Request()
-
-
-//        class YesNo(id: Int, order: Int, name: String, fields: List<Filed>) :
-//            Question(id = id, order = order, name = name, fields = fields)
-//
-//        class MultiChoice(id: Int, order: Int, name: String, fields: List<Filed>) :
-//            Question(id = id, order = order, name = name, fields = fields)
-
-//        sealed class Question(
-//            @Expose @SerializedName("id") val id: Int,
-//            @Expose @SerializedName("order") val order: Int,
-//            @Expose @SerializedName("name") val name: String,
-//            @Expose @SerializedName("fields") val fields: List<Filed>
-//        ) : Request() {
-//            
-//            
-//        }
     }
 
     sealed class Body {
@@ -97,34 +73,5 @@ sealed class SecondOpinion {
             @Expose @SerializedName("general_q5_id") var generalQ5Id: Int? = null,
             @Expose @SerializedName("general_q5_answer") var generalQ5Answer: List<Int>? = null
         ) : Body()
-    }
-
-//    data class SpecialityAnswerBody(
-//            @Expose @SerializedName("pain_q1_id") val painQ1Id: Int? = null,
-//            @Expose @SerializedName("pain_q1_answer") val painQ1Answer: Int? = null,
-//            @Expose @SerializedName("pain_q2_id") val painQ2Id: Int? = null,
-//            @Expose @SerializedName("pain_q2_answer") val painQ2Answer: List<Int>? = null
-//    ) : SecondOpinion()
-//
-//    data class GeneralAnswerBody(
-//            @Expose @SerializedName("general_q1_id") val generalQ1Id: Int? = null,
-//            @Expose @SerializedName("general_q1_answer") val generalQ1Answer: Int? = null,
-//            @Expose @SerializedName("general_q2_id") val generalQ2Id: Int? = null,
-//            @Expose @SerializedName("general_q2_answer") val generalQ2Answer: Int? = null,
-//            @Expose @SerializedName("general_q3_id") val generalQ3Id: Int? = null,
-//            @Expose @SerializedName("general_q3_answer") val generalQ3Answer: Int? = null,
-//            @Expose @SerializedName("general_q4_id") val generalQ4Id: Int? = null,
-//            @Expose @SerializedName("general_q4_answer") val generalQ4Answer: Int? = null,
-//            @Expose @SerializedName("general_q5_id") val generalQ5Id: Int? = null,
-//            @Expose @SerializedName("general_q5_answer") val generalQ5Answer: List<Int>? = null
-//    ) : SecondOpinion()
-
-    data class CachedData(
-        @Expose @SerializedName("id") var id: Int,
-        @Expose @SerializedName("body") var body: Body
-    ) : SecondOpinion() {
-        override fun toString(): String {
-            return "SecondOpinionCachedData(id=$id, body=$body)"
-        }
     }
 }

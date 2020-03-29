@@ -7,5 +7,6 @@ open class Question(
     @Expose @SerializedName("id") val id: Int,
     @Expose @SerializedName("order") val order: Int,
     @Expose @SerializedName("name") val name: String,
-    @Expose @SerializedName("fields") val fields: List<Filed>
+    @Expose @SerializedName("fields") val fields: List<Filed>,
+    var answer: List<Int>? = null
 ) 

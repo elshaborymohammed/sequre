@@ -19,14 +19,6 @@ class SecondOpinionViewModel @Inject constructor(
     var speciality = SecondOpinion.Body.SpecialityAnswer()
     var general = SecondOpinion.Body.GeneralAnswer()
 
-//    fun get(): SecondOpinion.Body {
-//        return preference.get()
-//    }
-//
-//    fun set(body: SecondOpinion.Body): Boolean {
-//        return preference.set(body)
-//    }
-
     fun post(body: SecondOpinion.Body.Data): Single<SecondOpinion.Response> {
         body.date = "2020-1-1"
         return api.post(body)

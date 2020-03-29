@@ -77,18 +77,18 @@ class SecondOpinionFragment : BaseFragment() {
 
     private fun painQuestions(): Disposable = secondOpinionViewModel.painQuestions()
         .subscribe({
+            welcome_title.text = getString(R.string.great)
+            welcome_subtitle.text = getString(R.string.keep_going_answer_the_questions)
             it.forEach { question ->
                 when (question.order) {
                     1 -> {
                         adapter.add(SecondOpinion.Request.YesNo(question) { question: Question, answer: Int ->
-                            run {
-                                secondOpinionViewModel.speciality.painQ1Id = question.id
-                                secondOpinionViewModel.speciality.painQ1Answer = answer
-                                adapter.next()
-                            }
+                            secondOpinionViewModel.speciality.painQ1Id = question.id
+                            secondOpinionViewModel.speciality.painQ1Answer = answer
+                            adapter.next()
                         })
                     }
-                    else -> {
+                    2 -> {
                         adapter.add(
                             SecondOpinion.Request.MultiChoice(question) { question: Question, answers: List<Int> ->
                                 secondOpinionViewModel.speciality.painQ2Id = question.id
@@ -96,9 +96,7 @@ class SecondOpinionFragment : BaseFragment() {
 
                                 subscribe(
                                     secondOpinionViewModel.put(secondOpinionViewModel.speciality)
-                                        .subscribe({
-                                            subscribe(generalQuestions())
-                                        }, onError())
+                                        .subscribe({ subscribe(generalQuestions()) }, onError())
                                 )
                             },
                             false
@@ -110,61 +108,50 @@ class SecondOpinionFragment : BaseFragment() {
 
     private fun generalQuestions(): Disposable = secondOpinionViewModel.generalQuestions()
         .subscribe({
+            welcome_title.text = getString(R.string.you_are_doing_great)
+            welcome_subtitle.text = getString(R.string.request_some_general_questions)
+
             it.forEach { question ->
                 when (question.order) {
                     1 -> {
-                        adapter.add(SecondOpinion.Request.YesNo(question)
-                        { question: Question, answer: Int ->
-                            run {
-                                secondOpinionViewModel.general.generalQ1Id = question.id
-                                secondOpinionViewModel.general.generalQ1Answer = answer
-                                adapter.next()
-                            }
+                        adapter.add(SecondOpinion.Request.YesNo(question) { question: Question, answer: Int ->
+                            secondOpinionViewModel.general.generalQ1Id = question.id
+                            secondOpinionViewModel.general.generalQ1Answer = answer
+                            adapter.next()
                         })
                     }
                     2 -> {
                         adapter.add(
-                            SecondOpinion.Request.YesNo(question)
-                            { question: Question, answer: Int ->
-                                run {
-                                    secondOpinionViewModel.general.generalQ2Id = question.id
-                                    secondOpinionViewModel.general.generalQ2Answer = answer
-                                    adapter.next()
-                                }
+                            SecondOpinion.Request.YesNo(question) { question: Question, answer: Int ->
+                                secondOpinionViewModel.general.generalQ2Id = question.id
+                                secondOpinionViewModel.general.generalQ2Answer = answer
+                                adapter.next()
                             }, false
                         )
                     }
                     3 -> {
                         adapter.add(
-                            SecondOpinion.Request.YesNo(question)
-                            { question: Question, answer: Int ->
-                                run {
-                                    secondOpinionViewModel.general.generalQ3Id = question.id
-                                    secondOpinionViewModel.general.generalQ3Answer = answer
-                                    adapter.next()
-                                }
+                            SecondOpinion.Request.YesNo(question) { question: Question, answer: Int ->
+                                secondOpinionViewModel.general.generalQ3Id = question.id
+                                secondOpinionViewModel.general.generalQ3Answer = answer
+                                adapter.next()
                             }, false
                         )
                     }
                     4 -> {
                         adapter.add(
-                            SecondOpinion.Request.YesNo(question)
-                            { question: Question, answer: Int ->
-                                run {
-                                    secondOpinionViewModel.general.generalQ4Id = question.id
-                                    secondOpinionViewModel.general.generalQ4Answer = answer
-                                    adapter.next()
-                                }
+                            SecondOpinion.Request.YesNo(question) { question: Question, answer: Int ->
+                                secondOpinionViewModel.general.generalQ4Id = question.id
+                                secondOpinionViewModel.general.generalQ4Answer = answer
+                                adapter.next()
                             }, false
                         )
                     }
-                    else -> {
+                    5 -> {
                         adapter.add(
-                            SecondOpinion.Request.MultiChoice(question)
-                            { question: Question, answers: List<Int> ->
+                            SecondOpinion.Request.MultiChoice(question) { question: Question, answers: List<Int> ->
                                 secondOpinionViewModel.general.generalQ5Id = question.id
                                 secondOpinionViewModel.general.generalQ5Answer = answers
-
                                 subscribe(
                                     secondOpinionViewModel.put(secondOpinionViewModel.general)
                                         .subscribe({

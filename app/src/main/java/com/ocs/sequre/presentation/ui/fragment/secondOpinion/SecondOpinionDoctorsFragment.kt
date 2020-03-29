@@ -17,6 +17,7 @@ import javax.inject.Inject
 class SecondOpinionDoctorsFragment : BaseFragment() {
 
     private lateinit var viewModel: SecondOpinionViewModel
+
     @field:[Inject]
     lateinit var mAdapter: DoctorsAdapter
     private var cId = 1
@@ -37,7 +38,7 @@ class SecondOpinionDoctorsFragment : BaseFragment() {
                 .doctors(cId)
                 .subscribe(
                     { mAdapter.swap(it) },
-                    { onError(it.message ?: "") }
+                    onError()
                 )
         )
     }

@@ -1,5 +1,6 @@
 package com.ocs.sequre.presentation.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,7 +67,7 @@ class SecondOpinionAdapter :
     }
 
     override fun onBindViewHolder(holder: ViewHolder<SecondOpinion.Request>, position: Int) {
-        holder.bind(data[position], position)
+        holder.bind(data[position], position, data.size - 1 > position)
     }
 
     fun swap(data: List<SecondOpinion.Request>) {
@@ -77,7 +78,7 @@ class SecondOpinionAdapter :
     fun add(t: SecondOpinion.Request, next: Boolean = true) {
         if (next) {
             data.add(t)
-            notifyItemInserted(data.size - 1)
+            notifyDataSetChanged()
             recyclerView.smoothScrollToPosition(data.size - 1)
         } else {
             this.next.add(t)
@@ -90,37 +91,32 @@ class SecondOpinionAdapter :
         }
     }
 
-//    fun addAll(data: List<SecondOpinion.Request>) {
-//        this.data.addAll(data)
-//        notifyItemRangeInserted(this.data.size - 1, data.size)
-//    }
-
-//    fun clear() {
-//        data.clear()
-//        notifyDataSetChanged()
-//    }
-
-//    interface IBind<in T : SecondOpinion.Request> {
-//        fun bind(data: T, position: Int)
-//    }
-
     sealed class ViewHolder<in T : SecondOpinion.Request>(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
-        abstract fun bind(data: T, position: Int)
+        abstract fun bind(data: T, position: Int, hasNext: Boolean)
 
         class AskForWhoViewHolder(itemView: View) :
             ViewHolder<SecondOpinion.Request.AskForWho>(itemView) {
 
-            override fun bind(body: SecondOpinion.Request.AskForWho, position: Int) {
+            override fun bind(
+                body: SecondOpinion.Request.AskForWho,
+                position: Int,
+                hasNext: Boolean
+            ) {
                 itemView.apply {
-                    for_you.setOnClickListener {
-                        body.forMeListener()
-                        body.onNext()
-                    }
-                    for_other.setOnClickListener {
-                        body.forOtherListener()
-                        body.onNext()
+                    if (!hasNext) {
+                        for_you.setOnClickListener {
+                            body.forMeListener()
+                            body.onNext()
+                        }
+                        for_other.setOnClickListener {
+                            body.forOtherListener()
+                            body.onNext()
+                        }
+                    } else {
+                        for_you.setOnClickListener {}
+                        for_other.setOnClickListener {}
                     }
                 }
             }
@@ -129,8 +125,12 @@ class SecondOpinionAdapter :
         class ChooseSpecialityViewHolder(itemView: View) :
             ViewHolder<SecondOpinion.Request.ChooseSpeciality>(itemView) {
 
-            override fun bind(body: SecondOpinion.Request.ChooseSpeciality, position: Int) {
+            override fun bind(
+                body: SecondOpinion.Request.ChooseSpeciality,
+                position: Int, hasNext: Boolean
+            ) {
                 itemView.speciality.apply {
+                    isEnabled = !hasNext
                     body.data.let {
                         threshold = 1 //will start working from first character
                         ArrayAdapter(
@@ -144,15 +144,20 @@ class SecondOpinionAdapter :
                                 setText(it[position].name, false)
                                 tag = it[position].id
                                 isEnabled = false
-                                itemView.submit.setOnClickListener {
-                                    body.listener(
-                                        itemView.speciality.tag as Int,
-                                        (itemView.pain.selectedItem as Pain).id,
-                                        itemView.description.text.toString()
-                                    )
+                                if (!hasNext) {
+                                    itemView.submit.setOnClickListener {
+                                        body.listener(
+                                            itemView.speciality.tag as Int,
+                                            (itemView.pain.selectedItem as Pain).id,
+                                            itemView.description.text.toString()
+                                        )
+                                    }
+                                } else {
+                                    itemView.submit.setOnClickListener {}
                                 }
 
                                 itemView.pain.run {
+                                    isEnabled = !hasNext
                                     ArrayAdapter(
                                         context,
                                         android.R.layout.simple_spinner_item,
@@ -172,38 +177,51 @@ class SecondOpinionAdapter :
 
         class YesNoQuestionViewHolder(itemView: View) :
             ViewHolder<SecondOpinion.Request.YesNo>(itemView) {
-            override fun bind(data: SecondOpinion.Request.YesNo, position: Int) {
+            override fun bind(body: SecondOpinion.Request.YesNo, position: Int, _hasNext: Boolean) {
 
                 itemView.apply {
                     question?.apply {
-                        text = data.question.name
-                        tag = data.question.id
+                        text = body.question.name
+                        tag = body.question.id
                     }
 
-                    yes?.apply {
-                        isSelected = true
-                        setTextSelect(this)
-                        setOnClickListener {
-                            isSelected = !isSelected
-                            itemView.no.isSelected = !itemView.no.isSelected
-                            setTextSelect(this)
-                            setTextSelect(itemView.no)
-                            postInvalidate()
-                            itemView.no.postInvalidate()
-                            data.listener(data.question, 1)
+                    if (null != body.question.answer) {
+                        Log.d("YesNo", "bind() called null")
+                        body.question.answer!!.firstOrNull()?.let {
+                            yes?.apply {
+                                isSelected = (it == 0)
+                                setTextSelect(this)
+                            }
+
+                            no?.apply {
+                                isSelected = (it == 1)
+                                setTextSelect(this)
+                            }
                         }
-                    }
-
-                    no?.apply {
-                        setTextSelect(this)
-                        setOnClickListener {
-                            isSelected = !isSelected
-                            itemView.yes.isSelected = !itemView.yes.isSelected
+                    } else {
+                        Log.d("YesNo", "bind() called not null")
+                        yes?.apply {
+                            isSelected = false
                             setTextSelect(this)
-                            setTextSelect(itemView.yes)
-                            postInvalidate()
-                            itemView.yes.postInvalidate()
-                            data.listener(data.question, 0)
+                            setOnClickListener {
+                                isSelected = true
+                                setTextSelect(this)
+                                postInvalidate()
+                                body.question.answer = listOf(0)
+                                body.listener(body.question, 0)
+                            }
+                        }
+
+                        no?.apply {
+                            isSelected = false
+                            setTextSelect(this)
+                            setOnClickListener {
+                                isSelected = true
+                                setTextSelect(this)
+                                postInvalidate()
+                                body.question.answer = listOf(1)
+                                body.listener(body.question, 1)
+                            }
                         }
                     }
                 }
@@ -224,16 +242,24 @@ class SecondOpinionAdapter :
 
         class MultiChoiceQuestionViewHolder(itemView: View) :
             ViewHolder<SecondOpinion.Request.MultiChoice>(itemView) {
-            override fun bind(data: SecondOpinion.Request.MultiChoice, position: Int) {
+            override fun bind(
+                body: SecondOpinion.Request.MultiChoice,
+                position: Int,
+                hasNext: Boolean
+            ) {
                 itemView.apply {
                     question?.apply {
-                        text = data.question.name
-                        tag = data.question.id
+                        text = body.question.name
+                        tag = body.question.id
                     }
-                    for (i in 0..data.question.fields.size) {
+                    for (i in 0..body.question.fields.size) {
                         answers.findViewWithTag<MaterialCheckBox>("choose_${i + 1}")?.run {
-                            setTag(R.id.second_opinion, data.question.fields[i].key)
-                            text = data.question.fields[i].value
+                            isChecked = false
+                            setTag(R.id.second_opinion, body.question.fields[i].key)
+                            text = body.question.fields[i].value
+                            body.question.answer?.run {
+                                isChecked = contains(body.question.fields[i].key.toInt())
+                            }
                         }
                     }
 
@@ -246,7 +272,8 @@ class SecondOpinionAdapter :
                                         list.add(getTag(R.id.second_opinion).toString().toInt())
                                 }
                         }
-                        data.listener(data.question, list)
+                        body.question.answer = list
+                        body.listener(body.question, list)
                     }
                 }
             }

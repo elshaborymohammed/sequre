@@ -68,7 +68,6 @@ abstract class BaseBottomSheet : CompactBottomSheetFragment() {
                 getString(R.string.saved_successfully),
                 Toast.LENGTH_SHORT
             ).show()
-
             findNavController().navigateUp()
         }
     }
