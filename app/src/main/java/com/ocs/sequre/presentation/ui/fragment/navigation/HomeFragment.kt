@@ -18,7 +18,7 @@ class HomeFragment : BaseFragment() {
 
         view.second_opinion.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_navigationFragment_to_second_opinion_navigation))
         view.discount_card.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_navigationFragment_to_discount_card_navigation))
-        //view.notification.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_navigationFragment_to_notificationsFragment))
-        view.notification.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.secondOpinionDoctorsFragment))
+        view.notification.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_navigationFragment_to_notificationsFragment))
+        //view.notification.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.secondOpinionDoctorsFragment))
     }
 }
