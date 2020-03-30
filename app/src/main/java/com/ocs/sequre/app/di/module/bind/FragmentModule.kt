@@ -21,6 +21,8 @@ import com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment
 import com.ocs.sequre.presentation.ui.fragment.provider.MapsFragment
 import com.ocs.sequre.presentation.ui.fragment.provider.ServiceProviderFragment
 import com.ocs.sequre.presentation.ui.fragment.provider.ServiceProvidersFragment
+import com.ocs.sequre.presentation.ui.fragment.secondOpinion.DoctorFragment
+import com.ocs.sequre.presentation.ui.fragment.secondOpinion.SecondOpinionDoctorsFragment
 import com.ocs.sequre.presentation.ui.fragment.secondopinion.*
 import com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment
 import com.ocs.sequre.presentation.ui.fragment.setting.SettingFragment
@@ -154,4 +156,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun provideNotificationDetailsFragment(): SecondOpinionReportFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun provideDoctorFragment(): DoctorFragment
 }

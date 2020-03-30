@@ -73,4 +73,11 @@ class SecondOpinionViewModel @Inject constructor(
             .compose(composeLoadingSingle())
             .map { it.data }
     }
+
+    fun doctorDetails(doctorId: Int): Single<DoctorDetails> {
+        return api.doctorDetails(1)
+            .compose(schedulers.applyOnSingle())
+            .compose(composeLoadingSingle())
+            .map { it.data }
+    }
 }
