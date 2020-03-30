@@ -19,6 +19,7 @@ class SignOutFragment : BaseBottomSheet() {
     }
 
     override fun onViewBound(view: View) {
+        super.onViewBound(view)
         cancel.setOnClickListener { dismissAllowingStateLoss() }
         ok.setOnClickListener {
             if (auth.clear()) {

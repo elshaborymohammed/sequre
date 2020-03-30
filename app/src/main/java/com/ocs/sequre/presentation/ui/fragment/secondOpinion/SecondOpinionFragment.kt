@@ -1,4 +1,4 @@
-package com.ocs.sequre.presentation.ui.fragment.secondopinion
+package com.ocs.sequre.presentation.ui.fragment.secondOpinion
 
 import android.view.View
 import androidx.lifecycle.ViewModelProvider

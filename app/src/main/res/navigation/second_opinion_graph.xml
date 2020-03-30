@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/secondOpinionFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondOpinion.SecondOpinionFragment"
         android:label="SecondOpinionFragment"
         tools:layout="@layout/fragment_second_opinion">
 
@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/medicalDocumentsFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.MedicalDocumentsFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondOpinion.MedicalDocumentsFragment"
         android:label="MedicalDocumentsFragment"
         tools:layout="@layout/fragment_second_opinion_medical_documents">
 
@@ -39,7 +39,7 @@
     </fragment>
     <dialog
         android:id="@+id/medicalDocumentEditFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.MedicalDocumentEditFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondOpinion.MedicalDocumentEditFragment"
         android:label="MedicalDocumentEditFragment"
         tools:layout="@layout/fragment_second_opinion_medical_document_edit">
         <argument
@@ -54,7 +54,7 @@
     </dialog>
     <fragment
         android:id="@+id/secondOpinionDoctorsFragment"
-        android:name="com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionDoctorsFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondOpinion.SecondOpinionDoctorsFragment"
         android:label="SecondOpinionDoctorsFragment"
         tools:layout="@layout/fragment_second_opinion_doctors" />
 </navigation>

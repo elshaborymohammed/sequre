@@ -10,13 +10,13 @@ apply plugin: 'io.fabric'
 apply from: "../dependencies.gradle"
 
 def getMyVersionCode = { ->
-    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : 8
+    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : 9
     println "VersionCode is set to $code"
     return code
 }
 
 def getMyVersionName = { ->
-    def name = project.hasProperty('versionName') ? versionName : "0.0.4-alpha08"
+    def name = project.hasProperty('versionName') ? versionName : "0.0.4-alpha09"
     println "VersionName is set to $name"
     return name
 }
@@ -40,6 +40,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'API_BASE_URL', '"https://sequrep.overcoffees.com/api/"'
             buildConfigField 'String', 'Image_BASE_URL', '"https://sequrep.overcoffees.com"'
+            firebaseAppDistribution {
+                serviceCredentialsFile = "/Users/elshabory/Workspace/Sequre/app/Sequre-0373d417feb1.json"
+                releaseNotes = "Fix Bugs in Second Opinion"
+                groups = "QA"
+            }
         }
         release {
             minifyEnabled false
@@ -47,10 +52,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'API_BASE_URL', '"https://sequrep.overcoffees.com/api/"'
             buildConfigField 'String', 'Image_BASE_URL', '"https://sequrep.overcoffees.com"'
-            firebaseAppDistribution {
-                releaseNotes = "Release notes for full version"
-                groups = ["admin", "QA"]
-            }
         }
     }
     testOptions {

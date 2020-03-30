@@ -7,7 +7,13 @@ class Login(
     phone: String,
     @SerializedName("password")
     @Expose
-    val password: String
+    val password: String,
+    @SerializedName("device_token")
+    @Expose
+    val device_token: String = "Token kjgaksgdjkagsdkaskdhaskgfkgasf",
+    @SerializedName("os_name")
+    @Expose
+    val os_name: String = "Android"
 ) {
     @SerializedName("mobile")
     @Expose
