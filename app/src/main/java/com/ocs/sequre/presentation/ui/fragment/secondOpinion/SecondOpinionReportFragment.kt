@@ -1,4 +1,4 @@
-package com.ocs.sequre.presentation.ui.fragment.secondopinion
+package com.ocs.sequre.presentation.ui.fragment.secondOpinion
 
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -7,7 +7,6 @@ import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.domain.entity.Notification
 import com.ocs.sequre.domain.entity.Report
-import com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionReportFragmentArgs
 import com.ocs.sequre.presentation.viewmodel.SecondOpinionViewModel
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_report.*

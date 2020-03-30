@@ -1,4 +1,4 @@
-package com.ocs.sequre.presentation.ui.fragment.secondopinion
+package com.ocs.sequre.presentation.ui.fragment.secondOpinion
 
 import android.app.Activity
 import android.content.Intent
@@ -6,8 +6,10 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.compact.picker.ImagePicker
@@ -33,6 +35,7 @@ class MedicalDocumentEditFragment : BaseBottomSheet() {
     }
 
     override fun onViewBound(view: View) {
+        super.onViewBound(view)
         viewModel =
             ViewModelProvider(activity!!, factory).get(MedicalDocumentViewModel::class.java)
 
@@ -61,12 +64,21 @@ class MedicalDocumentEditFragment : BaseBottomSheet() {
                 }
                 view.delete.setOnClickListener {
                     subscribe(
-                        viewModel.delete(document.id, category).subscribe(onSuccess(), onError())
+                        viewModel.delete(document.id, category).subscribe({
+                            viewModel.reload.accept("")
+                            findNavController().navigateUp()
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.saved_successfully),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }, onError())
                     )
                 }
             }
         }
     }
+
 
     override fun subscriptions(): Array<Disposable> {
         return arrayOf(

@@ -2,12 +2,9 @@ package com.ocs.sequre.presentation.ui.fragment.dependent
 
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseBottomSheet
-import com.ocs.sequre.data.remote.model.request.secondopinion.SecondOpinionBody
 import com.ocs.sequre.presentation.ui.adapter.DependentSummeryAdapter
-import com.ocs.sequre.presentation.ui.fragment.secondopinion.SecondOpinionChooseSpecialityFragmentArgs
 import com.ocs.sequre.presentation.viewmodel.ProfileViewModel
 import com.ocs.sequre.presentation.viewmodel.SecondOpinionViewModel
 import io.reactivex.disposables.Disposable
@@ -32,15 +29,15 @@ class DependentsSummeryFragment : BaseBottomSheet() {
 
         adapter = DependentSummeryAdapter()
         adapter.setOnItemClickListener {
-            findNavController().navigate(
-                R.id.action_dependentsSummeryFragment_to_secondOpinionChooseSpecialityFragment,
-                SecondOpinionChooseSpecialityFragmentArgs(
-                    SecondOpinionBody.FOR_OTHER,
-                    it.id
-                ).toBundle()
-            )
+            secondOpinionViewModel.body.dependentId = it.id
+            dismiss()
         }
         view.list_item.adapter = adapter
+    }
+
+    override fun onDestroyView() {
+        secondOpinionViewModel.showSpeciality.accept("")
+        super.onDestroyView()
     }
 
     override fun subscriptions(): Array<Disposable> {

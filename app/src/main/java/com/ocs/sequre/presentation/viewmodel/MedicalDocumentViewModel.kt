@@ -32,7 +32,7 @@ class MedicalDocumentViewModel @Inject constructor(
     }
 
     fun get(): Single<MedicalDocument> {
-        return api.get(preference.get().id)
+        return api.get(preference.get().id!!)
             .compose(schedulers.applyOnSingle())
             .compose(composeLoadingSingle())
             .map { it.data }

@@ -21,7 +21,7 @@ import com.ocs.sequre.presentation.ui.fragment.profile.ProfileFragment
 import com.ocs.sequre.presentation.ui.fragment.provider.MapsFragment
 import com.ocs.sequre.presentation.ui.fragment.provider.ServiceProviderFragment
 import com.ocs.sequre.presentation.ui.fragment.provider.ServiceProvidersFragment
-import com.ocs.sequre.presentation.ui.fragment.secondopinion.*
+import com.ocs.sequre.presentation.ui.fragment.secondOpinion.*
 import com.ocs.sequre.presentation.ui.fragment.setting.LanguageFragment
 import com.ocs.sequre.presentation.ui.fragment.setting.SettingFragment
 import dagger.Module
@@ -62,18 +62,6 @@ abstract class FragmentModule {
     //region Second Opinion Fragments
     @ContributesAndroidInjector
     internal abstract fun providesSecondOpinionFragment(): SecondOpinionFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun providesSecondOpinionChooseSpecialityFragment(): SecondOpinionChooseSpecialityFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun providesSecondOpinionQuestionsSpecialityFragment(): SecondOpinionQuestionsSpecialityFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun providesSecondOpinionQuestionsGeneralFirstFragment(): SecondOpinionQuestionsGeneralFirstFragment
-
-    @ContributesAndroidInjector
-    internal abstract fun providesSecondOpinionQuestionsGeneralSecondFragment(): SecondOpinionQuestionsGeneralSecondFragment
 
     @ContributesAndroidInjector
     internal abstract fun providesMedicalDocumentsFragment(): MedicalDocumentsFragment

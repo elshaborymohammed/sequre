@@ -1,9 +1,6 @@
 package com.ocs.sequre.data.remote.api
 
 import com.compact.requester.annotation.Requester
-import com.ocs.sequre.data.remote.model.request.secondopinion.SecondOpinionBody
-import com.ocs.sequre.data.remote.model.request.secondopinion.SecondOpinionGeneralAnswerBody
-import com.ocs.sequre.data.remote.model.request.secondopinion.SecondOpinionSpecialityAnswerBody
 import com.ocs.sequre.data.remote.model.response.success.ResponseSuccess
 import com.ocs.sequre.domain.entity.*
 import io.reactivex.Completable
@@ -14,13 +11,16 @@ import retrofit2.http.*
 interface SecondOpinionAPI {
 
     @POST("opinion")
-    fun post(@Body body: SecondOpinionBody): Single<ResponseSuccess<SecondOpinion>>
+    fun post(@Body body: SecondOpinion.Body.Data): Single<ResponseSuccess<SecondOpinion.Response>>
 
     @PUT("opinion/{id}")
-    fun put(@Path("id") id: Int, @Body body: SecondOpinionSpecialityAnswerBody): Completable
+    fun put(@Path("id") id: Int, @Body body: SecondOpinion.Body.Data): Completable
 
     @PUT("opinion/{id}")
-    fun put(@Path("id") id: Int, @Body body: SecondOpinionGeneralAnswerBody): Completable
+    fun put(@Path("id") id: Int, @Body body: SecondOpinion.Body.SpecialityAnswer): Completable
+
+    @PUT("opinion/{id}")
+    fun put(@Path("id") id: Int, @Body body: SecondOpinion.Body.GeneralAnswer): Completable
 
     @GET("opinion/getSpecialities")
     fun specialities(): Single<ResponseSuccess<List<Speciality>>>
@@ -31,8 +31,7 @@ interface SecondOpinionAPI {
     @GET("opinion/getGeneralQuestions/{painId}")
     fun generalQuestions(@Path("painId") painId: Int): Single<ResponseSuccess<List<Question>>>
 
-    @Headers("Content-Type: application/json")
-    @GET("https://sequre.getsandbox.com/serviceProvider/getAll/{id}")
+    @GET("serviceProvider/getAll/{id}")
     fun doctors(@Path("id") id: Int): Single<ResponseSuccess<List<Doctor>>>
 
     @GET("https://sequre.getsandbox.com/opinion/getReport/{id}")
