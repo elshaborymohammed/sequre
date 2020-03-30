@@ -21,7 +21,7 @@ constructor(private val sharedPreferences: SharedPreferences) : BasePreference<S
         return !get().isNullOrEmpty()
     }
 
-//    override fun clear(): Boolean {
-//        return sharedPreferences().edit().clear().commit()
-//    }
+    override fun clear(): Boolean {
+        return sharedPreferences().edit().clear().commit()
+    }
 }
