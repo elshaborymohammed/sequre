@@ -9,6 +9,7 @@ import com.ocs.sequre.domain.entity.AuthModel
 import com.ocs.sequre.domain.entity.Country
 import com.ocs.sequre.domain.entity.Registration
 import com.ocs.sequre.presentation.preference.AuthPreference
+import com.ocs.sequre.presentation.preference.FcmTokenPreference
 import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
@@ -16,11 +17,12 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val api: RequesterAuthAPI,
     private val preference: AuthPreference,
-    private val compose: RxCompactSchedulers
+    private val compose: RxCompactSchedulers,
+    private val tokenPref: FcmTokenPreference
 ) : CompactViewModel() {
 
     fun login(phone: String, password: String): Single<AuthModel> {
-        return api.login(Login(phone = phone, password = password))
+        return api.login(Login(phone = phone, password = password, device_token = tokenPref.get()))
             .compose(compose.applyOnSingle())
             .compose(composeLoadingSingle())
             .map { it.data }
