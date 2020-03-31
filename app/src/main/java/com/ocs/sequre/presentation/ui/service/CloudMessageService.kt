@@ -23,6 +23,8 @@ class CloudMessageService : FirebaseMessagingService() {
 
     @field:[Inject]
     lateinit var tokenPref: FcmTokenPreference
+    @field:[Inject]
+    lateinit var mInteractor: CloudMessagingInteractor
 
     override fun onCreate() {
         super.onCreate()
@@ -95,6 +97,7 @@ class CloudMessageService : FirebaseMessagingService() {
         super.onNewToken(token)
         Log.e(TAG, token)
         tokenPref.set(token)
+        mInteractor.refreshDeviceToken(token)
     }
 
     companion object {

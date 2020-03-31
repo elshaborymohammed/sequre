@@ -2,6 +2,7 @@ package com.ocs.sequre.presentation.viewmodel
 
 import com.compact.app.viewmodel.CompactViewModel
 import com.compact.executor.RxCompactSchedulers
+import com.google.firebase.iid.FirebaseInstanceId
 import com.ocs.sequre.data.remote.api.RequesterAuthAPI
 import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
 import com.ocs.sequre.data.remote.model.request.auth.Login
@@ -22,7 +23,13 @@ class AuthViewModel @Inject constructor(
 ) : CompactViewModel() {
 
     fun login(phone: String, password: String): Single<AuthModel> {
-        return api.login(Login(phone = phone, password = password, device_token = tokenPref.get()))
+        return api.login(
+            Login(
+                phone = phone,
+                password = password,
+                device_token = token()
+            )
+        )
             .compose(compose.applyOnSingle())
             .compose(composeLoadingSingle())
             .map { it.data }
@@ -58,5 +65,13 @@ class AuthViewModel @Inject constructor(
     fun checkPhone(phone: String): Completable {
         return api.check(AuthValidation(phone = phone))
             .compose(compose.applyOnCompletable())
+    }
+
+    private fun token(): String {
+        return if (tokenPref?.get() != null) {
+            tokenPref.get()
+        } else {
+            FirebaseInstanceId.getInstance().token ?: ""
+        }
     }
 }

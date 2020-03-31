@@ -34,7 +34,7 @@ class SecondOpinionReportFragment : BaseFragment() {
     }
 
     override fun subscriptions(): Array<Disposable> {
-        notification.id?.let {
+        notification.sourceId?.let {
             viewModel.getReport(it)
                 .subscribe(::initViews)
                 { error -> error.message?.let { it1 -> onError(it1) } }

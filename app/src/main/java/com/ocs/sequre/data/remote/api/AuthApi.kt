@@ -2,9 +2,10 @@ package com.ocs.sequre.data.remote.api
 
 import com.compact.requester.annotation.Requester
 import com.ocs.sequre.data.remote.model.request.auth.AuthValidation
+import com.ocs.sequre.data.remote.model.request.auth.DeviceToken
 import com.ocs.sequre.data.remote.model.request.auth.Login
-import com.ocs.sequre.domain.entity.AuthModel
 import com.ocs.sequre.data.remote.model.response.success.ResponseSuccess
+import com.ocs.sequre.domain.entity.AuthModel
 import com.ocs.sequre.domain.entity.Country
 import com.ocs.sequre.domain.entity.Registration
 import io.reactivex.Completable
@@ -27,4 +28,7 @@ interface AuthAPI {
 
     @GET("location/countries/codes")
     fun countryCode(): Single<ResponseSuccess<List<Country>>>
+
+    @POST("updateDeviceToken")
+    fun updateDeviceToken(@Body body: DeviceToken): Single<String>
 }
