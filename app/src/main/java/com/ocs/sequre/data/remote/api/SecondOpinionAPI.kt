@@ -31,9 +31,16 @@ interface SecondOpinionAPI {
     @GET("opinion/getGeneralQuestions/{painId}")
     fun generalQuestions(@Path("painId") painId: Int): Single<ResponseSuccess<List<Question>>>
 
+    @FormUrlEncoded
+    @POST("opinion/provider/choose")
+    fun chooseDoctor(@Field("id") id: Int, @Field("provider_id") providerId: Int): Completable
+
     @GET("serviceProvider/getAll/{id}")
     fun doctors(@Path("id") id: Int): Single<ResponseSuccess<List<Doctor>>>
 
     @GET("https://sequre.getsandbox.com/opinion/getReport/{id}")
     fun getReport(@Path("id") id: Int): Single<ResponseSuccess<Report>>
+
+    @GET("serviceProvider/getDetails/{id}")
+    fun doctorDetails(@Path("id") id: Int): Single<ResponseSuccess<DoctorDetails>>
 }

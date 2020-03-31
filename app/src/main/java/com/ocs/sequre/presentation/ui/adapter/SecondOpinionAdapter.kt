@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.compact.widget.recyclerview.CompactRecyclerView
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.ocs.sequre.R
+import com.ocs.sequre.app.base.setMaterialButtonTextSelect
+import com.ocs.sequre.app.base.setTextSelect
 import com.ocs.sequre.domain.entity.Pain
 import com.ocs.sequre.domain.entity.SecondOpinion
 import kotlinx.android.synthetic.main.card_second_opinion_ask.view.*
@@ -24,7 +24,6 @@ class SecondOpinionAdapter :
     RecyclerView.Adapter<SecondOpinionAdapter.ViewHolder<SecondOpinion.Request>>() {
 
     private lateinit var recyclerView: RecyclerView
-    private val TAG: String = "SecondOpinionAdapter"
     private var data = ArrayList<SecondOpinion.Request>()
     private var next = ArrayList<SecondOpinion.Request>()
 
@@ -111,36 +110,29 @@ class SecondOpinionAdapter :
                 itemView.apply {
                     for_you.isEnabled = !hasNext
                     for_other.isEnabled = !hasNext
-                    setTextSelect(for_you)
-                    setTextSelect(for_other)
+                    for_you.setTextSelect()
+                    for_other.setTextSelect()
+
+                    body.data?.apply {
+                        for_you.isSelected = true
+                        for_other.isSelected = (forWho == SecondOpinion.Body.FOR_OTHER)
+                    }
 
                     if (!hasNext) {
                         for_you.setOnClickListener {
                             it.isSelected = true
-                            setTextSelect(it as MaterialButton)
+                            it.setMaterialButtonTextSelect()
                             body.forMeListener()
                         }
                         for_other.setOnClickListener {
                             it.isSelected = true
-                            setTextSelect(it as MaterialButton)
+                            it.setMaterialButtonTextSelect()
                             body.forOtherListener()
                         }
                     } else {
                         for_you.setOnClickListener {}
                         for_other.setOnClickListener {}
                     }
-                }
-            }
-
-            private fun setTextSelect(button: MaterialButton) {
-                if (button.isSelected) {
-                    button.setTextColor(
-                        ContextCompat.getColor(itemView.context, R.color.colorPrimaryDark)
-                    )
-                } else {
-                    button.setTextColor(
-                        ContextCompat.getColor(itemView.context, R.color.colorAccent)
-                    )
                 }
             }
         }
@@ -155,10 +147,13 @@ class SecondOpinionAdapter :
                 itemView.speciality.isEnabled = !hasNext
                 itemView.pain.isEnabled = !hasNext
                 itemView.description.isEnabled = !hasNext
-                itemView.submit.isEnabled = !hasNext
+                itemView.submit.apply {
+                    isEnabled = !hasNext
+                    setTextSelect()
+                }
 
                 itemView.speciality.apply {
-                    body.data.let {
+                    body.specialities.let {
                         threshold = 1 //will start working from first character
                         ArrayAdapter(
                             context,
@@ -184,7 +179,8 @@ class SecondOpinionAdapter :
                                     }
                                 }
 
-                                itemView.submit.setOnClickListener {
+                                itemView.submit.setOnClickListener { view ->
+                                    view.isSelected = true
                                     body.listener(
                                         itemView.speciality.tag as Int,
                                         (itemView.pain.selectedItem as Pain).id,
@@ -215,21 +211,21 @@ class SecondOpinionAdapter :
                         body.question.answer!!.firstOrNull()?.let {
                             yes?.apply {
                                 isSelected = (it == 0)
-                                setTextSelect(this)
+                                setTextSelect()
                             }
 
                             no?.apply {
                                 isSelected = (it == 1)
-                                setTextSelect(this)
+                                setTextSelect()
                             }
                         }
                     } else {
                         yes?.apply {
                             isSelected = false
-                            setTextSelect(this)
+                            setTextSelect()
                             setOnClickListener {
                                 isSelected = true
-                                setTextSelect(this)
+                                setTextSelect()
                                 postInvalidate()
                                 body.question.answer = listOf(0)
                                 body.listener(body.question, 0)
@@ -238,28 +234,16 @@ class SecondOpinionAdapter :
 
                         no?.apply {
                             isSelected = false
-                            setTextSelect(this)
+                            setTextSelect()
                             setOnClickListener {
                                 isSelected = true
-                                setTextSelect(this)
+                                setTextSelect()
                                 postInvalidate()
                                 body.question.answer = listOf(1)
                                 body.listener(body.question, 1)
                             }
                         }
                     }
-                }
-            }
-
-            private fun setTextSelect(button: MaterialButton) {
-                if (button.isSelected) {
-                    button.setTextColor(
-                        ContextCompat.getColor(itemView.context, R.color.colorPrimaryDark)
-                    )
-                } else {
-                    button.setTextColor(
-                        ContextCompat.getColor(itemView.context, R.color.colorAccent)
-                    )
                 }
             }
         }
@@ -272,7 +256,12 @@ class SecondOpinionAdapter :
                 hasNext: Boolean
             ) {
                 itemView.apply {
-                    submit.isEnabled = !hasNext
+                    submit.apply {
+                        isEnabled = !hasNext
+                        isSelected = !isEnabled
+                        setTextSelect()
+                    }
+
 
                     question?.apply {
                         text = body.question.name
@@ -292,6 +281,7 @@ class SecondOpinionAdapter :
                     }
 
                     submit.setOnClickListener {
+                        it.isSelected = true
                         val list: ArrayList<Int> = ArrayList()
                         for (i in 1..3) {
                             answers.findViewWithTag<MaterialCheckBox>("choose_$i")

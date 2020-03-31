@@ -17,12 +17,14 @@ sealed class SecondOpinion {
 
     sealed class Request : SecondOpinion() {
         class AskForWho(
+            val data: Body.Data? = null,
             var forMeListener: () -> Unit,
             var forOtherListener: () -> Unit
         ) : Request()
 
         class ChooseSpeciality(
-            val data: List<Speciality>,
+            val specialities: List<Speciality>,
+            val data: Body.Data? = null,
             var listener: (specialityId: Int, painId: Int, description: String) -> Unit
         ) : Request()
 

@@ -38,7 +38,7 @@ class LaunchFragment : BaseFragment() {
                 .onErrorReturnItem(true)
                 .subscribe {
                     if (auth.hasToken()) {
-                        findNavController().navigate(R.id.action_splashFragment_to_navigationFragment)
+                        findNavController().navigate(R.id.action_global_navigationFragment)
                     } else {
                         if (lang.hasLang()) {
                             findNavController().navigate(R.id.action_splashFragment_to_auth_graph)

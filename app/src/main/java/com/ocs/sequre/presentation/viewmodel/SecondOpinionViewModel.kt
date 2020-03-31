@@ -72,6 +72,12 @@ class SecondOpinionViewModel @Inject constructor(
             .map { it.data }
     }
 
+    fun chooseDoctor(providerId: Int): Completable {
+        return api.chooseDoctor(preference.get().id!!, providerId)
+            .compose(schedulers.applyOnCompletable())
+            .compose(composeLoadingCompletable())
+    }
+
     fun doctors(id: Int): Single<List<Doctor>> {
         return api.doctors(id)
             .compose(schedulers.applyOnSingle())
@@ -81,6 +87,13 @@ class SecondOpinionViewModel @Inject constructor(
 
     fun getReport(reportId: Int): Single<Report> {
         return api.getReport(reportId)
+            .compose(schedulers.applyOnSingle())
+            .compose(composeLoadingSingle())
+            .map { it.data }
+    }
+
+    fun doctorDetails(doctorId: Int): Single<DoctorDetails> {
+        return api.doctorDetails(1)
             .compose(schedulers.applyOnSingle())
             .compose(composeLoadingSingle())
             .map { it.data }

@@ -3,7 +3,6 @@ package com.ocs.sequre.presentation.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
 import com.compact.widget.recyclerview.CompactRecyclerView
 import com.ocs.sequre.R
@@ -29,19 +28,15 @@ constructor(private val requestOptions: RequestOptions) :
         )
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(position, data[position])
-    }
-
-    override fun getItemCount(): Int {
-        return data.size
-    }
-
-    fun setOnItemClickListener(listener: (it: Doctor) -> Unit) {
+    fun setOnItemClickListener(onClick: (it: Doctor) -> Unit, onChoose: (it: Doctor) -> Unit) {
         setOnItemClickListener(
             object : OnItemClickListener {
                 override fun setOnItemClickListener(it: Doctor) {
-                    listener(it)
+                    onClick(it)
+                }
+
+                override fun setOnChooseClickListener(it: Doctor) {
+                    onChoose(it)
                 }
             }
         )
@@ -51,8 +46,8 @@ constructor(private val requestOptions: RequestOptions) :
         this.listener = listener
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(position: Int, it: Doctor) {
+    inner class ViewHolder(itemView: View) : CompactRecyclerView.ViewHolder<Doctor>(itemView) {
+        override fun bind(position: Int, it: Doctor) {
             itemView.apply {
                 name.text = it.name
                 address.text = it.description
@@ -61,9 +56,12 @@ constructor(private val requestOptions: RequestOptions) :
                     .apply(requestOptions)
                     .into(image)
 
-
                 item.setOnClickListener { _ ->
                     listener.setOnItemClickListener(it)
+                }
+
+                choose.setOnClickListener { _ ->
+                    listener.setOnChooseClickListener(it)
                 }
             }
         }
@@ -71,5 +69,6 @@ constructor(private val requestOptions: RequestOptions) :
 
     interface OnItemClickListener {
         fun setOnItemClickListener(it: Doctor)
+        fun setOnChooseClickListener(it: Doctor)
     }
 }

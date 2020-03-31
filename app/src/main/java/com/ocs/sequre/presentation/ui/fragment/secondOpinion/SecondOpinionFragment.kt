@@ -56,7 +56,7 @@ class SecondOpinionFragment : BaseFragment() {
         }, onError())
 
     private fun askForWho(): SecondOpinion.Request.AskForWho =
-        SecondOpinion.Request.AskForWho({
+        SecondOpinion.Request.AskForWho(null, {
             secondOpinionViewModel.body.forWho = SecondOpinion.Body.FOR_ME
             subscribe(getSpecialities())
         }, {

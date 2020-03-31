@@ -20,14 +20,6 @@
             app:popExitAnim="@anim/slide_out_right"
             app:popUpToInclusive="false" />
         <action
-            android:id="@+id/action_splashFragment_to_navigationFragment"
-            app:destination="@id/navigationFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpToInclusive="false" />
-        <action
             android:id="@+id/action_splashFragment_to_languageFragment"
             app:destination="@id/languageFragment"
             app:enterAnim="@anim/slide_in_right"
@@ -57,14 +49,6 @@
         app:startDestination="@id/auth_graph">
 
         <include app:graph="@navigation/auth_graph" />
-
-        <action
-            android:id="@+id/action_global_navigationFragment"
-            app:destination="@id/navigationFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
     </navigation>
 
     <fragment
@@ -148,4 +132,16 @@
             android:name="notification"
             app:argType="com.ocs.sequre.domain.entity.Notification" />
     </fragment>
+
+    <!--        app:enterAnim="@anim/slide_in_right"-->
+    <!--        app:exitAnim="@anim/slide_out_left"-->
+    <!--        app:popEnterAnim="@anim/slide_in_left"-->
+    <!--        app:popExitAnim="@anim/slide_out_right"-->
+
+    <action
+        android:id="@+id/action_global_navigationFragment"
+        app:destination="@id/navigationFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
 </navigation>

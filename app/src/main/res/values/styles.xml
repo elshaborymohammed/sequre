@@ -17,7 +17,6 @@
 
         <item name="textInputStyle">@style/App.Widget.TextInputLayout</item>
         <item name="spinnerStyle">@style/Widget.AppCompat.Spinner.Underlined</item>
-        <item name="bottomNavigationStyle">@style/App.Widget.BottomNavigationView</item>
         <item name="materialCardViewStyle">@style/App.Widget.CardView</item>
         <item name="materialButtonStyle">@style/App.Widget.Button</item>
         <item name="preferenceStyle">@style/App.Widget.Preference.EditTextPreference</item>
@@ -71,21 +70,6 @@
     </style>
 
     <!--  region Widget -->
-
-    <style name="App.Widget.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
-        <item name="itemIconSize">24dp</item>
-        <item name="labelVisibilityMode">labeled</item>
-        <item name="itemIconTint">@color/se_bottom_navigation</item>
-        <item name="itemTextColor">@color/se_bottom_navigation</item>
-    </style>
-
-    <style name="App.Widget.NavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
-        <item name="itemIconSize">24dp</item>
-        <item name="labelVisibilityMode">labeled</item>
-        <item name="itemIconTint">@color/se_bottom_navigation</item>
-        <item name="itemTextColor">@color/se_bottom_navigation</item>
-    </style>
-
     <style name="App.Widget.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textAllCaps">false</item>
         <item name="android:paddingTop">12dp</item>
@@ -113,8 +97,7 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
-        <item name="backgroundTint">@color/se_toggle_button_background_tint</item>
-        <!--        <item name="android:textColor">@color/se_toggle_button_text_tint</item>-->
+        <item name="backgroundTint">@color/se_toggle_button_tint</item>
         <item name="cornerRadius">@dimen/corner_radius</item>
         <item name="strokeColor">@color/colorAccent</item>
         <item name="strokeWidth">@dimen/stroke_width</item>
@@ -126,7 +109,7 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:padding">8dp</item>
         <item name="textAllCaps">false</item>
-        <item name="android:textColor">#2E8ECD</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textAppearance">@style/App.TextAppearance.Button</item>
     </style>
@@ -169,13 +152,10 @@
     <style name="App.Widget.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">@dimen/corner_radius</item>
         <item name="cardElevation">8dp</item>
-        <!--        <item name="strokeColor">@color/border</item>-->
-        <!--        <item name="strokeWidth">@dimen/stroke_width</item>-->
     </style>
     <!-- endregion -->
 
     <!--  region Text Appearance -->
-
     <style name="App.TextAppearance.Title" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textColor">#000</item>
         <item name="android:color">#000</item>
@@ -213,6 +193,13 @@
         <item name="fontFamily">@font/roboto_regular</item>
     </style>
 
+    <style name="App.TextAppearance.Headline" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">#000</item>
+        <item name="android:color">#000</item>
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+    </style>
+
     <style name="App.TextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">#000</item>
         <item name="android:color">#000</item>
@@ -241,6 +228,12 @@
     <style name="App.TextAppearance.Button" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:textSize">17sp</item>
         <item name="fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="App.TextAppearance.Button.Toggle" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textSize">17sp</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+
     </style>
 
     <style name="App.TextAppearance.Tab" parent="TextAppearance.MaterialComponents.Button">

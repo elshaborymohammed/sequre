@@ -56,5 +56,18 @@
         android:id="@+id/secondOpinionDoctorsFragment"
         android:name="com.ocs.sequre.presentation.ui.fragment.secondOpinion.SecondOpinionDoctorsFragment"
         android:label="SecondOpinionDoctorsFragment"
-        tools:layout="@layout/fragment_second_opinion_doctors" />
+        tools:layout="@layout/fragment_second_opinion_doctors">
+        <action
+            android:id="@+id/action_secondOpinionDoctorsFragment_to_doctorFragment"
+            app:destination="@id/doctorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/doctorFragment"
+        android:name="com.ocs.sequre.presentation.ui.fragment.secondOpinion.DoctorFragment"
+        android:label="DoctorFragment"
+        tools:layout="@layout/fragment_doctor">
+        <argument
+            android:name="doctor"
+            app:argType="com.ocs.sequre.domain.entity.Doctor" />
+    </fragment>
 </navigation>

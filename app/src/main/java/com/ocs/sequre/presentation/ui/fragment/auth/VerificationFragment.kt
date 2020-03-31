@@ -61,7 +61,7 @@ class VerificationFragment : BaseFragment() {
                         otp, {
                             viewModel.register(usr)
                                 .subscribe({
-                                    findNavController().navigate(R.id.action_verificationFragment_to_navigationFragment)
+                                    findNavController().navigate(R.id.action_global_navigationFragment)
                                 }, Throwable::printStackTrace)
                         }, Throwable::printStackTrace
                     )

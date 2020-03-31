@@ -2,6 +2,7 @@ package com.ocs.sequre.presentation.ui.fragment.secondOpinion
 
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
@@ -27,7 +28,16 @@ class SecondOpinionDoctorsFragment : BaseFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
         viewModel = ViewModelProvider(this, factory).get(SecondOpinionViewModel::class.java)
-        mAdapter.setOnItemClickListener {}
+        mAdapter.setOnItemClickListener({
+            findNavController().navigate(
+                R.id.action_secondOpinionDoctorsFragment_to_doctorFragment,
+                DoctorFragmentArgs(it).toBundle()
+            )
+        }, {
+            subscribe(viewModel.chooseDoctor(it.id!!).subscribe({
+                findNavController().navigate(R.id.action_global_navigationFragment)
+            }, onError()))
+        })
         view.recyclerView.adapter = mAdapter
     }
 

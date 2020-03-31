@@ -38,7 +38,7 @@ class SignInFragment : BaseFragment() {
                 view.input_auth_name.text(),
                 view.input_auth_password.text()
             ).subscribe({
-                findNavController().navigate(R.id.action_signInFragment_to_navigationFragment)
+                findNavController().navigate(R.id.action_global_navigationFragment)
             }, onError())
         }
 

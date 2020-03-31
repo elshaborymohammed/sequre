@@ -142,4 +142,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun provideNotificationDetailsFragment(): SecondOpinionReportFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun provideDoctorFragment(): DoctorFragment
 }

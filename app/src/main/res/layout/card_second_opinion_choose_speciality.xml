@@ -23,8 +23,8 @@
         android:background="@drawable/sh_border_rounded"
         android:drawableEnd="@drawable/ic_search"
         android:drawablePadding="12dp"
-        android:lines="1"
         android:hint="@string/choose_speciality"
+        android:lines="1"
         android:maxLines="1"
         android:singleLine="true"
         android:textAppearance="?attr/textAppearanceCaption" />
@@ -63,7 +63,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/submit"
-        style="@style/App.Widget.Button"
+        style="@style/App.Widget.Button.Toggle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
