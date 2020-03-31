@@ -113,7 +113,7 @@ class SecondOpinionAdapter :
                     for_you.setTextSelect()
                     for_other.setTextSelect()
 
-                    body.data?.apply {
+                    body.answer?.apply {
                         for_you.isSelected = true
                         for_other.isSelected = (forWho == SecondOpinion.Body.FOR_OTHER)
                     }
@@ -149,6 +149,7 @@ class SecondOpinionAdapter :
                 itemView.description.isEnabled = !hasNext
                 itemView.submit.apply {
                     isEnabled = !hasNext
+                    isSelected = !isEnabled
                     setTextSelect()
                 }
 
@@ -180,7 +181,6 @@ class SecondOpinionAdapter :
                                 }
 
                                 itemView.submit.setOnClickListener { view ->
-                                    view.isSelected = true
                                     body.listener(
                                         itemView.speciality.tag as Int,
                                         (itemView.pain.selectedItem as Pain).id,
@@ -210,12 +210,12 @@ class SecondOpinionAdapter :
                     if (null != body.question.answer) {
                         body.question.answer!!.firstOrNull()?.let {
                             yes?.apply {
-                                isSelected = (it == 0)
+                                isSelected = (it.equals("0"))
                                 setTextSelect()
                             }
 
                             no?.apply {
-                                isSelected = (it == 1)
+                                isSelected = (it == "1")
                                 setTextSelect()
                             }
                         }
@@ -227,7 +227,7 @@ class SecondOpinionAdapter :
                                 isSelected = true
                                 setTextSelect()
                                 postInvalidate()
-                                body.question.answer = listOf(0)
+                                body.question.answer = listOf("0")
                                 body.listener(body.question, 0)
                             }
                         }
@@ -239,7 +239,7 @@ class SecondOpinionAdapter :
                                 isSelected = true
                                 setTextSelect()
                                 postInvalidate()
-                                body.question.answer = listOf(1)
+                                body.question.answer = listOf("1")
                                 body.listener(body.question, 1)
                             }
                         }
@@ -275,19 +275,19 @@ class SecondOpinionAdapter :
                             setTag(R.id.second_opinion, body.question.fields[i].key)
                             text = body.question.fields[i].value
                             body.question.answer?.run {
-                                isChecked = contains(body.question.fields[i].key.toInt())
+                                isChecked = contains(body.question.fields[i].key)
                             }
                         }
                     }
 
                     submit.setOnClickListener {
-                        it.isSelected = true
-                        val list: ArrayList<Int> = ArrayList()
+//                        it.isSelected = true
+                        val list: ArrayList<String> = ArrayList()
                         for (i in 1..3) {
                             answers.findViewWithTag<MaterialCheckBox>("choose_$i")
                                 .apply {
                                     if (isChecked)
-                                        list.add(getTag(R.id.second_opinion).toString().toInt())
+                                        list.add(getTag(R.id.second_opinion).toString())
                                 }
                         }
                         body.question.answer = list

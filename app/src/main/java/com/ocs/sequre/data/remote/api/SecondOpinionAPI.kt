@@ -38,7 +38,7 @@ interface SecondOpinionAPI {
     @GET("serviceProvider/getAll/{id}")
     fun doctors(@Path("id") id: Int): Single<ResponseSuccess<List<Doctor>>>
 
-    @GET("https://sequre.getsandbox.com/opinion/getReport/{id}")
+    @GET("opinion/getReport/{id}")
     fun getReport(@Path("id") id: Int): Single<ResponseSuccess<Report>>
 
     @GET("serviceProvider/getDetails/{id}")

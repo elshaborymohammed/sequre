@@ -18,7 +18,7 @@ data class Doctor(
     @Expose
     val logo: String? = null,
 
-    @field:SerializedName("description")
+    @field:SerializedName("brief")
     @Expose
     val description: String? = null
 ) : Serializable

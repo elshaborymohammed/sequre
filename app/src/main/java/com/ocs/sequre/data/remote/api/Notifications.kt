@@ -14,7 +14,7 @@ import retrofit2.http.Headers
 interface Notifications {
 
     @Headers("Content-Type: application/json")
-    @GET("https://sequre.getsandbox.com/notifications/getHistory")
+    @GET("notifications/getHistory")
     fun all(): Single<ResponseSuccess<List<Notification>>>
 
 }

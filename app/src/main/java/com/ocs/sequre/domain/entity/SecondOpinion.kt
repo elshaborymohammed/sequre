@@ -17,14 +17,14 @@ sealed class SecondOpinion {
 
     sealed class Request : SecondOpinion() {
         class AskForWho(
-            val data: Body.Data? = null,
+            val answer: Body.Data? = null,
             var forMeListener: () -> Unit,
             var forOtherListener: () -> Unit
         ) : Request()
 
         class ChooseSpeciality(
             val specialities: List<Speciality>,
-            val data: Body.Data? = null,
+            val answer: Body.Data? = null,
             var listener: (specialityId: Int, painId: Int, description: String) -> Unit
         ) : Request()
 
@@ -35,7 +35,7 @@ sealed class SecondOpinion {
 
         data class MultiChoice(
             val question: Question,
-            var listener: (question: Question, answer: List<Int>) -> Unit
+            var listener: (question: Question, answer: List<String>) -> Unit
         ) : Request()
     }
 
@@ -59,7 +59,7 @@ sealed class SecondOpinion {
             @Expose @SerializedName("pain_q1_id") var painQ1Id: Int? = null,
             @Expose @SerializedName("pain_q1_answer") var painQ1Answer: Int? = null,
             @Expose @SerializedName("pain_q2_id") var painQ2Id: Int? = null,
-            @Expose @SerializedName("pain_q2_answer") var painQ2Answer: List<Int>? = null
+            @Expose @SerializedName("pain_q2_answer") var painQ2Answer: List<String>? = null
         ) : Body()
 
         data class GeneralAnswer(
@@ -72,7 +72,7 @@ sealed class SecondOpinion {
             @Expose @SerializedName("general_q4_id") var generalQ4Id: Int? = null,
             @Expose @SerializedName("general_q4_answer") var generalQ4Answer: Int? = null,
             @Expose @SerializedName("general_q5_id") var generalQ5Id: Int? = null,
-            @Expose @SerializedName("general_q5_answer") var generalQ5Answer: List<Int>? = null
+            @Expose @SerializedName("general_q5_answer") var generalQ5Answer: List<String>? = null
         ) : Body()
     }
 }

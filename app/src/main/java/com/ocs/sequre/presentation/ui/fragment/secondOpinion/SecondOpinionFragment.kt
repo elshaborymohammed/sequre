@@ -92,7 +92,7 @@ class SecondOpinionFragment : BaseFragment() {
                     }
                     2 -> {
                         adapter.add(
-                            SecondOpinion.Request.MultiChoice(question) { question: Question, answers: List<Int> ->
+                            SecondOpinion.Request.MultiChoice(question) { question: Question, answers: List<String> ->
                                 secondOpinionViewModel.speciality.painQ2Id = question.id
                                 secondOpinionViewModel.speciality.painQ2Answer = answers
 
@@ -151,7 +151,7 @@ class SecondOpinionFragment : BaseFragment() {
                     }
                     5 -> {
                         adapter.add(
-                            SecondOpinion.Request.MultiChoice(question) { question: Question, answers: List<Int> ->
+                            SecondOpinion.Request.MultiChoice(question) { question: Question, answers: List<String> ->
                                 secondOpinionViewModel.general.generalQ5Id = question.id
                                 secondOpinionViewModel.general.generalQ5Answer = answers
                                 subscribe(
