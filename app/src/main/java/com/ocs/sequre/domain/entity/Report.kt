@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Report(
 
-    @field:SerializedName("patientName")
+    @field:SerializedName("patient_name")
     @Expose
     val patientName: String? = null,
 
@@ -17,7 +17,7 @@ data class Report(
     @Expose
     val doctorName: String? = null,
 
-    @field:SerializedName("diagnosis")
+    @field:SerializedName("diagnoses")
     @Expose
     val diagnosis: String? = null,
 
