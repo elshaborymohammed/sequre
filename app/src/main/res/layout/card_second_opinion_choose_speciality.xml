@@ -63,7 +63,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/submit"
-        style="@style/App.Widget.Button.Toggle"
+        style="@style/App.Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

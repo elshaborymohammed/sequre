@@ -152,7 +152,7 @@ class SecondOpinionAdapter :
                 itemView.submit.apply {
                     isEnabled = !hasNext
                     isSelected = !isEnabled
-                    setTextSelect()
+//                    setTextSelect()
                 }
 
 
@@ -310,30 +310,13 @@ class SecondOpinionAdapter :
                         }
                     }
 
-//                    println("Choose_1 tag ${choose_1.tag}, getTag ${choose_1.getTag(R.id.second_opinion)}")
-//                    println("Choose_2 tag ${choose_2.tag}, getTag ${choose_2.getTag(R.id.second_opinion)}")
-//                    println("Choose_3 tag ${choose_3.tag}, getTag ${choose_3.getTag(R.id.second_opinion)}")
-
                     submit.apply {
                         isEnabled = !hasNext
                         isSelected = !isEnabled
-                        setTextSelect()
-
-//                        println("Choose_1 tag ${choose_1.tag}, getTag ${choose_1.getTag(R.id.second_opinion)}")
-//                        println("Choose_2 tag ${choose_2.tag}, getTag ${choose_2.getTag(R.id.second_opinion)}")
-//                        println("Choose_3 tag ${choose_3.tag}, getTag ${choose_3.getTag(R.id.second_opinion)}")
+//                        setTextSelect()
 
                         setOnClickListener {
                             val list: ArrayList<String> = ArrayList()
-
-//                            body.question.fields.forEachIndexed { i: Int, filed: Filed ->
-//                                answers.findViewWithTag<MaterialCheckBox>("choose_${i + 1}")
-//                                    .run {
-//                                        if (isChecked)
-//                                            list.add(getTag(R.id.second_opinion).toString())
-//                                    }
-//                            }
-
                             for (i in 1..3) {
                                 println("$i")
                                 itemView.answers.findViewWithTag<MaterialCheckBox>("choose_$i")
