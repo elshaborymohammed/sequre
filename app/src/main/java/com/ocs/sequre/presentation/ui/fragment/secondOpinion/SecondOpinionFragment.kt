@@ -141,7 +141,12 @@ class SecondOpinionFragment : BaseFragment() {
                             SecondOpinion.Request.YesNo(question) { question: Question, answer: Int ->
                                 secondOpinionViewModel.speciality.painQ1Id = question.id
                                 secondOpinionViewModel.speciality.painQ1Answer = answer
-                                adapter.next()
+                                //adapter.next()
+
+                                subscribe(
+                                    secondOpinionViewModel.put(secondOpinionViewModel.speciality)
+                                        .subscribe({ adapter.next() }, onError())
+                                )
                             }
                         )
                         previousQuestion = question
@@ -185,7 +190,12 @@ class SecondOpinionFragment : BaseFragment() {
                             ) { question: Question, answer: Int ->
                                 secondOpinionViewModel.general.generalQ1Id = question.id
                                 secondOpinionViewModel.general.generalQ1Answer = answer
-                                adapter.next()
+                                //adapter.next()
+
+                                subscribe(
+                                    secondOpinionViewModel.put(secondOpinionViewModel.general)
+                                        .subscribe({ adapter.next() }, onError())
+                                )
                             }
                         )
                         previousQuestion = question
@@ -197,7 +207,12 @@ class SecondOpinionFragment : BaseFragment() {
                             ) { question: Question, answer: Int ->
                                 secondOpinionViewModel.general.generalQ2Id = question.id
                                 secondOpinionViewModel.general.generalQ2Answer = answer
-                                adapter.next()
+                                //adapter.next()
+
+                                subscribe(
+                                    secondOpinionViewModel.put(secondOpinionViewModel.general)
+                                        .subscribe({ adapter.next() }, onError())
+                                )
                             }, !previousQuestion?.answer.isNullOrEmpty()
                         )
                         previousQuestion = question
@@ -209,7 +224,11 @@ class SecondOpinionFragment : BaseFragment() {
                             ) { question: Question, answer: Int ->
                                 secondOpinionViewModel.general.generalQ3Id = question.id
                                 secondOpinionViewModel.general.generalQ3Answer = answer
-                                adapter.next()
+                                //adapter.next()
+                                subscribe(
+                                    secondOpinionViewModel.put(secondOpinionViewModel.general)
+                                        .subscribe({ adapter.next() }, onError())
+                                )
                             }, !previousQuestion?.answer.isNullOrEmpty()
                         )
                         previousQuestion = question
@@ -221,7 +240,12 @@ class SecondOpinionFragment : BaseFragment() {
                             ) { question: Question, answer: Int ->
                                 secondOpinionViewModel.general.generalQ4Id = question.id
                                 secondOpinionViewModel.general.generalQ4Answer = answer
-                                adapter.next()
+                                //adapter.next()
+
+                                subscribe(
+                                    secondOpinionViewModel.put(secondOpinionViewModel.general)
+                                        .subscribe({ adapter.next() }, onError())
+                                )
                             }, !previousQuestion?.answer.isNullOrEmpty()
                         )
                         previousQuestion = question
