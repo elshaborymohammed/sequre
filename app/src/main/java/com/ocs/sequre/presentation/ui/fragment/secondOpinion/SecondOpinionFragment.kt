@@ -1,9 +1,11 @@
 package com.ocs.sequre.presentation.ui.fragment.secondOpinion
 
+import android.content.DialogInterface
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.compact.response.ApiException
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
 import com.ocs.sequre.data.remote.model.response.error.ResponseErrorSolo
@@ -50,10 +52,26 @@ class SecondOpinionFragment : BaseFragment() {
                 welcome_subtitle.text = getString(R.string.we_are_pleased_to_help_you)
             }, onError()),
             secondOpinionViewModel.get().subscribe({
-                adapter.add(askForWho(it))
-                getSpecialities(it) {
-                    subscribe(painQuestions())
-                }
+                MaterialAlertDialogBuilder(context)
+                    .setMessage(getString(R.string.resume_second_opinion_request))
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.yes) { dialogInterface: DialogInterface, i: Int ->
+                        dialogInterface.dismiss()
+                        adapter.add(askForWho(it))
+                        getSpecialities(it) {
+                            subscribe(painQuestions())
+                        }
+                    }
+                    .setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
+                        dialogInterface.dismiss()
+                        subscribe(
+                            secondOpinionViewModel.delete(it.id!!)
+                                .subscribe({
+                                    adapter.add(askForWho())
+                                }, onError())
+                        )
+                    }
+                    .show()
             }, {
                 it.printStackTrace()
                 try {
@@ -103,7 +121,8 @@ class SecondOpinionFragment : BaseFragment() {
         ) { specialityId: Int, painId: Int, description: String ->
             secondOpinionViewModel.body.specialityId = specialityId
             secondOpinionViewModel.body.painId = painId
-            secondOpinionViewModel.body.description = description
+            secondOpinionViewModel.body.description =
+                if (description.isNotEmpty()) description else "empty"
             subscribe(
                 secondOpinionViewModel.post(secondOpinionViewModel.body)
                     .subscribe({ subscribe(painQuestions()) }, onError())

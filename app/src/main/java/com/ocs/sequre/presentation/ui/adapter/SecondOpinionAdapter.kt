@@ -172,6 +172,12 @@ class SecondOpinionAdapter :
                                     if (speciality.id == specialityId) {
                                         tag = specialityId
                                         setText(speciality.name, false)
+                                        itemView.description.setText(
+                                            (description ?: "").replace(
+                                                "empty",
+                                                ""
+                                            )
+                                        )
 
                                         itemView.pain.run {
                                             ArrayAdapter(

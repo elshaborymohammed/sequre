@@ -172,5 +172,6 @@
     <string name="keep_going_answer_the_questions">Keep going answer the questions</string>
     <string name="great">Great</string>
     <string name="new_dependent">New Dependent</string>
+    <string name="resume_second_opinion_request">Do you want to continue your previous second opinion request?</string>
     <!-- endregion -->
 </resources>

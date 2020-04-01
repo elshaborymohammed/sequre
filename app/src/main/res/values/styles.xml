@@ -19,6 +19,7 @@
         <item name="spinnerStyle">@style/Widget.AppCompat.Spinner.Underlined</item>
         <item name="materialCardViewStyle">@style/App.Widget.CardView</item>
         <item name="materialButtonStyle">@style/App.Widget.Button</item>
+        <item name="materialAlertDialogTheme">@style/App.Widget.MaterialAlertDialog</item>
         <item name="preferenceStyle">@style/App.Widget.Preference.EditTextPreference</item>
         <item name="progressBarStyle">@style/Widget.AppCompat.ProgressBar</item>
         <item name="android:textViewStyle">@style/App.Widget.TextView</item>
@@ -247,6 +248,10 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">@dimen/text_default</item>
         <item name="fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="App.Widget.MaterialAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/colorAccent</item>
     </style>
 
     <!-- endregion -->

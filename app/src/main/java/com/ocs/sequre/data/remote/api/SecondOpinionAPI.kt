@@ -25,7 +25,7 @@ interface SecondOpinionAPI {
     @GET("opinion/getLastUnFinishedRequest")
     fun get(): Single<ResponseSuccess<SecondOpinion.Body.Data>>
 
-    @GET("opinion/{id}")
+    @DELETE("opinion/{id}")
     fun delete(@Path("id") id: Int): Completable
 
     @GET("opinion/getSpecialities")
