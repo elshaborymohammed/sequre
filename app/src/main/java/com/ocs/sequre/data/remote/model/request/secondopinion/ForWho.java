@@ -11,4 +11,6 @@ import static com.ocs.sequre.domain.entity.SecondOpinion.Body.FOR_OTHER;
 @IntDef(value = {FOR_ME, FOR_OTHER})
 @Retention(RetentionPolicy.SOURCE)
 public @interface ForWho {
+//    public static int FOR_ME = 0;
+//    public static int FOR_OTHER = 1;
 }

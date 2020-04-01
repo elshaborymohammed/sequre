@@ -5,15 +5,15 @@ import com.google.gson.annotations.SerializedName
 import com.ocs.sequre.data.remote.model.request.secondopinion.ForWho
 
 sealed class SecondOpinion {
-    data class Response(
-        @Expose @SerializedName("id") val id: Int,
-        @Expose @SerializedName("for") val forOther: Int,
-        @Expose @SerializedName("dependent_id") val dependentId: Int,
-        @Expose @SerializedName("date") val date: String,
-        @Expose @SerializedName("speciality_id") val specialityId: Int,
-        @Expose @SerializedName("pain_id") val painId: Int,
-        @Expose @SerializedName("description") val description: String
-    )
+//    data class Response(
+//        @Expose @SerializedName("id") val id: Int,
+//        @Expose @SerializedName("for") val forOther: Int,
+//        @Expose @SerializedName("dependent_id") val dependentId: Int,
+//        @Expose @SerializedName("date") val date: String,
+//        @Expose @SerializedName("speciality_id") val specialityId: Int,
+//        @Expose @SerializedName("pain_id") val painId: Int,
+//        @Expose @SerializedName("description") val description: String
+//    )
 
     sealed class Request : SecondOpinion() {
         class AskForWho(
@@ -23,8 +23,8 @@ sealed class SecondOpinion {
         ) : Request()
 
         class ChooseSpeciality(
-            val specialities: List<Speciality>,
             val answer: Body.Data? = null,
+            val specialities: List<Speciality>,
             var listener: (specialityId: Int, painId: Int, description: String) -> Unit
         ) : Request()
 

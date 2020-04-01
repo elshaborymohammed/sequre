@@ -11,7 +11,7 @@ import retrofit2.http.*
 interface SecondOpinionAPI {
 
     @POST("opinion")
-    fun post(@Body body: SecondOpinion.Body.Data): Single<ResponseSuccess<SecondOpinion.Response>>
+    fun post(@Body body: SecondOpinion.Body.Data): Single<ResponseSuccess<SecondOpinion.Body.Data>>
 
     @PUT("opinion/{id}")
     fun put(@Path("id") id: Int, @Body body: SecondOpinion.Body.Data): Completable
@@ -21,6 +21,12 @@ interface SecondOpinionAPI {
 
     @PUT("opinion/{id}")
     fun put(@Path("id") id: Int, @Body body: SecondOpinion.Body.GeneralAnswer): Completable
+
+    @GET("opinion/getLastUnFinishedRequest")
+    fun get(): Single<ResponseSuccess<SecondOpinion.Body.Data>>
+
+    @GET("opinion/{id}")
+    fun delete(@Path("id") id: Int): Completable
 
     @GET("opinion/getSpecialities")
     fun specialities(): Single<ResponseSuccess<List<Speciality>>>

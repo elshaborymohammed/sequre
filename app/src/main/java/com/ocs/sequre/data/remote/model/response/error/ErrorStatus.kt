@@ -1,7 +1,7 @@
 package com.ocs.sequre.data.remote.model.response.error
 
 enum class ErrorStatus {
-    VALIDATION(0), ERROR(1);
+    VALIDATION(0), ERROR(1), UNPROCESSED(2);
 
     private var type = 0
 

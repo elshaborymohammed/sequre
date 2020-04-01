@@ -114,8 +114,10 @@ class SecondOpinionAdapter :
                     for_other.setTextSelect()
 
                     body.answer?.apply {
-                        for_you.isSelected = true
+                        for_you.isSelected = (forWho == SecondOpinion.Body.FOR_ME)
                         for_other.isSelected = (forWho == SecondOpinion.Body.FOR_OTHER)
+                        for_you.setTextSelect()
+                        for_other.setTextSelect()
                     }
 
                     if (!hasNext) {
@@ -153,6 +155,7 @@ class SecondOpinionAdapter :
                     setTextSelect()
                 }
 
+
                 itemView.speciality.apply {
                     body.specialities.let {
                         threshold = 1 //will start working from first character
@@ -163,6 +166,31 @@ class SecondOpinionAdapter :
                             it.map { it.name }
                         ).run {
                             setAdapter(this)
+
+                            body.answer?.apply {
+                                it.forEachIndexed { index, speciality ->
+                                    if (speciality.id == specialityId) {
+                                        tag = specialityId
+                                        setText(speciality.name, false)
+
+                                        itemView.pain.run {
+                                            ArrayAdapter(
+                                                context,
+                                                android.R.layout.simple_spinner_item,
+                                                android.R.id.text1,
+                                                speciality.pains
+                                            ).run {
+                                                setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+                                                adapter = this
+                                                itemView.pain.requestFocus()
+
+                                                setSelection(index)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
                             setOnItemClickListener { _, _, position, _ ->
                                 setText(it[position].name, false)
                                 tag = it[position].id
@@ -201,16 +229,18 @@ class SecondOpinionAdapter :
                 itemView.apply {
                     yes.isEnabled = !hasNext
                     no.isEnabled = !hasNext
+                    yes.setTextSelect()
+                    no.setTextSelect()
 
                     question?.apply {
                         text = body.question.name
                         tag = body.question.id
                     }
 
-                    if (null != body.question.answer) {
+                    if (!body.question.answer.isNullOrEmpty()) {
                         body.question.answer!!.firstOrNull()?.let {
                             yes?.apply {
-                                isSelected = (it.equals("0"))
+                                isSelected = (it == "0")
                                 setTextSelect()
                             }
 
@@ -256,21 +286,15 @@ class SecondOpinionAdapter :
                 hasNext: Boolean
             ) {
                 itemView.apply {
-                    submit.apply {
-                        isEnabled = !hasNext
-                        isSelected = !isEnabled
-                        setTextSelect()
-                    }
-
 
                     question?.apply {
                         text = body.question.name
                         tag = body.question.id
                     }
+
                     for (i in 0..body.question.fields.size) {
                         answers.findViewWithTag<MaterialCheckBox>("choose_${i + 1}")?.run {
                             isEnabled = !hasNext
-
                             isChecked = false
                             setTag(R.id.second_opinion, body.question.fields[i].key)
                             text = body.question.fields[i].value
@@ -280,18 +304,41 @@ class SecondOpinionAdapter :
                         }
                     }
 
-                    submit.setOnClickListener {
-//                        it.isSelected = true
-                        val list: ArrayList<String> = ArrayList()
-                        for (i in 1..3) {
-                            answers.findViewWithTag<MaterialCheckBox>("choose_$i")
-                                .apply {
-                                    if (isChecked)
-                                        list.add(getTag(R.id.second_opinion).toString())
-                                }
+//                    println("Choose_1 tag ${choose_1.tag}, getTag ${choose_1.getTag(R.id.second_opinion)}")
+//                    println("Choose_2 tag ${choose_2.tag}, getTag ${choose_2.getTag(R.id.second_opinion)}")
+//                    println("Choose_3 tag ${choose_3.tag}, getTag ${choose_3.getTag(R.id.second_opinion)}")
+
+                    submit.apply {
+                        isEnabled = !hasNext
+                        isSelected = !isEnabled
+                        setTextSelect()
+
+//                        println("Choose_1 tag ${choose_1.tag}, getTag ${choose_1.getTag(R.id.second_opinion)}")
+//                        println("Choose_2 tag ${choose_2.tag}, getTag ${choose_2.getTag(R.id.second_opinion)}")
+//                        println("Choose_3 tag ${choose_3.tag}, getTag ${choose_3.getTag(R.id.second_opinion)}")
+
+                        setOnClickListener {
+                            val list: ArrayList<String> = ArrayList()
+
+//                            body.question.fields.forEachIndexed { i: Int, filed: Filed ->
+//                                answers.findViewWithTag<MaterialCheckBox>("choose_${i + 1}")
+//                                    .run {
+//                                        if (isChecked)
+//                                            list.add(getTag(R.id.second_opinion).toString())
+//                                    }
+//                            }
+
+                            for (i in 1..3) {
+                                println("$i")
+                                itemView.answers.findViewWithTag<MaterialCheckBox>("choose_$i")
+                                    .run {
+                                        if (isChecked)
+                                            list.add(getTag(R.id.second_opinion).toString())
+                                    }
+                            }
+                            body.question.answer = list
+                            body.listener(body.question, list)
                         }
-                        body.question.answer = list
-                        body.listener(body.question, list)
                     }
                 }
             }

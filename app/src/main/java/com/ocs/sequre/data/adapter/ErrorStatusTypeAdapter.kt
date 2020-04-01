@@ -18,8 +18,11 @@ class ErrorStatusTypeAdapter : TypeAdapter<ErrorStatus>() {
         `in`?.apply {
             while (hasNext()) {
                 return when (nextInt()) {
-                    0 -> {
+                    ErrorStatus.VALIDATION.type() -> {
                         ErrorStatus.VALIDATION
+                    }
+                    ErrorStatus.UNPROCESSED.type() -> {
+                        ErrorStatus.UNPROCESSED
                     }
                     else -> {
                         ErrorStatus.ERROR

@@ -27,7 +27,7 @@ class SecondOpinionViewModel @Inject constructor(
     var speciality = SecondOpinion.Body.SpecialityAnswer()
     var general = SecondOpinion.Body.GeneralAnswer()
 
-    fun post(body: SecondOpinion.Body.Data): Single<SecondOpinion.Response> {
+    fun post(body: SecondOpinion.Body.Data): Single<SecondOpinion.Body.Data> {
         body.date = "2020-1-1"
         return api.post(body)
             .compose(schedulers.applyOnSingle())
@@ -49,6 +49,20 @@ class SecondOpinionViewModel @Inject constructor(
         return api.put(preference.get().id!!, body)
             .compose(schedulers.applyOnCompletable())
             .compose(composeLoadingCompletable())
+    }
+
+    fun delete(id: Int): Completable {
+        return api.delete(id)
+            .compose(schedulers.applyOnCompletable())
+            .compose(composeLoadingCompletable())
+    }
+
+    fun get(): Single<SecondOpinion.Body.Data> {
+        return api.get()
+            .compose(schedulers.applyOnSingle())
+            .compose(composeLoadingSingle())
+            .map { it.data }
+            .doOnSuccess { preference.set(it) }
     }
 
     fun specialities(): Single<List<Speciality>> {
