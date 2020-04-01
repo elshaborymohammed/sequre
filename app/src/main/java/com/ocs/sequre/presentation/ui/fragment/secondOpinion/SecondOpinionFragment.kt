@@ -138,7 +138,7 @@ class SecondOpinionFragment : BaseFragment() {
                 when (question.order) {
                     1 -> {
                         adapter.add(
-                            SecondOpinion.Request.YesNo(question) { question: Question, answer: Int ->
+                            SecondOpinion.Request.YesNo(question) { question: Question, answer: Int, isEditable: Boolean ->
                                 secondOpinionViewModel.speciality.painQ1Id = question.id
                                 secondOpinionViewModel.speciality.painQ1Answer = answer
                                 //adapter.next()
@@ -153,7 +153,7 @@ class SecondOpinionFragment : BaseFragment() {
                     }
                     2 -> {
                         adapter.add(
-                            SecondOpinion.Request.MultiChoice(question) { question: Question, answers: List<String> ->
+                            SecondOpinion.Request.MultiChoice(question) { question: Question, answers: List<String>, isEditable: Boolean ->
                                 secondOpinionViewModel.speciality.painQ2Id = question.id
                                 secondOpinionViewModel.speciality.painQ2Answer = answers
 
@@ -186,15 +186,15 @@ class SecondOpinionFragment : BaseFragment() {
                     1 -> {
                         adapter.add(
                             SecondOpinion.Request.YesNo(
-                                question
-                            ) { question: Question, answer: Int ->
+                                question, true
+                            ) { question: Question, answer: Int, isEditable: Boolean ->
                                 secondOpinionViewModel.general.generalQ1Id = question.id
                                 secondOpinionViewModel.general.generalQ1Answer = answer
                                 //adapter.next()
 
                                 subscribe(
                                     secondOpinionViewModel.put(secondOpinionViewModel.general)
-                                        .subscribe({ adapter.next() }, onError())
+                                        .subscribe({ if (!isEditable) adapter.next() }, onError())
                                 )
                             }
                         )
@@ -203,15 +203,15 @@ class SecondOpinionFragment : BaseFragment() {
                     2 -> {
                         adapter.add(
                             SecondOpinion.Request.YesNo(
-                                question
-                            ) { question: Question, answer: Int ->
+                                question, true
+                            ) { question: Question, answer: Int, isEditable: Boolean ->
                                 secondOpinionViewModel.general.generalQ2Id = question.id
                                 secondOpinionViewModel.general.generalQ2Answer = answer
                                 //adapter.next()
 
                                 subscribe(
                                     secondOpinionViewModel.put(secondOpinionViewModel.general)
-                                        .subscribe({ adapter.next() }, onError())
+                                        .subscribe({ if (!isEditable) adapter.next() }, onError())
                                 )
                             }, !previousQuestion?.answer.isNullOrEmpty()
                         )
@@ -220,14 +220,14 @@ class SecondOpinionFragment : BaseFragment() {
                     3 -> {
                         adapter.add(
                             SecondOpinion.Request.YesNo(
-                                question
-                            ) { question: Question, answer: Int ->
+                                question, true
+                            ) { question: Question, answer: Int, isEditable: Boolean ->
                                 secondOpinionViewModel.general.generalQ3Id = question.id
                                 secondOpinionViewModel.general.generalQ3Answer = answer
                                 //adapter.next()
                                 subscribe(
                                     secondOpinionViewModel.put(secondOpinionViewModel.general)
-                                        .subscribe({ adapter.next() }, onError())
+                                        .subscribe({ if (!isEditable) adapter.next() }, onError())
                                 )
                             }, !previousQuestion?.answer.isNullOrEmpty()
                         )
@@ -236,15 +236,15 @@ class SecondOpinionFragment : BaseFragment() {
                     4 -> {
                         adapter.add(
                             SecondOpinion.Request.YesNo(
-                                question
-                            ) { question: Question, answer: Int ->
+                                question, true
+                            ) { question: Question, answer: Int, isEditable: Boolean ->
                                 secondOpinionViewModel.general.generalQ4Id = question.id
                                 secondOpinionViewModel.general.generalQ4Answer = answer
                                 //adapter.next()
 
                                 subscribe(
                                     secondOpinionViewModel.put(secondOpinionViewModel.general)
-                                        .subscribe({ adapter.next() }, onError())
+                                        .subscribe({ if (!isEditable) adapter.next() }, onError())
                                 )
                             }, !previousQuestion?.answer.isNullOrEmpty()
                         )
@@ -253,8 +253,8 @@ class SecondOpinionFragment : BaseFragment() {
                     5 -> {
                         adapter.add(
                             SecondOpinion.Request.MultiChoice(
-                                question
-                            ) { question: Question, answers: List<String> ->
+                                question, true
+                            ) { question: Question, answers: List<String>, isEditable: Boolean ->
                                 secondOpinionViewModel.general.generalQ5Id = question.id
                                 secondOpinionViewModel.general.generalQ5Answer = answers
                                 subscribe(

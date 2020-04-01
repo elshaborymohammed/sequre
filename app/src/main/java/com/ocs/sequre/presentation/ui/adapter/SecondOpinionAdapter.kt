@@ -233,8 +233,10 @@ class SecondOpinionAdapter :
             override fun bind(body: SecondOpinion.Request.YesNo, position: Int, hasNext: Boolean) {
 
                 itemView.apply {
-                    yes.isEnabled = !hasNext
-                    no.isEnabled = !hasNext
+                    if (!body.isEditable) {
+                        yes.isEnabled = !hasNext
+                        no.isEnabled = !hasNext
+                    }
                     yes.setTextSelect()
                     no.setTextSelect()
 
@@ -248,11 +250,45 @@ class SecondOpinionAdapter :
                             yes?.apply {
                                 isSelected = (it == "0")
                                 setTextSelect()
+                                if (body.isEditable) {
+                                    setOnClickListener {
+                                        itemView.no.run {
+                                            isSelected = false
+                                            setTextSelect()
+                                            postInvalidate()
+                                        }
+
+                                        isSelected = true
+                                        setTextSelect()
+                                        postInvalidate()
+                                        body.question.answer = listOf("0")
+                                        body.listener(body.question, 0, body.isEditable)
+                                    }
+                                } else {
+                                    setOnClickListener {}
+                                }
                             }
 
                             no?.apply {
                                 isSelected = (it == "1")
                                 setTextSelect()
+                                if (body.isEditable) {
+                                    setOnClickListener {
+                                        itemView.yes.run {
+                                            isSelected = false
+                                            setTextSelect()
+                                            postInvalidate()
+                                        }
+
+                                        isSelected = true
+                                        setTextSelect()
+                                        postInvalidate()
+                                        body.question.answer = listOf("1")
+                                        body.listener(body.question, 1, body.isEditable)
+                                    }
+                                } else {
+                                    setOnClickListener {}
+                                }
                             }
                         }
                     } else {
@@ -264,7 +300,7 @@ class SecondOpinionAdapter :
                                 setTextSelect()
                                 postInvalidate()
                                 body.question.answer = listOf("0")
-                                body.listener(body.question, 0)
+                                body.listener(body.question, 0, body.isEditable)
                             }
                         }
 
@@ -276,7 +312,7 @@ class SecondOpinionAdapter :
                                 setTextSelect()
                                 postInvalidate()
                                 body.question.answer = listOf("1")
-                                body.listener(body.question, 1)
+                                body.listener(body.question, 1, body.isEditable)
                             }
                         }
                     }
@@ -300,7 +336,9 @@ class SecondOpinionAdapter :
 
                     for (i in 0..body.question.fields.size) {
                         answers.findViewWithTag<MaterialCheckBox>("choose_${i + 1}")?.run {
-                            isEnabled = !hasNext
+                            if (!body.isEditable) {
+                                isEnabled = !hasNext
+                            }
                             isChecked = false
                             setTag(R.id.second_opinion, body.question.fields[i].key)
                             text = body.question.fields[i].value
@@ -311,7 +349,9 @@ class SecondOpinionAdapter :
                     }
 
                     submit.apply {
-                        isEnabled = !hasNext
+                        if (!body.isEditable) {
+                            isEnabled = !hasNext
+                        }
                         isSelected = !isEnabled
 //                        setTextSelect()
 
@@ -326,7 +366,7 @@ class SecondOpinionAdapter :
                                     }
                             }
                             body.question.answer = list
-                            body.listener(body.question, list)
+                            body.listener(body.question, list, body.isEditable)
                         }
                     }
                 }

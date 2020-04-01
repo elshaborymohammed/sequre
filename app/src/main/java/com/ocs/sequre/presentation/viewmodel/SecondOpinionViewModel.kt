@@ -13,9 +13,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class SecondOpinionViewModel @Inject constructor(
-    private val api: RequesterSecondOpinionAPI,
-    private val preference: SecondOpinionPreference,
-    private val schedulers: RxCompactSchedulers
+        private val api: RequesterSecondOpinionAPI,
+        private val preference: SecondOpinionPreference,
+        private val schedulers: RxCompactSchedulers
 ) : CompactViewModel() {
     val showSpeciality = BehaviorRelay.create<Any>()
 
@@ -30,86 +30,86 @@ class SecondOpinionViewModel @Inject constructor(
     fun post(body: SecondOpinion.Body.Data): Single<SecondOpinion.Body.Data> {
         body.date = "2020-1-1"
         return api.post(body)
-            .compose(schedulers.applyOnSingle())
-            .compose(composeLoadingSingle())
-            .map { it.data }
-            .doOnSuccess {
-                body.id = it.id
-                preference.set(body)
-            }
+                .compose(schedulers.applyOnSingle())
+                .compose(composeLoadingSingle())
+                .map { it.data }
+                .doOnSuccess {
+                    body.id = it.id
+                    preference.set(body)
+                }
     }
 
     fun put(body: SecondOpinion.Body.SpecialityAnswer): Completable {
         return api.put(preference.get().id!!, body)
-            .compose(schedulers.applyOnCompletable())
-            .compose(composeLoadingCompletable())
+                .compose(schedulers.applyOnCompletable())
+                .compose(composeLoadingCompletable())
     }
 
     fun put(body: SecondOpinion.Body.GeneralAnswer): Completable {
         return api.put(preference.get().id!!, body)
-            .compose(schedulers.applyOnCompletable())
-            .compose(composeLoadingCompletable())
+                .compose(schedulers.applyOnCompletable())
+                .compose(composeLoadingCompletable())
     }
 
     fun delete(id: Int): Completable {
         return api.delete(id)
-            .compose(schedulers.applyOnCompletable())
-            .compose(composeLoadingCompletable())
+                .compose(schedulers.applyOnCompletable())
+                .compose(composeLoadingCompletable())
     }
 
     fun get(): Single<SecondOpinion.Body.Data> {
         return api.get()
-            .compose(schedulers.applyOnSingle())
-            .compose(composeLoadingSingle())
-            .map { it.data }
-            .doOnSuccess { preference.set(it) }
+                .compose(schedulers.applyOnSingle())
+                .compose(composeLoadingSingle())
+                .map { it.data }
+                .doOnSuccess { preference.set(it) }
     }
 
     fun specialities(): Single<List<Speciality>> {
         return api.specialities()
-            .compose(schedulers.applyOnSingle())
-            .compose(composeLoadingSingle())
-            .map { it.data }
+                .compose(schedulers.applyOnSingle())
+                .compose(composeLoadingSingle())
+                .map { it.data }
     }
 
     fun painQuestions(): Single<List<Question>> {
         return api.painQuestions(preference.get().painId!!)
-            .compose(schedulers.applyOnSingle())
-            .compose(composeLoadingSingle())
-            .map { it.data }
+                .compose(schedulers.applyOnSingle())
+                .compose(composeLoadingSingle())
+                .map { it.data }
     }
 
     fun generalQuestions(): Single<List<Question>> {
-        return api.generalQuestions(preference.get().painId!!)
-            .compose(schedulers.applyOnSingle())
-            .compose(composeLoadingSingle())
-            .map { it.data }
+        return api.generalQuestions(preference.get().dependentId ?: 0)
+                .compose(schedulers.applyOnSingle())
+                .compose(composeLoadingSingle())
+                .map { it.data }
     }
 
     fun chooseDoctor(providerId: Int): Completable {
         return api.chooseDoctor(preference.get().id!!, providerId)
-            .compose(schedulers.applyOnCompletable())
-            .compose(composeLoadingCompletable())
+                .compose(schedulers.applyOnCompletable())
+                .compose(composeLoadingCompletable())
     }
 
     fun doctors(id: Int): Single<List<Doctor>> {
         return api.doctors(id)
-            .compose(schedulers.applyOnSingle())
-            .compose(composeLoadingSingle())
-            .map { it.data }
+                .compose(schedulers.applyOnSingle())
+                .compose(composeLoadingSingle())
+                .map { it.data }
     }
 
     fun getReport(reportId: Int): Single<Report> {
         return api.getReport(reportId)
-            .compose(schedulers.applyOnSingle())
-            .compose(composeLoadingSingle())
-            .map { it.data }
+                .compose(schedulers.applyOnSingle())
+                .compose(composeLoadingSingle())
+                .map { it.data }
     }
 
     fun doctorDetails(doctorId: Int): Single<DoctorDetails> {
         return api.doctorDetails(1)
-            .compose(schedulers.applyOnSingle())
-            .compose(composeLoadingSingle())
-            .map { it.data }
+                .compose(schedulers.applyOnSingle())
+                .compose(composeLoadingSingle())
+                .map { it.data }
     }
 }
