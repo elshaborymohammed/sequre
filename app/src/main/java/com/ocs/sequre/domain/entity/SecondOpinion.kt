@@ -30,13 +30,14 @@ sealed class SecondOpinion {
 
         data class YesNo(
             val question: Question,
-            val isEditable: Boolean = false,
-            var listener: (question: Question, answer: Int, isEditable: Boolean) -> Unit
+            var isEditable: Boolean = false,
+            var hasNext: Boolean = false,
+            var listener: (question: Question, answer: Int, isEditable: Boolean, hasNext: Boolean) -> Unit
         ) : Request()
 
         data class MultiChoice(
             val question: Question,
-            val isEditable: Boolean = false,
+            var isEditable: Boolean = false,
             var listener: (question: Question, answer: List<String>, isEditable: Boolean) -> Unit
         ) : Request()
     }

@@ -79,3 +79,15 @@ fun TextInputLayout.setAdapter(@ArrayRes arrayRes: Int) {
         )
     )
 }
+
+fun List<String>?.isBlack(): Boolean {
+    return when {
+        isNullOrEmpty() -> {
+            true
+        }
+        this!!.contains("-1") -> {
+            true
+        }
+        else -> this.isEmpty()
+    }
+}

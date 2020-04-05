@@ -8,6 +8,7 @@ import com.compact.response.ApiException
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseFragment
+import com.ocs.sequre.app.base.isBlack
 import com.ocs.sequre.data.remote.model.response.error.ResponseErrorSolo
 import com.ocs.sequre.domain.entity.Question
 import com.ocs.sequre.domain.entity.SecondOpinion
@@ -99,7 +100,7 @@ class SecondOpinionFragment : BaseFragment() {
             subscribe(getSpecialities())
         }, {
             secondOpinionViewModel.showSpeciality()
-                .subscribe({ subscribe(getSpecialities()) }, ::println)
+                .subscribe({ subscribe(getSpecialities()) }, onError())
             secondOpinionViewModel.body.forWho = SecondOpinion.Body.FOR_OTHER
             findNavController().navigate(R.id.action_secondOpinionFragment_to_dependentsSummeryFragment)
         })
@@ -138,7 +139,7 @@ class SecondOpinionFragment : BaseFragment() {
                 when (question.order) {
                     1 -> {
                         adapter.add(
-                            SecondOpinion.Request.YesNo(question) { question: Question, answer: Int, isEditable: Boolean ->
+                            SecondOpinion.Request.YesNo(question) { question: Question, answer: Int, isEditable: Boolean, hasNext: Boolean ->
                                 secondOpinionViewModel.speciality.painQ1Id = question.id
                                 secondOpinionViewModel.speciality.painQ1Answer = answer
                                 //adapter.next()
@@ -162,10 +163,10 @@ class SecondOpinionFragment : BaseFragment() {
                                         .subscribe({ subscribe(generalQuestions()) }, onError())
                                 )
                             },
-                            !previousQuestion?.answer.isNullOrEmpty()
+                            !previousQuestion?.answer.isBlack()
                         )
 
-                        if (!question.answer.isNullOrEmpty()) {
+                        if (!question.answer.isBlack()) {
                             subscribe(
                                 secondOpinionViewModel.put(secondOpinionViewModel.speciality)
                                     .subscribe({ subscribe(generalQuestions()) }, onError())
@@ -187,14 +188,14 @@ class SecondOpinionFragment : BaseFragment() {
                         adapter.add(
                             SecondOpinion.Request.YesNo(
                                 question, true
-                            ) { question: Question, answer: Int, isEditable: Boolean ->
+                            ) { question: Question, answer: Int, isEditable: Boolean, hasNext: Boolean ->
                                 secondOpinionViewModel.general.generalQ1Id = question.id
                                 secondOpinionViewModel.general.generalQ1Answer = answer
                                 //adapter.next()
 
                                 subscribe(
                                     secondOpinionViewModel.put(secondOpinionViewModel.general)
-                                        .subscribe({ if (!isEditable) adapter.next() }, onError())
+                                        .subscribe({ next(isEditable, hasNext) }, onError())
                                 )
                             }
                         )
@@ -204,16 +205,16 @@ class SecondOpinionFragment : BaseFragment() {
                         adapter.add(
                             SecondOpinion.Request.YesNo(
                                 question, true
-                            ) { question: Question, answer: Int, isEditable: Boolean ->
+                            ) { question: Question, answer: Int, isEditable: Boolean, hasNext: Boolean ->
                                 secondOpinionViewModel.general.generalQ2Id = question.id
                                 secondOpinionViewModel.general.generalQ2Answer = answer
                                 //adapter.next()
 
                                 subscribe(
                                     secondOpinionViewModel.put(secondOpinionViewModel.general)
-                                        .subscribe({ if (!isEditable) adapter.next() }, onError())
+                                        .subscribe({ next(isEditable, hasNext) }, onError())
                                 )
-                            }, !previousQuestion?.answer.isNullOrEmpty()
+                            }, !previousQuestion?.answer.isBlack()
                         )
                         previousQuestion = question
                     }
@@ -221,15 +222,15 @@ class SecondOpinionFragment : BaseFragment() {
                         adapter.add(
                             SecondOpinion.Request.YesNo(
                                 question, true
-                            ) { question: Question, answer: Int, isEditable: Boolean ->
+                            ) { question: Question, answer: Int, isEditable: Boolean, hasNext: Boolean ->
                                 secondOpinionViewModel.general.generalQ3Id = question.id
                                 secondOpinionViewModel.general.generalQ3Answer = answer
                                 //adapter.next()
                                 subscribe(
                                     secondOpinionViewModel.put(secondOpinionViewModel.general)
-                                        .subscribe({ if (!isEditable) adapter.next() }, onError())
+                                        .subscribe({ next(isEditable, hasNext) }, onError())
                                 )
-                            }, !previousQuestion?.answer.isNullOrEmpty()
+                            }, !previousQuestion?.answer.isBlack()
                         )
                         previousQuestion = question
                     }
@@ -237,16 +238,16 @@ class SecondOpinionFragment : BaseFragment() {
                         adapter.add(
                             SecondOpinion.Request.YesNo(
                                 question, true
-                            ) { question: Question, answer: Int, isEditable: Boolean ->
+                            ) { question: Question, answer: Int, isEditable: Boolean, hasNext: Boolean ->
                                 secondOpinionViewModel.general.generalQ4Id = question.id
                                 secondOpinionViewModel.general.generalQ4Answer = answer
                                 //adapter.next()
 
                                 subscribe(
                                     secondOpinionViewModel.put(secondOpinionViewModel.general)
-                                        .subscribe({ if (!isEditable) adapter.next() }, onError())
+                                        .subscribe({ next(isEditable, hasNext) }, onError())
                                 )
-                            }, !previousQuestion?.answer.isNullOrEmpty()
+                            }, !previousQuestion?.answer.isBlack()
                         )
                         previousQuestion = question
                     }
@@ -264,16 +265,16 @@ class SecondOpinionFragment : BaseFragment() {
                                         }, onError())
                                 )
                             },
-                            !previousQuestion?.answer.isNullOrEmpty()
+                            !previousQuestion?.answer.isBlack()
                         )
 
-                        if (!question.answer.isNullOrEmpty()) {
-                            subscribe(
-                                secondOpinionViewModel.put(secondOpinionViewModel.general)
-                                    .subscribe({
-                                        findNavController().navigate(R.id.action_secondOpinionFragment_to_medicalDocumentsFragment)
-                                    }, onError())
-                            )
+                        if (!question.answer.isBlack()) {
+//                            subscribe(
+//                                secondOpinionViewModel.put(secondOpinionViewModel.general)
+//                                    .subscribe({
+//                                        findNavController().navigate(R.id.action_secondOpinionFragment_to_medicalDocumentsFragment)
+//                                    }, onError())
+//                            )
                         }
                     }
                 }
@@ -283,5 +284,10 @@ class SecondOpinionFragment : BaseFragment() {
     override fun onDestroy() {
         requireActivity().viewModelStore.clear()
         super.onDestroy()
+    }
+
+    private fun next(isEditable: Boolean, hasNext: Boolean) {
+        if (!hasNext)
+            adapter.next()
     }
 }

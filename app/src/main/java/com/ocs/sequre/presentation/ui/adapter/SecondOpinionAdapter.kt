@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.compact.widget.recyclerview.CompactRecyclerView
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.ocs.sequre.R
+import com.ocs.sequre.app.base.isBlack
 import com.ocs.sequre.app.base.setMaterialButtonTextSelect
 import com.ocs.sequre.app.base.setTextSelect
 import com.ocs.sequre.domain.entity.Pain
@@ -90,8 +91,10 @@ class SecondOpinionAdapter :
     }
 
     fun next() {
-        this.next.removeAt(0)?.apply {
-            add(this)
+        if (this.next.size > 0) {
+            this.next.removeAt(0)?.apply {
+                add(this)
+            }
         }
     }
 
@@ -231,11 +234,15 @@ class SecondOpinionAdapter :
         class YesNoQuestionViewHolder(itemView: View) :
             ViewHolder<SecondOpinion.Request.YesNo>(itemView) {
             override fun bind(body: SecondOpinion.Request.YesNo, position: Int, hasNext: Boolean) {
+                body.hasNext = hasNext
 
                 itemView.apply {
                     if (!body.isEditable) {
                         yes.isEnabled = !hasNext
                         no.isEnabled = !hasNext
+                    } else {
+                        yes.isEnabled = true
+                        no.isEnabled = true
                     }
                     yes.setTextSelect()
                     no.setTextSelect()
@@ -245,7 +252,7 @@ class SecondOpinionAdapter :
                         tag = body.question.id
                     }
 
-                    if (!body.question.answer.isNullOrEmpty()) {
+                    if (!body.question.answer.isBlack()) {
                         body.question.answer!!.firstOrNull()?.let {
                             yes?.apply {
                                 isSelected = (it == "0")
@@ -262,7 +269,7 @@ class SecondOpinionAdapter :
                                         setTextSelect()
                                         postInvalidate()
                                         body.question.answer = listOf("0")
-                                        body.listener(body.question, 0, body.isEditable)
+                                        body.listener(body.question, 0, body.isEditable, hasNext)
                                     }
                                 } else {
                                     setOnClickListener {}
@@ -284,7 +291,7 @@ class SecondOpinionAdapter :
                                         setTextSelect()
                                         postInvalidate()
                                         body.question.answer = listOf("1")
-                                        body.listener(body.question, 1, body.isEditable)
+                                        body.listener(body.question, 1, body.isEditable, hasNext)
                                     }
                                 } else {
                                     setOnClickListener {}
@@ -300,7 +307,7 @@ class SecondOpinionAdapter :
                                 setTextSelect()
                                 postInvalidate()
                                 body.question.answer = listOf("0")
-                                body.listener(body.question, 0, body.isEditable)
+                                body.listener(body.question, 0, body.isEditable, hasNext)
                             }
                         }
 
@@ -312,7 +319,7 @@ class SecondOpinionAdapter :
                                 setTextSelect()
                                 postInvalidate()
                                 body.question.answer = listOf("1")
-                                body.listener(body.question, 1, body.isEditable)
+                                body.listener(body.question, 1, body.isEditable, hasNext)
                             }
                         }
                     }
@@ -328,6 +335,10 @@ class SecondOpinionAdapter :
                 hasNext: Boolean
             ) {
                 itemView.apply {
+                    submit.isEnabled = true
+                    choose_1.isEnabled = true
+                    choose_2.isEnabled = true
+                    choose_3.isEnabled = true
 
                     question?.apply {
                         text = body.question.name
@@ -358,7 +369,6 @@ class SecondOpinionAdapter :
                         setOnClickListener {
                             val list: ArrayList<String> = ArrayList()
                             for (i in 1..3) {
-                                println("$i")
                                 itemView.answers.findViewWithTag<MaterialCheckBox>("choose_$i")
                                     .run {
                                         if (isChecked)

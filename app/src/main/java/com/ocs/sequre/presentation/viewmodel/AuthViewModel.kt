@@ -15,7 +15,6 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
-
 class AuthViewModel @Inject constructor(
     private val api: RequesterAuthAPI,
     private val preference: AuthPreference,
@@ -38,6 +37,7 @@ class AuthViewModel @Inject constructor(
     }
 
     fun register(body: Registration): Single<AuthModel> {
+        body.device_token = token()
         return api.register(body)
             .compose(compose.applyOnSingle())
             .compose(composeLoadingSingle())
