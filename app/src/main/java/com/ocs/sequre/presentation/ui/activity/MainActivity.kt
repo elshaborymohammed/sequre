@@ -3,9 +3,11 @@ package com.ocs.sequre.presentation.ui.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import com.compact.binding.annotation.AndroidBinding
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.BaseActivity
 
+@AndroidBinding
 class MainActivity : BaseActivity() {
 
     override fun layoutRes(): Int {

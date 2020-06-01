@@ -7,6 +7,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import androidx.recyclerview.widget.RecyclerView
 import com.compact.widget.recyclerview.CompactRecyclerView
+import com.compact.widget.recyclerview.SpaceDecoration
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import kotlinx.android.synthetic.main.card_menu.view.*
@@ -22,8 +23,7 @@ class MenuAdapter() :
 
     override fun itemDecorations(): Array<RecyclerView.ItemDecoration> {
         return arrayOf(
-            CompactRecyclerView.SpacesItemDecoration.Linear.builder(context)
-                .top(64).left(12).right(12).build()
+            SpaceDecoration.builder(context).top(64).left(12).right(12).build()
         )
     }
 

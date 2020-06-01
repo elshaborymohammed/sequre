@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.compact.widget.recyclerview.CompactRecyclerView
+import com.compact.widget.recyclerview.SpaceDecoration
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.domain.entity.Document
@@ -26,9 +27,7 @@ class MedicalDocumentAdapter :
 
     override fun itemDecorations(): Array<RecyclerView.ItemDecoration> {
         return arrayOf(
-            CompactRecyclerView.SpacesItemDecoration.Linear.builder(context)
-                .orientation(RecyclerView.HORIZONTAL)
-                .horizontal(8).build()
+            SpaceDecoration.builder(context).horizontal(8).build()
         )
     }
 

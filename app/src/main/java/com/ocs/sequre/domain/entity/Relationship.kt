@@ -24,7 +24,7 @@ enum class Relationship(val flag: Int, @field:StringRes @param:StringRes val str
         }
 
         fun values(context: Context): ArrayList<String> {
-            var list = ArrayList<String>()
+            val list = ArrayList<String>()
             values().forEach {
                 list.add(context.getString(it.stringRes))
             }

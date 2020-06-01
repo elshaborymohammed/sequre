@@ -11,8 +11,8 @@ interface DependentAPI {
     fun create(@Body body: Dependent): Completable
 
     @PUT("me/dependents/{id}")
-    fun update(@Path("id") int: Int, @Body body: Dependent): Completable
+    fun update(@Path("id") id: Int, @Body body: Dependent): Completable
 
     @DELETE("me/dependents/{id}")
-    fun delete(@Path("id") int: Int): Completable
+    fun delete(@Path("id") id: Int): Completable
 }

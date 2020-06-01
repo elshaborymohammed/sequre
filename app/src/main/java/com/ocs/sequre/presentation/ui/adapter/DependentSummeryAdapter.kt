@@ -8,6 +8,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.signature.ObjectKey
 import com.compact.app.extensions.isNotNullOrEmpty
 import com.compact.widget.recyclerview.CompactRecyclerView
+import com.compact.widget.recyclerview.SpaceDecoration
 import com.ocs.sequre.R
 import com.ocs.sequre.app.GlideApp
 import com.ocs.sequre.domain.entity.Dependent
@@ -21,7 +22,7 @@ class DependentSummeryAdapter :
 
     override fun itemDecorations(): Array<RecyclerView.ItemDecoration> {
         return arrayOf(
-            CompactRecyclerView.SpacesItemDecoration.Linear.builder(context).space(8).build()
+            SpaceDecoration.builder(context).space(8).build()
         )
     }
 

@@ -107,7 +107,7 @@ ext {
     ]
 
     /** CompactKit */
-    compactVersion = '0.0.5_alpha5'
+    compactVersion = '0.0.5_alpha9'
     compact = [
             app                : "com.appcompact.compact:app:$compactVersion",
             otp                : "com.appcompact.compact:otpview:$compactVersion",
@@ -117,6 +117,8 @@ ext {
             callAdapter        : "com.appcompact.compact:call-adapter:$compactVersion",
             requesterAnnotation: "com.appcompact.compact:requester-annotation:$compactVersion",
             requesterProcessor : "com.appcompact.compact:requester-processor:$compactVersion",
+            bindingAnnotation: "com.appcompact.compact:binding-annotation:$compactVersion",
+            bindingProcessor : "com.appcompact.compact:binding-processor:$compactVersion",
             viewmodel          : "com.appcompact.compact:viewmodel:$compactVersion",
     ]
 }

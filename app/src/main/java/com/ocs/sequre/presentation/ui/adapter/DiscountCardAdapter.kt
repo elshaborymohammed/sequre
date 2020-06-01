@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.compact.widget.recyclerview.CompactRecyclerView
+import com.compact.widget.recyclerview.SpaceDecoration
 import com.ocs.sequre.R
 import com.ocs.sequre.domain.entity.DiscountCard
 import kotlinx.android.synthetic.main.card_discount_card.view.*
@@ -21,7 +22,7 @@ class DiscountCardAdapter :
 
     override fun itemDecorations(): Array<RecyclerView.ItemDecoration> {
         return arrayOf(
-            CompactRecyclerView.SpacesItemDecoration.Grid.builder(context).space(0).build()
+            SpaceDecoration.builder(context).space(8).build()
         )
     }
 

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.compact.widget.recyclerview.CompactRecyclerView
+import com.compact.widget.recyclerview.SpaceDecoration
 import com.ocs.sequre.R
 import com.ocs.sequre.domain.entity.Notification
 import kotlinx.android.synthetic.main.card_notification.view.*
@@ -21,7 +22,7 @@ constructor() : CompactRecyclerView.Adapter<Notification, NotificationsAdapter.V
 
     override fun itemDecorations(): Array<RecyclerView.ItemDecoration> {
         return arrayOf(
-            CompactRecyclerView.SpacesItemDecoration.Grid.builder(context).space(0).build()
+            SpaceDecoration.builder(context).space(8).build()
         )
     }
 

@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.compact.widget.recyclerview.CompactRecyclerView
+import com.compact.widget.recyclerview.SpaceDecoration
 import com.google.android.material.checkbox.MaterialCheckBox
 import com.ocs.sequre.R
 import com.ocs.sequre.app.base.isBlack
@@ -30,9 +30,7 @@ class SecondOpinionAdapter :
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         recyclerView.addItemDecoration(
-            CompactRecyclerView.SpacesItemDecoration.Linear.builder(
-                recyclerView.context
-            ).horizontal(24).vertical(8).build()
+            SpaceDecoration.builder(recyclerView.context).horizontal(24).vertical(8).build()
         )
         super.onAttachedToRecyclerView(recyclerView)
         this.recyclerView = recyclerView
